@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class TowerController : MonoBehaviour
 {
-    public TowerData towerData;           
-    public GameObject towerBasePrefab;    
+    public int rankValue = 1;
+    public Sprite towerSprite;
+    public float attackRange;
+    public float attackDamage;
+    
+    public GameObject towerBasePrefab;
     public GameObject[] basePrefabs;
     
     private SpriteRenderer spriteRenderer;
     private TowerBaseController baseController;
+    public Vector2Int gridPosition;
 
     void Awake()
     {
@@ -16,44 +21,55 @@ public class TowerController : MonoBehaviour
 
     void Start()
     {
-        if(towerData != null)
-        {
-            UpdateAppearance();
-        }
+        UpdateAppearance();
 
-        if(transform.Find("TowerBaseHolder") == null && towerBasePrefab != null)
+        if (transform.Find("TowerBaseHolder") == null)
         {
-            GameObject baseObj = Instantiate(towerBasePrefab, transform);
-            baseObj.name = "TowerBaseHolder";
-            baseObj.transform.localPosition = new Vector3(0, -0.5f, 0); 
-
-            baseController = baseObj.GetComponent<TowerBaseController>();
+            CreateTowerBase();
         }
         else
         {
             Transform baseHolder = transform.Find("TowerBaseHolder");
-            if(baseHolder != null)
+            if (baseHolder != null)
             {
                 baseController = baseHolder.GetComponent<TowerBaseController>();
             }
         }
     }
 
-    public void UpdateAppearance()
+    void CreateTowerBase()
     {
-        // Update the tower's main sprite and color.
-        if (spriteRenderer != null)
+        GameObject baseObj = null;
+        if (basePrefabs != null && basePrefabs.Length > 0)
         {
-            spriteRenderer.sprite = towerData.towerSprite;
-            spriteRenderer.color = towerData.towerColor;
+            int rankIndex = Mathf.Clamp(rankValue - 1, 0, basePrefabs.Length - 1);
+            baseObj = Instantiate(basePrefabs[rankIndex], transform);
+        }
+        else if (towerBasePrefab != null)
+        {
+            baseObj = Instantiate(towerBasePrefab, transform);
         }
 
-        if (baseController != null && basePrefabs != null)
+        if (baseObj != null)
         {
-            int rankIndex = Mathf.Clamp(towerData.rankValue - 1, 0, basePrefabs.Length - 1);
-            GameObject basePrefab = basePrefabs[rankIndex];
-            Sprite baseSprite = basePrefab.GetComponent<SpriteRenderer>().sprite; 
+            baseObj.name = "TowerBaseHolder";
+            baseObj.transform.localPosition = Vector3.zero;
+            baseController = baseObj.GetComponent<TowerBaseController>();
+        }
+    }
 
+    public void UpdateAppearance()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sprite = towerSprite;
+        }
+
+        if (baseController != null && basePrefabs != null && basePrefabs.Length > 0)
+        {
+            int rankIndex = Mathf.Clamp(rankValue - 1, 0, basePrefabs.Length - 1);
+            GameObject basePrefab = basePrefabs[rankIndex];
+            Sprite baseSprite = basePrefab.GetComponent<SpriteRenderer>().sprite;
             if (baseSprite != null)
             {
                 baseController.SetBaseSprite(baseSprite);
@@ -61,10 +77,31 @@ public class TowerController : MonoBehaviour
         }
     }
 
-
-    public void UpgradeTower(TowerData newData)
+    public void UpgradeTower()
     {
-        towerData = newData;
+        if (rankValue < 4)
+        {
+            rankValue++;
+            // attackRange *= 1.2f;
+            // attackDamage *= 1.2f;
+            ReplaceTowerBase();
+        }
         UpdateAppearance();
+    }
+
+    private void ReplaceTowerBase()
+    {
+        Transform baseHolder = transform.Find("TowerBaseHolder");
+        if (baseHolder != null)
+        {
+            Destroy(baseHolder.gameObject);
+        }
+        CreateTowerBase();
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

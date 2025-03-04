@@ -4,8 +4,7 @@ using UnityEngine;
 public class TowerData : ScriptableObject
 {
     public int rankValue;  
-    public Sprite towerSprite;        
-    public Color towerColor;        
+    public Sprite towerSprite;          
     public float attackRange;         
     public float attackDamage;       
 }

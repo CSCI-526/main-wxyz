@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2618495671070671392}
   - component: {fileID: 6453271512354403915}
   m_Layer: 0
-  m_Name: Tower
+  m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.3299162, y: 1.9738896, z: 0.08303308}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,10 +100,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8890f9d5749224509afa98578dd6c45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerData: {fileID: 0}
+  rankValue: 1
+  towerSprite: {fileID: -5444745853883899374, guid: 2701b5b22b837493fbf457a635e98a28, type: 3}
+  attackRange: 0
+  attackDamage: 0
   towerBasePrefab: {fileID: 0}
   basePrefabs:
   - {fileID: 5382328371828604995, guid: a3ff432b1b7aa43c0bc9095c5f5d0c18, type: 3}
   - {fileID: 1169137949355460633, guid: 665debfea4c9941c1bbb8bc05f3297b2, type: 3}
   - {fileID: 2729133250331387908, guid: 9e77472785924463dbc0dd96e7fcc0f1, type: 3}
   - {fileID: 6734909066804063127, guid: 1e20dd86615b14cd2ba6b808f1daed89, type: 3}
+  gridPosition: {x: 0, y: 0}
