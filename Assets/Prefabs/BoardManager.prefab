@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443f0a002a4df42f6b6130bea6b2ffa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 5
-  columns: 5
-  tileSpacing: 0.85
+  rows: 7
+  columns: 6
+  tileSpacing: 0.7
   tilePrefab: {fileID: 7345841078781865526, guid: 83c234f27f5f2441b8638bf06b5995e7, type: 3}

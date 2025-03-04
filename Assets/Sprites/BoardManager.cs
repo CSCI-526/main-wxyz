@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
-    public int rows = 5;
-    public int columns = 5;
+
+    public int rows = 7;
+    public int columns = 7;
     public float tileSpacing = 1.1f;
     public GameObject tilePrefab; 
     public TileController[,] tiles;
 
     void Start()
     {
-        
     }
 
     public void CreateGrid()
@@ -27,6 +27,16 @@ public class BoardManager : MonoBehaviour
                 GameObject tileObj = Instantiate(tilePrefab, pos, Quaternion.identity, transform);
                 TileController tc = tileObj.GetComponent<TileController>();
                 tc.gridPosition = new Vector2Int(i, j);
+
+
+                if (i == 0 || i == rows - 1 || j == 0 || j == columns - 1)
+                {
+                    SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
+                    if (sr != null)
+                    {
+                        sr.color = Color.white;
+                    }
+                }
                 tiles[i, j] = tc;
             }
         }
@@ -38,6 +48,11 @@ public class BoardManager : MonoBehaviour
     }
 
 
+    public bool IsInnerTile(int row, int col)
+    {
+        return row > 0 && row < rows - 1 && col > 0 && col < columns - 1;
+    }
+
     public void MoveTowers(Vector2Int direction)
     {
         bool moved;
@@ -45,28 +60,28 @@ public class BoardManager : MonoBehaviour
         {
             moved = false;
 
+
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
                 {
-
                     int row = (direction.y > 0) ? (rows - 1 - i) : i;
                     int col = (direction.x > 0) ? (columns - 1 - j) : j;
 
                     TileController currentTile = tiles[row, col];
-                    Debug.Log($"Checking tile ({row}, {col})");
                     if (currentTile.towerOnTile != null)
                     {
                         int newRow = row + direction.y;
                         int newCol = col + direction.x;
                         
-                        if (IsInside(newRow, newCol) && tiles[newRow, newCol].towerOnTile == null)
+                        if (IsInside(newRow, newCol) && IsInnerTile(newRow, newCol) &&
+                            tiles[newRow, newCol].towerOnTile == null)
                         {
-                            Debug.Log($"Moving tower from ({row}, {col}) to ({newRow}, {newCol}).");
                             tiles[newRow, newCol].towerOnTile = currentTile.towerOnTile;
                             currentTile.towerOnTile = null;
 
-                            tiles[newRow, newCol].towerOnTile.transform.position = tiles[newRow, newCol].transform.position;
+                            tiles[newRow, newCol].towerOnTile.transform.position = 
+                                tiles[newRow, newCol].transform.position;
                             moved = true;
                         }
                     }
@@ -74,6 +89,7 @@ public class BoardManager : MonoBehaviour
             }
         } while (moved);
     }
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -96,5 +112,4 @@ public class BoardManager : MonoBehaviour
             Gizmos.DrawLine(start, end);
         }
     }
-
 }
