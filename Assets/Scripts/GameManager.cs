@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public BoardManager boardManager;
     public EnemySpawn enemyManager;
-    public GameObject towerPrefab;
+    public GameObject[] towerPrefabs;
     public UIManager uiManager; //添加UIManager连接
 
     public int playerGold = 9999; 
@@ -26,10 +26,40 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (playerHealth <= 0) 
+        if (playerHealth <= 0)
         {
             ShowFailScreen();
             Time.timeScale = 0f;
+        }
+
+        // ✅ 监听键盘输入，让塔可以移动
+        HandleKeyboardInput();
+    }
+
+    /// <summary>
+    /// 监听方向键输入并移动塔
+    /// </summary>
+    private void HandleKeyboardInput()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Debug.Log("上移动作触发");
+            boardManager.MoveTowers(Vector2Int.up);
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Debug.Log("下移动作触发");
+            boardManager.MoveTowers(Vector2Int.down);
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            Debug.Log("左移动作触发");
+            boardManager.MoveTowers(Vector2Int.left);
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            Debug.Log("右移动作触发");
+            boardManager.MoveTowers(Vector2Int.right);
         }
     }
 
@@ -68,6 +98,9 @@ public class GameManager : MonoBehaviour
             return false;
         }
 
+        int randomTowerIndex = Random.Range(0, towerPrefabs.Length);
+        GameObject selectedTowerPrefab = towerPrefabs[randomTowerIndex];
+
         Vector2Int chosenTile = availableTiles[Random.Range(0, availableTiles.Count)];
         int randomCol = chosenTile.x;
         int randomRow = chosenTile.y;
@@ -77,7 +110,7 @@ public class GameManager : MonoBehaviour
         float offsetY = (boardManager.rows - 1) / 2.0f;
         Vector3 spawnPos = new Vector3((randomCol - offsetX) * spacing, (offsetY - randomRow) * spacing, 0);
 
-        GameObject towerObj = Instantiate(towerPrefab, spawnPos, Quaternion.identity);
+        GameObject towerObj = Instantiate(selectedTowerPrefab, spawnPos, Quaternion.identity);
         TowerController towerController = towerObj.GetComponent<TowerController>();
         towerController.gridPosition = new Vector2Int(randomCol, randomRow);
 
