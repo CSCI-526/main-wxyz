@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     private float moveSpeed = 3f;
     private float currentHealth = 100f;
     private int currentIndex = 0;
+    private int coin = 5;
 
     private SpriteRenderer spriteRenderer;
 
@@ -59,13 +60,36 @@ public class Enemy : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            Defeated();
         }
     }
 
     public void SetMaxHealth(float maxHealth)
     {
         currentHealth = maxHealth;
+    }
+
+    private void Defeated()
+    {
+        GameManager gameManager = Object.FindFirstObjectByType<GameManager>();
+        if (gameManager != null)
+        {
+            if (gameManager.playerGold <= 9999-coin)
+            {
+                gameManager.AddCoin(coin);
+                Debug.Log("Player coin added:" + gameManager.playerGold);
+            }
+            else
+            {
+                Debug.Log("Player coin 9999");
+            }
+            
+        }
+        UIManager uiManager = Object.FindFirstObjectByType<UIManager>();
+        if (uiManager != null) {
+            uiManager.UpdateGoldUI();
+        }
+        Destroy(gameObject);
     }
 
     private void ReachDest()

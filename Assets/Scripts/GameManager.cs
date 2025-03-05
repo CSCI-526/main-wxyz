@@ -81,8 +81,10 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-
-
+    public void AddCoin(int num)
+    {
+        playerGold += num;
+    }
 
     public void DeductCost()
     {
