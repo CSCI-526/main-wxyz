@@ -1,4 +1,5 @@
 using UnityEngine;
+
 public class TankTowerController : TowerController
 {
     public GameObject projectilePrefab;
@@ -26,14 +27,26 @@ public class TankTowerController : TowerController
     Enemy FindTargetEnemy()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
+        Enemy closestEnemy = null;
+        float shortestDistance = Mathf.Infinity;
+
         foreach (Collider2D collider in colliders)
         {
             if (collider.CompareTag("Enemy"))
             {
-                return collider.GetComponent<Enemy>();
+                Enemy enemy = collider.GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    float distance = Vector2.Distance(transform.position, enemy.transform.position);
+                    if (distance < shortestDistance)
+                    {
+                        shortestDistance = distance;
+                        closestEnemy = enemy;
+                    }
+                }
             }
         }
-        return null;
+        return closestEnemy;
     }
 
     void ShootProjectile(Enemy target)
