@@ -1,4 +1,5 @@
 using UnityEngine;
+
 public class Projectile : MonoBehaviour
 {
     public Enemy target;
@@ -13,8 +14,22 @@ public class Projectile : MonoBehaviour
 
     public void InitializeProjectile()
     {
+        if (target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Vector2 direction = (target.transform.position - transform.position).normalized;
         rb.linearVelocity = direction * speed;
+    }
+
+    void Update()
+    {
+        if (target == null)
+        {
+            Destroy(gameObject); 
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -25,8 +40,8 @@ public class Projectile : MonoBehaviour
             if (enemy != null)
             {
                 enemy.EnemyTakeDamage(damage);
-                Destroy(gameObject);
             }
+            Destroy(gameObject);
         }
     }
 }
