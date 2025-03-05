@@ -5,6 +5,7 @@ public class Enemy : MonoBehaviour
     public EnemyData enemyData;
     public UIManager uiManager; //添加UIManager连接
     public Transform[] waypoints;
+    public int index;
     private float moveSpeed = 1f;
     private float currentHealth = 100f;
     private int currentIndex = 0;
@@ -72,6 +73,7 @@ public class Enemy : MonoBehaviour
 
     private void Defeated()
     {
+        Debug.Log(gameObject.name + index + " killed");
         GameManager gameManager = Object.FindFirstObjectByType<GameManager>();
         if (gameManager != null)
         {
@@ -88,7 +90,7 @@ public class Enemy : MonoBehaviour
     private void ReachDest()
     {
         DamagePlayerHealth(1);
-        Debug.Log(gameObject.name + " make 1 damage");
+        Debug.Log(gameObject.name + index + " make 1 damage");
         Destroy(gameObject);
         UIManager uiManager = Object.FindFirstObjectByType<UIManager>();
         if (uiManager != null) 

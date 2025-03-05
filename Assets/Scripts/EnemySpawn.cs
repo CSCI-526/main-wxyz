@@ -77,6 +77,7 @@ public class EnemySpawn : MonoBehaviour
     public IEnumerator SpawnWaves()
     {
         float currentMaxHealth = 100f;
+        int enemyIndex = 1;
         while(true)
         {
             for(int i = 0; i < enemyCount; i++)
@@ -84,6 +85,8 @@ public class EnemySpawn : MonoBehaviour
                 GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
                 enemy.GetComponent<Enemy>().SetMaxHealth(currentMaxHealth);
                 enemy.GetComponent<Enemy>().waypoints = path;
+                enemy.GetComponent<Enemy>().index = enemyIndex;
+                enemyIndex ++;
                 yield return new WaitForSeconds(timeBetweenEnemies);
             }
             yield return new WaitForSeconds(timeAfterWave);
