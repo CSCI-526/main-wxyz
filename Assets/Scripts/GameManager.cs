@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f;
         boardManager.CreateGrid();
         bool spawned = SpawnRandomTower();
         enemyManager.EnemySpawnConfigInit();
