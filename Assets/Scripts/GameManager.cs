@@ -4,15 +4,39 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     public BoardManager boardManager;
+    public EnemySpawn enemyManager;
     public GameObject towerPrefab;
 
     public int playerGold = 9999; 
-    public int spawnCost = 10;   
+    public int spawnCost = 10;
+    public int playerHealth = 10; 
+
+    private bool hasLost = false;
 
     void Start()
     {
         boardManager.CreateGrid();
         bool spawned = SpawnRandomTower();
+        enemyManager.EnemySpawnConfigInit();
+        StartCoroutine(enemyManager.SpawnWaves());
+    }
+
+    void Update()
+    {
+        if (playerHealth <= 0) 
+        {
+            ShowFailScreen();
+            Time.timeScale = 0f;
+        }
+    }
+
+    private void ShowFailScreen()
+    {
+        if (!hasLost)
+        {
+            Debug.Log("Player lose !!!");
+            hasLost = true;
+        }
     }
 
     public bool SpawnRandomTower()

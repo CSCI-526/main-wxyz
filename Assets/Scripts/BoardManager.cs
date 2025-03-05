@@ -9,6 +9,9 @@ public class BoardManager : MonoBehaviour
     public TileController[,] tiles;
 
     public TileController monsterSpawnTile;
+    public TileController monsterTurnTile1;
+    public TileController monsterTurnTile2;
+    public TileController monsterTurnTile3;
     public TileController monsterDestTile;
 
     void Start()
@@ -41,6 +44,24 @@ public class BoardManager : MonoBehaviour
                     SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
                     if (sr != null) { sr.color = Color.green; }
                     monsterDestTile = tc;
+                }
+                else if (i == 0 && j == columns - 1)
+                {
+                    SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
+                    if (sr != null) { sr.color = Color.white; }
+                    monsterTurnTile1 = tc;
+                }                
+                else if (i == rows - 1 && j == columns - 1)
+                {
+                    SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
+                    if (sr != null) { sr.color = Color.white; }
+                    monsterTurnTile2 = tc;
+                }
+                else if (i == rows - 1 && j == 0)
+                {
+                    SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
+                    if (sr != null) { sr.color = Color.white; }
+                    monsterTurnTile3 = tc;
                 }
                 else if (i == 0 || i == rows - 1 || j == 0 || j == columns - 1)
                 {
