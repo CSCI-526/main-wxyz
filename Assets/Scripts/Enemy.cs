@@ -17,8 +17,8 @@ public class Enemy : MonoBehaviour
     }
 
     void Start()
-    {   
-        if(enemyData != null)
+    {
+        if (enemyData != null)
         {
             //UpdateAppearance();
         }

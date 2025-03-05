@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EnemyData
   m_EditorClassIdentifier: 
   enemySprite: {fileID: 0}
-  maxHealth: 0
+  maxHealth: 100
   moveSpeed: 0
   damage: 0

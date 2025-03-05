@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3093538811150710754}
   - component: {fileID: 2618495671070671392}
-  - component: {fileID: 6453271512354403915}
+  - component: {fileID: -1489531571675924629}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Untagged
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6453271512354403915
+--- !u!114 &-1489531571675924629
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,13 +97,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1001787181882085309}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8890f9d5749224509afa98578dd6c45a, type: 3}
+  m_Script: {fileID: 11500000, guid: 19972df44bf024fbba00f535f280aa00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rankValue: 1
   towerSprite: {fileID: -5444745853883899374, guid: 2701b5b22b837493fbf457a635e98a28, type: 3}
-  attackRange: 0
-  attackDamage: 0
+  attackRange: 4
+  attackDamage: 10
   towerBasePrefab: {fileID: 0}
   basePrefabs:
   - {fileID: 5382328371828604995, guid: a3ff432b1b7aa43c0bc9095c5f5d0c18, type: 3}
@@ -111,3 +111,5 @@ MonoBehaviour:
   - {fileID: 2729133250331387908, guid: 9e77472785924463dbc0dd96e7fcc0f1, type: 3}
   - {fileID: 6734909066804063127, guid: 1e20dd86615b14cd2ba6b808f1daed89, type: 3}
   gridPosition: {x: 0, y: 0}
+  projectilePrefab: {fileID: 3538796072834460885, guid: d3d1509b193ff49b3822d4d64810a551, type: 3}
+  fireRate: 4
