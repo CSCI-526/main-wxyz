@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public BoardManager boardManager;
     public EnemySpawn enemyManager;
     public GameObject towerPrefab;
+    public UIManager uiManager; //添加UIManager连接
 
     public int playerGold = 9999; 
     public int spawnCost = 10;
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
         bool spawned = SpawnRandomTower();
         enemyManager.EnemySpawnConfigInit();
         StartCoroutine(enemyManager.SpawnWaves());
+        uiManager.UpdateHealthUI(); //游戏开始时更新血量UI
     }
 
     void Update()
@@ -36,6 +38,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Player lose !!!");
             hasLost = true;
+            uiManager.ShowGameOverUI();
+            //失败触发GameOver
         }
     }
 
@@ -93,4 +97,11 @@ public class GameManager : MonoBehaviour
         spawnCost += 10;
         Debug.Log("Next spawn will cost: " + spawnCost);
     }
+    public void ReduceHealth(int damage)
+    {
+        playerHealth -= damage;
+        Debug.Log("Player health after damage: " + playerHealth);
+        uiManager.UpdateHealthUI();
+    }
+
 }

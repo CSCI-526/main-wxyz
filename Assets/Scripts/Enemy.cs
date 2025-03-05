@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public EnemyData enemyData;
+    public UIManager uiManager; //添加UIManager连接
     public Transform[] waypoints;
     private float moveSpeed = 1f;
     private float currentHealth = 100f;
@@ -97,6 +98,11 @@ public class Enemy : MonoBehaviour
         DamagePlayerHealth(1);
         Debug.Log(gameObject.name + " make 1 damage");
         Destroy(gameObject);
+        UIManager uiManager = Object.FindFirstObjectByType<UIManager>();
+        if (uiManager != null) 
+        {
+            uiManager.UpdateHealthUI();
+        }
     }
 
     private void DamagePlayerHealth(int damage)
@@ -104,8 +110,7 @@ public class Enemy : MonoBehaviour
         GameManager gameManager = Object.FindFirstObjectByType<GameManager>();
         if (gameManager != null)
         {
-            gameManager.playerHealth -= damage;
-            Debug.Log("Player health: " + gameManager.playerHealth);
+            gameManager.ReduceHealth(damage);
         }
     }
 
