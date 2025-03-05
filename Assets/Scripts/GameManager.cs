@@ -87,7 +87,14 @@ public class GameManager : MonoBehaviour
 
     public void AddCoin(int num)
     {
-        playerGold += num;
+        if (playerGold + num > 9999)
+        {
+            playerGold = 9999;
+        }
+        else
+        {
+            playerGold += num;
+        }
     }
 
     public void DeductCost()

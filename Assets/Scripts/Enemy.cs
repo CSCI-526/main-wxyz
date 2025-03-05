@@ -75,16 +75,8 @@ public class Enemy : MonoBehaviour
         GameManager gameManager = Object.FindFirstObjectByType<GameManager>();
         if (gameManager != null)
         {
-            if (gameManager.playerGold <= 9999-coin)
-            {
-                gameManager.AddCoin(coin);
-                Debug.Log("Player coin added:" + gameManager.playerGold);
-            }
-            else
-            {
-                Debug.Log("Player coin 9999");
-            }
-            
+            gameManager.AddCoin(coin);
+            Debug.Log("Player coin added:" + gameManager.playerGold);            
         }
         UIManager uiManager = Object.FindFirstObjectByType<UIManager>();
         if (uiManager != null) {
