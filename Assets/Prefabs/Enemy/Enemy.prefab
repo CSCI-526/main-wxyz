@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 6b0eed3b0bff246f79745dbe2d9fedad, type: 2}
+  waypoints: []

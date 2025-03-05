@@ -4,7 +4,7 @@ public class Enemy : MonoBehaviour
 {
     public EnemyData enemyData;
     public Transform[] waypoints;
-    private float moveSpeed = 3f;
+    private float moveSpeed = 1f;
     private float currentHealth = 100f;
     private int currentIndex = 0;
     private int coin = 5;
