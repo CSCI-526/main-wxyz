@@ -14,13 +14,13 @@ public class Enemy : MonoBehaviour
     }
 
     void Start()
-    {   
-        if(enemyData != null)
+    {
+        if (enemyData != null)
         {
             //UpdateAppearance();
         }
         currentHealth = enemyData.maxHealth;
-        
+
     }
     public void UpdateAppearance()
     {
@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
     {
         // Enemy moving logic
     }
-    void EnemyTakeDamage(float damage)
+    public void EnemyTakeDamage(float damage)
     {
         currentHealth -= damage;
         if (currentHealth <= 0)
