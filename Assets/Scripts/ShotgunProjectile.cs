@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class ShotgunProjectile : MonoBehaviour
 {
     public Enemy target;
     public float speed;
     public float damage;
+    private Vector2 moveDirection;
     private Rigidbody2D rb;
 
     void Awake()
@@ -12,24 +13,11 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void InitializeProjectile()
+    public void SetDirection(Vector2 targetPosition, float angleOffset)
     {
-        if (target == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Vector2 direction = (target.transform.position - transform.position).normalized;
+        Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
+        direction = Quaternion.Euler(0, 0, angleOffset) * direction; // Rotate direction
         rb.linearVelocity = direction * speed;
-    }
-
-    void Update()
-    {
-        if (target == null)
-        {
-            Destroy(gameObject); 
-        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
