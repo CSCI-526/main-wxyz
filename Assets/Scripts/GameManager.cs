@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> towerPrefabs; // Changed to a list of tower prefabs
     public UIManager uiManager; // UIManager connection
 
-    public int playerGold = 9999; 
+    public int playerGold = 100; 
     public int spawnCost = 10;
     public int playerHealth = 10; 
 
