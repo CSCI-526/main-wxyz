@@ -27,27 +27,24 @@ public class TankTowerController : TowerController
     Enemy FindTargetEnemy()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
-        Enemy closestEnemy = null;
-        float shortestDistance = Mathf.Infinity;
+        Enemy targetEnemy = null;
+        int lowestIndex = int.MaxValue; // 设置一个极大的初始值
 
         foreach (Collider2D collider in colliders)
         {
             if (collider.CompareTag("Enemy"))
             {
                 Enemy enemy = collider.GetComponent<Enemy>();
-                if (enemy != null)
+                if (enemy != null && enemy.index < lowestIndex) // 选择 enemyIndex 最小的敌人
                 {
-                    float distance = Vector2.Distance(transform.position, enemy.transform.position);
-                    if (distance < shortestDistance)
-                    {
-                        shortestDistance = distance;
-                        closestEnemy = enemy;
-                    }
+                    lowestIndex = enemy.index;
+                    targetEnemy = enemy;
                 }
             }
         }
-        return closestEnemy;
+        return targetEnemy;
     }
+
 
     void ShootProjectile(Enemy target)
     {
