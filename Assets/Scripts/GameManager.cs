@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
@@ -102,7 +102,21 @@ public class GameManager : MonoBehaviour
         {
             playerGold += num;
         }
+
+        Debug.Log("Gold added: " + num + " | Current Gold: " + playerGold);
+
+        // **确保 UI 刷新**
+        if (uiManager != null)
+        {
+            uiManager.UpdateGoldUI();
+        }
+        else
+        {
+            Debug.LogError("UIManager is NULL! Gold UI not updated.");
+        }
     }
+
+
 
     public void DeductCost()
     {
