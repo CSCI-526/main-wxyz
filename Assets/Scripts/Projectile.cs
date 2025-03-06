@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
     public float speed;
     public float damage;
     private Rigidbody2D rb;
-    private float lifetime = 3f; // 子弹最大存在时间
+    private float lifetime = 0.4f; // 子弹最大存在时间
     private float lifeTimer;
 
     void Awake()
