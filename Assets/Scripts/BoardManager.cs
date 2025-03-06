@@ -108,7 +108,9 @@ public class BoardManager : MonoBehaviour
                             if (currentPos > 1 && tiles[i, currentPos - 1].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[i, currentPos - 1].towerOnTile;
-                                if (destTower.rankValue == tower.rankValue && destTower.rankValue < 4)
+                                if (destTower.rankValue == tower.rankValue &&
+                                    destTower.rankValue < 4 &&
+                                    destTower.towerName == tower.towerName)
                                 {
                                     destTower.UpgradeTower();
                                     Destroy(tower.gameObject);
@@ -132,7 +134,6 @@ public class BoardManager : MonoBehaviour
                 // Moving right
                 else if (direction.x > 0)
                 {
-
                     for (int j = columns - 2; j >= 1; j--)
                     {
                         TowerController tower = tiles[i, j].towerOnTile;
@@ -146,7 +147,9 @@ public class BoardManager : MonoBehaviour
                             if (currentPos < columns - 2 && tiles[i, currentPos + 1].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[i, currentPos + 1].towerOnTile;
-                                if (destTower.rankValue == tower.rankValue && destTower.rankValue < 4)
+                                if (destTower.rankValue == tower.rankValue &&
+                                    destTower.rankValue < 4 &&
+                                    destTower.towerName == tower.towerName)
                                 {
                                     destTower.UpgradeTower();
                                     Destroy(tower.gameObject);
@@ -171,12 +174,10 @@ public class BoardManager : MonoBehaviour
         // Vertical movement
         else if (direction.y != 0)
         {
-
             if (direction.y < 0)
             {
                 for (int j = 1; j < columns - 1; j++)
                 {
-  
                     for (int i = rows - 2; i >= 1; i--)
                     {
                         TowerController tower = tiles[i, j].towerOnTile;
@@ -190,7 +191,9 @@ public class BoardManager : MonoBehaviour
                             if (currentPos < rows - 2 && tiles[currentPos + 1, j].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[currentPos + 1, j].towerOnTile;
-                                if (destTower.rankValue == tower.rankValue && destTower.rankValue < 4)
+                                if (destTower.rankValue == tower.rankValue &&
+                                    destTower.rankValue < 4 &&
+                                    destTower.towerName == tower.towerName)
                                 {
                                     destTower.UpgradeTower();
                                     Destroy(tower.gameObject);
@@ -211,7 +214,6 @@ public class BoardManager : MonoBehaviour
                     }
                 }
             }
-
             else if (direction.y > 0)
             {
                 for (int j = 1; j < columns - 1; j++)
@@ -229,7 +231,9 @@ public class BoardManager : MonoBehaviour
                             if (currentPos > 1 && tiles[currentPos - 1, j].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[currentPos - 1, j].towerOnTile;
-                                if (destTower.rankValue == tower.rankValue && destTower.rankValue < 4)
+                                if (destTower.rankValue == tower.rankValue &&
+                                    destTower.rankValue < 4 &&
+                                    destTower.towerName == tower.towerName)
                                 {
                                     destTower.UpgradeTower();
                                     Destroy(tower.gameObject);

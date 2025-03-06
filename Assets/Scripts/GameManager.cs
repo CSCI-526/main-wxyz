@@ -5,8 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public BoardManager boardManager;
     public EnemySpawn enemyManager;
-    public GameObject towerPrefab;
-    public UIManager uiManager; //添加UIManager连接
+    public List<GameObject> towerPrefabs; // Changed to a list of tower prefabs
+    public UIManager uiManager; // UIManager connection
 
     public int playerGold = 9999; 
     public int spawnCost = 10;
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
         bool spawned = SpawnRandomTower();
         enemyManager.EnemySpawnConfigInit();
         StartCoroutine(enemyManager.SpawnWaves());
-        uiManager.UpdateHealthUI(); //游戏开始时更新血量UI
+        uiManager.UpdateHealthUI(); // Update health UI at game start
     }
 
     void Update()
@@ -40,13 +40,12 @@ public class GameManager : MonoBehaviour
             Debug.Log("Player lose !!!");
             hasLost = true;
             uiManager.ShowGameOverUI();
-            //失败触发GameOver
+            // Game over triggered on failure
         }
     }
 
     public bool SpawnRandomTower()
     {
-
         if (playerGold < spawnCost)
         {
             return false;
@@ -77,7 +76,14 @@ public class GameManager : MonoBehaviour
         float offsetY = (boardManager.rows - 1) / 2.0f;
         Vector3 spawnPos = new Vector3((randomCol - offsetX) * spacing, (offsetY - randomRow) * spacing, 0);
 
-        GameObject towerObj = Instantiate(towerPrefab, spawnPos, Quaternion.identity);
+        if (towerPrefabs == null || towerPrefabs.Count == 0)
+        {
+            Debug.LogError("No tower prefabs assigned in GameManager.");
+            return false;
+        }
+
+        int randomIndex = Random.Range(0, towerPrefabs.Count);
+        GameObject towerObj = Instantiate(towerPrefabs[randomIndex], spawnPos, Quaternion.identity);
         TowerController towerController = towerObj.GetComponent<TowerController>();
         towerController.gridPosition = new Vector2Int(randomCol, randomRow);
 
@@ -105,11 +111,11 @@ public class GameManager : MonoBehaviour
         spawnCost += 10;
         Debug.Log("Next spawn will cost: " + spawnCost);
     }
+
     public void ReduceHealth(int damage)
     {
         playerHealth -= damage;
         Debug.Log("Player health after damage: " + playerHealth);
         uiManager.UpdateHealthUI();
     }
-
 }

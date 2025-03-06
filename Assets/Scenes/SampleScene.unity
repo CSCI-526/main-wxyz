@@ -1457,7 +1457,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 19.2581, y: -81.77423}
+  m_AnchoredPosition: {x: 19.258057, y: -81.77423}
   m_SizeDelta: {x: -516.2599, y: -664.2115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &733939737
@@ -2153,7 +2153,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boardManager: {fileID: 1613210817}
   enemyManager: {fileID: 1829153773}
-  towerPrefab: {fileID: 1001787181882085309, guid: fab5f7ea9cf324f6c811c7705e22f610, type: 3}
+  towerPrefabs:
+  - {fileID: 1001787181882085309, guid: fab5f7ea9cf324f6c811c7705e22f610, type: 3}
+  - {fileID: 49547057150472206, guid: 7d08e4d4f79f9491997f765eda298cc1, type: 3}
   uiManager: {fileID: 835782558}
   playerGold: 9999
   spawnCost: 10

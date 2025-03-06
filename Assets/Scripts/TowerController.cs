@@ -3,6 +3,8 @@ using UnityEngine;
 public class TowerController : MonoBehaviour
 {
     public int rankValue = 1;
+
+    public string towerName;
     public Sprite towerSprite;
     public float attackRange;
     public float attackDamage;
