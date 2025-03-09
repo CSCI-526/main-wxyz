@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public UIManager uiManager;
     public Transform[] waypoints;
     public int index;
-    private float moveSpeed = 0.5f;
+    private float moveSpeed = 1f;
     private float currentHealth = 100f;
     private int currentIndex = 0;
     private int coin = 5;
@@ -185,11 +185,7 @@ public class Enemy : MonoBehaviour
         if (spriteRenderer != null) spriteRenderer.color = Color.black;
     }
 
-<<<<<<< HEAD
-    public void slowEffectRender()
-=======
     private void slowEffectRender()
->>>>>>> origin/ZixuanXu
     {
         if (spriteRenderer != null) spriteRenderer.color = Color.blue;
     }
