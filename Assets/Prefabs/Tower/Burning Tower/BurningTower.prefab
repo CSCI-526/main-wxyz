@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 5565194724834910087}
   - component: {fileID: 6282325720260741598}
   - component: {fileID: -4166535775320501167}
+  - component: {fileID: -4384656654294010389}
   m_Layer: 0
-  m_Name: Frozen
+  m_Name: BurningTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: -1734777079
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1936346211071494898, guid: da003c761b8754020a5cc483a9eefaa0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 0, b: 0.9191389, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,8 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rankValue: 1
-  towerName: Frozen
-  towerSprite: {fileID: 1936346211071494898, guid: da003c761b8754020a5cc483a9eefaa0, type: 3}
+  towerName: BurningTower
+  towerSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   attackRange: 0
   attackDamage: 0
   towerBasePrefab: {fileID: 0}
@@ -112,3 +113,25 @@ MonoBehaviour:
   - {fileID: 2729133250331387908, guid: 9e77472785924463dbc0dd96e7fcc0f1, type: 3}
   - {fileID: 6734909066804063127, guid: 1e20dd86615b14cd2ba6b808f1daed89, type: 3}
   gridPosition: {x: 0, y: 0}
+--- !u!114 &-4384656654294010389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49547057150472206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb3af13f9fc95b84ba14455f706e0e2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rankValue: 1
+  towerName: 
+  towerSprite: {fileID: 0}
+  attackRange: 0
+  attackDamage: 0
+  towerBasePrefab: {fileID: 0}
+  basePrefabs: []
+  gridPosition: {x: 0, y: 0}
+  towerLevel: 1
+  burnDuration: 3
