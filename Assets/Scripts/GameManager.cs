@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     public int playerGold = 100; 
     public int spawnCost = 10;
-    public int playerHealth = 10; 
+    public int playerHealth = 100; 
 
     private bool hasLost = false;
 

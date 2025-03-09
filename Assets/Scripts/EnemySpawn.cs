@@ -11,7 +11,7 @@ public class EnemySpawn : MonoBehaviour
     public GameObject enemyPrefab;                      // 敌人类型
 
     private int enemyCount = 5;                         // 这一波的敌人数量
-    private float timeBetweenEnemies = 1f;              // 同一波内怪物生成的间隔
+    private float timeBetweenEnemies = 3f;              // 同一波内怪物生成的间隔
     private float timeAfterWave = 5f;                   // 与下一波的间隔时间
 
     private Transform spawnPoint;                       // 敌人出生点

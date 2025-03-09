@@ -21,7 +21,7 @@ public class TowerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void Start()
+    public void Start()
     {
         UpdateAppearance();
 
