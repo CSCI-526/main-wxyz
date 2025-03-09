@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class GameManager : MonoBehaviour
     public EnemySpawn enemyManager;
     public List<GameObject> towerPrefabs; // Changed to a list of tower prefabs
     public UIManager uiManager; // UIManager connection
+    public TimerManager timerManager; //连接 TimerManager
 
     public int playerGold = 100; 
     public int spawnCost = 10;
@@ -39,7 +41,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Player lose !!!");
             hasLost = true;
-            uiManager.ShowGameOverUI();
+            SceneManager.LoadScene(2);
             // Game over triggered on failure
         }
     }
@@ -105,7 +107,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Gold added: " + num + " | Current Gold: " + playerGold);
 
-        // **确保 UI 刷新**
+        // 确保 UI 刷新
         if (uiManager != null)
         {
             uiManager.UpdateGoldUI();
@@ -132,4 +134,5 @@ public class GameManager : MonoBehaviour
         Debug.Log("Player health after damage: " + playerHealth);
         uiManager.UpdateHealthUI();
     }
+
 }
