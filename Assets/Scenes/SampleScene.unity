@@ -2020,9 +2020,13 @@ MonoBehaviour:
   boardManager: {fileID: 1613210817}
   enemyManager: {fileID: 1829153773}
   towerPrefabs:
+<<<<<<< HEAD
   - {fileID: 1001787181882085309, guid: fab5f7ea9cf324f6c811c7705e22f610, type: 3}
   - {fileID: 49547057150472206, guid: b12031daac76e429cad6dd67f47bf234, type: 3}
   - {fileID: 49547057150472206, guid: 7d08e4d4f79f9491997f765eda298cc1, type: 3}
+=======
+  - {fileID: 49547057150472206, guid: 29add77e8100de444a787819656d3d75, type: 3}
+>>>>>>> origin/ZixuanXu
   uiManager: {fileID: 835782558}
   playerGold: 100
   spawnCost: 10

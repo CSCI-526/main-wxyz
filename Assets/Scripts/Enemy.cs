@@ -185,7 +185,11 @@ public class Enemy : MonoBehaviour
         if (spriteRenderer != null) spriteRenderer.color = Color.black;
     }
 
+<<<<<<< HEAD
     public void slowEffectRender()
+=======
+    private void slowEffectRender()
+>>>>>>> origin/ZixuanXu
     {
         if (spriteRenderer != null) spriteRenderer.color = Color.blue;
     }
