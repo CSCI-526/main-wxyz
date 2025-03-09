@@ -6,7 +6,6 @@ public class SlowTowerController : TowerController
     private BoardManager board;
     public int rankValue = 1; // 塔的等级
     public float slowDuration = 3f; // 减速持续时间
-    public float slowEffectAmount = 0.5f; // 减速百分比 (50%减速)
 
     void Start()
     {
@@ -22,19 +21,24 @@ public class SlowTowerController : TowerController
     }
 
     // 获取减速效果强度，依赖于塔的等级
-    float GetSlowEffectAmount()
+    public int GetSlowEffectAmount()
     {
-        switch (rankValue)
+        TowerController tower = GetComponent<TowerController>(); // 获取 TowerController
+        if (tower != null)
         {
-            case 1: return 0.5f; // 50%减速
-            case 2: return 0.6f; // 60%减速
-            case 3: return 0.7f; // 70%减速
-            case 4: return 0.8f; // 80%减速
-            default: return 0.5f; // 默认为 1 级减速效果
+            switch (tower.rankValue)  // 直接使用 TowerController 的 rankValue
+            {
+                case 1: return 80;
+                case 2: return 60;
+                case 3: return 40;
+                case 4: return 20;
+                default: return 20;
+            }
         }
+        return 20;
     }
 
-        IEnumerator SlowRandomBorderTile()
+    IEnumerator SlowRandomBorderTile()
     {
         while (true)
         {
@@ -46,42 +50,30 @@ public class SlowTowerController : TowerController
             // 选取一个随机边界 Tile
             TileController selectedTile = borderTiles[Random.Range(0, borderTiles.Length)];
 
-            // 只有当 Tile 的状态为 0 时才更改为减速状态（1）
-            if (selectedTile.GetTileState() == 0)
+            int SlowEffectAmount = GetSlowEffectAmount();
+            selectedTile.SetTileState(1, SlowEffectAmount, slowDuration);
+
+
+            
+            // 变色并设置减速状态
+            SpriteRenderer sr = selectedTile.GetComponent<SpriteRenderer>();
+            if (sr != null)
             {
-                selectedTile.SetTileState(1);
-
-                // 变色并设置减速状态
-                SpriteRenderer sr = selectedTile.GetComponent<SpriteRenderer>();
-                if (sr != null)
-                {
-                    sr.color = Color.cyan; // 变蓝色表示减速
-                }
-
-                // 施加减速效果
-                ApplySlowEffect(selectedTile);
-
-                // 减速持续时间后恢复颜色并重置状态
-                yield return new WaitForSeconds(slowDuration);
-                if (sr != null)
-                {
-                    sr.color = Color.white;
-                }
-                selectedTile.SetTileState(0); // 恢复 Tile 状态为无状态（0）
+                sr.color = Color.cyan; // 变蓝色表示减速
             }
+
+            selectedTile.ApplyBurnEffect(SlowEffectAmount, slowDuration);
+
+            // 减速持续时间后恢复颜色并重置状态
+            yield return new WaitForSeconds(slowDuration);
+            if (sr != null)
+            {
+                sr.color = Color.white;
+            }
+            selectedTile.SetTileState(0); // 恢复 Tile 状态为无状态（0）
         }
     }
 
-
-    void ApplySlowEffect(TileController tile)
-    {
-        float slowAmount = GetSlowEffectAmount(); // 根据塔等级获取减速效果强度
-        foreach (Enemy enemy in tile.GetEnemiesOnTile())
-        {
-            enemy.EnemySlowEffect(slowAmount, slowDuration); // 直接调用敌人的减速函数
-            enemy.slowEffectRender(); // 让敌人变色为蓝色，表示减速效果
-        }
-    }
 
    TileController[] GetBorderTiles()
     {
