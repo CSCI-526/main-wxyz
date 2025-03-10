@@ -54,7 +54,7 @@ public class BurningTowerController : TowerController
             SpriteRenderer sr = selectedTile.GetComponent<SpriteRenderer>();
             if (sr != null)
             {
-                sr.color = Color.red;
+                sr.color = Color.magenta;
             }
 
             // 立即对Tile上的所有敌人施加燃烧效果
@@ -70,7 +70,8 @@ public class BurningTowerController : TowerController
         }
     }
 
-    TileController[] GetBorderTiles()
+    
+   TileController[] GetBorderTiles()
     {
         if (board == null || board.tiles == null) return new TileController[0];
 
@@ -80,11 +81,13 @@ public class BurningTowerController : TowerController
         {
             for (int j = 0; j < board.columns; j++)
             {
+                // 只选取四周的 Tile
                 if (i == 0 || i == board.rows - 1 || j == 0 || j == board.columns - 1)
                 {
                     TileController tile = board.tiles[i, j];
 
-                    if (tile != board.monsterSpawnTile && tile != board.monsterDestTile)
+                    // 确保 tile 存在，并且不是起点、终点，并且状态为 0
+                    if (tile != null && tile != board.monsterSpawnTile && tile != board.monsterDestTile && tile.GetTileState() == 0)
                     {
                         borderTiles.Add(tile);
                     }

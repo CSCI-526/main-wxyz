@@ -7,9 +7,9 @@ public class TileController : MonoBehaviour
     public TowerController towerOnTile;
     private int tileState = 0; // 0: 无状态, 1: 冰冻, 2: 燃烧
     private List<Enemy> enemiesOnTile = new List<Enemy>();
-    private int burnDamage = 0;
+    private float burnDamage = 0;
     private float burnDuration = 0f;
-    private int slowAmount = 0;
+    private float slowAmount = 0;
     private float slowDuration = 0f;
 
     void Awake()
@@ -22,7 +22,7 @@ public class TileController : MonoBehaviour
         col.isTrigger = true;
     }
 
-    public void SetTileState(int state, int damage = 0, float duration = 0f)
+    public void SetTileState(int state, float damage = 0, float duration = 0f)
     {
         tileState = state;
         if (state == 2) // 燃烧状态
@@ -58,6 +58,8 @@ public class TileController : MonoBehaviour
                 if (tileState == 2)
                 {
                     enemy.EnemyBurnEffect(burnDamage, burnDuration);
+                } else if(tileState == 1) {
+                    enemy.EnemySlowEffect(slowAmount, slowDuration);
                 }
             }
         }
@@ -75,11 +77,6 @@ public class TileController : MonoBehaviour
         }
     }
 
-    public List<Enemy> GetEnemiesOnTile()
-    {
-        return enemiesOnTile;
-    }
-
     // 施加燃烧效果给当前 Tile 上的所有敌人
     public void ApplyBurnEffect(int damage, float duration)
     {
@@ -93,7 +90,7 @@ public class TileController : MonoBehaviour
     }
 
 
-    public void ApplySlowEffect(int slowAmount, float slowDuration)
+    public void ApplySlowEffect(float slowAmount, float slowDuration)
     {
         foreach (Enemy enemy in new List<Enemy>(enemiesOnTile))
         {

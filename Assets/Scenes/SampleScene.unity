@@ -463,7 +463,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -13.200684, y: -40.05774}
+  m_AnchoredPosition: {x: -13.201172, y: -40.05774}
   m_SizeDelta: {x: 5560.532, y: 2093.7437}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &277030843
@@ -696,6 +696,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoardManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2793937858719564438, guid: fac8fe4f4779d464a9192aa78896c735, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8282279412315293572, guid: fac8fe4f4779d464a9192aa78896c735, type: 3}
+      propertyPath: tilePrefab
+      value: 
+      objectReference: {fileID: 7345841078781865526, guid: 83c234f27f5f2441b8638bf06b5995e7, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1850,6 +1858,7 @@ MonoBehaviour:
   enemyManager: {fileID: 1829153773}
   towerPrefabs:
   - {fileID: 49547057150472206, guid: 29add77e8100de444a787819656d3d75, type: 3}
+  - {fileID: 49547057150472206, guid: 7d08e4d4f79f9491997f765eda298cc1, type: 3}
   - {fileID: 1001787181882085309, guid: fab5f7ea9cf324f6c811c7705e22f610, type: 3}
   - {fileID: 49547057150472206, guid: b12031daac76e429cad6dd67f47bf234, type: 3}
   uiManager: {fileID: 835782558}

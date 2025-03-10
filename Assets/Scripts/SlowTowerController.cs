@@ -21,22 +21,23 @@ public class SlowTowerController : TowerController
     }
 
     // 获取减速效果强度，依赖于塔的等级
-    public int GetSlowEffectAmount()
+    public float GetSlowEffectAmount()
     {
         TowerController tower = GetComponent<TowerController>(); // 获取 TowerController
         if (tower != null)
         {
             switch (tower.rankValue)  // 直接使用 TowerController 的 rankValue
             {
-                case 1: return 80;
-                case 2: return 60;
-                case 3: return 40;
-                case 4: return 20;
-                default: return 20;
+                case 1: return 0.8f;  // 50% 减速 (小数形式)
+                case 2: return 0.6f;  // 40% 减速 (小数形式)
+                case 3: return 0.4f;  // 30% 减速 (小数形式)
+                case 4: return 0.2f;  // 20% 减速 (小数形式)
+                default: return 0.8f; // 默认 20% 减速 (小数形式)
             }
         }
-        return 20;
+        return 0.8f; // 默认 20% 减速 (小数形式)
     }
+
 
     IEnumerator SlowRandomBorderTile()
     {
@@ -50,7 +51,7 @@ public class SlowTowerController : TowerController
             // 选取一个随机边界 Tile
             TileController selectedTile = borderTiles[Random.Range(0, borderTiles.Length)];
 
-            int SlowEffectAmount = GetSlowEffectAmount();
+            float SlowEffectAmount = GetSlowEffectAmount();
             selectedTile.SetTileState(1, SlowEffectAmount, slowDuration);
 
 
@@ -62,7 +63,7 @@ public class SlowTowerController : TowerController
                 sr.color = Color.cyan; // 变蓝色表示减速
             }
 
-            selectedTile.ApplyBurnEffect(SlowEffectAmount, slowDuration);
+            selectedTile.ApplySlowEffect(SlowEffectAmount, slowDuration);
 
             // 减速持续时间后恢复颜色并重置状态
             yield return new WaitForSeconds(slowDuration);
@@ -73,7 +74,6 @@ public class SlowTowerController : TowerController
             selectedTile.SetTileState(0); // 恢复 Tile 状态为无状态（0）
         }
     }
-
 
    TileController[] GetBorderTiles()
     {
@@ -90,8 +90,8 @@ public class SlowTowerController : TowerController
                 {
                     TileController tile = board.tiles[i, j];
 
-                    // 排除起点和终点
-                    if (tile != board.monsterSpawnTile && tile != board.monsterDestTile)
+                    // 确保 tile 存在，并且不是起点、终点，并且状态为 0
+                    if (tile != null && tile != board.monsterSpawnTile && tile != board.monsterDestTile && tile.GetTileState() == 0)
                     {
                         borderTiles.Add(tile);
                     }

@@ -11,11 +11,7 @@ GameObject:
   - component: {fileID: 5319477633505740009}
   - component: {fileID: 2845038493709366248}
   - component: {fileID: 7526023736903980765}
-<<<<<<< HEAD
-  - component: {fileID: 5642333341677361596}
-=======
   - component: {fileID: 6370343770684668855}
->>>>>>> origin/ZixuanXu
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -107,11 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPosition: {x: 0, y: 0}
   towerOnTile: {fileID: 0}
-<<<<<<< HEAD
---- !u!61 &5642333341677361596
-=======
 --- !u!61 &6370343770684668855
->>>>>>> origin/ZixuanXu
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,11 +133,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-<<<<<<< HEAD
-  m_IsTrigger: 0
-=======
   m_IsTrigger: 1
->>>>>>> origin/ZixuanXu
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

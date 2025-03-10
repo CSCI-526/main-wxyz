@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4166535775320501167}
   - component: {fileID: 5162412661748993997}
   m_Layer: 0
-  m_Name: ShotgunTower
+  m_Name: FrozenTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48273ed093fa4b55aa78a94a55268e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rankValue: 1
+  rankValue: 4
   towerName: 
   towerSprite: {fileID: 0}
   attackRange: 0
@@ -135,4 +135,3 @@ MonoBehaviour:
   gridPosition: {x: 0, y: 0}
   rankValue: 1
   slowDuration: 3
-  slowEffectAmount: 0.5
