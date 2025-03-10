@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class TileController : MonoBehaviour
@@ -7,10 +8,8 @@ public class TileController : MonoBehaviour
     public TowerController towerOnTile;
     private int tileState = 0; // 0: 无状态, 1: 冰冻, 2: 燃烧
     private List<Enemy> enemiesOnTile = new List<Enemy>();
-    private float burnDamage = 0;
-    private float burnDuration = 0f;
-    private float slowAmount = 0;
-    private float slowDuration = 0f;
+    private float Damage = 0;
+    private float Duration = 0f;
 
     void Awake()
     {
@@ -25,19 +24,8 @@ public class TileController : MonoBehaviour
     public void SetTileState(int state, float damage = 0, float duration = 0f)
     {
         tileState = state;
-        if (state == 2) // 燃烧状态
-        {
-            burnDamage = damage;
-            burnDuration = duration;
-        } else if(state == 1) {
-            slowAmount = damage;
-            slowDuration = duration;
-        }else {
-            burnDamage = 0;
-            burnDuration = 0f;
-            slowAmount = 0;
-            slowDuration = 0f;
-        }
+        Damage = damage;
+        Duration = duration;
     }
 
     public int GetTileState()
@@ -57,9 +45,9 @@ public class TileController : MonoBehaviour
                 // 如果Tile是燃烧状态，立即对进入的敌人施加燃烧效果
                 if (tileState == 2)
                 {
-                    enemy.EnemyBurnEffect(burnDamage, burnDuration);
+                    enemy.EnemyBurnEffect(Damage, Duration);
                 } else if(tileState == 1) {
-                    enemy.EnemySlowEffect(slowAmount, slowDuration);
+                    enemy.EnemySlowEffect(Damage, Duration);
                 }
             }
         }
@@ -78,28 +66,41 @@ public class TileController : MonoBehaviour
     }
 
     // 施加燃烧效果给当前 Tile 上的所有敌人
-    public void ApplyBurnEffect(int damage, float duration)
+    public void ApplyEffect(float damage, float duration)
     {
         foreach (Enemy enemy in new List<Enemy>(enemiesOnTile))
         {
             if (enemy != null)
-            {
-                enemy.EnemyBurnEffect(damage, duration);
+            {   
+                if(tileState == 2) {
+                    enemy.EnemyBurnEffect(damage, duration);
+                } else if(tileState == 1) {
+                    enemy.EnemySlowEffect(damage, duration);
+                }
+                
             }
         }
     }
 
-
-    public void ApplySlowEffect(float slowAmount, float slowDuration)
+    public IEnumerator ApplyEffectForDuration()
     {
-        foreach (Enemy enemy in new List<Enemy>(enemiesOnTile))
+        yield return new WaitForSeconds(Duration);
+        // 恢复颜色和状态
+        ResetTileState();
+    }
+
+    // 恢复 Tile 的状态
+    public void ResetTileState()
+    {
+        // 恢复状态
+        SetTileState(0); // 恢复为无状态
+        // 恢复颜色
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
         {
-            if (enemy != null)
-            {
-                enemy.EnemySlowEffect(slowAmount, slowDuration); // 直接调用敌人的减速函数
-            }
-           
+            sr.color = Color.white; // 恢复为白色
         }
     }
+    
 }
 

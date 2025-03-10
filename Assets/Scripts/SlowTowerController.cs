@@ -28,14 +28,14 @@ public class SlowTowerController : TowerController
         {
             switch (tower.rankValue)  // 直接使用 TowerController 的 rankValue
             {
-                case 1: return 0.8f;  // 50% 减速 (小数形式)
-                case 2: return 0.6f;  // 40% 减速 (小数形式)
-                case 3: return 0.4f;  // 30% 减速 (小数形式)
-                case 4: return 0.2f;  // 20% 减速 (小数形式)
-                default: return 0.8f; // 默认 20% 减速 (小数形式)
+                case 1: return 0.8f;
+                case 2: return 0.6f;
+                case 3: return 0.4f;
+                case 4: return 0.2f;
+                default: return 0.8f;
             }
         }
-        return 0.8f; // 默认 20% 减速 (小数形式)
+        return 0.8f; 
     }
 
 
@@ -63,15 +63,17 @@ public class SlowTowerController : TowerController
                 sr.color = Color.cyan; // 变蓝色表示减速
             }
 
-            selectedTile.ApplySlowEffect(SlowEffectAmount, slowDuration);
+            selectedTile.ApplyEffect(SlowEffectAmount, slowDuration);
+            // 使用协程处理减速效果的持续时间
+            selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
 
-            // 减速持续时间后恢复颜色并重置状态
+           /* // 减速持续时间后恢复颜色并重置状态
             yield return new WaitForSeconds(slowDuration);
             if (sr != null)
             {
                 sr.color = Color.white;
             }
-            selectedTile.SetTileState(0); // 恢复 Tile 状态为无状态（0）
+            selectedTile.SetTileState(0); // 恢复 Tile 状态为无状态（0）*/
         }
     }
 

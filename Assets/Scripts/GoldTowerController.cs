@@ -16,7 +16,7 @@ public class GoldTowerController : TowerController
 
     void Update()
     {
-        Debug.Log("GoldTower Update Running...");
+        //Debug.Log("GoldTower Update Running...");
         GenerateGold();
     }
 
@@ -25,12 +25,12 @@ public class GoldTowerController : TowerController
     {
         if (Time.time - lastGenerateTime >= generateInterval)
         {
-            Debug.Log("GoldTower Generating Gold...");
+            //Debug.Log("GoldTower Generating Gold...");
 
             if (gameManager != null)
             {
                 gameManager.AddCoin(goldPerCycle);
-                Debug.Log("Gold Tower added " + goldPerCycle + " coins.");
+                //Debug.Log("Gold Tower added " + goldPerCycle + " coins.");
             }
             else
             {

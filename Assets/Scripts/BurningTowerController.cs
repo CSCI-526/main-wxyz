@@ -19,7 +19,7 @@ public class BurningTowerController : TowerController
         StartCoroutine(BurnRandomBorderTile());
     }
 
-    public int GetBurnDamage()
+    public float GetBurnDamage()
     {
         TowerController tower = GetComponent<TowerController>(); // 获取 TowerController
         if (tower != null)
@@ -48,7 +48,7 @@ public class BurningTowerController : TowerController
 
             TileController selectedTile = borderTiles[Random.Range(0, borderTiles.Length)];
 
-            int burnDamage = GetBurnDamage();
+            float burnDamage = GetBurnDamage();
             selectedTile.SetTileState(2, burnDamage, burnDuration);
 
             SpriteRenderer sr = selectedTile.GetComponent<SpriteRenderer>();
@@ -58,15 +58,18 @@ public class BurningTowerController : TowerController
             }
 
             // 立即对Tile上的所有敌人施加燃烧效果
-            selectedTile.ApplyBurnEffect(burnDamage, burnDuration);
+            selectedTile.ApplyEffect(burnDamage, burnDuration);
 
-            yield return new WaitForSeconds(burnDuration);
+            // 使用协程处理燃烧效果的持续时间
+            selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
+
+            /*yield return new WaitForSeconds(burnDuration);
 
             if (sr != null)
             {
                 sr.color = Color.white;
             }
-            selectedTile.SetTileState(0);
+            selectedTile.SetTileState(0);*/
         }
     }
 
