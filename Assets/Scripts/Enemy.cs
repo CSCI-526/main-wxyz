@@ -7,7 +7,9 @@ public class Enemy : MonoBehaviour
     public Transform[] waypoints;
     public int index;
     private float moveSpeed = 1f;
-    private float currentHealth = 100f;
+  
+    public bool IsAlive { get; private set; } = true;
+    public float currentHealth = 100f;
     private int currentIndex = 0;
     private int coin = 5;
 
@@ -25,8 +27,9 @@ public class Enemy : MonoBehaviour
         {
             //UpdateAppearance();
         }
-        // currentHealth = enemyData.maxHealth;
+        currentHealth = enemyData.maxHealth;
         
+
     }
     public void UpdateAppearance()
     {
@@ -60,10 +63,15 @@ public class Enemy : MonoBehaviour
     public void EnemyTakeDamage(float damage)
     {
         currentHealth -= damage;
+<<<<<<< Updated upstream
         if (currentHealth <= 0)
         {
             Defeated();
         }
+=======
+        Debug.Log($"{name} took {damage} damage. Remaining health: {currentHealth}");
+        if (currentHealth <= 0) Defeated();
+>>>>>>> Stashed changes
     }
 
     public void SetMaxHealth(float maxHealth)

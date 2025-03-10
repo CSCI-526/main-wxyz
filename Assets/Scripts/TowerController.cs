@@ -21,7 +21,11 @@ public class TowerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+<<<<<<< Updated upstream
     void Start()
+=======
+    protected virtual void Start()
+>>>>>>> Stashed changes
     {
         UpdateAppearance();
 
