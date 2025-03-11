@@ -4,7 +4,7 @@ using UnityEngine;
 public class BurningTowerController : TowerController
 {
     private BoardManager board;
-    public int towerLevel = 1;
+    //public int towerLevel = 1;
     public float burnDuration = 3f;
 
     void Start()

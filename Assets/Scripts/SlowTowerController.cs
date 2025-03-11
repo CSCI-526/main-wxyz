@@ -4,7 +4,7 @@ using UnityEngine;
 public class SlowTowerController : TowerController
 {
     private BoardManager board;
-    public int rankValue = 1; // 塔的等级
+    //public int rankValue = 1; // 塔的等级
     public float slowDuration = 3f; // 减速持续时间
 
     void Start()
