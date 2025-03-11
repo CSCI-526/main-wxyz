@@ -8,7 +8,9 @@ public class Enemy : MonoBehaviour
     public Transform[] waypoints;
     public int index;
     private float moveSpeed = 1f;
-    private float currentHealth = 100f;
+
+    public bool IsAlive { get; private set; } = true;
+    public float currentHealth = 100f;
     private int currentIndex = 0;
     private int coin = 5;
 
@@ -38,8 +40,9 @@ public class Enemy : MonoBehaviour
         {
             // UpdateAppearance();
         }
-        // currentHealth = enemyData.maxHealth;
-        
+        currentHealth = enemyData.maxHealth;
+
+
     }
     public void UpdateAppearance()
     {
@@ -58,10 +61,12 @@ public class Enemy : MonoBehaviour
     /*** enemy wayfinding ***/
     private void EnemyBehavior()
     {
-        if(currentIndex < waypoints.Length){
+        if (currentIndex < waypoints.Length)
+        {
             Transform targetPoint = waypoints[currentIndex];
             transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, moveSpeed * Time.deltaTime);
-            if(Vector3.Distance(transform.position, targetPoint.position) < 0.01f){
+            if (Vector3.Distance(transform.position, targetPoint.position) < 0.01f)
+            {
                 currentIndex++;
                 // enemy function test
                 // EnemyTakeDamage(40);
@@ -69,7 +74,8 @@ public class Enemy : MonoBehaviour
                 // EnemySlowEffect(0.5f, 2f);
             }
         }
-        else if (currentIndex == waypoints.Length){
+        else if (currentIndex == waypoints.Length)
+        {
             ReachDest();
         }
     }
@@ -86,6 +92,7 @@ public class Enemy : MonoBehaviour
     public void EnemyTakeDamage(float damage)
     {
         currentHealth -= damage;
+        Debug.Log($"{name} took {damage} damage. Remaining health: {currentHealth}");
         if (currentHealth <= 0) Defeated();
     }
 
@@ -101,9 +108,9 @@ public class Enemy : MonoBehaviour
         if (gameManager != null)
         {
             gameManager.AddCoin(coin);
-            Debug.Log("Player coin added:" + gameManager.playerGold);            
+            Debug.Log("Player coin added:" + gameManager.playerGold);
         }
-        if (uiManager != null)  uiManager.UpdateGoldUI();
+        if (uiManager != null) uiManager.UpdateGoldUI();
         Destroy(gameObject);
     }
 
@@ -112,13 +119,13 @@ public class Enemy : MonoBehaviour
         DamagePlayerHealth(1);
         Debug.Log(gameObject.name + index + " make 1 damage");
         Destroy(gameObject);
-        if (uiManager != null)  uiManager.UpdateHealthUI();
+        if (uiManager != null) uiManager.UpdateHealthUI();
     }
 
     private void DamagePlayerHealth(int damage)
     {
         GameManager gameManager = Object.FindFirstObjectByType<GameManager>();
-        if (gameManager != null)    gameManager.ReduceHealth(damage);
+        if (gameManager != null) gameManager.ReduceHealth(damage);
     }
 
     /*** enemy health management end ***/
@@ -133,7 +140,7 @@ public class Enemy : MonoBehaviour
     {
         if (burnEffectCoroutine == null)
         {
-            if (slowEffectCoroutine != null)    StopCoroutine(slowEffectCoroutine);
+            if (slowEffectCoroutine != null) StopCoroutine(slowEffectCoroutine);
             slowEffectCoroutine = StartCoroutine(SlowEffectCoroutine(slowRatio, duration));
         }
     }
@@ -152,7 +159,7 @@ public class Enemy : MonoBehaviour
 
     public void EnemyBurnEffect(float damagePerSecond, float duration)
     {
-        if (burnEffectCoroutine != null)    StopCoroutine(burnEffectCoroutine);
+        if (burnEffectCoroutine != null) StopCoroutine(burnEffectCoroutine);
         burnEffectCoroutine = StartCoroutine(BurnCoroutine(damagePerSecond, duration));
     }
 
@@ -197,7 +204,7 @@ public class Enemy : MonoBehaviour
 
     /*** enemy abnormal state end ***/
 
-    
+
     void OnTriggerEnter2D(Collider2D other)
     {
         // Here check if entering the final tile

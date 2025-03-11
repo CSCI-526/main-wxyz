@@ -11,8 +11,10 @@ public class TowerController : MonoBehaviour
     
     public GameObject towerBasePrefab;
     public GameObject[] basePrefabs;
-    
-    private SpriteRenderer spriteRenderer;
+   
+
+
+    protected SpriteRenderer spriteRenderer;
     private TowerBaseController baseController;
     public Vector2Int gridPosition;
 
@@ -21,7 +23,7 @@ public class TowerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Start()
+    public virtual void Start()
     {
         UpdateAppearance();
 
@@ -39,7 +41,7 @@ public class TowerController : MonoBehaviour
         }
     }
 
-    void CreateTowerBase()
+    protected virtual void CreateTowerBase()
     {
         GameObject baseObj = null;
         if (basePrefabs != null && basePrefabs.Length > 0)
@@ -60,7 +62,7 @@ public class TowerController : MonoBehaviour
         }
     }
 
-    public void UpdateAppearance()
+    public virtual void UpdateAppearance()
     {
         if (spriteRenderer != null)
         {
@@ -79,7 +81,7 @@ public class TowerController : MonoBehaviour
         }
     }
 
-    public void UpgradeTower()
+    public virtual void UpgradeTower()
     {
         if (rankValue < 4)
         {
@@ -91,7 +93,7 @@ public class TowerController : MonoBehaviour
         UpdateAppearance();
     }
 
-    private void ReplaceTowerBase()
+    protected virtual void ReplaceTowerBase()
     {
         Transform baseHolder = transform.Find("TowerBaseHolder");
         if (baseHolder != null)
@@ -100,6 +102,7 @@ public class TowerController : MonoBehaviour
         }
         CreateTowerBase();
     }
+
 
     void OnDrawGizmos()
     {
