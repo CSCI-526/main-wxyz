@@ -7,6 +7,7 @@ public class BoardManager : MonoBehaviour
     public float tileSpacing = 1.1f;
     public GameObject tilePrefab;
     public TileController[,] tiles;
+    public GameManager gameManager;
 
     public TileController monsterSpawnTile;
     public TileController monsterTurnTile1;
@@ -112,11 +113,17 @@ public class BoardManager : MonoBehaviour
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
-                                    destTower.UpgradeTower();
-                                    Destroy(tower.gameObject);
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
-                                    continue; 
+                                    string towerName = tower.towerName;
+                                    if (towerName != "Gold"){
+                                        destTower.UpgradeTower();
+                                    }
+                                    else{
+                                        gameManager.UpgradeRandomTower(destTower);
+                                    }
+                                    Destroy(tower.gameObject);
+                                    continue;
                                 }
                             }
 
@@ -151,10 +158,16 @@ public class BoardManager : MonoBehaviour
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
-                                    destTower.UpgradeTower();
-                                    Destroy(tower.gameObject);
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
+                                    string towerName = tower.towerName;
+                                    if (towerName != "Gold"){
+                                        destTower.UpgradeTower();
+                                    }
+                                    else{
+                                        gameManager.UpgradeRandomTower(destTower);
+                                    }
+                                    Destroy(tower.gameObject);
                                     continue;
                                 }
                             }
@@ -195,10 +208,16 @@ public class BoardManager : MonoBehaviour
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
-                                    destTower.UpgradeTower();
-                                    Destroy(tower.gameObject);
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
+                                    string towerName = tower.towerName;
+                                    if (towerName != "Gold"){
+                                        destTower.UpgradeTower();
+                                    }
+                                    else{
+                                        gameManager.UpgradeRandomTower(destTower);
+                                    }
+                                    Destroy(tower.gameObject);
                                     continue;
                                 }
                             }
@@ -235,10 +254,16 @@ public class BoardManager : MonoBehaviour
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
-                                    destTower.UpgradeTower();
-                                    Destroy(tower.gameObject);
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
+                                    string towerName = tower.towerName;
+                                    if (towerName != "Gold"){
+                                        destTower.UpgradeTower();
+                                    }
+                                    else{
+                                        gameManager.UpgradeRandomTower(destTower);
+                                    }
+                                    Destroy(tower.gameObject);
                                     continue;
                                 }
                             }

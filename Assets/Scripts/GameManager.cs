@@ -90,9 +90,48 @@ public class GameManager : MonoBehaviour
         towerController.gridPosition = new Vector2Int(randomCol, randomRow);
 
         boardManager.tiles[randomRow, randomCol].towerOnTile = towerController;
-
+       
         return true;
     }
+
+
+    public bool UpgradeRandomTower(TowerController towerToUpgrade)
+    {
+        if (towerToUpgrade.rankValue >= 4)
+        {
+            return false;
+        }
+        
+        int currentRank = towerToUpgrade.rankValue;
+        int newRank = currentRank + 1;
+        
+        Vector2Int pos = towerToUpgrade.gridPosition;
+        boardManager.tiles[pos.y, pos.x].towerOnTile = null;
+        
+        float spacing = boardManager.tileSpacing;
+        float offsetX = (boardManager.columns - 1) / 2.0f;
+        float offsetY = (boardManager.rows - 1) / 2.0f;
+        Vector3 spawnPos = new Vector3((pos.x - offsetX) * spacing, (offsetY - pos.y) * spacing, 0);
+        
+        Destroy(towerToUpgrade.gameObject);
+        
+        int randomIndex = Random.Range(0, towerPrefabs.Count);
+        GameObject newTowerObj = Instantiate(towerPrefabs[randomIndex], spawnPos, Quaternion.identity);
+        TowerController newTowerController = newTowerObj.GetComponent<TowerController>();
+        newTowerController.gridPosition = pos;
+        
+        newTowerController.rankValue = newRank;
+        
+        newTowerController.UpdateAppearance();
+        newTowerController.ReplaceTowerBase();
+        
+        boardManager.tiles[pos.y, pos.x].towerOnTile = newTowerController;
+        
+        return true;
+    }
+
+
+
 
     public void AddCoin(int num)
     {

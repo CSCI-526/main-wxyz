@@ -12,8 +12,6 @@ public class TowerController : MonoBehaviour
     public GameObject towerBasePrefab;
     public GameObject[] basePrefabs;
    
-
-
     protected SpriteRenderer spriteRenderer;
     private TowerBaseController baseController;
     public Vector2Int gridPosition;
@@ -21,10 +19,11 @@ public class TowerController : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        Debug.Log("Awake");
     }
 
     public virtual void Start()
-    {
+    {   
         UpdateAppearance();
 
         if (transform.Find("TowerBaseHolder") == null)
@@ -32,7 +31,7 @@ public class TowerController : MonoBehaviour
             CreateTowerBase();
         }
         else
-        {
+        {   
             Transform baseHolder = transform.Find("TowerBaseHolder");
             if (baseHolder != null)
             {
@@ -93,7 +92,7 @@ public class TowerController : MonoBehaviour
         UpdateAppearance();
     }
 
-    protected virtual void ReplaceTowerBase()
+    public virtual void ReplaceTowerBase()
     {
         Transform baseHolder = transform.Find("TowerBaseHolder");
         if (baseHolder != null)

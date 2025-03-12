@@ -10,6 +10,10 @@ public class TankTowerController : TowerController
     {
         FireAtEnemy();
     }
+    void Start()
+    {
+        base.Start();
+    }
 
     void FireAtEnemy()
     {

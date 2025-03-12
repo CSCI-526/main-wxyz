@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-
 public class GoldTowerController : TowerController
 {
     public int goldPerCycle = 5; // 每次生产的金币数量
@@ -10,6 +9,7 @@ public class GoldTowerController : TowerController
 
     void Start()
     {
+        base.Start();
         gameManager = FindObjectOfType<GameManager>(); // 获取游戏管理器
         lastGenerateTime = Time.time; // 记录初始时间
     }
@@ -20,13 +20,11 @@ public class GoldTowerController : TowerController
         GenerateGold();
     }
 
-
     void GenerateGold()
     {
         if (Time.time - lastGenerateTime >= generateInterval)
         {
             //Debug.Log("GoldTower Generating Gold...");
-
             if (gameManager != null)
             {
                 gameManager.AddCoin(goldPerCycle);
@@ -36,9 +34,16 @@ public class GoldTowerController : TowerController
             {
                 Debug.LogError("GoldTowerController: gameManager is NULL!");
             }
-
             lastGenerateTime = Time.time;
         }
     }
 
+    void OnDestroy()
+    {
+        if (gameManager != null)
+        {
+            int bonusGold = 60 * (int)Mathf.Pow(2, rankValue - 1);
+            gameManager.AddCoin(bonusGold);
+        }
+    }
 }

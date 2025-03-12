@@ -4,11 +4,11 @@ using UnityEngine;
 public class BurningTowerController : TowerController
 {
     private BoardManager board;
-    //public int towerLevel = 1;
     public float burnDuration = 3f;
 
     void Start()
     {
+        base.Start();
         board = FindObjectOfType<BoardManager>();
         if (board == null)
         {
