@@ -46,9 +46,6 @@ TagManager:
     uniqueID: 3660045793
     locked: 0
   - name: 
-    uniqueID: 3931502719
-    locked: 0
-  - name: 
     uniqueID: 457563357
     locked: 0
   - name: TowerBase
@@ -59,6 +56,9 @@ TagManager:
     locked: 0
   - name: Towers
     uniqueID: 2560190217
+    locked: 0
+  - name: Overlays
+    uniqueID: 4018591869
     locked: 0
   m_RenderingLayers:
   - Default

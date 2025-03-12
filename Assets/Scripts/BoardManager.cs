@@ -7,6 +7,7 @@ public class BoardManager : MonoBehaviour
     public float tileSpacing = 1.1f;
     public GameObject tilePrefab;
     public TileController[,] tiles;
+    public GameManager gameManager;
 
     public TileController monsterSpawnTile;
     public TileController monsterTurnTile1;
@@ -32,7 +33,6 @@ public class BoardManager : MonoBehaviour
                 GameObject tileObj = Instantiate(tilePrefab, pos, Quaternion.identity, transform);
                 TileController tc = tileObj.GetComponent<TileController>();
                 tc.gridPosition = new Vector2Int(j, i);
-
                 if (i == 0 && j == 0)
                 {
                     SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
@@ -50,7 +50,7 @@ public class BoardManager : MonoBehaviour
                     SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
                     if (sr != null) { sr.color = Color.white; }
                     monsterTurnTile1 = tc;
-                }                
+                }
                 else if (i == rows - 1 && j == columns - 1)
                 {
                     SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
@@ -68,32 +68,20 @@ public class BoardManager : MonoBehaviour
                     SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
                     if (sr != null) { sr.color = Color.white; }
                 }
+
                 tiles[i, j] = tc;
             }
         }
     }
-
-    public bool IsInside(int row, int col)
-    {
-        return row >= 0 && row < rows && col >= 0 && col < columns;
-    }
-
-    public bool IsInnerTile(int row, int col)
-    {
-        return row > 0 && row < rows - 1 && col > 0 && col < columns - 1;
-    }
-
     public void MoveTowers(Vector2Int direction)
     {
         bool anyMoved = false;
 
-        // Horizontal movement
         if (direction.x != 0)
         {
             for (int i = 1; i < rows - 1; i++)
             {
-                // Moving left
-                if (direction.x < 0)
+                if (direction.x < 0) 
                 {
                     for (int j = 1; j < columns - 1; j++)
                     {
@@ -112,14 +100,21 @@ public class BoardManager : MonoBehaviour
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
-                                    destTower.UpgradeTower();
-                                    Destroy(tower.gameObject);
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
-                                    continue; 
+                                    string towerName = tower.towerName;
+                                    if (towerName != "Gold")
+                                    {
+                                        destTower.UpgradeTower();
+                                    }
+                                    else
+                                    {
+                                        gameManager.UpgradeRandomTower(destTower);
+                                    }
+                                    Destroy(tower.gameObject);
+                                    continue;
                                 }
                             }
-
                             if (currentPos != j)
                             {
                                 tiles[i, j].towerOnTile = null;
@@ -131,8 +126,7 @@ public class BoardManager : MonoBehaviour
                         }
                     }
                 }
-                // Moving right
-                else if (direction.x > 0)
+                else if (direction.x > 0) 
                 {
                     for (int j = columns - 2; j >= 1; j--)
                     {
@@ -151,10 +145,18 @@ public class BoardManager : MonoBehaviour
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
-                                    destTower.UpgradeTower();
-                                    Destroy(tower.gameObject);
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
+                                    string towerName = tower.towerName;
+                                    if (towerName != "Gold")
+                                    {
+                                        destTower.UpgradeTower();
+                                    }
+                                    else
+                                    {
+                                        gameManager.UpgradeRandomTower(destTower);
+                                    }
+                                    Destroy(tower.gameObject);
                                     continue;
                                 }
                             }
@@ -171,10 +173,9 @@ public class BoardManager : MonoBehaviour
                 }
             }
         }
-        // Vertical movement
         else if (direction.y != 0)
         {
-            if (direction.y < 0)
+            if (direction.y < 0) 
             {
                 for (int j = 1; j < columns - 1; j++)
                 {
@@ -195,10 +196,18 @@ public class BoardManager : MonoBehaviour
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
-                                    destTower.UpgradeTower();
-                                    Destroy(tower.gameObject);
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
+                                    string towerName = tower.towerName;
+                                    if (towerName != "Gold")
+                                    {
+                                        destTower.UpgradeTower();
+                                    }
+                                    else
+                                    {
+                                        gameManager.UpgradeRandomTower(destTower);
+                                    }
+                                    Destroy(tower.gameObject);
                                     continue;
                                 }
                             }
@@ -214,7 +223,7 @@ public class BoardManager : MonoBehaviour
                     }
                 }
             }
-            else if (direction.y > 0)
+            else if (direction.y > 0) 
             {
                 for (int j = 1; j < columns - 1; j++)
                 {
@@ -235,10 +244,18 @@ public class BoardManager : MonoBehaviour
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
-                                    destTower.UpgradeTower();
-                                    Destroy(tower.gameObject);
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
+                                    string towerName = tower.towerName;
+                                    if (towerName != "Gold")
+                                    {
+                                        destTower.UpgradeTower();
+                                    }
+                                    else
+                                    {
+                                        gameManager.UpgradeRandomTower(destTower);
+                                    }
+                                    Destroy(tower.gameObject);
                                     continue;
                                 }
                             }
@@ -262,26 +279,85 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    void OnDrawGizmos()
+    public void LightAllTileHovers()
     {
-        Gizmos.color = Color.green;
-        float gridWidth = columns * tileSpacing;
-        float gridHeight = rows * tileSpacing;
-        Vector3 center = transform.position;
-        Vector3 origin = center - new Vector3(gridWidth / 2, gridHeight / 2, 0);
-
-        for (int i = 0; i <= rows; i++)
+        for (int i = 0; i < rows; i++)
         {
-            Vector3 start = origin + new Vector3(0, i * tileSpacing, 0);
-            Vector3 end = start + new Vector3(gridWidth, 0, 0);
-            Gizmos.DrawLine(start, end);
+            for (int j = 0; j < columns; j++)
+            {
+                if (tiles[i, j] != null)
+                {
+                    tiles[i, j].LightOnHover();
+                }
+            }
+        }
+    }
+
+    public void DisableAllTileHovers()
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (tiles[i, j] != null)
+                {
+                    tiles[i, j].DisableHover();
+                }
+            }
+        }
+    }
+
+
+    public void UpdateTileHoverStatesAllButOne(TileController excludedTile)
+    {
+        LightAllTileHovers();
+
+        if (excludedTile != null)
+        {
+            if (IsInnerTile(excludedTile.gridPosition.y, excludedTile.gridPosition.x))
+            {
+                if (excludedTile.towerOnTile != null)
+                {
+                    excludedTile.DisableHover();
+                }
+            }
+        }
+    }
+
+    public void UpdateTileHoverStates(TileController currentTile)
+    {
+        DisableAllTileHovers();
+        if (currentTile != null)
+        {
+            currentTile.LightOnHover();
+        }
+    }
+
+    public TileController GetTileUnderPosition(Vector3 worldPosition)
+    {
+        float offsetX = (columns - 1) / 2.0f;
+        float offsetY = (rows - 1) / 2.0f;
+        
+        Vector3 localPos = worldPosition - transform.position;
+        int j = Mathf.RoundToInt((localPos.x / tileSpacing) + offsetX);
+        int i = Mathf.RoundToInt(offsetY - (localPos.y / tileSpacing));
+
+        if (IsInside(i, j))
+        {   
+            
+            return tiles[i, j];
         }
 
-        for (int j = 0; j <= columns; j++)
-        {
-            Vector3 start = origin + new Vector3(j * tileSpacing, 0, 0);
-            Vector3 end = start + new Vector3(0, gridHeight, 0);
-            Gizmos.DrawLine(start, end);
-        }
+        return null;
+    }
+
+    public bool IsInside(int row, int col)
+    {
+        return row >= 0 && row < rows && col >= 0 && col < columns;
+    }
+
+    public bool IsInnerTile(int row, int col)
+    {
+        return row > 0 && row < rows - 1 && col > 0 && col < columns - 1;
     }
 }

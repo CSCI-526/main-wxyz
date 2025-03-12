@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5565194724834910087}
   - component: {fileID: 6282325720260741598}
-  - component: {fileID: -4166535775320501167}
   - component: {fileID: 5162412661748993997}
   m_Layer: 0
   m_Name: FrozenTower
@@ -89,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-4166535775320501167
+--- !u!114 &5162412661748993997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,7 +97,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49547057150472206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8890f9d5749224509afa98578dd6c45a, type: 3}
+  m_Script: {fileID: 11500000, guid: c48273ed093fa4b55aa78a94a55268e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rankValue: 1
@@ -113,25 +112,4 @@ MonoBehaviour:
   - {fileID: 2729133250331387908, guid: 9e77472785924463dbc0dd96e7fcc0f1, type: 3}
   - {fileID: 6734909066804063127, guid: 1e20dd86615b14cd2ba6b808f1daed89, type: 3}
   gridPosition: {x: 0, y: 0}
---- !u!114 &5162412661748993997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49547057150472206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c48273ed093fa4b55aa78a94a55268e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rankValue: 4
-  towerName: 
-  towerSprite: {fileID: 0}
-  attackRange: 0
-  attackDamage: 0
-  towerBasePrefab: {fileID: 0}
-  basePrefabs: []
-  gridPosition: {x: 0, y: 0}
-  rankValue: 1
   slowDuration: 3

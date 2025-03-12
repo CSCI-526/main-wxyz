@@ -3,17 +3,28 @@ using UnityEngine;
 public class SwipeManager : MonoBehaviour
 {
     public BoardManager boardManager;
+    
+    public UIManager uiManager;
 
     private Vector2 startTouchPosition;
     private Vector2 endTouchPosition;
-    private bool isSwiping = false; // 标记是否正在滑动
+    private bool isSwiping = false;
+
+    private float swipeCooldown = 0.3f;
 
     void Update()
     {
+        if (uiManager != null && uiManager.isPaused)
+        {
+            return;
+        }
+
+        if (DragArrow.isDraggingArrow || (Time.time - DragArrow.lastDragEndTime) < swipeCooldown)
+            return;
+
         DetectKeyboardInput();
         DetectTouchInput();
     }
-
 
     private void DetectKeyboardInput()
     {
@@ -31,21 +42,20 @@ public class SwipeManager : MonoBehaviour
         }
     }
 
-
     private void DetectTouchInput()
     {
-        if (Input.touchCount > 0) // 确保屏幕上有触摸
+        if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0); // 获取第一根手指触摸
+            Touch touch = Input.GetTouch(0);
 
             switch (touch.phase)
             {
-                case TouchPhase.Began: // 触摸开始
+                case TouchPhase.Began:
                     startTouchPosition = touch.position;
                     isSwiping = true;
                     break;
 
-                case TouchPhase.Ended: // 触摸结束
+                case TouchPhase.Ended:
                     if (isSwiping)
                     {
                         endTouchPosition = touch.position;
@@ -57,23 +67,18 @@ public class SwipeManager : MonoBehaviour
         }
     }
 
-
     private void ProcessSwipe()
     {
         Vector2 swipeDelta = endTouchPosition - startTouchPosition;
-
-        if (swipeDelta.magnitude < 50) return; // 滑动距离太短，不处理
+        if (swipeDelta.magnitude < 50) return;
 
         Vector2Int direction = Vector2Int.zero;
-
         if (Mathf.Abs(swipeDelta.x) > Mathf.Abs(swipeDelta.y))
         {
-            // 水平方向滑动
             direction = (swipeDelta.x > 0) ? new Vector2Int(1, 0) : new Vector2Int(-1, 0);
         }
         else
         {
-            // 垂直方向滑动
             direction = (swipeDelta.y > 0) ? new Vector2Int(0, 1) : new Vector2Int(0, -1);
         }
 
