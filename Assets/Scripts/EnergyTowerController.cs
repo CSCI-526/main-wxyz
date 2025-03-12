@@ -112,9 +112,6 @@ public class EnergyTowerController : TowerController
             GetMaxDamage(rankValue)
         );
 
-        Debug.Assert(currentDamage >= GetMinDamage(rankValue) &&
-                     currentDamage <= GetMaxDamage(rankValue),
-                     "ERROR: Damage value out of bounds!");
 
         currentTarget.EnemyTakeDamage(currentDamage * Time.deltaTime);
 
@@ -187,7 +184,7 @@ public class EnergyTowerController : TowerController
 
     private void OnDestroy()
     {
-        Debug.LogError($"[ERROR] 能量塔 {this.name} 不应该被删除！");
+
     }
 
     void OnDrawGizmosSelected()
