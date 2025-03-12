@@ -153,11 +153,11 @@ public class EnergyTowerController : TowerController
     {
         switch (level)
         {
-            case 1: return 20f;
-            case 2: return 40f;
-            case 3: return 80f;
-            case 4: return 150f;
-            default: return 20f;
+            case 1: return 10f;
+            case 2: return 20f;
+            case 3: return 30f;
+            case 4: return 40f;
+            default: return 10f;
         }
     }
 
@@ -165,11 +165,11 @@ public class EnergyTowerController : TowerController
     {
         switch (level)
         {
-            case 1: return 800f;
-            case 2: return 1200f;
-            case 3: return 1800f;
-            case 4: return 2500f;
-            default: return 800f;
+            case 1: return 50f;
+            case 2: return 60f;
+            case 3: return 70f;
+            case 4: return 80f;
+            default: return 50f;
         }
     }
 
@@ -177,18 +177,19 @@ public class EnergyTowerController : TowerController
     {
         switch (level)
         {
-            case 1: return 20f;
-            case 2: return 40f;
-            case 3: return 60f;
-            case 4: return 100f;
-            default: return 20f;
+            case 1: return 10f;
+            case 2: return 12f;
+            case 3: return 15f;
+            case 4: return 18f;
+            default: return 10f;
         }
     }
 
-    private void OnDestroy()
+    /*private void OnDestroy()
     {
         Debug.LogError($"[ERROR] 能量塔 {this.name} 不应该被删除！");
     }
+    */
 
     void OnDrawGizmosSelected()
     {
