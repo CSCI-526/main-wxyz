@@ -2313,11 +2313,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1589897889}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec903ccbaeab492a8d06186690f089c, type: 3}
+  m_Script: {fileID: 11500000, guid: 172766c7041094fd6b7850c8ccd954fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardManager: {fileID: 0}
-  gameManager: {fileID: 0}
+  boardManager: {fileID: 1613210817}
+  gameManager: {fileID: 1312062003}
   uiManager: {fileID: 0}
   parentCooldownImage: {fileID: 60593426}
   cooldownDuration: 30
