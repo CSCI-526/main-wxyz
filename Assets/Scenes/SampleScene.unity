@@ -1551,7 +1551,6 @@ GameObject:
   - component: {fileID: 883774014}
   - component: {fileID: 883774013}
   - component: {fileID: 883774012}
-  - component: {fileID: 883774015}
   m_Layer: 5
   m_Name: BuyButton
   m_TagString: Untagged
@@ -1674,19 +1673,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883774009}
   m_CullTransparentMesh: 1
---- !u!114 &883774015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 883774009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cdfa4d46f09e4fd8b2b4b4950c5f2b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 1312062003}
 --- !u!1 &891493018
 GameObject:
   m_ObjectHideFlags: 0
@@ -2313,11 +2299,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1589897889}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec903ccbaeab492a8d06186690f089c, type: 3}
+  m_Script: {fileID: 11500000, guid: 172766c7041094fd6b7850c8ccd954fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardManager: {fileID: 0}
-  gameManager: {fileID: 0}
+  boardManager: {fileID: 1613210817}
+  gameManager: {fileID: 1312062003}
   uiManager: {fileID: 0}
   parentCooldownImage: {fileID: 60593426}
   cooldownDuration: 30
