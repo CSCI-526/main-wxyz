@@ -26,14 +26,14 @@ public class BurningTowerController : TowerController
         {
             switch (tower.rankValue)  // 直接使用 TowerController 的 rankValue
             {
-                case 1: return 40;
-                case 2: return 60;
-                case 3: return 80;
-                case 4: return 100;
-                default: return 40;
+                case 1: return 30;
+                case 2: return 40;
+                case 3: return 50;
+                case 4: return 60;
+                default: return 30;
             }
         }
-        return 40;
+        return 30;
     }
 
 
