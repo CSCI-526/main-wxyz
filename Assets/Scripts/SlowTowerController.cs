@@ -9,6 +9,7 @@ public class SlowTowerController : TowerController
 
     void Start()
     {
+        base.Start();
         board = FindObjectOfType<BoardManager>();
         if (board == null)
         {

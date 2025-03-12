@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rankValue: 1
-  towerName: 
+  towerName: Energy
   towerSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   attackRange: 8
   attackDamage: 0
@@ -113,9 +113,6 @@ MonoBehaviour:
   - {fileID: 2729133250331387908, guid: 9e77472785924463dbc0dd96e7fcc0f1, type: 3}
   - {fileID: 6734909066804063127, guid: 1e20dd86615b14cd2ba6b808f1daed89, type: 3}
   gridPosition: {x: 0, y: 0}
-  minDamage: 20
-  maxDamage: 800
-  damageGrowthRate: 20
   energyBeam: {fileID: 6891708688489141560}
   beamColorGradient:
     serializedVersion: 2

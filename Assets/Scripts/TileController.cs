@@ -1,15 +1,17 @@
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TileController : MonoBehaviour
 {
     public Vector2Int gridPosition;
     public TowerController towerOnTile;
-    private int tileState = 0; // 0: 无状态, 1: 冰冻, 2: 燃烧
+    private int tileState = 0; 
     private List<Enemy> enemiesOnTile = new List<Enemy>();
     private float Damage = 0;
     private float Duration = 0f;
+    
+    public GameObject hover;
 
     void Awake()
     {
@@ -46,7 +48,9 @@ public class TileController : MonoBehaviour
                 if (tileState == 2)
                 {
                     enemy.EnemyBurnEffect(Damage, Duration);
-                } else if(tileState == 1) {
+                } 
+                else if (tileState == 1) 
+                {
                     enemy.EnemySlowEffect(Damage, Duration);
                 }
             }
@@ -65,19 +69,21 @@ public class TileController : MonoBehaviour
         }
     }
 
-    // 施加燃烧效果给当前 Tile 上的所有敌人
+    // 施加燃烧或冰冻效果给当前 Tile 上的所有敌人
     public void ApplyEffect(float damage, float duration)
     {
         foreach (Enemy enemy in new List<Enemy>(enemiesOnTile))
         {
             if (enemy != null)
             {   
-                if(tileState == 2) {
+                if(tileState == 2) 
+                {
                     enemy.EnemyBurnEffect(damage, duration);
-                } else if(tileState == 1) {
+                } 
+                else if(tileState == 1) 
+                {
                     enemy.EnemySlowEffect(damage, duration);
                 }
-                
             }
         }
     }
@@ -92,15 +98,27 @@ public class TileController : MonoBehaviour
     // 恢复 Tile 的状态
     public void ResetTileState()
     {
-        // 恢复状态
-        SetTileState(0); // 恢复为无状态
-        // 恢复颜色
+        SetTileState(0); 
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
         {
-            sr.color = Color.white; // 恢复为白色
+            sr.color = Color.white; 
         }
     }
-    
-}
 
+    public void LightOnHover()
+    {
+        if (hover != null)
+        {
+            hover.SetActive(true);
+        }
+    }
+
+    public void DisableHover()
+    {
+        if (hover != null)
+        {
+            hover.SetActive(false);
+        }
+    }
+}
