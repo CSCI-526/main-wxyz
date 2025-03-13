@@ -85,8 +85,8 @@ public class TowerController : MonoBehaviour
         if (rankValue < 4)
         {
             rankValue++;
-            attackRange *= 1.2f;
-            attackDamage *= 1.2f;
+            //attackRange *= 1.2f;
+            //attackDamage *= 1.2f;
             ReplaceTowerBase();
         }
         UpdateAppearance();
