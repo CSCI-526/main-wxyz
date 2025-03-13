@@ -59,4 +59,14 @@ public class TimerManager : MonoBehaviour
         isTimerRunning = true; //确保重新开始时计时器继续
         UpdateTimerUI();
     }
+    public float GetElapsedTime()
+    {
+        return elapsedTime;
+    }     //存储存活时间
+    public void SaveFinalTime()
+    {
+        PlayerPrefs.SetFloat("FinalSurvivalTime", elapsedTime);
+        PlayerPrefs.Save();
+    }
+
 }

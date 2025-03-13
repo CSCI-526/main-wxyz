@@ -40,9 +40,19 @@ public class GameManager : MonoBehaviour
         if (!hasLost)
         {
             Debug.Log("Player lose !!!");
-            hasLost = true;
-            SceneManager.LoadScene(2);
-            // Game over triggered on failure
+        hasLost = true;
+
+        //存储最终存活时间  
+        if (timerManager != null)
+        {
+            timerManager.SaveFinalTime();
+        }
+        else
+        {
+            Debug.LogError("TimerManager is NULL! Time not saved.");
+        }
+
+        SceneManager.LoadScene(2); //跳转到GameOver场景
         }
     }
 
