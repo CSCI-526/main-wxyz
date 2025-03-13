@@ -56,7 +56,7 @@ public class TankTowerController : TowerController
         Projectile projectile = projectileObj.GetComponent<Projectile>();
         projectile.target = target;
         projectile.damage = CalculateDamage();
-        Debug.Log("Tower Rank: " + rankValue + " | Damage: " + projectile.damage);
+        //Debug.Log("Tower Rank: " + rankValue + " | Damage: " + projectile.damage);
         projectile.InitializeProjectile();
     }
      float CalculateDamage()
