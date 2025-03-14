@@ -11,7 +11,6 @@ public class SwipeManager : MonoBehaviour
     private bool isSwiping = false;
 
     private float swipeCooldown = 0.3f;
-
     void Update()
     {
         if (uiManager != null && uiManager.isPaused)
@@ -25,7 +24,6 @@ public class SwipeManager : MonoBehaviour
         DetectKeyboardInput();
         DetectTouchInput();
     }
-
     private void DetectKeyboardInput()
     {
         Vector2Int direction = Vector2Int.zero;
@@ -66,7 +64,6 @@ public class SwipeManager : MonoBehaviour
             }
         }
     }
-
     private void ProcessSwipe()
     {
         Vector2 swipeDelta = endTouchPosition - startTouchPosition;

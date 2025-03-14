@@ -6,7 +6,6 @@ public class EnemyData : ScriptableObject
     public Sprite enemySprite;
     public float maxHealth;
     public float moveSpeed;
-    
     //Enemy damage to base
     public float damage;
 

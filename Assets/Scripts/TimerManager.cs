@@ -4,10 +4,10 @@ using TMPro;
 
 public class TimerManager : MonoBehaviour
 {
-    public TextMeshProUGUI timerText; // 计时器UI文本
-    private float elapsedTime = 0f; // 记录经过的时间（秒）
-    private bool isTimerRunning = true; // 计时器是否在运行
-
+    public TextMeshProUGUI timerText; //计时器UI文本
+    private float elapsedTime = 0f; //记录经过的时间（秒）
+    private bool isTimerRunning = true; //计时器是否在运行
+  
     void Start()
     {
         if (timerText == null)
@@ -15,7 +15,7 @@ public class TimerManager : MonoBehaviour
             Debug.LogError("TimerText is NULL! Make sure it's assigned in the Inspector.");
         }
     }
-
+     
     void Update()
     {
         if (isTimerRunning)
@@ -24,8 +24,7 @@ public class TimerManager : MonoBehaviour
             UpdateTimerUI();
         }
     }
-
-    // 更新计时器 UI
+    //更新计时器 UI
     void UpdateTimerUI()
     {
         if (timerText == null)
@@ -39,20 +38,22 @@ public class TimerManager : MonoBehaviour
         
         timerText.text = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
     }
+    
 
-    // 暂停计时器
+      
+
+    //暂停计时器
     public void PauseTimer()
     {
         isTimerRunning = false;
     }
-
-    // 继续计时器
+    //继续计时器
     public void ResumeTimer()
     {
         isTimerRunning = true;
     }
 
-    // 重新启动计时器
+    //重新启动计时器
     public void ResetTimer()
     {
         elapsedTime = 0f;

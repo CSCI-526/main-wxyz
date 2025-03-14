@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     {
         UpdateGoldUI();
         UpdateTowerCostUI(); //初始化塔价格显示
-        pausePanel.SetActive(false);                 //默认隐藏暂停窗口
+        pausePanel.SetActive(false);        //默认隐藏暂停窗口
         UpdateHealthUI(); //初始化血量UI
     }
     //更新金币UI
@@ -55,7 +55,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //让"金币不足"提示2秒后消失
+    //让金币不足提示2秒后消失
     IEnumerator HideGoldWarning()
     {
         yield return new WaitForSeconds(2f);
@@ -69,9 +69,9 @@ public class UIManager : MonoBehaviour
         Time.timeScale = isPaused ? 0 : 1;
 
         if (isPaused)
-            timerManager.PauseTimer();  // **暂停计时器**
+            timerManager.PauseTimer();  
         else
-            timerManager.ResumeTimer(); // **继续计时**
+            timerManager.ResumeTimer(); 
     }
 
     //继续游戏
@@ -100,8 +100,8 @@ public class UIManager : MonoBehaviour
     public void RestartGame()
     {
         Debug.Log("Restarting Game...");
-        Time.timeScale = 1; // 确保时间正常
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // 重新加载当前关卡
+        Time.timeScale = 1; //确保时间正常
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //重新加载当前关卡
     }
     public void UpdateBuyButtonState()
     {
@@ -111,7 +111,7 @@ public class UIManager : MonoBehaviour
             buyButton.interactable = true; //按钮可点击
             buyButton.image.color = new Color(1f, 0.84f, 0f, 1f); //金色
         }
-        else //金币不足 或者 棋盘满了
+        else //金币不足或者棋盘满了
         {
             buyButton.interactable = false; //按钮禁用
             buyButton.image.color = new Color(0.5f, 0.5f, 0.5f, 1f); //灰色

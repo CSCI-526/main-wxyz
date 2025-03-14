@@ -23,19 +23,17 @@ public class EnergyTowerController : TowerController
 
     private void InitializeTowerStats()
     {
-        rankValue = Mathf.Clamp(rankValue, 1, 4); // 保险措施
+        rankValue = Mathf.Clamp(rankValue, 1, 4); //保险措施
         currentDamage = GetMinDamage(rankValue);
         attackDamage = GetMinDamage(rankValue);
     }
-
     void Update()
     {
         if (!isAttacking && Time.time - lastCheckTime >= checkInterval)
         {
-            AcquireLowestIndexEnemy(); // **使用新的寻敌逻辑**
+            AcquireLowestIndexEnemy(); //用新的寻敌逻辑
             lastCheckTime = Time.time;
         }
-
         if (currentTarget != null && currentTarget.IsAlive)
         {
             UpdateBeamVisual();
@@ -48,8 +46,7 @@ public class EnergyTowerController : TowerController
             currentDamage = GetMinDamage(rankValue);
         }
     }
-
-    // **🔹 采用 `index` 选择最前面的敌人**
+    //采用index选择最前面的敌人
     private void AcquireLowestIndexEnemy()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
@@ -61,14 +58,13 @@ public class EnergyTowerController : TowerController
             if (collider.CompareTag("Enemy"))
             {
                 Enemy enemy = collider.GetComponent<Enemy>();
-                if (enemy != null && enemy.index < lowestIndex) // **选择 index 最小的敌人**
+                if (enemy != null && enemy.index < lowestIndex) //选择index最小的敌人
                 {
                     lowestIndex = enemy.index;
                     targetEnemy = enemy;
                 }
             }
         }
-
         if (targetEnemy != null)
         {
             isAttacking = true;
@@ -80,7 +76,6 @@ public class EnergyTowerController : TowerController
             Debug.Log("未找到有效目标");
         }
     }
-
     private void UpdateBeamVisual()
     {
         if (!energyBeam) return;
@@ -111,16 +106,13 @@ public class EnergyTowerController : TowerController
             GetMinDamage(rankValue),
             GetMaxDamage(rankValue)
         );
-
-
         currentTarget.EnemyTakeDamage(currentDamage * Time.deltaTime);
-
-        // **确保击杀后再检测新敌人**
+        //确保击杀后再检测新敌人
         if (!currentTarget.IsAlive)
         {
             isAttacking = false;
             currentTarget = null;
-            AcquireLowestIndexEnemy(); // 重新获取最前面的敌人
+            AcquireLowestIndexEnemy(); //重新获取最前面的敌人
         }
     }
 
@@ -130,11 +122,10 @@ public class EnergyTowerController : TowerController
         {
             rankValue++;
             attackRange *= 1.2f;
-
-            // **🔹 直接更新最小值、最大值和增长速率**
+            //直接更新最小值最大值和增长速率
             InitializeTowerStats();
 
-            ReplaceTowerBase(); // **确保基础对象不丢失**
+            ReplaceTowerBase(); //确保基础对象不丢失
         }
     }
 
@@ -143,9 +134,7 @@ public class EnergyTowerController : TowerController
         if (energyBeam) energyBeam.enabled = false;
     }
 
-    // **🔹 确保 `EnergyTower` 不会因 `ReplaceTowerBase()` 丢失基础组件**
-    
-
+    //确保EnergyTower不会因ReplaceTowerBase()丢失基础组件
     private float GetMinDamage(int level)
     {
         switch (level)
@@ -157,7 +146,6 @@ public class EnergyTowerController : TowerController
             default: return 10f;
         }
     }
-
     private float GetMaxDamage(int level)
     {
         switch (level)
@@ -169,7 +157,6 @@ public class EnergyTowerController : TowerController
             default: return 50f;
         }
     }
-
     private float GetDamageGrowthRate(int level)
     {
         switch (level)
@@ -181,7 +168,6 @@ public class EnergyTowerController : TowerController
             default: return 10f;
         }
     }
-
     /*private void OnDestroy()
     {
 

@@ -101,8 +101,6 @@ public class TowerController : MonoBehaviour
         }
         CreateTowerBase();
     }
-
-
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

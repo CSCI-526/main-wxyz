@@ -32,14 +32,14 @@ public class TankTowerController : TowerController
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
         Enemy targetEnemy = null;
-        int lowestIndex = int.MaxValue; // 设置一个极大的初始值
+        int lowestIndex = int.MaxValue; //设置一个极大的初始值
 
         foreach (Collider2D collider in colliders)
         {
             if (collider.CompareTag("Enemy"))
             {
                 Enemy enemy = collider.GetComponent<Enemy>();
-                if (enemy != null && enemy.index < lowestIndex) // 选择 enemyIndex 最小的敌人
+                if (enemy != null && enemy.index < lowestIndex) //选择 enemyIndex 最小的敌人
                 {
                     lowestIndex = enemy.index;
                     targetEnemy = enemy;
@@ -47,9 +47,7 @@ public class TankTowerController : TowerController
             }
         }
         return targetEnemy;
-    }
-
-
+    }    
     void ShootProjectile(Enemy target)
     {
         GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
@@ -61,7 +59,7 @@ public class TankTowerController : TowerController
     }
      float CalculateDamage()
      {
-         switch (rankValue)  // 直接根据 rankValue 返回固定伤害
+         switch (rankValue)  //直接根据 rankValue 返回固定伤害
          {
              case 1: return 20f;  
              case 2: return 40f;  

@@ -8,30 +8,26 @@ using Unity.VisualScripting;
 public class EnemySpawn : MonoBehaviour
 {
     [Header("Configuration Per Wave")]
-    public GameObject enemyPrefab;                      // 敌人类型
-
-    private int enemyCount = 5;                         // 这一波的敌人数量
-    private float timeBetweenEnemies = 3f;              // 同一波内怪物生成的间隔
-    private float timeAfterWave = 5f;                   // 与下一波的间隔时间
-
-    private Transform spawnPoint;                       // 敌人出生点
-    private Transform[] path = new Transform[4];        // 敌人路径点
+    public GameObject enemyPrefab;//敌人类型
+    private int enemyCount = 5;    //这一波的敌人数量
+    private float timeBetweenEnemies = 3f;   //同一波内怪物生成的间隔
+    private float timeAfterWave = 5f;  //与下一波的间隔时间
+    private Transform spawnPoint;  //敌人出生点
+    private Transform[] path = new Transform[4];//敌人路径点
 
     void Start()
     {
         
     }
-
     void Update()
     {
         
     }
-
     public void EnemySpawnConfigInit()
     {
         BoardManager gridManager = Object.FindFirstObjectByType<BoardManager>();
         if (gridManager != null){
-            if(gridManager.monsterSpawnTile != null)
+            if(gridManager.monsterSpawnTile !=null)
             {
                 SpriteRenderer redSprite = gridManager.monsterSpawnTile.GetComponent<SpriteRenderer>();
                 if (redSprite != null)
@@ -39,7 +35,7 @@ public class EnemySpawn : MonoBehaviour
                     spawnPoint = redSprite.transform;
                 }
             }
-            if(gridManager.monsterTurnTile1 != null)
+            if(gridManager.monsterTurnTile1 !=null)
             {
                 SpriteRenderer turnSprite1 = gridManager.monsterTurnTile1.GetComponent<SpriteRenderer>();
                 if (turnSprite1 != null)
@@ -73,7 +69,6 @@ public class EnemySpawn : MonoBehaviour
             }
         } 
     }
-
     public IEnumerator SpawnWaves()
     {
         float currentMaxHealth = 100f;

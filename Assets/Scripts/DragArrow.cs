@@ -17,8 +17,7 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public UIManager uiManager;
 
     public Image parentCooldownImage;
-
-    // Cooldown length in seconds.
+    //Cooldown length in seconds
     public float cooldownDuration = 60f;
     private bool onCooldown = false;
 
@@ -56,8 +55,7 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             boardManager.LightAllTileHovers();
         }
-
-        // Calculate pointer offset.
+        //calculate pointer offset
         RectTransform parentRectTransform = rectTransform.parent as RectTransform;
         Vector2 localPointerPosition;
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -69,14 +67,12 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             pointerOffset = rectTransform.anchoredPosition - localPointerPosition;
         }
     }
-
     public void OnDrag(PointerEventData eventData)
     {
         if ((uiManager != null && uiManager.isPaused) || onCooldown)
         {
             return;
         }
-
         RectTransform parentRectTransform = rectTransform.parent as RectTransform;
         Vector2 localPointerPosition;
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -101,7 +97,6 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             boardManager.UpdateTileHoverStatesAllButOne(tileUnderArrow);
         }
     }
-
     public void OnEndDrag(PointerEventData eventData)
     {
 
@@ -139,13 +134,13 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             }
         }
 
-        // Reset arrow to original UI location
+        //Reset arrow to original UI location
         rectTransform.anchoredPosition = initialAnchoredPosition;
     }
 
     /// <summary>
-    /// Animates the parent's cooldown image from full -> 0 over the cooldown duration,
-    /// then re-enables dragging.
+    ///Animates the parent's cooldown image from full to 0 over the cooldown duration
+    ///then re-enables dragging
     /// </summary>
     private IEnumerator CooldownRoutine()
     {
@@ -153,7 +148,7 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         if (parentCooldownImage != null)
         {
-            // Fill at 100% initially to represent the start of cooldown
+            //Fill at 100% initially to represent the start of cooldown
             parentCooldownImage.fillAmount = 1f;
         }
 
@@ -161,19 +156,17 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         while (remainingTime > 0f)
         {
             remainingTime -= Time.deltaTime;
-            // Update fill to reflect how much time remains
+            //update fill to reflect how much time remains
             if (parentCooldownImage != null)
             {
                 parentCooldownImage.fillAmount = remainingTime / cooldownDuration;
             }
-
             yield return null;
         }
-
-        // Cooldown finished
+        // cooldown finish
         if (parentCooldownImage != null)
         {
-            // Optionally set fill to 0 to indicate off cooldown
+            //0ptionally set fill to 0 to indicate off cooldown
             parentCooldownImage.fillAmount = 0f;
         }
 

@@ -10,8 +10,8 @@ public class UBowTower : MonoBehaviour
     public float rotationSpeed = 10f;
 
     [Header("Component")]
-    public Transform firePoint;         // 
-    public GameObject boltPrefab; // Bolt prefab
+    public Transform firePoint;      
+    public GameObject boltPrefab; //Bolt prefab
     public LayerMask enemyLayer;
 
     private Transform currentTarget;

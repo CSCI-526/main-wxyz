@@ -6,14 +6,13 @@ public class GameManager : MonoBehaviour
 {
     public BoardManager boardManager;
     public EnemySpawn enemyManager;
-    public List<GameObject> towerPrefabs; // Changed to a list of tower prefabs
-    public UIManager uiManager; // UIManager connection
+    public List<GameObject> towerPrefabs; //Changed to a list of tower prefabs
+    public UIManager uiManager; //UIManager connection
     public TimerManager timerManager; 
-
-    public int playerGold = 100; 
+    public int playerGold =100; 
     public int spawnCost = 10;
     public int playerHealth = 100; 
-
+ 
     private bool hasLost = false;
 
     void Start()
@@ -23,7 +22,7 @@ public class GameManager : MonoBehaviour
         bool spawned = SpawnRandomTower();
         enemyManager.EnemySpawnConfigInit();
         StartCoroutine(enemyManager.SpawnWaves());
-        uiManager.UpdateHealthUI(); // Update health UI at game start
+        uiManager.UpdateHealthUI(); //update health UI at game start
     }
 
     void Update()
@@ -154,7 +153,7 @@ public class GameManager : MonoBehaviour
         }
 
 
-        // 确保 UI 刷新
+        //确保刷新
         if (uiManager != null)
         {
             uiManager.UpdateGoldUI();

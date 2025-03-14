@@ -2,38 +2,34 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
-    public int rows = 7;
-    public int columns = 7;
-    public float tileSpacing = 1.1f;
-    public GameObject tilePrefab;
+    public int rows =7;
+    public int columns =7;  
+    public float tileSpacing =1.1f;
+    public GameObject tilePrefab;  
     public TileController[,] tiles;
-    public GameManager gameManager;
-
+    public GameManager gameManager;   
     public TileController monsterSpawnTile;
     public TileController monsterTurnTile1;
     public TileController monsterTurnTile2;
     public TileController monsterTurnTile3;
     public TileController monsterDestTile;
-
     void Start()
     {
     }
-
     public void CreateGrid()
     {
-        tiles = new TileController[rows, columns];
-        float offsetX = (columns - 1) / 2.0f;
-        float offsetY = (rows - 1) / 2.0f;
-
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
+        tiles =new TileController[rows, columns];
+        float offsetX =(columns - 1) / 2.0f;
+        float offsetY =(rows - 1) / 2.0f;
+        for (int i =0; i < rows; i++)
+        {  
+            for (int j =0; j < columns; j++)    
             {
                 Vector3 pos = new Vector3((j - offsetX) * tileSpacing, (offsetY - i) * tileSpacing, 0);
                 GameObject tileObj = Instantiate(tilePrefab, pos, Quaternion.identity, transform);
-                TileController tc = tileObj.GetComponent<TileController>();
+                TileController tc = tileObj.GetComponent<TileController>();  
                 tc.gridPosition = new Vector2Int(j, i);
-                if (i == 0 && j == 0)
+                if (i ==0 && j ==0)
                 {
                     SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
                     if (sr != null) { sr.color = Color.red; }
@@ -50,33 +46,31 @@ public class BoardManager : MonoBehaviour
                     SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
                     if (sr != null) { sr.color = Color.white; }
                     monsterTurnTile1 = tc;
-                }
+                }  
                 else if (i == rows - 1 && j == columns - 1)
                 {
                     SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
                     if (sr != null) { sr.color = Color.white; }
                     monsterTurnTile2 = tc;
-                }
+                }    
                 else if (i == rows - 1 && j == 0)
                 {
                     SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
                     if (sr != null) { sr.color = Color.white; }
                     monsterTurnTile3 = tc;
-                }
+                }  
                 else if (i == 0 || i == rows - 1 || j == 0 || j == columns - 1)
                 {
                     SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
                     if (sr != null) { sr.color = Color.white; }
                 }
-
-                tiles[i, j] = tc;
+                tiles[i, j] = tc;  
             }
         }
     }
     public void MoveTowers(Vector2Int direction)
     {
-        bool anyMoved = false;
-
+        bool anyMoved =false;  
         if (direction.x != 0)
         {
             for (int i = 1; i < rows - 1; i++)
@@ -173,16 +167,16 @@ public class BoardManager : MonoBehaviour
                 }
             }
         }
-        else if (direction.y != 0)
+        else if (direction.y !=0)    
         {
-            if (direction.y < 0) 
+            if (direction.y <0) 
             {
                 for (int j = 1; j < columns - 1; j++)
                 {
-                    for (int i = rows - 2; i >= 1; i--)
+                    for (int i = rows - 2; i >=1; i--)
                     {
                         TowerController tower = tiles[i, j].towerOnTile;
-                        if (tower != null)
+                        if (tower !=null)   
                         {
                             int currentPos = i;
                             while (currentPos < rows - 2 && tiles[currentPos + 1, j].towerOnTile == null)
@@ -272,13 +266,11 @@ public class BoardManager : MonoBehaviour
                 }
             }
         }
-
         if (anyMoved)
         {
             Debug.Log("Towers moved and merged within the inner grid.");
         }
     }
-
     public void LightAllTileHovers()
     {
         for (int i = 0; i < rows; i++)
@@ -292,12 +284,11 @@ public class BoardManager : MonoBehaviour
             }
         }
     }
-
     public void DisableAllTileHovers()
     {
         for (int i = 0; i < rows; i++)
         {
-            for (int j = 0; j < columns; j++)
+            for (int j =0; j < columns; j++)
             {
                 if (tiles[i, j] != null)
                 {
@@ -306,8 +297,6 @@ public class BoardManager : MonoBehaviour
             }
         }
     }
-
-
     public void UpdateTileHoverStatesAllButOne(TileController excludedTile)
     {
         LightAllTileHovers();
@@ -323,7 +312,6 @@ public class BoardManager : MonoBehaviour
             }
         }
     }
-
     public void UpdateTileHoverStates(TileController currentTile)
     {
         DisableAllTileHovers();
@@ -332,30 +320,24 @@ public class BoardManager : MonoBehaviour
             currentTile.LightOnHover();
         }
     }
-
     public TileController GetTileUnderPosition(Vector3 worldPosition)
     {
         float offsetX = (columns - 1) / 2.0f;
         float offsetY = (rows - 1) / 2.0f;
-        
         Vector3 localPos = worldPosition - transform.position;
         int j = Mathf.RoundToInt((localPos.x / tileSpacing) + offsetX);
         int i = Mathf.RoundToInt(offsetY - (localPos.y / tileSpacing));
-
         if (IsInside(i, j))
         {   
             
             return tiles[i, j];
         }
-
         return null;
     }
-
     public bool IsInside(int row, int col)
     {
         return row >= 0 && row < rows && col >= 0 && col < columns;
     }
-
     public bool IsInnerTile(int row, int col)
     {
         return row > 0 && row < rows - 1 && col > 0 && col < columns - 1;

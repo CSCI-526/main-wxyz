@@ -4,10 +4,9 @@ public class ShotgunTowerController : TowerController
 {
     public GameObject projectilePrefab;
     public float fireRate;
-    public int pelletCount = 5; // Number of bullets fired in one shot
-    public float spreadAngle = 30f; // Cone spread angle
+    public int pelletCount = 5; //Number of bullets fired in one shot
+    public float spreadAngle = 30f; //Cone spread angle
     private float lastFireTime;
-
     void Update()
     {
         FireAtEnemy();
@@ -47,9 +46,9 @@ public class ShotgunTowerController : TowerController
             ShotgunProjectile projectile = projectileObj.GetComponent<ShotgunProjectile>();
             if (projectile != null)
             {
-                float randomAngle = Random.Range(-spreadAngle / 2, spreadAngle / 2); // Random angle
+                float randomAngle = Random.Range(-spreadAngle / 2, spreadAngle / 2); //Random angle
                 projectile.SetDirection(target.transform.position, randomAngle);
-                projectile.damage = attackDamage / pelletCount; // Damage distribution
+                projectile.damage = attackDamage / pelletCount; //Damage distribution
                 projectile.speed = 10f;
             }
         }

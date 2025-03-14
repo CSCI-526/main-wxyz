@@ -18,7 +18,7 @@ public class TileController : MonoBehaviour
         Collider2D col = GetComponent<Collider2D>();
         if (col == null)
         {
-            col = gameObject.AddComponent<BoxCollider2D>(); // 自动添加 BoxCollider2D
+            col = gameObject.AddComponent<BoxCollider2D>(); //自动添加BoxCollider2D
         }
         col.isTrigger = true;
     }
@@ -44,7 +44,7 @@ public class TileController : MonoBehaviour
             {
                 enemiesOnTile.Add(enemy);
                 
-                // 如果Tile是燃烧状态，立即对进入的敌人施加燃烧效果
+                //如果Tile是燃烧状态，立即对进入的敌人施加燃烧效果
                 if (tileState == 2)
                 {
                     enemy.EnemyBurnEffect(Damage, Duration);
@@ -69,7 +69,7 @@ public class TileController : MonoBehaviour
         }
     }
 
-    // 施加燃烧或冰冻效果给当前 Tile 上的所有敌人
+    //施加燃烧或冰冻效果给当前 Tile 上的所有敌人
     public void ApplyEffect(float damage, float duration)
     {
         foreach (Enemy enemy in new List<Enemy>(enemiesOnTile))
@@ -91,11 +91,11 @@ public class TileController : MonoBehaviour
     public IEnumerator ApplyEffectForDuration()
     {
         yield return new WaitForSeconds(Duration);
-        // 恢复颜色和状态
+        //恢复颜色和状态
         ResetTileState();
     }
 
-    // 恢复 Tile 的状态
+    //恢复Tile的状态
     public void ResetTileState()
     {
         SetTileState(0); 

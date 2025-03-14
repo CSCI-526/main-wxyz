@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
     public float currentHealth = 100f;
     private int currentIndex = 0;
     private int coin = 5;
-
     private SpriteRenderer spriteRenderer;
     // private float burnDuration = 0f;
     // private float burnDamage = 0f;
@@ -22,12 +21,10 @@ public class Enemy : MonoBehaviour
     private Coroutine burnEffectCoroutine;
     private float originalSpeed;
 
-
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
     void Start()
     {
         originalSpeed = moveSpeed;
@@ -38,11 +35,9 @@ public class Enemy : MonoBehaviour
         // UIManager uiManager = Object.FindFirstObjectByType<UIManager>();
         if (enemyData != null)
         {
-            // UpdateAppearance();
+            //UpdateAppearance();
         }
         currentHealth = enemyData.maxHealth;
-
-
     }
     public void UpdateAppearance()
     {
@@ -57,8 +52,6 @@ public class Enemy : MonoBehaviour
     {
         EnemyBehavior();
     }
-
-    /*** enemy wayfinding ***/
     private void EnemyBehavior()
     {
         if (currentIndex < waypoints.Length)
@@ -68,10 +61,6 @@ public class Enemy : MonoBehaviour
             if (Vector3.Distance(transform.position, targetPoint.position) < 0.01f)
             {
                 currentIndex++;
-                // enemy function test
-                // EnemyTakeDamage(40);
-                // EnemyBurnEffect(20f, 2f);
-                // EnemySlowEffect(0.5f, 2f);
             }
         }
         else if (currentIndex == waypoints.Length)
@@ -80,7 +69,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    /*** enemy wayfinding end ***/
 
 
 
@@ -121,7 +109,6 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
         if (uiManager != null) uiManager.UpdateHealthUI();
     }
-
     private void DamagePlayerHealth(int damage)
     {
         GameManager gameManager = Object.FindFirstObjectByType<GameManager>();
@@ -156,13 +143,11 @@ public class Enemy : MonoBehaviour
         moveSpeed = originalSpeed;
         slowEffectCoroutine = null;
     }
-
     public void EnemyBurnEffect(float damagePerSecond, float duration)
     {
         if (burnEffectCoroutine != null) StopCoroutine(burnEffectCoroutine);
         burnEffectCoroutine = StartCoroutine(BurnCoroutine(damagePerSecond, duration));
     }
-
     private IEnumerator BurnCoroutine(float damagePerSecond, float duration)
     {
         if (slowEffectCoroutine != null)
@@ -172,7 +157,6 @@ public class Enemy : MonoBehaviour
             moveSpeed = originalSpeed;
             originalRender();
         }
-
         burnEffectRender();
         yield return new WaitForSeconds(0.1f);
 
@@ -203,10 +187,8 @@ public class Enemy : MonoBehaviour
     }
 
     /*** enemy abnormal state end ***/
-
-
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Here check if entering the final tile
+        //Here check if entering the final tile
     }
 }

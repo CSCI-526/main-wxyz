@@ -15,16 +15,15 @@ public class BurningTowerController : TowerController
             Debug.LogError("BoardManager not found in the scene!");
             return;
         }
-
         StartCoroutine(BurnRandomBorderTile());
     }
-
     public float GetBurnDamage()
     {
-        TowerController tower = GetComponent<TowerController>(); // 获取 TowerController
+        TowerController tower = GetComponent<TowerController>(); 
+        //获取TowerController
         if (tower != null)
         {
-            switch (tower.rankValue)  // 直接使用 TowerController 的 rankValue
+            switch (tower.rankValue)// 直接使用TowerController的rankValue
             {
                 case 1: return 30;
                 case 2: return 40;
@@ -35,8 +34,6 @@ public class BurningTowerController : TowerController
         }
         return 30;
     }
-
-
     IEnumerator BurnRandomBorderTile()
     {
         while (true)
@@ -57,12 +54,11 @@ public class BurningTowerController : TowerController
                 sr.color = Color.magenta;
             }
 
-            // 立即对Tile上的所有敌人施加燃烧效果
+            //立即对Tile上的所有敌人施加燃烧效果
             selectedTile.ApplyEffect(burnDamage, burnDuration);
 
-            // 使用协程处理燃烧效果的持续时间
+            //使用协程处理燃烧效果的持续时间 
             selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
-
             /*yield return new WaitForSeconds(burnDuration);
 
             if (sr != null)
@@ -72,8 +68,6 @@ public class BurningTowerController : TowerController
             selectedTile.SetTileState(0);*/
         }
     }
-
-    
    TileController[] GetBorderTiles()
     {
         if (board == null || board.tiles == null) return new TileController[0];
@@ -84,12 +78,11 @@ public class BurningTowerController : TowerController
         {
             for (int j = 0; j < board.columns; j++)
             {
-                // 只选取四周的 Tile
+                //只选取四周的Tile
                 if (i == 0 || i == board.rows - 1 || j == 0 || j == board.columns - 1)
                 {
                     TileController tile = board.tiles[i, j];
-
-                    // 确保 tile 存在，并且不是起点、终点，并且状态为 0
+                    //确保tile存在并且不是起点、终点，并且状态为0  
                     if (tile != null && tile != board.monsterSpawnTile && tile != board.monsterDestTile && tile.GetTileState() == 0)
                     {
                         borderTiles.Add(tile);

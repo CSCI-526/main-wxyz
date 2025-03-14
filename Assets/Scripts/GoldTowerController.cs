@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 public class GoldTowerController : TowerController
 {
-    public int goldPerCycle = 5; // 每次生产的金币数量
-    public float generateInterval = 5f; // 生产金币的间隔时间
+    public int goldPerCycle = 5; //每次生产的金币数量
+    public float generateInterval = 5f; //生产金币的间隔时间
 
     private float lastGenerateTime;
     private GameManager gameManager;
@@ -10,8 +10,8 @@ public class GoldTowerController : TowerController
     void Start()
     {
         base.Start();
-        gameManager = FindObjectOfType<GameManager>(); // 获取游戏管理器
-        lastGenerateTime = Time.time; // 记录初始时间
+        gameManager = FindObjectOfType<GameManager>(); //获取游戏管理器
+        lastGenerateTime = Time.time; //记录初始时间
     }
 
     void Update()
