@@ -8,9 +8,12 @@ using Unity.VisualScripting;
 public class EnemySpawn : MonoBehaviour
 {
     [Header("Configuration Per Wave")]
-    public GameObject enemyPrefab;                      // 敌人类型
+    public GameObject enemyPrefab1;                      // 敌人类型
+    public GameObject enemyPrefab2;                      // 敌人类型
+    public EnemyData enemyData;
 
     private int enemyCount = 5;                         // 这一波的敌人数量
+    private int bigEnemyCount = 1;
     private float timeBetweenEnemies = 3f;              // 同一波内怪物生成的间隔
     private float timeAfterWave = 5f;                   // 与下一波的间隔时间
 
@@ -77,20 +80,33 @@ public class EnemySpawn : MonoBehaviour
     public IEnumerator SpawnWaves()
     {
         float currentMaxHealth = 100f;
+        float currentMaxSpeed = 1f;
+        int currentCoin = 5;
         int enemyIndex = 1;
         while(true)
         {
-            for(int i = 0; i < enemyCount; i++)
+            for(int i = 0; i < enemyCount - bigEnemyCount; i++)
             {
-                GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
-                enemy.GetComponent<Enemy>().SetMaxHealth(currentMaxHealth);
-                enemy.GetComponent<Enemy>().waypoints = path;
+                GameObject enemy = Instantiate(enemyPrefab1, spawnPoint.position, Quaternion.identity);
+                enemy.GetComponent<Enemy>().InitiateEnemy(path, currentMaxHealth, currentMaxSpeed, currentCoin);
                 enemy.GetComponent<Enemy>().index = enemyIndex;
                 enemyIndex ++;
                 yield return new WaitForSeconds(timeBetweenEnemies);
             }
+            for(int i = 0; i < bigEnemyCount; i++)
+            {
+                GameObject bigEnemy = Instantiate(enemyPrefab2, spawnPoint.position, Quaternion.identity);
+                bigEnemy.GetComponent<Enemy>().InitiateEnemy(path, currentMaxHealth*1.8f, currentMaxSpeed*0.8f, currentCoin*2);
+                bigEnemy.GetComponent<Enemy>().index = enemyIndex;
+                enemyIndex ++;
+                yield return new WaitForSeconds(timeBetweenEnemies+0.15f);
+            }
             yield return new WaitForSeconds(timeAfterWave);
             enemyCount ++;
+            if (enemyCount > 3*bigEnemyCount)
+            {
+                bigEnemyCount ++;
+            }
             if (timeBetweenEnemies > 0.5f)
             {
                 timeBetweenEnemies -= 0.5f;
@@ -98,11 +114,10 @@ public class EnemySpawn : MonoBehaviour
             else if (timeBetweenEnemies > 0.3f)
             {
                 timeBetweenEnemies -= 0.1f;
-                timeAfterWave -= 0.7f;
+                // timeAfterWave -= 0.7f;
             }
             else
             {
-                // currentMaxHealth += (int)(currentMaxHealth * 0.2) + 50;
                 currentMaxHealth += 15;
             }
             if (timeAfterWave > 3f)

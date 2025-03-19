@@ -1918,8 +1918,8 @@ MonoBehaviour:
   boardManager: {fileID: 1613210817}
   enemyManager: {fileID: 1829153773}
   towerPrefabs:
-  - {fileID: 49547057150472206, guid: b12031daac76e429cad6dd67f47bf234, type: 3}
   - {fileID: 1001787181882085309, guid: fab5f7ea9cf324f6c811c7705e22f610, type: 3}
+  - {fileID: 49547057150472206, guid: b12031daac76e429cad6dd67f47bf234, type: 3}
   - {fileID: 49547057150472206, guid: 29add77e8100de444a787819656d3d75, type: 3}
   - {fileID: 49547057150472206, guid: 7d08e4d4f79f9491997f765eda298cc1, type: 3}
   - {fileID: 7710871422812722048, guid: 96259937bd932ff46a1af3c187588de3, type: 3}
@@ -2711,7 +2711,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85362db5a572a9a4ea433673d7c6c9b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 4336658664315684068, guid: 87f2fc39a06d5994684dafdab143d7b0, type: 3}
+  enemyPrefab1: {fileID: 4336658664315684068, guid: 87f2fc39a06d5994684dafdab143d7b0, type: 3}
+  enemyPrefab2: {fileID: 1294982609953914983, guid: c352b76ef98420548b28cf1d6b44c520, type: 3}
+  enemyData: {fileID: 11400000, guid: 6b0eed3b0bff246f79745dbe2d9fedad, type: 2}
 --- !u!4 &1829153774
 Transform:
   m_ObjectHideFlags: 0

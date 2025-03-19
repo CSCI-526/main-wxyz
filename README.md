@@ -1,14 +1,32 @@
 # Enemy Instruction
-### EnemySpawn.cs
+## EnemySpawn.cs
 public GameObject enemyPrefab; --> 选择enemy的prefeb<br>
 public void EnemySpawnConfigInit(); --> 初始化配置（主要是寻路）<br>
 public IEnumerator SpawnWaves(); --> 协程调用，开始无限生成enemy<br>
 
-### Enemy.cs
-public void EnemyTakeDamage(float damage); --> enemy收到伤害<br>
-public void SetMaxHealth(float maxHealth); --> 设置enemy血量<br>
+### New Features:<br>
+1. 生成“炮车”, 血量为1.8倍，移速0.8倍，金币2倍，在一波怪最后出现，数量不超过当前波次出怪数的1/3。<br>
+2. 优化出怪间隔，使怪物密度增加更平滑。
+<br>
+
+## Enemy.cs<br>
+### !!! bug: 我在做数据统计时发现了一个关于energy tower的问题，因为它每一帧造成伤害，导致会重复调用AddScore使分数虚高，但解决重复调用问题后UI出现问题，多个energy tower时会有一个tower的能量柱在Enemy死亡后不消失(为了解决不同类型伤害统计问题，我稍微改了下energy tower的文件)<br>
+<br>
+public EnemyData enemyData; --> 连接enemyData<br>
+public UIManager uiManager; --> 连接UIManager(其实对UIManager进行单例设置更佳)<br>
+public Transform[] waypoints; --> 寻路点数组<br>
+(deprecate) public int index; --> Enemy生成序号<br>
+(new) public float distance = 0f; --> Enemy到达终点的距离<br>
+public bool IsAlive { get; protected set; } = true; --> Enemy存活bool值<br>
+<br>
+(old) public void EnemyTakeDamage(float damage); --> enemy收到伤害<br>
+(new) public void EnemyTakeDamage(float damage, string type = "gun"); --> enemy收到伤害及其类型(现有burning, slow, energy, gun 4种)<br>
+(abandon) public void SetMaxHealth(float maxHealth); --> 设置enemy血量<br>
+(new) public void InitiateEnemy(Transform[] waypointList, float health, float speed, int c) --> 通过路径，血量，移速，金币价值初始化Enemy
 public void EnemySlowEffect(float slowRatio, float duration); --> 施加减速状态(speed = speed*slowRatio)<br>
 public void EnemyBurnEffect(float damagePerSecond, float duration) --> 施加灼烧状态<br>
+<br>
+
 # Firebase Instruction
 由于firebase太大，无法上传github，如果想要运行的话，需要2个包，FirebaseInstallations.unitypackage和FirebaseDatabase.unitypackage<br>
 这两个包可以在以下链接下载：<br>

@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     private float damageFromTankTower = 0f;
     private float damageFromBurningTower = 0f;
     private float damageFromSlowTower = 0f;
+    private float damageFromEnergyTower = 0f;
     private float score = 0f;
     private float mergeCount = 0f;
 
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
 
     private void SendDataFirebase()
     {
+        
         float playerTime = timerManager.GetElapsedTime();
         Debug.Log(
             "playerTime: " + playerTime +
@@ -66,10 +68,11 @@ public class GameManager : MonoBehaviour
             " damageFromTankTower: " + damageFromTankTower + 
             " damageFromBurningTower: " + damageFromBurningTower + 
             " damageFromSlowTower: " + damageFromSlowTower + 
+            " damageFromEnergyTower: " + damageFromEnergyTower + 
             " mergeCount: " + mergeCount
         );
         // string json = $"\{\"playerTime\":{playerTime},\"score\":{score},\"damageFromTankTower\":{damageFromTankTower},\"damageFromBurningTower\":{damageFromBurningTower},\"damageFromSlowTower\":{damageFromSlowTower},\"mergeCount\":{mergeCount}\}";
-        string json = string.Format("{{\"playerTime\": \"{0}\", \"score\": {1},\"damageFromTankTower\":{2},\"damageFromBurningTower\":{3},\"damageFromSlowTower\":{4},\"mergeCount\":{5}}}", playerTime, score, damageFromTankTower, damageFromBurningTower, damageFromSlowTower, mergeCount);
+        string json = string.Format("{{\"playerTime\": \"{0}\", \"score\": {1},\"damageFromTankTower\":{2},\"damageFromBurningTower\":{3},\"damageFromSlowTower\":{4},\"damageFromEnergyTower\":{5},\"mergeCount\":{6}}}", playerTime, score, damageFromTankTower, damageFromBurningTower, damageFromSlowTower, damageFromEnergyTower, mergeCount);
         FirebaseManager.SaveData(json);
         // FirebaseManager.SaveData(
         //     playerTime, 
@@ -239,6 +242,12 @@ public class GameManager : MonoBehaviour
     {
         damageFromSlowTower += damage;
     }
+
+    public void AddDamageFromEnergyTower(float damage)
+    {
+        damageFromEnergyTower += damage;
+    }
+
 
     public void AddScore(float scoreFromEnemy)
     {

@@ -112,7 +112,7 @@ public class EnergyTowerController : TowerController
             GetMaxDamage(rankValue)
         );
 
-        currentTarget.EnemyTakeDamage(currentDamage * Time.deltaTime);
+        currentTarget.EnemyTakeDamage(currentDamage * Time.deltaTime, "energy");
 
         // **确保击杀后再检测新敌人**
         if (!currentTarget.IsAlive)
