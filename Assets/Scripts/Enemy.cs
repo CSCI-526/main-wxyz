@@ -52,6 +52,17 @@ public class Enemy : MonoBehaviour
         // currentHealth = enemyData.maxHealth;
     }
 
+    void Update()
+    {
+        EnemyBehavior();
+    }
+
+
+
+    /*** enemy initiation:
+    1. public void InitiateEnemy(Transform[] waypointList, float health, float speed, int c)
+    (call initialize before the enemy start moving)
+    ***/
     public void InitiateEnemy(Transform[] waypointList, float health, float speed, int c)
     {
         waypoints = waypointList;
@@ -69,10 +80,9 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        EnemyBehavior();
-    }
+    /*** enemy initiation end ***/
+
+
 
     /*** enemy wayfinding ***/
     protected void EnemyBehavior()
@@ -104,7 +114,7 @@ public class Enemy : MonoBehaviour
 
     /*** enemy health management:
     1. take damage ( public void EnemyTakeDamage(float damage) )
-    2. set enemy HP ( public void SetMaxHealth(float maxHealth) )
+    2. (deprecate)set enemy HP ( public void SetMaxHealth(float maxHealth) )
     3. interact with GameManager.playerHealth ( protected void ReachDest() )
     ***/
     public void EnemyTakeDamage(float damage, string type = "gun")
@@ -200,13 +210,10 @@ public class Enemy : MonoBehaviour
 
         while (duration > 0)
         {
-            // EnemyTakeColdDamage(20f);
             EnemyTakeDamage(20f, "slow");
             yield return new WaitForSeconds(1f);
             duration -= 1f;
         }
-
-        // yield return new WaitForSeconds(duration);
 
         originalRender();
         currentSpeed = originalSpeed;
@@ -234,7 +241,6 @@ public class Enemy : MonoBehaviour
 
         while (duration > 0)
         {
-            // EnemyTakeBurnDamage(damagePerSecond);
             EnemyTakeDamage(damagePerSecond, "burning");
             yield return new WaitForSeconds(1f);
             duration -= 1f;

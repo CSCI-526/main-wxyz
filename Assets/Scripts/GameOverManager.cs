@@ -1,21 +1,47 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 public class GameOverManager : MonoBehaviour
 {
     public TextMeshProUGUI survivalTimeText; // 存活时间 UI
+    public FirebaseManager FirebaseManager;
+
+    private string playerName = "Steve";
+    private List<RankData> rankList = new List<RankData>();
 
     void Start()
     {
-        // 读取存活时间
+        // 显示存活时间
         float finalTime = PlayerPrefs.GetFloat("FinalSurvivalTime", 0f);
         int hours = Mathf.FloorToInt(finalTime / 3600);
         int minutes = Mathf.FloorToInt((finalTime % 3600) / 60);
         int seconds = Mathf.FloorToInt(finalTime % 60);
-
-        // 显示存活时间
         survivalTimeText.text = $"You survived {hours:00}:{minutes:00}:{seconds:00}";
+
+        // 获取玩家排名
+        float finalScore = PlayerPrefs.GetFloat("FinalScore", 0f);
+        
+        GetRanking(playerName, finalScore, finalTime);
+    }
+
+    private void GetRanking(string name, float finalScore, float finalTime)
+    {
+        string jsonString = PlayerPrefs.GetString("RankList","");
+        Debug.Log("Original rank list: " + jsonString);
+        if (!string.IsNullOrEmpty(jsonString) && jsonString != "null")
+        {
+            rankList = JsonConvert.DeserializeObject<List<RankData>>(jsonString);
+        }
+        RankData newRank = new RankData(name, finalScore, finalTime);
+        rankList.Add(newRank);
+        rankList.Sort((x, y) => y.surviveTime.CompareTo(x.surviveTime));
+        if (rankList.Count > 3) rankList.RemoveAt(rankList.Count - 1);
+        string updatedJson = JsonConvert.SerializeObject(rankList);
+        Debug.Log("Rank list: " + updatedJson);
+        FirebaseManager.RepalceData(updatedJson);
     }
     
     public void RestartGame()
@@ -38,5 +64,22 @@ public class GameOverManager : MonoBehaviour
         Debug.Log("Returning to Main Menu...");
         Time.timeScale = 1; // 确保时间恢复正常
         SceneManager.LoadScene(0);
+    }
+}
+
+
+
+[System.Serializable]
+public class RankData
+{
+    public string name;
+    public float score;
+    public float surviveTime;
+
+    public RankData(string name, float score, float surviveTime)
+    {
+        this.name = name;
+        this.score = score;
+        this.surviveTime = surviveTime;
     }
 }

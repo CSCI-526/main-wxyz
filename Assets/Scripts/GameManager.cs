@@ -45,6 +45,10 @@ public class GameManager : MonoBehaviour
         enemyManager.EnemySpawnConfigInit();
         StartCoroutine(enemyManager.SpawnWaves());
         uiManager.UpdateHealthUI(); // Update health UI at game start
+        FirebaseManager.ReadData();
+        // string json = "{ \"BetaRankList\": { \"1\": { \"score\": 10000, \"surviveTime\": 30 }, \"2\": { \"score\": 5000, \"surviveTime\": 20 } } }";
+        // PlayerPrefs.SetString("RankList", json);
+        // PlayerPrefs.Save();
         // FirebaseManager.SaveData(); // 存储数据
     }
 
@@ -58,7 +62,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SendDataFirebase()
+    public void SendDataFirebase()
     {
         
         float playerTime = timerManager.GetElapsedTime();
@@ -98,6 +102,9 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("TimerManager is NULL! Time not saved.");
         }
+
+        PlayerPrefs.SetFloat("FinalScore", score);
+        PlayerPrefs.Save();
 
         SceneManager.LoadScene(2); //跳转到GameOver场景
         }

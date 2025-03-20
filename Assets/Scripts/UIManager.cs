@@ -101,6 +101,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Restarting Game...");
         Time.timeScale = 1; // 确保时间正常
+        GameManager.Instance.SendDataFirebase();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // 重新加载当前关卡
     }
     public void UpdateBuyButtonState()

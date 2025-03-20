@@ -1,4 +1,7 @@
 # Enemy Instruction
+## TODO:<br>
+### about ranking
+排行榜数据我写在了gameOver里面，获取并更新前三名的数据(按存活时间排序)，包括：姓名(默认Steve)，得分，存活时间
 ## EnemySpawn.cs
 public GameObject enemyPrefab; --> 选择enemy的prefeb<br>
 public void EnemySpawnConfigInit(); --> 初始化配置（主要是寻路）<br>
