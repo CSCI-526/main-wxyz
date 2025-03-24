@@ -1,0 +1,478 @@
+{
+  "AlphaPlayTestData": {
+    "-OKxYwgWjrlJyJP8_ct3": {
+      "damageFromBurningTower": 26980,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 6486,
+      "mergeCount": 12,
+      "playerTime": "92",
+      "score": 26170
+    },
+    "-OKx_1XTq9RViqMS8kOP": {
+      "damageFromBurningTower": 209460,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 62545.46,
+      "mergeCount": 38,
+      "playerTime": "284",
+      "score": 246050
+    },
+    "-OKzBpRwqVCjTCIXRn93": {
+      "damageFromBurningTower": 0,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 0,
+      "mergeCount": 0,
+      "playerTime": "27",
+      "score": 0
+    },
+    "-OKzCzFyRVY6TfON4MOj": {
+      "damageFromBurningTower": 67760,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 68050,
+      "mergeCount": 0,
+      "playerTime": "205",
+      "score": 122260
+    },
+    "-OL2EaJWmPWcZxqOaYUa": {
+      "damageFromBurningTower": 0,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 1100,
+      "mergeCount": 0,
+      "playerTime": "37",
+      "score": 720
+    },
+    "-OL2EhuFygZx-MRDcn6V": {
+      "damageFromBurningTower": 0,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 0,
+      "mergeCount": 0,
+      "playerTime": "27",
+      "score": 0
+    },
+    "-OL2ritdltM6ejnJowRg": {
+      "damageFromBurningTower": 16800,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 0,
+      "mergeCount": 0,
+      "playerTime": "74",
+      "score": 12680
+    },
+    "-OL2s6uFJ0JeLxkhZzbI": {
+      "damageFromBurningTower": 43020,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 26580.41,
+      "mergeCount": 22,
+      "playerTime": "145",
+      "score": 59370
+    },
+    "-OL2tyn5tjr8UjIsK93j": {
+      "damageFromBurningTower": 500840,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 147057.3,
+      "mergeCount": 53,
+      "playerTime": "483",
+      "score": 597800
+    },
+    "-OL2uWDekRAo7kfe-pwB": {
+      "damageFromBurningTower": 0,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 0,
+      "mergeCount": 0,
+      "playerTime": "27",
+      "score": 0
+    },
+    "-OL2wO5MQapyQpaGQLTz": {
+      "damageFromBurningTower": 6040,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 5970,
+      "mergeCount": 9,
+      "playerTime": "64",
+      "score": 7740
+    },
+    "-OL2x6d2-GsXvNiikLyz": {
+      "damageFromBurningTower": 842240,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 284318.7,
+      "mergeCount": 58,
+      "playerTime": "666",
+      "score": 1042060
+    },
+    "-OL2xUL_gVoLrA3N7ozc": {
+      "damageFromBurningTower": 0,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 0,
+      "mergeCount": 0,
+      "playerTime": "27",
+      "score": 0
+    },
+    "-OL2yTNVnVs0HJCdt2CS": {
+      "damageFromBurningTower": 4440,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 0,
+      "mergeCount": 0,
+      "playerTime": "51",
+      "score": 3580
+    },
+    "-OL2yTYz0kreLUH7yynQ": {
+      "damageFromBurningTower": 520,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 2490,
+      "mergeCount": 3,
+      "playerTime": "43",
+      "score": 1640
+    },
+    "-OL3-xW6G9F4xl8I2j__": {
+      "damageFromBurningTower": 903360,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 201150.4,
+      "mergeCount": 55,
+      "playerTime": "649",
+      "score": 1021200
+    },
+    "-OL30YMfPWic_W9Ri-Ep": {
+      "damageFromBurningTower": 219100,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 159761.5,
+      "mergeCount": 34,
+      "playerTime": "356",
+      "score": 337500
+    },
+    "-OL35hl2_xBiIsERQfAz": {
+      "damageFromBurningTower": 0,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 3084,
+      "mergeCount": 4,
+      "playerTime": "47",
+      "score": 2300
+    },
+    "-OL3EeuvHmY9D70XpSWj": {
+      "damageFromBurningTower": 1617660,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 540120.9,
+      "mergeCount": 60,
+      "playerTime": "982",
+      "score": 2053410
+    },
+    "-OL3Nr7JoXI277rLmgG8": {
+      "damageFromBurningTower": 0,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 0,
+      "mergeCount": 0,
+      "playerTime": "27",
+      "score": 0
+    },
+    "-OL3NyMQPKuspWYDK7wp": {
+      "damageFromBurningTower": 0,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 0,
+      "mergeCount": 0,
+      "playerTime": "27",
+      "score": 0
+    },
+    "-OL3O5iP9_ZDt38AGLsT": {
+      "damageFromBurningTower": 0,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 0,
+      "mergeCount": 0,
+      "playerTime": "28",
+      "score": 0
+    },
+    "-OL4E_CUkb8I9wE7g-uI": {
+      "damageFromBurningTower": 0,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 0,
+      "mergeCount": 3,
+      "playerTime": "27",
+      "score": 0
+    },
+    "-OL53BmtTpdN7XY7B8cg": {
+      "damageFromBurningTower": 7280,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 1000,
+      "mergeCount": 0,
+      "playerTime": "57",
+      "score": 5790
+    },
+    "-OL5WODoXnbIPqG3FEkd": {
+      "damageFromBurningTower": 0,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 0,
+      "mergeCount": 0,
+      "playerTime": "27",
+      "score": 0
+    },
+    "-OL6B0TqXiP9s-JBuHed": {
+      "damageFromBurningTower": 1334480,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 343959.8,
+      "mergeCount": 53,
+      "playerTime": "849",
+      "score": 1592040
+    },
+    "-OL7450fJlwEHI0hUryh": {
+      "damageFromBurningTower": 712640,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 427058,
+      "mergeCount": 47,
+      "playerTime": "669",
+      "score": 1069400
+    },
+    "-OL7M_B0Aahme5_lrtKx": {
+      "damageFromBurningTower": 29500,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 26118.02,
+      "mergeCount": 19,
+      "playerTime": "127",
+      "score": 47330
+    },
+    "-OL7haEneAtIiJg8yz0j": {
+      "damageFromBurningTower": 238860,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 94581.84,
+      "mergeCount": 36,
+      "playerTime": "325",
+      "score": 295740
+    },
+    "-OL7lGRE7tgjJB-vpyUM": {
+      "damageFromBurningTower": 243200,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 92324.88,
+      "mergeCount": 40,
+      "playerTime": "330",
+      "score": 306610
+    },
+    "-OLDi3rVP2zoFgZaljZG": {
+      "damageFromBurningTower": 1060,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 13336.57,
+      "mergeCount": 2,
+      "playerTime": "129.1993",
+      "score": 19286
+    },
+    "-OLDjO3Zuwe5VQmjS6Yp": {
+      "damageFromBurningTower": 13360,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 14952.06,
+      "mergeCount": 3,
+      "playerTime": "132.5168",
+      "score": 26932
+    },
+    "-OLDkSBafQd05PI7LZeZ": {
+      "damageFromBurningTower": 39950,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 20549.37,
+      "mergeCount": 4,
+      "playerTime": "158.1007",
+      "score": 57320
+    },
+    "-OLDl5DHPvpPt3G7Y8I1": {
+      "damageFromBurningTower": 5340,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 12786.8,
+      "mergeCount": 1,
+      "playerTime": "127.5071",
+      "score": 18320
+    },
+    "-OLDmDwQD7qt8THTdJ9e": {
+      "damageFromBurningTower": 124290,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 46677.09,
+      "mergeCount": 0,
+      "playerTime": "253.3408",
+      "score": 304795
+    },
+    "-OLDpt4lavaR4DnFuLKC": {
+      "damageFromBurningTower": 9240,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 6108.258,
+      "mergeCount": 2,
+      "playerTime": "125.6817",
+      "score": 12045
+    },
+    "-OLDqfdzp4G-3534JUWz": {
+      "damageFromBurningTower": 4050,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 10268.71,
+      "mergeCount": 4,
+      "playerTime": "124.5272",
+      "score": 10955
+    },
+    "-OLDqmaqTkXCVpvrvj1w": {
+      "damageFromBurningTower": 40580,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 17407.57,
+      "mergeCount": 9,
+      "playerTime": "170.5533",
+      "score": 51950
+    },
+    "-OLDraPd7mIa3MMO99-Y": {
+      "damageFromBurningTower": 0,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 0,
+      "mergeCount": 0,
+      "playerTime": "44.59431",
+      "score": 0
+    },
+    "-OLDrec_0GkIpVaVc3iB": {
+      "damageFromBurningTower": 47420,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 16958.77,
+      "mergeCount": 7,
+      "playerTime": "175.4117",
+      "score": 56070
+    },
+    "-OLDsJkJU_j-OHQNfy5C": {
+      "damageFromBurningTower": 31160,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 17676.96,
+      "mergeCount": 7,
+      "playerTime": "169.2854",
+      "score": 65445
+    },
+    "-OLDtUdjddGutAoect7W": {
+      "damageFromBurningTower": 29800,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 18754.7,
+      "mergeCount": 5,
+      "playerTime": "163.6746",
+      "score": 72555
+    },
+    "-OLDvgfTXZFpDA7M646z": {
+      "damageFromBurningTower": 96500,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 39914.38,
+      "mergeCount": 13,
+      "playerTime": "228.1161",
+      "score": 122855
+    },
+    "-OLGST_vj6Sv6sAVHGw4": {
+      "damageFromBurningTower": 35010,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 20813.75,
+      "mergeCount": 13,
+      "playerTime": "169.5936",
+      "score": 42865
+    },
+    "-OLGSzhV1MbJd9iH8pi2": {
+      "damageFromBurningTower": 180,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 11300.97,
+      "mergeCount": 6,
+      "playerTime": "122.3582",
+      "score": 10690
+    },
+    "-OLGTqUQNvujmCKH3dPO": {
+      "damageFromBurningTower": 76040,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 42365.31,
+      "mergeCount": 13,
+      "playerTime": "221.3344",
+      "score": 141084.9
+    },
+    "-OLGUlPBEHdffJK5eghI": {
+      "damageFromBurningTower": 71560,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 78357.2,
+      "mergeCount": 15,
+      "playerTime": "238.674",
+      "score": 157445
+    },
+    "-OLGVSHDZTYbpLbSleV1": {
+      "damageFromBurningTower": 36040,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 18110.59,
+      "mergeCount": 5,
+      "playerTime": "166.0565",
+      "score": 46500
+    },
+    "-OLGWeCmF1G-tW8GXURm": {
+      "damageFromBurningTower": 234690,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 67055.36,
+      "mergeCount": 16,
+      "playerTime": "314.0419",
+      "score": 423645
+    },
+    "-OLGWfki1A1vTbEhSpW3": {
+      "damageFromBurningTower": 16740,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 9882.422,
+      "mergeCount": 3,
+      "playerTime": "141.0578",
+      "score": 36840
+    },
+    "-OLGXfYqMdyxns3FqDZs": {
+      "damageFromBurningTower": 148640,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 35272.16,
+      "mergeCount": 8,
+      "playerTime": "259.6336",
+      "score": 515769.9
+    },
+    "-OLGYK-DncPZTR2-93lb": {
+      "damageFromBurningTower": 380050,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 122139.2,
+      "mergeCount": 12,
+      "playerTime": "394.2149",
+      "score": 799690
+    },
+    "-OLGYgqfFbqcXODpCnrU": {
+      "damageFromBurningTower": 121380,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 30189.84,
+      "mergeCount": 14,
+      "playerTime": "238.3994",
+      "score": 173300
+    },
+    "-OLGZOyyqoGccIKXLCTF": {
+      "damageFromBurningTower": 125740,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 56559.25,
+      "mergeCount": 12,
+      "playerTime": "254.5289",
+      "score": 335075
+    },
+    "-OLG_MeW6Tv-L4BIFCUd": {
+      "damageFromBurningTower": 78850,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 25904.64,
+      "mergeCount": 14,
+      "playerTime": "209.5706",
+      "score": 142630
+    },
+    "-OLGaVsipp6m3lYnaq27": {
+      "damageFromBurningTower": 39840,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 20564.06,
+      "mergeCount": 5,
+      "playerTime": "178.1184",
+      "score": 60210
+    },
+    "-OLGavATGOy4eXt924o4": {
+      "damageFromBurningTower": 441610,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 85647.92,
+      "mergeCount": 17,
+      "playerTime": "405.8483",
+      "score": 847195
+    },
+    "-OLGax_qDzZgHevZb77P": {
+      "damageFromBurningTower": 6050,
+      "damageFromSlowTower": 0,
+      "damageFromTankTower": 4074.157,
+      "mergeCount": 2,
+      "playerTime": "114.2558",
+      "score": 6800
+    }
+  },
+  "BetaRankList": {
+    "1": {
+      "score": 10000,
+      "surviveTime": 300
+    },
+    "2": {
+      "score": 5000,
+      "surviveTime": 200
+    }
+  }
+}
