@@ -26,7 +26,7 @@ public bool IsAlive { get; protected set; } = true; --> Enemy存活bool值<br>
 (new) public void EnemyTakeDamage(float damage, string type = "gun"); --> enemy收到伤害及其类型(现有burning, slow, energy, gun 4种)<br>
 (abandon) public void SetMaxHealth(float maxHealth); --> 设置enemy血量<br>
 (new) public void InitiateEnemy(Transform[] waypointList, float health, float speed, int c) --> 通过路径，血量，移速，金币价值初始化Enemy<br>
-public void EnemySlowEffect(float slowRatio, float duration); --> 施加减速状态(speed = speed*slowRatio)<br>
+public void EnemySlowEffect(float slowRatio, float duration); --> 施加减速状态(speed = speed*slowRatio)(每秒20伤害)<br>
 public void EnemyBurnEffect(float damagePerSecond, float duration) --> 施加灼烧状态<br>
 <br>
 
