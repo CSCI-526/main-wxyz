@@ -36,3 +36,4 @@ public void EnemyBurnEffect(float damagePerSecond, float duration) --> 施加灼
 https://drive.google.com/file/d/13FeupaGOvV4ZzlCxvd8tTqoBjjIX55Hc/view?usp=drive_link<br>
 https://drive.google.com/file/d/1_la_YD2ORGmHQ2bUNyGCDyNrXA4spCzb/view?usp=drive_link<br>
 下载后在unity中Asset导入Custom Package即可使用
+同时需要再下载: install -> Unity 6 -> Add Module -> IOS build
