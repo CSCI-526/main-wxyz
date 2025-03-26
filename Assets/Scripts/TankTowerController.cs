@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class TankTowerController : TowerController
 {
@@ -50,16 +52,40 @@ public class TankTowerController : TowerController
     }
 
 
+    /*void ShootProjectile(Enemy target)
+    {
+        for (int i = 0; i < rankValue; i++) {
+            GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            Projectile projectile = projectileObj.GetComponent<Projectile>();
+            projectile.target = target;
+            projectile.damage = 50f;
+            //Debug.Log("Tower Rank: " + rankValue + " | Damage: " + projectile.damage);
+            projectile.InitializeProjectile();
+        }
+    }*/
+
     void ShootProjectile(Enemy target)
     {
-        GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        Projectile projectile = projectileObj.GetComponent<Projectile>();
-        projectile.target = target;
-        projectile.damage = CalculateDamage();
-        //Debug.Log("Tower Rank: " + rankValue + " | Damage: " + projectile.damage);
-        projectile.InitializeProjectile();
+        StartCoroutine(FireProjectilesWithDelay(target));
     }
-     float CalculateDamage()
+
+    IEnumerator FireProjectilesWithDelay(Enemy target)
+    {
+        float fireInterval = 0.1f; // 每颗子弹的间隔时间，可调整
+
+        for (int i = 0; i < rankValue; i++)
+        {
+            GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            Projectile projectile = projectileObj.GetComponent<Projectile>();
+            projectile.target = target;
+            projectile.damage = 50f;
+            projectile.InitializeProjectile();
+
+            yield return new WaitForSeconds(fireInterval); // 等待一定时间再发射下一颗子弹
+        }
+    }
+
+     /*float CalculateDamage()
      {
          switch (rankValue)  // 直接根据 rankValue 返回固定伤害
          {
@@ -69,5 +95,5 @@ public class TankTowerController : TowerController
              case 4: return 80f;  
              default: return 10f;  
          }
-    }
+    }*/
 }
