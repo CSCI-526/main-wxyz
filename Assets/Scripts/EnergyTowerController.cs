@@ -32,7 +32,7 @@ public class EnergyTowerController : TowerController
     {
         if (!isAttacking && Time.time - lastCheckTime >= checkInterval)
         {
-            AcquireLowestIndexEnemy(); // **使用新的寻敌逻辑**
+            AcquireLowestDistanceEnemy(); // **使用基于距离的寻敌逻辑**
             lastCheckTime = Time.time;
         }
 
@@ -41,7 +41,7 @@ public class EnergyTowerController : TowerController
             UpdateBeamVisual();
             ApplyContinuousDamage();
         }
-        else if (isAttacking)
+        else
         {
             isAttacking = false;
             DisableBeam();
@@ -49,21 +49,21 @@ public class EnergyTowerController : TowerController
         }
     }
 
-    // **🔹 采用 `index` 选择最前面的敌人**
-    private void AcquireLowestIndexEnemy()
+
+    private void AcquireLowestDistanceEnemy()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
         Enemy targetEnemy = null;
-        int lowestIndex = int.MaxValue;
+        float minDistance = float.MaxValue;
 
         foreach (Collider2D collider in colliders)
         {
             if (collider.CompareTag("Enemy"))
             {
                 Enemy enemy = collider.GetComponent<Enemy>();
-                if (enemy != null && enemy.index < lowestIndex) // **选择 index 最小的敌人**
+                if (enemy != null && enemy.IsAlive && enemy.distance < minDistance) // **选择 distance最小的敌人**
                 {
-                    lowestIndex = enemy.index;
+                    minDistance = enemy.distance;
                     targetEnemy = enemy;
                 }
             }
@@ -74,9 +74,14 @@ public class EnergyTowerController : TowerController
             isAttacking = true;
             currentTarget = targetEnemy;
             // Debug.Log($"锁定目标: {currentTarget.name} | Index: {currentTarget.index}");
+            currentDamage = GetMinDamage(rankValue);
         }
         else
         {
+            isAttacking = false;
+            DisableBeam();
+
+
             // Debug.Log("未找到有效目标");
         }
     }
@@ -119,7 +124,7 @@ public class EnergyTowerController : TowerController
         {
             isAttacking = false;
             currentTarget = null;
-            AcquireLowestIndexEnemy(); // 重新获取最前面的敌人
+            AcquireLowestDistanceEnemy(); // 重新获取最前面的敌人
         }
     }
 
@@ -130,7 +135,7 @@ public class EnergyTowerController : TowerController
             rankValue++;
             attackRange *= 1.2f;
 
-            // **🔹 直接更新最小值、最大值和增长速率**
+            // ** 直接更新最小值、最大值和增长速率**
             InitializeTowerStats();
 
             ReplaceTowerBase(); // **确保基础对象不丢失**
@@ -142,18 +147,18 @@ public class EnergyTowerController : TowerController
         if (energyBeam) energyBeam.enabled = false;
     }
 
-    // **🔹 确保 `EnergyTower` 不会因 `ReplaceTowerBase()` 丢失基础组件**
-    
+    // **确保 `EnergyTower` 不会因 `ReplaceTowerBase()` 丢失基础组件**
+
 
     private float GetMinDamage(int level)
     {
         switch (level)
         {
-            case 1: return 30f;
-            case 2: return 40f;
-            case 3: return 60f;
-            case 4: return 90f;
-            default: return 30f;
+            case 1: return 10f;
+            case 2: return 20f;
+            case 3: return 30f;
+            case 4: return 40f;
+            default: return 10f;
         }
     }
 
@@ -161,11 +166,11 @@ public class EnergyTowerController : TowerController
     {
         switch (level)
         {
-            case 1: return 80f;
-            case 2: return 100f;
-            case 3: return 130f;
-            case 4: return 170f;
-            default: return 80f;
+            case 1: return 50f;
+            case 2: return 60f;
+            case 3: return 70f;
+            case 4: return 80f;
+            default: return 50f;
         }
     }
 
@@ -173,11 +178,11 @@ public class EnergyTowerController : TowerController
     {
         switch (level)
         {
-            case 1: return 20f;
-            case 2: return 30f;
-            case 3: return 40f;
-            case 4: return 50f;
-            default: return 20f;
+            case 1: return 10f;
+            case 2: return 12f;
+            case 3: return 15f;
+            case 4: return 18f;
+            default: return 10f;
         }
     }
 
