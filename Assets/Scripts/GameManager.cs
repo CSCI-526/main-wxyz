@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
     private float damageFromBurningTower = 0f;
     private float damageFromSlowTower = 0f;
     private float damageFromEnergyTower = 0f;
+    private int TankTowerNum = 0;
+    private int BurningTowerNum = 0;
+    private int SlowTowerNum = 0;
+    private int EnergyTowerNum = 0;
+    private int GoldTowerNum = 0;
     private float score = 0f;
     private float mergeCount = 0f;
 
@@ -66,15 +71,51 @@ public class GameManager : MonoBehaviour
     {
         
         float playerTime = timerManager.GetElapsedTime();
+        TileController[,] tiles = boardManager.tiles;
+        for (int x = 0; x < tiles.GetLength(0); x++)
+        {
+            for (int y = 0; y < tiles.GetLength(1); y++)
+            {
+                TileController tile = tiles[x, y];
+                if (tile.towerOnTile != null)
+                {
+                    Debug.Log(tile.towerOnTile.towerName);
+                    switch (tile.towerOnTile.towerName)
+                    {
+                        case "Gold":
+                            GoldTowerNum++;
+                            break;
+                        case "Canon":
+                            TankTowerNum++;
+                            break;
+                        case "Burn":
+                            BurningTowerNum++;
+                            break;
+                        case "Energy":
+                            EnergyTowerNum++;
+                            break;
+                        case "Frozen":
+                            SlowTowerNum++;
+                            break;
+                        default:
+                            TankTowerNum++;
+                            break;
+                    }
+                }
+            }
+        }
+
         Debug.Log(
             "playerTime: " + playerTime +
-            "s score: " + score + 
-            " damageFromTankTower: " + damageFromTankTower + 
-            " damageFromBurningTower: " + damageFromBurningTower + 
-            " damageFromSlowTower: " + damageFromSlowTower + 
-            " damageFromEnergyTower: " + damageFromEnergyTower + 
+            "s score: " + score +
+            " perDamageFromTankTower: " + damageFromTankTower/TankTowerNum+ 
+            " perDamageFromBurningTower: " + damageFromBurningTower/BurningTowerNum +
+            " perDamageFromSlowTower: " + damageFromSlowTower/SlowTowerNum +
+            " perDamageFromEnergyTower: " + damageFromEnergyTower/EnergyTowerNum +
+            " GoldTower number: " + GoldTowerNum +
             " mergeCount: " + mergeCount
         );
+        
         // string json = $"\{\"playerTime\":{playerTime},\"score\":{score},\"damageFromTankTower\":{damageFromTankTower},\"damageFromBurningTower\":{damageFromBurningTower},\"damageFromSlowTower\":{damageFromSlowTower},\"mergeCount\":{mergeCount}\}";
         string json = string.Format("{{\"playerTime\": \"{0}\", \"score\": {1},\"damageFromTankTower\":{2},\"damageFromBurningTower\":{3},\"damageFromSlowTower\":{4},\"damageFromEnergyTower\":{5},\"mergeCount\":{6}}}", playerTime, score, damageFromTankTower, damageFromBurningTower, damageFromSlowTower, damageFromEnergyTower, mergeCount);
         FirebaseManager.SaveData(json);
