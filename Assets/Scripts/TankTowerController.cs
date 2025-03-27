@@ -34,16 +34,16 @@ public class TankTowerController : TowerController
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
         Enemy targetEnemy = null;
-        int lowestIndex = int.MaxValue; // 设置一个极大的初始值
+        float lowestDistance = int.MaxValue; // 设置一个极大的初始值
 
         foreach (Collider2D collider in colliders)
         {
             if (collider.CompareTag("Enemy"))
             {
                 Enemy enemy = collider.GetComponent<Enemy>();
-                if (enemy != null && enemy.index < lowestIndex) // 选择 enemyIndex 最小的敌人
+                if (enemy != null && enemy.distance < lowestDistance) // 选择 enemyIndex 最小的敌人
                 {
-                    lowestIndex = enemy.index;
+                    lowestDistance = enemy.distance;
                     targetEnemy = enemy;
                 }
             }
@@ -71,7 +71,7 @@ public class TankTowerController : TowerController
 
     IEnumerator FireProjectilesWithDelay(Enemy target)
     {
-        float fireInterval = 0.1f; // 每颗子弹的间隔时间，可调整
+        float fireInterval = 0.05f; // 每颗子弹的间隔时间，可调整
 
         for (int i = 0; i < rankValue; i++)
         {
