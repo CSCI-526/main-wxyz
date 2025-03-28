@@ -154,11 +154,11 @@ public class EnergyTowerController : TowerController
     {
         switch (level)
         {
-            case 1: return 10f;
-            case 2: return 20f;
-            case 3: return 30f;
-            case 4: return 40f;
-            default: return 10f;
+            case 1: return 30f;
+            case 2: return 50f;
+            case 3: return 70f;
+            case 4: return 90f;
+            default: return 30f;
         }
     }
 
@@ -166,11 +166,11 @@ public class EnergyTowerController : TowerController
     {
         switch (level)
         {
-            case 1: return 50f;
-            case 2: return 60f;
-            case 3: return 70f;
-            case 4: return 80f;
-            default: return 50f;
+            case 1: return 80f;
+            case 2: return 120f;
+            case 3: return 160f;
+            case 4: return 200f;
+            default: return 80f;
         }
     }
 
@@ -178,11 +178,11 @@ public class EnergyTowerController : TowerController
     {
         switch (level)
         {
-            case 1: return 10f;
-            case 2: return 12f;
-            case 3: return 15f;
-            case 4: return 18f;
-            default: return 10f;
+            case 1: return 50f;
+            case 2: return 60f;
+            case 3: return 80f;
+            case 4: return 120f;
+            default: return 40f;
         }
     }
 

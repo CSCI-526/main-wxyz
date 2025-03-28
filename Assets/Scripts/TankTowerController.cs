@@ -71,14 +71,14 @@ public class TankTowerController : TowerController
 
     IEnumerator FireProjectilesWithDelay(Enemy target)
     {
-        float fireInterval = 0.05f; // 每颗子弹的间隔时间，可调整
+        float fireInterval = 0.1f; // 每颗子弹的间隔时间，可调整
 
         for (int i = 0; i < rankValue; i++)
         {
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.target = target;
-            projectile.damage = 50f;
+            projectile.damage = 40f;
             projectile.InitializeProjectile();
 
             yield return new WaitForSeconds(fireInterval); // 等待一定时间再发射下一颗子弹
