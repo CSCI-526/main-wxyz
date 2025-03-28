@@ -103,14 +103,9 @@ public class BoardManager : MonoBehaviour
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
                                     string towerName = tower.towerName;
-                                    if (towerName != "Gold")
-                                    {
-                                        destTower.UpgradeTower();
-                                    }
-                                    else
-                                    {
-                                        gameManager.UpgradeRandomTower(destTower);
-                                    }
+
+                                    destTower.UpgradeTower();
+
                                     Destroy(tower.gameObject);
                                     continue;
                                 }
@@ -148,14 +143,9 @@ public class BoardManager : MonoBehaviour
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
                                     string towerName = tower.towerName;
-                                    if (towerName != "Gold")
-                                    {
-                                        destTower.UpgradeTower();
-                                    }
-                                    else
-                                    {
-                                        gameManager.UpgradeRandomTower(destTower);
-                                    }
+
+                                    destTower.UpgradeTower();
+
                                     Destroy(tower.gameObject);
                                     continue;
                                 }
@@ -199,14 +189,7 @@ public class BoardManager : MonoBehaviour
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
                                     string towerName = tower.towerName;
-                                    if (towerName != "Gold")
-                                    {
-                                        destTower.UpgradeTower();
-                                    }
-                                    else
-                                    {
-                                        gameManager.UpgradeRandomTower(destTower);
-                                    }
+                                    destTower.UpgradeTower();
                                     Destroy(tower.gameObject);
                                     continue;
                                 }
@@ -247,14 +230,9 @@ public class BoardManager : MonoBehaviour
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
                                     string towerName = tower.towerName;
-                                    if (towerName != "Gold")
-                                    {
-                                        destTower.UpgradeTower();
-                                    }
-                                    else
-                                    {
-                                        gameManager.UpgradeRandomTower(destTower);
-                                    }
+
+                                    destTower.UpgradeTower();
+
                                     Destroy(tower.gameObject);
                                     continue;
                                 }
