@@ -8,6 +8,7 @@ merge了Wenqiao-Wang分支上tutScene的内容，将文件统一放到了Assets/
 5. timeBetweenEnemy（一波内敌人中间的生成间隔）
 6. timeAfterWave（波与波之间的时间）
 7. enemyCount
+
 example：
 ![image](https://github.com/user-attachments/assets/37f490a8-cc4f-4a20-a2f0-6b7ebfe6aaf8)
 
