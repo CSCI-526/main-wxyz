@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class BoardManager : MonoBehaviour
 {
     public int rows = 7;
@@ -337,5 +337,23 @@ public class BoardManager : MonoBehaviour
     public bool IsInnerTile(int row, int col)
     {
         return row > 0 && row < rows - 1 && col > 0 && col < columns - 1;
+    }
+    public List<TowerController> GetAllTowersOnBoard()
+    {
+        List<TowerController> towers = new List<TowerController>();
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                TowerController tower = tiles[i, j].towerOnTile;
+                if (tower != null)
+                {
+                    towers.Add(tower);
+                }
+            }
+        }
+
+        return towers;
     }
 }

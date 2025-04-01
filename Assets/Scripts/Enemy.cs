@@ -23,8 +23,11 @@ public class Enemy : MonoBehaviour
     protected int coin = 5;
 
     protected SpriteRenderer spriteRenderer;
-    
-    
+
+    // Two manager variables.
+    private GameManager gameManager;
+    private TutGameManager tutGameManager;
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -36,20 +39,26 @@ public class Enemy : MonoBehaviour
         currentHealth = originalHealth;
         currentSpeed = originalSpeed;
         Transform startPoint = transform;
-        for (int i=0; i < waypoints.Length; i ++)
+        for (int i = 0; i < waypoints.Length; i++)
         {
             distance += Vector2.Distance(startPoint.position, waypoints[i].position);
             startPoint = waypoints[i];
         }
+        
         if (uiManager == null)
         {
             uiManager = Object.FindFirstObjectByType<UIManager>();
         }
+        
+        // Try to find a GameManager and TutGameManager.
+        gameManager = Object.FindFirstObjectByType<GameManager>();
+        tutGameManager = Object.FindFirstObjectByType<TutGameManager>();
+        
         if (enemyData != null)
         {
+            // Optionally update appearance here.
             // UpdateAppearance();
         }
-        // currentHealth = enemyData.maxHealth;
     }
 
     void Update()
@@ -57,12 +66,7 @@ public class Enemy : MonoBehaviour
         EnemyBehavior();
     }
 
-
-
-    /*** enemy initiation:
-    1. public void InitiateEnemy(Transform[] waypointList, float health, float speed, int c)
-    (call initialize before the enemy start moving)
-    ***/
+    /*** Enemy initialization ***/
     public void InitiateEnemy(Transform[] waypointList, float health, float speed, int c)
     {
         waypoints = waypointList;
@@ -73,18 +77,14 @@ public class Enemy : MonoBehaviour
 
     public void UpdateAppearance()
     {
-        if (spriteRenderer != null)
+        if (spriteRenderer != null && enemyData != null)
         {
             spriteRenderer.sprite = enemyData.enemySprite;
         }
-
     }
+    /*** End enemy initialization ***/
 
-    /*** enemy initiation end ***/
-
-
-
-    /*** enemy wayfinding ***/
+    /*** Enemy wayfinding ***/
     protected void EnemyBehavior()
     {
         if (wayfindingIndex < waypoints.Length)
@@ -95,11 +95,7 @@ public class Enemy : MonoBehaviour
             Debug.Log($"{name} remains {distance} distance to destination");
             if (Vector3.Distance(transform.position, targetPoint.position) < 0.01f)
             {
-                wayfindingIndex ++;
-                // enemy function test
-                // EnemyTakeDamage(40);
-                // EnemyBurnEffect(20f, 2f);
-                // EnemySlowEffect(0.5f, 2f);
+                wayfindingIndex++;
             }
         }
         else if (wayfindingIndex == waypoints.Length)
@@ -107,36 +103,53 @@ public class Enemy : MonoBehaviour
             ReachDest();
         }
     }
+    /*** End enemy wayfinding ***/
 
-    /*** enemy wayfinding end ***/
-
-
-
-    /*** enemy health management:
-    1. take damage ( public void EnemyTakeDamage(float damage) )
-    2. (deprecate)set enemy HP ( public void SetMaxHealth(float maxHealth) )
-    3. interact with GameManager.playerHealth ( protected void ReachDest() )
-    ***/
+    /*** Enemy health management ***/
     public void EnemyTakeDamage(float damage, string type = "gun")
     {
-        switch (type)
+        // Apply tower damage based on type.
+        if (gameManager != null)
         {
-            case "burning":
-                GameManager.Instance.AddDamageFromBurningTower(damage);
-                break;
-            case "slow":
-                GameManager.Instance.AddDamageFromSlowTower(damage);
-                break;
-            case "energy":
-                GameManager.Instance.AddDamageFromEnergyTower(damage);
-                break;
-            default:
-                GameManager.Instance.AddDamageFromTankTower(damage);
-                break;
+            switch (type)
+            {
+                case "burning":
+                    gameManager.AddDamageFromBurningTower(damage);
+                    break;
+                case "slow":
+                    gameManager.AddDamageFromSlowTower(damage);
+                    break;
+                case "energy":
+                    gameManager.AddDamageFromEnergyTower(damage);
+                    break;
+                default:
+                    gameManager.AddDamageFromTankTower(damage);
+                    break;
+            }
         }
+        else if (tutGameManager != null)
+        {
+            switch (type)
+            {
+                case "burning":
+                    tutGameManager.AddDamageFromBurningTower(damage);
+                    break;
+                case "slow":
+                    tutGameManager.AddDamageFromSlowTower(damage);
+                    break;
+                case "energy":
+                    tutGameManager.AddDamageFromEnergyTower(damage);
+                    break;
+                default:
+                    tutGameManager.AddDamageFromTankTower(damage);
+                    break;
+            }
+        }
+
         currentHealth -= damage;
-        Debug.Log($"{name} took {damage} damage({originalHealth} / {currentHealth}) from {type}");
-        if (currentHealth <= 0) Defeated();
+        Debug.Log($"{name} took {damage} damage ({originalHealth} / {currentHealth}) from {type}");
+        if (currentHealth <= 0)
+            Defeated();
     }
 
     public void SetMaxHealth(float maxHealth)
@@ -157,18 +170,24 @@ public class Enemy : MonoBehaviour
         {
             IsAlive = false;
             Debug.Log(gameObject.name + index + " killed, HP:" + originalHealth);
-            GameManager.Instance.AddCoin(coin);
-            GameManager.Instance.AddScore(originalHealth);
-            Debug.Log("Player coin added:" + GameManager.Instance.playerGold);       
-            if (uiManager != null)  uiManager.UpdateGoldUI();
+            // Reward coins and add score.
+            if (gameManager != null)
+            {
+                gameManager.AddCoin(coin);
+                gameManager.AddScore(originalHealth);
+                Debug.Log("Player coin added:" + gameManager.playerGold);
+            }
+            else if (tutGameManager != null)
+            {
+                tutGameManager.AddCoin(coin);
+                tutGameManager.AddScore(originalHealth);
+                Debug.Log("Player coin added:" + tutGameManager.playerGold);
+            }
+            
+            if (uiManager != null)
+                uiManager.UpdateGoldUI();
             Destroy(gameObject);
         }
-        // Debug.Log(gameObject.name + index + " killed, HP:" + originalHealth);
-        // GameManager.Instance.AddCoin(coin);
-        // GameManager.Instance.AddScore(originalHealth);
-        // Debug.Log("Player coin added:" + GameManager.Instance.playerGold);       
-        // if (uiManager != null)  uiManager.UpdateGoldUI();
-        // Destroy(gameObject);
     }
 
     protected void ReachDest()
@@ -176,23 +195,20 @@ public class Enemy : MonoBehaviour
         DamagePlayerHealth(1);
         Debug.Log(gameObject.name + index + " make 1 damage");
         Destroy(gameObject);
-        if (uiManager != null) uiManager.UpdateHealthUI();
+        if (uiManager != null)
+            uiManager.UpdateHealthUI();
     }
 
     protected void DamagePlayerHealth(int damage)
     {
-        GameManager gameManager = Object.FindFirstObjectByType<GameManager>();
-        if (gameManager != null) gameManager.ReduceHealth(damage);
+        if (gameManager != null)
+            gameManager.ReduceHealth(damage);
+        else if (tutGameManager != null)
+            tutGameManager.ReduceHealth(damage);
     }
+    /*** End enemy health management ***/
 
-    /*** enemy health management end ***/
-
-
-
-    /*** enemy abnormal state:
-    1. slow effect ( public void EnemySlowEffect(float slowRatio, float duration) )
-    2. burn effect ( public void EnemyBurnEffect(float damagePerSecond, float duration) )
-    ***/
+    /*** Enemy abnormal state effects ***/
     public void EnemySlowEffect(float slowRatio, float duration)
     {
         if (burnEffectCoroutine == null)
@@ -222,7 +238,8 @@ public class Enemy : MonoBehaviour
 
     public void EnemyBurnEffect(float damagePerSecond, float duration)
     {
-        if (burnEffectCoroutine != null) StopCoroutine(burnEffectCoroutine);
+        if (burnEffectCoroutine != null)
+            StopCoroutine(burnEffectCoroutine);
         burnEffectCoroutine = StartCoroutine(BurnCoroutine(damagePerSecond, duration));
     }
 
@@ -252,25 +269,25 @@ public class Enemy : MonoBehaviour
 
     protected void originalRender()
     {
-        if (spriteRenderer != null) spriteRenderer.color = originalColor;
+        if (spriteRenderer != null)
+            spriteRenderer.color = originalColor;
     }
 
     protected void slowEffectRender()
     {
-        if (spriteRenderer != null) spriteRenderer.color = Color.blue;
+        if (spriteRenderer != null)
+            spriteRenderer.color = Color.blue;
     }
 
     protected void burnEffectRender()
     {
-        if (spriteRenderer != null) spriteRenderer.color = Color.red;
+        if (spriteRenderer != null)
+            spriteRenderer.color = Color.red;
     }
-
-    /*** enemy abnormal state end ***/
-
-
+    /*** End enemy abnormal state effects ***/
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Here check if entering the final tile
+        // Here you can check if the enemy has entered the final tile.
     }
 }
