@@ -51,7 +51,7 @@ public class TutGameManager : MonoBehaviour
         enemyManager.EnemySpawnConfigInit();
         StartCoroutine(enemyManager.SpawnWaves());
         uiManager.UpdateHealthUI(); // Update health UI at game start
-        FirebaseManager.ReadData();
+        // FirebaseManager.ReadData();
         // string json = "{ \"BetaRankList\": { \"1\": { \"score\": 10000, \"surviveTime\": 30 }, \"2\": { \"score\": 5000, \"surviveTime\": 20 } } }";
         // PlayerPrefs.SetString("RankList", json);
         // PlayerPrefs.Save();
@@ -62,7 +62,7 @@ public class TutGameManager : MonoBehaviour
     {
         if (playerHealth <= 0) 
         {
-            SendDataFirebase();
+            // SendDataFirebase();
             ShowFailScreen();
             Time.timeScale = 0f;
         }
