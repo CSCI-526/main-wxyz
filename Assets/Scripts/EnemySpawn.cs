@@ -4,10 +4,15 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using TMPro;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public class EnemySpawn : MonoBehaviour
 {
-    [Header("Configuration Per Wave")]
+    [Header("Custom Wave Configuration")]
+    public bool enableCustomConfig = false;
+    public List<EnemyWave> enemyWaves;
+
+    [Header("General Enemy Spawn Configuration")]
     public GameObject enemyPrefab1;                      // 敌人类型
     public GameObject enemyPrefab2;                      // 敌人类型
     public EnemyData enemyData;
@@ -79,6 +84,20 @@ public class EnemySpawn : MonoBehaviour
 
     public IEnumerator SpawnWaves()
     {
+        if (enableCustomConfig == true)
+        {
+            foreach (var wave in enemyWaves)
+            {
+                for (int i = 0; i < wave.count; i++)
+                {
+                    GameObject enemy = Instantiate(wave.enemyPrefab, spawnPoint.position, Quaternion.identity);
+                    enemy.GetComponent<Enemy>().InitiateEnemy(path, wave.enemyHealth, wave.enemySpeed, wave.enemyCoin);
+                    yield return new WaitForSeconds(wave.timeBetweenEnemies);
+                }
+                yield return new WaitForSeconds(wave.timeAfterWave);
+            }
+        }
+
         float currentMaxHealth = 100f;
         float currentMaxSpeed = 1f;
         int currentCoin = 5;
@@ -127,4 +146,16 @@ public class EnemySpawn : MonoBehaviour
             currentMaxHealth += 10;
         }  
     }
+}
+
+[System.Serializable]
+public class EnemyWave
+{
+    public GameObject enemyPrefab;
+    public float enemyHealth;
+    public float enemySpeed;
+    public int enemyCoin;
+    public float timeBetweenEnemies;
+    public float timeAfterWave;
+    public int count;
 }

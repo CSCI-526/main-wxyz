@@ -1,3 +1,18 @@
+# April 1， 2025
+merge了Wenqiao-Wang分支上tutScene的内容，将文件统一放到了Assets/Script目录下  
+添加了enemySpawn的个性化配置，在勾选 enableCustomConfig后，可以对每一波进行单独配置，包括：
+1. enemyPrefab
+2. enemyHealth
+3. enemySpeed
+4. enemyCoin
+5. timeBetweenEnemy（一波内敌人中间的生成间隔）
+6. timeAfterWave（波与波之间的时间）
+7. enemyCount
+
+example：
+![image](https://github.com/user-attachments/assets/37f490a8-cc4f-4a20-a2f0-6b7ebfe6aaf8)
+
+
 # Enemy Instruction
 ## TODO:<br>
 ### about ranking

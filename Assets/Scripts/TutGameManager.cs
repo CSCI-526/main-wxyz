@@ -1,16 +1,17 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class TutGameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
+    public static TutGameManager Instance { get; private set; }
+
 
     public BoardManager boardManager;
     public EnemySpawn enemyManager;
     public List<GameObject> towerPrefabs; // Changed to a list of tower prefabs
-    public UIManager uiManager; // UIManager connection
-    public TimerManager timerManager; //连接 TimerManager
+    public TutUIManager uiManager; // UIManager connection
+    public TutTimerManager timerManager; //连接 TimerManager
     public FirebaseManager FirebaseManager;
 
     public int playerGold = 10; 
@@ -46,11 +47,11 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         boardManager.CreateGrid();
-        bool spawned = SpawnRandomTower();
+        //bool spawned = SpawnRandomTower();
         enemyManager.EnemySpawnConfigInit();
         StartCoroutine(enemyManager.SpawnWaves());
         uiManager.UpdateHealthUI(); // Update health UI at game start
-        FirebaseManager.ReadData();
+        // FirebaseManager.ReadData();
         // string json = "{ \"BetaRankList\": { \"1\": { \"score\": 10000, \"surviveTime\": 30 }, \"2\": { \"score\": 5000, \"surviveTime\": 20 } } }";
         // PlayerPrefs.SetString("RankList", json);
         // PlayerPrefs.Save();
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour
     {
         if (playerHealth <= 0) 
         {
-            SendDataFirebase();
+            // SendDataFirebase();
             ShowFailScreen();
             Time.timeScale = 0f;
         }

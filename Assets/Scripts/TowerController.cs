@@ -88,7 +88,9 @@ public class TowerController : MonoBehaviour
             //attackRange *= 1.2f;
             //attackDamage *= 1.2f;
             ReplaceTowerBase();
-            GameManager.Instance.AddMergeCount();
+            // check if GameManager exists
+            if (GameManager.Instance != null) GameManager.Instance.AddMergeCount();
+            else TutGameManager.Instance.AddMergeCount();
         }
         UpdateAppearance();
     }
