@@ -30,6 +30,7 @@ public class TutGameManager : MonoBehaviour
     private int GoldTowerNum = 0;
     private float score = 0f;
     private float mergeCount = 0f;
+    private bool SpawnFlag = true;
 
     private void Awake()
     {
@@ -67,6 +68,18 @@ public class TutGameManager : MonoBehaviour
             Time.timeScale = 0f;
         }
     }
+
+    /*** TODO ***/
+    public void setSpawnFlag(bool flag)
+    {
+        SpawnFlag = flag;
+    }
+
+    public bool getSpawnFlag()
+    {
+        return SpawnFlag;
+    }
+    /*** TODO ***/
 
     public void SendDataFirebase()
     {

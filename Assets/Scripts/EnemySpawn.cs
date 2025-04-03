@@ -10,6 +10,7 @@ public class EnemySpawn : MonoBehaviour
 {
     [Header("Custom Wave Configuration")]
     public bool enableCustomConfig = false;
+    public bool enableSpawnFlag = false;
     public List<EnemyWave> enemyWaves;
 
     [Header("General Enemy Spawn Configuration")]
@@ -94,7 +95,21 @@ public class EnemySpawn : MonoBehaviour
                     enemy.GetComponent<Enemy>().InitiateEnemy(path, wave.enemyHealth, wave.enemySpeed, wave.enemyCoin);
                     yield return new WaitForSeconds(wave.timeBetweenEnemies);
                 }
-                yield return new WaitForSeconds(wave.timeAfterWave);
+                // yield return new WaitForSeconds(wave.timeAfterWave);
+                if (enableSpawnFlag)
+                {
+                    TutGameManager.Instance.setSpawnFlag(false);
+                    while (!TutGameManager.Instance.getSpawnFlag())
+                    { 
+                        yield return new WaitForSeconds(0.3f);
+                    }
+                }
+                else
+                {
+                    yield return new WaitForSeconds(wave.timeAfterWave);
+                }
+                
+                
             }
         }
 
