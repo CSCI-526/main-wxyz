@@ -18,12 +18,14 @@ public class TutTimerManager : MonoBehaviour
 
     private bool rewardGold = false;
 
-
+    private bool cannonTowerUIPopped = false;
     private bool towerLevel3TutorialTriggered = false;
     private bool frozenTowerTutorialComplate = false;
 
     //是否触发了燃烧塔教学阶段
     private bool burningTowerTutorialComplate = false;
+
+    public GameObject cannonTowerPanel;
 
     public GameObject frozenTowerPanel;
     private bool frozenTowerUIPopped = false;
@@ -66,6 +68,18 @@ public class TutTimerManager : MonoBehaviour
         {
             helpText.text = "Buy your first tower";
             helpTextUpdated = true;
+        }
+
+        if (!cannonTowerUIPopped && HasCannonTower(boardManager))
+        {
+            cannonTowerUIPopped = true;
+            
+
+            if (cannonTowerPanel != null)
+                cannonTowerPanel.SetActive(true);
+            
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
         }
         
 
@@ -144,7 +158,6 @@ public class TutTimerManager : MonoBehaviour
         if (!frozenTowerUIPopped && HasFrozenTower(boardManager))
         {
             frozenTowerUIPopped = true;
-            
 
             if (frozenTowerPanel != null)
                 frozenTowerPanel.SetActive(true);
@@ -266,6 +279,20 @@ public class TutTimerManager : MonoBehaviour
     {
         return !frozenTowerTutorialComplate;
     }
+
+    private bool HasCannonTower(BoardManager board)
+    {
+        List<TowerController> towers = board.GetAllTowersOnBoard();
+        foreach (var tower in towers)
+        {
+            if (tower != null && tower.towerName.Contains("Tank"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // 检测 Frozen Tower 是否存在
     private bool HasFrozenTower(BoardManager board)
     {
@@ -279,6 +306,8 @@ public class TutTimerManager : MonoBehaviour
         }
         return false;
     }
+
+    
 
     //燃烧塔教学
     public bool IsBurningTowerPhase()
@@ -300,8 +329,12 @@ public class TutTimerManager : MonoBehaviour
 
     public void OnContinueFromPanel()
     {
+        if (cannonTowerPanel != null)
+            cannonTowerPanel.SetActive(false);
+
         if (frozenTowerPanel != null)
             frozenTowerPanel.SetActive(false);
+
         // 关闭 Panel
         if (burningTowerPanel != null)
             burningTowerPanel.SetActive(false);
