@@ -1174,8 +1174,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -128, y: -175}
-  m_SizeDelta: {x: 328.6162, y: 54.3894}
+  m_AnchoredPosition: {x: -176.77818, y: -188.0075}
+  m_SizeDelta: {x: 423.7932, y: 80.4044}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &674458458
 MonoBehaviour:
@@ -1224,7 +1224,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.75
+  m_fontSize: 43.5
   m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1978,9 +1978,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 154, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 145.6668, y: 24.9994}
+  m_SizeDelta: {x: 183.3338, y: 99.9986}
+  m_Pivot: {x: 0.4999999, y: 0.5}
 --- !u!114 &1327108596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2028,7 +2028,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.85
+  m_fontSize: 31.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2066,7 +2066,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -11.399258, z: 119.692085, w: -17.098862}
+  m_margin: {x: 0, y: -0.288441, z: 8.584091, w: -5.988085}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2711,6 +2711,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85362db5a572a9a4ea433673d7c6c9b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableCustomConfig: 0
+  enemyWaves: []
   enemyPrefab1: {fileID: 4336658664315684068, guid: 87f2fc39a06d5994684dafdab143d7b0, type: 3}
   enemyPrefab2: {fileID: 1294982609953914983, guid: c352b76ef98420548b28cf1d6b44c520, type: 3}
   enemyData: {fileID: 11400000, guid: 6b0eed3b0bff246f79745dbe2d9fedad, type: 2}
