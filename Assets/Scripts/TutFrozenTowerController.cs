@@ -85,7 +85,7 @@ public class TutFrozenTowerController : TowerController
         System.Collections.Generic.List<TileController> borderTiles = new System.Collections.Generic.List<TileController>();
 
         int row = 0; // 第一行
-        int maxCols = Mathf.Min(4, board.columns); // 防止列数小于4
+        int maxCols = Mathf.Min(7, board.columns); // 防止列数小于4
 
         for (int j = 0; j < maxCols; j++)
         {

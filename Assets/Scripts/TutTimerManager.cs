@@ -20,10 +20,10 @@ public class TutTimerManager : MonoBehaviour
 
 
     private bool towerLevel3TutorialTriggered = false;
-    private bool frozenTowerTutorialTriggered = false;
+    private bool frozenTowerTutorialComplate = false;
 
     //是否触发了燃烧塔教学阶段
-    private bool burningTowerTutorialTriggered = false;
+    private bool burningTowerTutorialComplate = false;
 
     public GameObject frozenTowerPanel;
     private bool frozenTowerUIPopped = false;
@@ -125,9 +125,9 @@ public class TutTimerManager : MonoBehaviour
             }
         }
 
-        if (towerLevel3TutorialTriggered && !frozenTowerTutorialTriggered)
+        if (towerLevel3TutorialTriggered && !frozenTowerTutorialComplate)
         {
-            frozenTowerTutorialTriggered = true;
+            //frozenTowerTutorialTriggered = true;
 
             helpText.text = "You have a Level 3 Tower! Now let's buy a new tower: Frozen Tower!";
             
@@ -144,6 +144,7 @@ public class TutTimerManager : MonoBehaviour
         if (!frozenTowerUIPopped && HasFrozenTower(boardManager))
         {
             frozenTowerUIPopped = true;
+            
 
             if (frozenTowerPanel != null)
                 frozenTowerPanel.SetActive(true);
@@ -153,9 +154,10 @@ public class TutTimerManager : MonoBehaviour
         }
 
         // 添加新的教学阶段：引导生成燃烧塔
-        if (towerLevel3TutorialTriggered && !burningTowerTutorialTriggered && HasFrozenTower(boardManager))
+        if (towerLevel3TutorialTriggered && !burningTowerTutorialComplate && !frozenTowerPanel.activeSelf && HasFrozenTower(boardManager))
         {
-            burningTowerTutorialTriggered = true;
+            //burningTowerTutorialTriggered = true;
+            frozenTowerTutorialComplate = true;
 
             helpText.text = "You have a Level 3 Tower! Now let's buy a new tower: Burning Tower! ";
 
@@ -262,7 +264,7 @@ public class TutTimerManager : MonoBehaviour
 
     public bool IsFrozenTowerPhase()
     {
-        return frozenTowerTutorialTriggered;
+        return !frozenTowerTutorialComplate;
     }
     // 检测 Frozen Tower 是否存在
     private bool HasFrozenTower(BoardManager board)
@@ -281,7 +283,7 @@ public class TutTimerManager : MonoBehaviour
     //燃烧塔教学
     public bool IsBurningTowerPhase()
     {
-        return burningTowerTutorialTriggered;
+        return !burningTowerTutorialComplate;
     }
     private bool HasBurningTower(BoardManager board)
     {
@@ -308,7 +310,4 @@ public class TutTimerManager : MonoBehaviour
         if (uiManager != null)
             uiManager.TogglePauseGameNoPanel();
     }
-
-
-
 }
