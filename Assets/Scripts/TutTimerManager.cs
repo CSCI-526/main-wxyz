@@ -20,6 +20,14 @@ public class TutTimerManager : MonoBehaviour
 
 
     private bool towerLevel3TutorialTriggered = false;
+    //是否触发了燃烧塔教学阶段
+    private bool burningTowerTutorialTriggered = false;
+
+    public GameObject burningTowerPanel;  // 拖拽你的 TowerPanel 进来
+    private bool burningTowerUIPopped = false;  // 防止重复弹窗
+
+
+
 
     public TutUIManager uiManager;
     public ButtonPulseAnimation buttonPulseAnimation;
@@ -39,7 +47,7 @@ public class TutTimerManager : MonoBehaviour
         if (continueButton != null)
             continueButton.gameObject.SetActive(false);
     }
-    
+
     void Update()
     {
         if (!isTimerRunning) return;
@@ -83,7 +91,6 @@ public class TutTimerManager : MonoBehaviour
             helpText.text = "Let's buy another tower";
         }
 
-
         if (!towerLevel3TutorialTriggered && boardManager != null)
         {
             if (HasLevel3Tower(boardManager))
@@ -91,13 +98,13 @@ public class TutTimerManager : MonoBehaviour
                 towerLevel3TutorialTriggered = true;
 
 
-                if (buyButton != null)
-                    buyButton.gameObject.SetActive(false);
+                /*if (buyButton != null)
+                    buyButton.gameObject.SetActive(false);*/
 
-                if (continueButton != null)
-                    continueButton.gameObject.SetActive(true);
+                /*if (continueButton != null)
+                    continueButton.gameObject.SetActive(true);*/
 
-                helpText.text = "You have a Level 3 Tower! Press Continue to proceed...";
+                /*helpText.text = "You have a Level 3 Tower! Press Continue to proceed...";*/
             }
             if (HasLevel2Tower(boardManager))
             {
@@ -111,8 +118,37 @@ public class TutTimerManager : MonoBehaviour
                 
             }
         }
+        // 添加新的教学阶段：引导生成燃烧塔
+        if (towerLevel3TutorialTriggered && !burningTowerTutorialTriggered)
+        {
+            burningTowerTutorialTriggered = true;
+
+            helpText.text = "You have a Level 3 Tower! Now let's buy a new tower:Burning Tower! ";
+
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+
+            if (buttonPulseAnimation != null)
+                buttonPulseAnimation.StartPulsing();
+
+            if (gameManager != null)
+                gameManager.AddCoin(100);
+        }
+        // 首次出现 Burning Tower 时弹出 UI(先注释掉)
+        if (!burningTowerUIPopped && HasBurningTower(boardManager))
+        {
+            burningTowerUIPopped = true;
+
+            if (burningTowerPanel != null)
+                burningTowerPanel.SetActive(true);
+            
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+
+        }
     }
     
+
 
     private bool HasLevel3Tower(BoardManager board)
     {
@@ -183,4 +219,42 @@ public class TutTimerManager : MonoBehaviour
         PlayerPrefs.SetFloat("FinalSurvivalTime", elapsedTime);
         PlayerPrefs.Save();
     }
+
+    //操作教学
+    public bool IsInTutorialPhase()
+    {
+        return !towerLevel3TutorialTriggered;
+    }
+
+    //燃烧塔教学
+    public bool IsBurningTowerPhase()
+    {
+        return burningTowerTutorialTriggered;
+    }
+    private bool HasBurningTower(BoardManager board)
+    {
+        List<TowerController> towers = board.GetAllTowersOnBoard();
+        foreach (var tower in towers)
+        {
+            if (tower != null && tower.towerName.Contains("TutBurningTower"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void OnContinueFromPanel()
+    {
+        // 关闭 Panel
+        if (burningTowerPanel != null)
+            burningTowerPanel.SetActive(false);
+
+        // 恢复游戏
+        if (uiManager != null)
+            uiManager.TogglePauseGameNoPanel();
+    }
+
+
+
 }

@@ -879,7 +879,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 546.5885, y: -241.63284}
+  m_AnchoredPosition: {x: 191.8611, y: -241.63284}
   m_SizeDelta: {x: 383.7222, y: 483.2657}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &403798599
@@ -997,7 +997,7 @@ GameObject:
   - component: {fileID: 432313827}
   - component: {fileID: 432313826}
   m_Layer: 5
-  m_Name: "TowerPanel\uFF08Cannon Tower"
+  m_Name: "TowerPanel\uFF08Cannon Tower)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1975,7 +1975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &699969815
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1992,7 +1992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 167.3637, y: -149.06}
+  m_AnchoredPosition: {x: 167.3637, y: -149.0601}
   m_SizeDelta: {x: 334.7274, y: 298.1202}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &699969816
@@ -3111,7 +3111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1226761973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3690,7 +3690,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 20.0307, y: 14.6601}
-  m_SizeDelta: {x: 738.4496, y: 483.2657}
+  m_SizeDelta: {x: 383.7222, y: 483.2657}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1506734675
 MonoBehaviour:
@@ -3780,6 +3780,7 @@ MonoBehaviour:
   enemyManager: {fileID: 627785959}
   towerPrefabs:
   - {fileID: 1001787181882085309, guid: fab5f7ea9cf324f6c811c7705e22f610, type: 3}
+  - {fileID: 49547057150472206, guid: ed19bb8838b013e41bdff3512a43032b, type: 3}
   uiManager: {fileID: 757867165}
   timerManager: {fileID: 2007967492}
   FirebaseManager: {fileID: 0}
@@ -4904,7 +4905,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 164.69556, y: -151.6199}
+  m_AnchoredPosition: {x: 164.69556, y: -151.61984}
   m_SizeDelta: {x: 329.3911, y: 303.2397}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1917469700
@@ -5191,6 +5192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 453212287}
   helpText: {fileID: 861398205}
+  burningTowerPanel: {fileID: 2010798588}
   uiManager: {fileID: 757867165}
   buttonPulseAnimation: {fileID: 1910519309}
   gameManager: {fileID: 1536617446}
@@ -5497,7 +5499,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2112518689}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2007967492}
+        m_TargetAssemblyTypeName: TutTimerManager, Assembly-CSharp
+        m_MethodName: OnContinueFromPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2112518689
 MonoBehaviour:
   m_ObjectHideFlags: 0

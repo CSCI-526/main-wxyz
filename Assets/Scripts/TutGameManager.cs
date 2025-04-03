@@ -201,6 +201,64 @@ public class TutGameManager : MonoBehaviour
         return true;
     }
 
+    //生成特定塔
+    public bool SpawnSpecificTower(string towerName)
+    {
+        if (playerGold < spawnCost)
+        {
+            return false;
+        }
+
+        List<Vector2Int> availableTiles = new List<Vector2Int>();
+        for (int r = 1; r < boardManager.rows - 1; r++)
+        {
+            for (int c = 1; c < boardManager.columns - 1; c++)
+            {
+                if (boardManager.tiles[r, c].towerOnTile == null)
+                {
+                    availableTiles.Add(new Vector2Int(c, r));
+                }
+            }
+        }
+
+        if (availableTiles.Count == 0)
+        {
+            Debug.Log("No available tiles to spawn a tower.");
+            return false;
+        }
+
+        if (towerPrefabs == null || towerPrefabs.Count == 0)
+        {
+            Debug.LogError("No tower prefabs assigned in GameManager.");
+            return false;
+        }
+
+        GameObject targetPrefab = towerPrefabs.Find(prefab => prefab.name == towerName);
+        if (targetPrefab == null)
+        {
+            Debug.LogError("Tower prefab with name '" + towerName + "' not found.");
+            return false;
+        }
+
+        Vector2Int chosenTile = availableTiles[Random.Range(0, availableTiles.Count)];
+        int gridCol = chosenTile.x;
+        int gridRow = chosenTile.y;
+
+        float spacing = boardManager.tileSpacing;
+        float offsetX = (boardManager.columns - 1) / 2.0f;
+        float offsetY = (boardManager.rows - 1) / 2.0f;
+        Vector3 spawnPos = new Vector3((gridCol - offsetX) * spacing, (offsetY - gridRow) * spacing, 0);
+
+        GameObject towerObj = Instantiate(targetPrefab, spawnPos, Quaternion.identity);
+        TowerController towerController = towerObj.GetComponent<TowerController>();
+        towerController.gridPosition = new Vector2Int(gridCol, gridRow);
+
+        boardManager.tiles[gridRow, gridCol].towerOnTile = towerController;
+
+        return true;
+    }
+
+
 
     public bool UpgradeRandomTower(TowerController towerToUpgrade)
     {

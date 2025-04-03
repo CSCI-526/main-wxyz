@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5565194724834910087}
   - component: {fileID: 6282325720260741598}
-  - component: {fileID: -4384656654294010389}
+  - component: {fileID: 5155738255189932721}
   m_Layer: 0
-  m_Name: BurningTower
+  m_Name: TutBurningTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-4384656654294010389
+--- !u!114 &5155738255189932721
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,11 +97,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 49547057150472206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb3af13f9fc95b84ba14455f706e0e2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fd2d32a926b56c4ea872838d042cab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rankValue: 1
-  towerName: BurningTower
+  towerName: TutBurningTower
   towerSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   attackRange: 0
   attackDamage: 0

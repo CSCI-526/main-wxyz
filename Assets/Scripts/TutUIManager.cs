@@ -38,7 +38,7 @@ public class TutUIManager : MonoBehaviour
         towerCostText.text = ": " + gameManager.spawnCost;
     }
     //购买塔
-    public void OnBuyTowerClicked()
+    /*public void OnBuyTowerClicked()
     {
         if (!buyButton.interactable) return; //如果按钮是灰色的，直接返回（不执行）
 
@@ -48,6 +48,51 @@ public class TutUIManager : MonoBehaviour
             UpdateGoldUI();
             UpdateTowerCostUI();
             UpdateBuyButtonState(); //购买后更新按钮状态
+        }
+        else
+        {
+            Debug.Log("Board is full. Cannot buy tower.");
+        }
+    }*/
+
+    public void OnBuyTowerClicked()
+    {
+        if (!buyButton.interactable) return;
+
+        if (timerManager != null)
+        {
+            if (timerManager.IsInTutorialPhase())
+            {
+                bool success = gameManager.SpawnSpecificTower("Cannon");
+                if (success)
+                {
+                    gameManager.DeductCost();
+                    UpdateGoldUI();
+                    UpdateTowerCostUI();
+                    UpdateBuyButtonState();
+                }
+                return;
+            }
+            else if (timerManager.IsBurningTowerPhase())
+            {
+                bool success = gameManager.SpawnSpecificTower("TutBurningTower");
+                if (success)
+                {
+                    gameManager.DeductCost();
+                    UpdateGoldUI();
+                    UpdateTowerCostUI();
+                    UpdateBuyButtonState();
+                }
+                return;
+            }
+        }
+
+        if (gameManager.SpawnRandomTower())
+        {
+            gameManager.DeductCost();
+            UpdateGoldUI();
+            UpdateTowerCostUI();
+            UpdateBuyButtonState();
         }
         else
         {
@@ -90,6 +135,7 @@ public class TutUIManager : MonoBehaviour
     {
         TogglePauseGame();
     }
+
 
   //退出游戏
     public void QuitGame()
