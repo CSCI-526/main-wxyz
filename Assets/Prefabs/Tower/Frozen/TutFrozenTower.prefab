@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5565194724834910087}
   - component: {fileID: 6282325720260741598}
-  - component: {fileID: 5162412661748993997}
+  - component: {fileID: -6146847976746443668}
   m_Layer: 0
-  m_Name: FrozenTower
+  m_Name: TutFrozenTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5162412661748993997
+--- !u!114 &-6146847976746443668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,11 +97,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 49547057150472206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c48273ed093fa4b55aa78a94a55268e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d097183828af4761a3c7de0b8cecb90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rankValue: 1
-  towerName: FrozenTower
+  towerName: TutFrozenTower
   towerSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   attackRange: 0
   attackDamage: 0

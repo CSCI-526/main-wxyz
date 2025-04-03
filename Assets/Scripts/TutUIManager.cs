@@ -73,6 +73,18 @@ public class TutUIManager : MonoBehaviour
                 }
                 return;
             }
+            else if (timerManager.IsFrozenTowerPhase())
+            {
+                bool success = gameManager.SpawnSpecificTower("TutFrozenTower");
+                if (success)
+                {
+                    gameManager.DeductCost();
+                    UpdateGoldUI();
+                    UpdateTowerCostUI();
+                    UpdateBuyButtonState();
+                }
+                return;
+            }
             else if (timerManager.IsBurningTowerPhase())
             {
                 bool success = gameManager.SpawnSpecificTower("TutBurningTower");
