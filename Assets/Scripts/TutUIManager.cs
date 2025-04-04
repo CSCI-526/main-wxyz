@@ -97,6 +97,19 @@ public class TutUIManager : MonoBehaviour
                 }
                 return;
             }
+            else if (timerManager.IsEnergyTowerPhase())
+            {
+                bool success = gameManager.SpawnSpecificTower("TutEnergyTower");
+                if (success)
+                {
+                    gameManager.DeductCost();
+                    UpdateGoldUI();
+                    UpdateTowerCostUI();
+                    UpdateBuyButtonState();
+                }
+                return;
+            }
+
         }
 
         if (gameManager.SpawnRandomTower())

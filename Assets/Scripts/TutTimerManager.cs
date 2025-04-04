@@ -27,6 +27,10 @@ public class TutTimerManager : MonoBehaviour
     private bool burningTowerTutorialcomplete = false;
     private bool burningTowerTutorialTriggered = false;
 
+    //是否触发了能量塔教学阶段
+    private bool energyTowerTutorialcomplete = false;
+    private bool energyTowerTutorialTriggered = false;
+
     public GameObject cannonTowerPanel;
 
     public GameObject frozenTowerPanel;
@@ -34,7 +38,10 @@ public class TutTimerManager : MonoBehaviour
 
     public GameObject burningTowerPanel;  // 拖拽你的 TowerPanel 进来
     private bool burningTowerUIPopped = false;  // 防止重复弹窗
-    
+
+    public GameObject energyTowerPanel;  
+    private bool energyTowerUIPopped = false;
+
 
 
 
@@ -209,6 +216,40 @@ public class TutTimerManager : MonoBehaviour
                 uiManager.TogglePauseGameNoPanel();
 
         }
+
+        //能量塔生成
+        if (towerLevel3TutorialTriggered && !energyTowerTutorialTriggered && !burningTowerPanel.activeSelf && HasBurningTower(boardManager) && gameManager.playerGold >= 25)
+        {
+            energyTowerTutorialTriggered = true;
+            burningTowerTutorialcomplete = true;
+
+            TutGameManager.Instance.setSpawnFlag(true);
+
+            helpText.text = "How about buy a Energy Tower! ";
+
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+
+            if (buttonPulseAnimation != null)
+                buttonPulseAnimation.StartPulsing();
+
+            if (gameManager != null)
+                gameManager.AddCoin(45);
+        }
+        
+        if (!energyTowerUIPopped && HasEnergyTower(boardManager))
+        {
+            energyTowerUIPopped = true;
+
+            if (energyTowerPanel != null)
+                energyTowerPanel.SetActive(true);
+
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+
+        }
+
+
     }
     
 
@@ -299,6 +340,13 @@ public class TutTimerManager : MonoBehaviour
     {
         return !burningTowerTutorialcomplete;
     }
+    //能量塔教学
+
+    public bool IsEnergyTowerPhase()
+    {
+        return !energyTowerTutorialcomplete;
+    }
+
 
     private bool HasCannonTower(BoardManager board)
     {
@@ -339,6 +387,20 @@ public class TutTimerManager : MonoBehaviour
         return false;
     }
 
+    private bool HasEnergyTower(BoardManager board)
+    {
+        List<TowerController> towers = board.GetAllTowersOnBoard();
+        foreach (var tower in towers)
+        {
+            if (tower != null && tower.towerName.Contains("TutEnergyTower"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public void OnContinueFromPanel()
     {
         if (cannonTowerPanel != null)
@@ -350,6 +412,9 @@ public class TutTimerManager : MonoBehaviour
         // 关闭 Panel
         if (burningTowerPanel != null)
             burningTowerPanel.SetActive(false);
+
+        if (energyTowerPanel != null)
+            energyTowerPanel.SetActive(false);
 
         // 恢复游戏
         if (uiManager != null)
