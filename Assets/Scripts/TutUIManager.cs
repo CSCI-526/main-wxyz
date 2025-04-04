@@ -96,8 +96,13 @@ public class TutUIManager : MonoBehaviour
                     UpdateBuyButtonState();
                 }
                 return;
+<<<<<<< Updated upstream
             
             }
+=======
+            }
+
+>>>>>>> Stashed changes
         }
 
         if (gameManager.SpawnRandomTower())

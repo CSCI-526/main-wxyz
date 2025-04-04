@@ -22,12 +22,28 @@ public class TutTimerManager : MonoBehaviour
     private bool towerLevel3TutorialTriggered = false;
     //是否触发了燃烧塔教学阶段
     private bool burningTowerTutorialTriggered = false;
+<<<<<<< Updated upstream
     //是否触发了能量塔教学阶段
     private bool energyTowerTutorialTriggered = false;
+=======
+
+    //是否触发了能量塔教学阶段
+    private bool energyTowerTutorialTriggered = false;
+    private bool energyTowerTutorialcomplete = false;
+   
+
+
+    public GameObject cannonTowerPanel;
+
+    public GameObject frozenTowerPanel;
+    private bool frozenTowerUIPopped = false;
+>>>>>>> Stashed changes
 
     public GameObject burningTowerPanel;  // 拖拽你的 TowerPanel 进来
     private bool burningTowerUIPopped = false;  // 防止重复弹窗
 
+    public GameObject energyTowerPanel;
+    private bool energyTowerUIPopped = false;
 
 
 
@@ -140,11 +156,46 @@ public class TutTimerManager : MonoBehaviour
         if (!burningTowerUIPopped && HasBurningTower(boardManager))
         {
             burningTowerUIPopped = true;
-
             if (burningTowerPanel != null)
                 burningTowerPanel.SetActive(true);
             
             if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+        }
+        //能量塔教学
+        if (towerLevel3TutorialTriggered && !energyTowerTutorialTriggered && !frozenTowerPanel.activeSelf&&!burningTowerPanel.activeSelf && HasBurningTower(boardManager) && gameManager.playerGold >= 25)
+        {
+            energyTowerTutorialTriggered = true;
+            burningTowerTutorialcomplete = true;
+
+            TutGameManager.Instance.setSpawnFlag(true);
+
+            helpText.text = "Do you feel that some enemies are too difficult to kill? Let's try the Energy Tower!";
+
+            Time.timeScale = 1f;
+
+
+            if (uiManager != null) 
+                uiManager.TogglePauseGameNoPanel();
+
+            if (buttonPulseAnimation != null)
+                buttonPulseAnimation.StartPulsing();
+
+            if (gameManager != null) 
+                gameManager.AddCoin(45);
+
+            
+        }
+
+        //能量塔检测以及弹出UI
+        if (!energyTowerUIPopped&&HasEnergyTower(boardManager)) 
+        {
+            energyTowerUIPopped = true;
+
+            helpText.text = "Excellent! You've built the Energy Tower.";
+            if (energyTowerPanel != null) 
+                energyTowerPanel.SetActive(true);
+            if (uiManager != null) 
                 uiManager.TogglePauseGameNoPanel();
 
         }
@@ -284,7 +335,48 @@ public class TutTimerManager : MonoBehaviour
     //燃烧塔教学
     public bool IsBurningTowerPhase()
     {
+<<<<<<< Updated upstream
         return burningTowerTutorialTriggered;
+=======
+        return !burningTowerTutorialcomplete;
+    }
+
+    //能量塔教学
+    public bool IsEnergyTowerPhase()
+    {
+        return !energyTowerTutorialcomplete;
+
+    }
+
+    private bool HasCannonTower(BoardManager board)
+    {
+        List<TowerController> towers = board.GetAllTowersOnBoard();
+        foreach (var tower in towers)
+        {
+            if (tower != null && tower.towerName.Contains("Tank"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    
+
+    // 检测 Frozen Tower 是否存在
+    private bool HasFrozenTower(BoardManager board)
+    {
+        List<TowerController> towers = board.GetAllTowersOnBoard();
+        foreach (var tower in towers)
+        {
+            if (tower != null && tower.towerName.Contains("TutFrozenTower"))
+            {
+                return true;
+            }
+        }
+        return false;
+>>>>>>> Stashed changes
     }
     private bool HasBurningTower(BoardManager board)
     {
@@ -299,17 +391,40 @@ public class TutTimerManager : MonoBehaviour
         return false;
     }
 
+<<<<<<< Updated upstream
     //能量塔教学
     public bool IsEnergyTowerPhase()
     {
         return energyTowerTutorialTriggered;
     }
 
+=======
+
+    private bool HasEnergyTower(BoardManager board)
+    {
+        List<TowerController> towers = board.GetAllTowersOnBoard();
+        foreach (var tower in towers)
+        {
+            if (tower != null && tower.towerName.Contains("TutEnergyTower"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+>>>>>>> Stashed changes
     public void OnContinueFromPanel()
     {
         // 关闭 Panel
         if (burningTowerPanel != null)
             burningTowerPanel.SetActive(false);
+
+        if (energyTowerPanel != null)
+            energyTowerPanel.SetActive(false);
+
 
         // 恢复游戏
         if (uiManager != null)

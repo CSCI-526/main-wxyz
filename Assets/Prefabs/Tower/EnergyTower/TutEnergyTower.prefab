@@ -10,7 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6828670902654945202}
   - component: {fileID: 3096781406308628447}
+<<<<<<< Updated upstream
   - component: {fileID: 348043150147298810}
+=======
+  - component: {fileID: -455283517027523479}
+>>>>>>> Stashed changes
   - component: {fileID: 6891708688489141560}
   m_Layer: 0
   m_Name: TutEnergyTower
@@ -89,7 +93,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< Updated upstream
 --- !u!114 &348043150147298810
+=======
+--- !u!114 &-455283517027523479
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,7 +106,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7710871422812722048}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< Updated upstream
   m_Script: {fileID: 11500000, guid: 8284f94a35bb8a04aa68f65227be1bb6, type: 3}
+=======
+  m_Script: {fileID: 11500000, guid: db5ebc0e8d03c6a409403bdc6d88f360, type: 3}
+>>>>>>> Stashed changes
   m_Name: 
   m_EditorClassIdentifier: 
   rankValue: 1
@@ -144,6 +156,40 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+<<<<<<< Updated upstream
+=======
+  energyBeam: {fileID: 0}
+  beamColorGradient:
+    serializedVersion: 2
+    key0: {r: 0.99215686, g: 0.07033139, b: 0.05490193, a: 1}
+    key1: {r: 0.053122826, g: 0.070719555, b: 0.99371064, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+>>>>>>> Stashed changes
 --- !u!120 &6891708688489141560
 LineRenderer:
   serializedVersion: 2
