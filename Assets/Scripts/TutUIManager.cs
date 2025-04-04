@@ -111,7 +111,7 @@ public class TutUIManager : MonoBehaviour
             }
             else if (timerManager.IsGoldTowerPhase())
             {
-                bool success = gameManager.SpawnSpecificTower("GoldTower");
+                bool success = gameManager.SpawnSpecificTower("TutGoldTower");
                 if (success)
                 {
                     gameManager.DeductCost();

@@ -106,7 +106,11 @@ MonoBehaviour:
   attackRange: 0
   attackDamage: 0
   towerBasePrefab: {fileID: 0}
-  basePrefabs: []
+  basePrefabs:
+  - {fileID: 5382328371828604995, guid: a3ff432b1b7aa43c0bc9095c5f5d0c18, type: 3}
+  - {fileID: 1169137949355460633, guid: 665debfea4c9941c1bbb8bc05f3297b2, type: 3}
+  - {fileID: 2729133250331387908, guid: 9e77472785924463dbc0dd96e7fcc0f1, type: 3}
+  - {fileID: 6734909066804063127, guid: 1e20dd86615b14cd2ba6b808f1daed89, type: 3}
   gridPosition: {x: 0, y: 0}
   goldPerCycle: 10
   generateInterval: 1

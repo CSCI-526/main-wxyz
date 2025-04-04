@@ -263,7 +263,7 @@ public class TutTimerManager : MonoBehaviour
             goldTowerTutorialTriggered = true;
             energyTowerTutorialcomplete = true;
             helpText.text = "Now let's try the Gold Tower! It generates gold over time!";
-            TutGameManager.Instance.setSpawnFlag(true);
+            // TutGameManager.Instance.setSpawnFlag(true);
 
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
@@ -431,7 +431,7 @@ public class TutTimerManager : MonoBehaviour
         List<TowerController> towers = board.GetAllTowersOnBoard();
         foreach (var tower in towers)
         {
-            if (tower != null && tower.towerName.Contains("TutEnergyTower"))
+            if (tower != null && tower.towerName.Contains("Energy"))
             {
                 return true;
             }
@@ -444,7 +444,7 @@ public class TutTimerManager : MonoBehaviour
         List<TowerController> towers = board.GetAllTowersOnBoard();
         foreach (var tower in towers)
         {
-            if (tower != null && tower.towerName.Contains("TutGoldTower")) 
+            if (tower != null && tower.towerName.Contains("TutGoldernTower")) 
             {
                 return true;
             }
