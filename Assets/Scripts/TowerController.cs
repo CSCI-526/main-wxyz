@@ -22,8 +22,10 @@ public class TowerController : MonoBehaviour
         Debug.Log("Awake");
     }
 
+
     public virtual void Start()
     {   
+
         UpdateAppearance();
 
         if (transform.Find("TowerBaseHolder") == null)
