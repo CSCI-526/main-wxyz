@@ -1686,6 +1686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableCustomConfig: 1
+  enableSpawnFlag: 1
   enemyWaves:
   - enemyPrefab: {fileID: 4336658664315684068, guid: 87f2fc39a06d5994684dafdab143d7b0, type: 3}
     enemyHealth: 80
@@ -1700,9 +1701,9 @@ MonoBehaviour:
     enemyCoin: 5
     timeBetweenEnemies: 1
     timeAfterWave: 5
-    count: 5
+    count: 4
   - enemyPrefab: {fileID: 4336658664315684068, guid: 87f2fc39a06d5994684dafdab143d7b0, type: 3}
-    enemyHealth: 60
+    enemyHealth: 100
     enemySpeed: 1.5
     enemyCoin: 5
     timeBetweenEnemies: 1
