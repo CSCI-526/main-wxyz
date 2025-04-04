@@ -287,12 +287,24 @@ public class TutTimerManager : MonoBehaviour
         }
 
         // 教学完成后刷出最后一波怪（只触发一次）
-        if (!finalWaveTriggered && goldTowerUIPopped && goldTowerTutorialcomplete)
+        /*if (!finalWaveTriggered && goldTowerUIPopped && goldTowerTutorialcomplete)
         {
             finalWaveTriggered = true;
             helpText.text = "Get ready! Final wave incoming!";
             TutGameManager.Instance.enemyManager.EnemySpawnConfigInit();
             TutGameManager.Instance.StartCoroutine(TutGameManager.Instance.enemyManager.SpawnWaves());
+        }*/
+
+        if (!finalWaveTriggered && goldTowerUIPopped && gameManager.playerGold >= 20)
+        {
+            if (buyButton != null)
+                buyButton.gameObject.SetActive(false);
+
+            if (continueButton != null)
+                continueButton.gameObject.SetActive(true);
+            finalWaveTriggered = true;
+            helpText.text = "You've finished the tutorial! Let's go to the main game!";
+
         }
 
     }
