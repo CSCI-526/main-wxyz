@@ -1,8 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-
---- !u!1 &835382483093832015
-
+--- !u!1 &7710871422812722048
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,12 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-
-  - component: {fileID: 1623353606437656487}
-  - component: {fileID: 4961552468448021475}
-  - component: {fileID: -6750105335022878222}
-  - component: {fileID: -7509455561148403788}
-
+  - component: {fileID: 6828670902654945202}
+  - component: {fileID: 3096781406308628447}
+  - component: {fileID: 1225369752216951936}
+  - component: {fileID: 6891708688489141560}
   m_Layer: 0
   m_Name: EnergyTower
   m_TagString: Untagged
@@ -23,17 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-
---- !u!4 &1623353606437656487
-
+--- !u!4 &6828670902654945202
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-
-  m_GameObject: {fileID: 835382483093832015}
-
+  m_GameObject: {fileID: 7710871422812722048}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -42,17 +34,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-
---- !u!212 &4961552468448021475
-
+--- !u!212 &3096781406308628447
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-
-  m_GameObject: {fileID: 835382483093832015}
-
+  m_GameObject: {fileID: 7710871422812722048}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -91,9 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-
-  m_Color: {r: 0.6791043, g: 0.04687302, b: 0.99371064, a: 1}
-
+  m_Color: {r: 0.9685534, g: 0.5290389, b: 0.009137145, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,26 +89,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-
---- !u!114 &-6750105335022878222
-
+--- !u!114 &1225369752216951936
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-
-  m_GameObject: {fileID: 835382483093832015}
+  m_GameObject: {fileID: 7710871422812722048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aea2fba5b5a1e848ae6683f0c5b7058, type: 3}
+  m_Script: {fileID: 11500000, guid: 0368c32dd9388fa4994266c1592202a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rankValue: 1
-  towerName: Energy Tower
+  towerName: Energy
   towerSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  attackRange: 1000
-
+  attackRange: 8
   attackDamage: 0
   towerBasePrefab: {fileID: 0}
   basePrefabs:
@@ -131,12 +113,7 @@ MonoBehaviour:
   - {fileID: 2729133250331387908, guid: 9e77472785924463dbc0dd96e7fcc0f1, type: 3}
   - {fileID: 6734909066804063127, guid: 1e20dd86615b14cd2ba6b808f1daed89, type: 3}
   gridPosition: {x: 0, y: 0}
-
-  minDamage: 20
-  maxDamage: 800
-  damageGrowthRate: 20
-  energyBeam: {fileID: -7509455561148403788}
-
+  energyBeam: {fileID: 6891708688489141560}
   beamColorGradient:
     serializedVersion: 2
     key0: {r: 0.99215686, g: 0.07033139, b: 0.05490193, a: 1}
@@ -167,18 +144,14 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-
---- !u!120 &-7509455561148403788
-
+--- !u!120 &6891708688489141560
 LineRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-
-  m_GameObject: {fileID: 835382483093832015}
-
+  m_GameObject: {fileID: 7710871422812722048}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -195,9 +168,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-
-  - {fileID: 2100000, guid: 9f5fce9a7c608884f925ca80839cefb0, type: 2}
-
+  - {fileID: 2100000, guid: 59d5fff7b02039b48b5525aa0523e230, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -266,9 +237,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-
-      m_ColorSpace: 0
-
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0

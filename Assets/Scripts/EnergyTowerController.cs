@@ -1,22 +1,14 @@
 ﻿using UnityEngine;
-
 using System.Linq;
-
 
 public class EnergyTowerController : TowerController
 {
     [Header("Energy Tower Settings")]
-
-    public float minDamage = 5f;
-    public float maxDamage = 50f;
-    public float damageGrowthRate = 2f;
-
     public LineRenderer energyBeam;
     public Gradient beamColorGradient;
 
     private float currentDamage;
     private Enemy currentTarget;
-
     private bool isAttacking = false;
     private float checkInterval = 0.2f;
     private float lastCheckTime;
@@ -34,16 +26,13 @@ public class EnergyTowerController : TowerController
         rankValue = Mathf.Clamp(rankValue, 1, 4); // 保险措施
         currentDamage = GetMinDamage(rankValue);
         attackDamage = GetMinDamage(rankValue);
-
     }
 
     void Update()
     {
-
         if (!isAttacking && Time.time - lastCheckTime >= checkInterval)
         {
             AcquireLowestDistanceEnemy(); // **使用基于距离的寻敌逻辑**
-
             lastCheckTime = Time.time;
         }
 
@@ -54,7 +43,6 @@ public class EnergyTowerController : TowerController
         }
         else
         {
-
             isAttacking = false;
             DisableBeam();
             currentDamage = GetMinDamage(rankValue);
@@ -95,7 +83,6 @@ public class EnergyTowerController : TowerController
 
 
             // Debug.Log("未找到有效目标");
-
         }
     }
 
@@ -109,10 +96,8 @@ public class EnergyTowerController : TowerController
             energyBeam.SetPosition(0, transform.position);
             energyBeam.SetPosition(1, currentTarget.transform.position);
 
-
             float t = (currentDamage - GetMinDamage(rankValue)) /
                       (GetMaxDamage(rankValue) - GetMinDamage(rankValue));
-
             energyBeam.startColor = beamColorGradient.Evaluate(t);
             energyBeam.endColor = beamColorGradient.Evaluate(t);
         }
@@ -127,7 +112,6 @@ public class EnergyTowerController : TowerController
         if (currentTarget == null || !currentTarget.IsAlive) return;
 
         currentDamage = Mathf.Clamp(
-
             currentDamage + GetDamageGrowthRate(rankValue) * Time.deltaTime,
             GetMinDamage(rankValue),
             GetMaxDamage(rankValue)
@@ -156,14 +140,12 @@ public class EnergyTowerController : TowerController
 
             ReplaceTowerBase(); // **确保基础对象不丢失**
         }
-
     }
 
     private void DisableBeam()
     {
         if (energyBeam) energyBeam.enabled = false;
     }
-
 
     // **确保 `EnergyTower` 不会因 `ReplaceTowerBase()` 丢失基础组件**
 
@@ -209,7 +191,6 @@ public class EnergyTowerController : TowerController
 
     }
     */
-
 
     void OnDrawGizmosSelected()
     {
