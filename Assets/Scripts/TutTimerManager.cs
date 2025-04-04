@@ -50,6 +50,8 @@ public class TutTimerManager : MonoBehaviour
     private bool energyTowerUIPopped = false;
 
 
+    private bool finalWaveTriggered = false; //最后一波怪
+
 
 
 
@@ -282,6 +284,15 @@ public class TutTimerManager : MonoBehaviour
 
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
+        }
+
+        // 教学完成后刷出最后一波怪（只触发一次）
+        if (!finalWaveTriggered && goldTowerUIPopped && goldTowerTutorialcomplete)
+        {
+            finalWaveTriggered = true;
+            helpText.text = "Get ready! Final wave incoming!";
+            TutGameManager.Instance.enemyManager.EnemySpawnConfigInit();
+            TutGameManager.Instance.StartCoroutine(TutGameManager.Instance.enemyManager.SpawnWaves());
         }
 
     }

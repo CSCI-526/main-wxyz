@@ -32,6 +32,9 @@ public class TutGameManager : MonoBehaviour
     private float mergeCount = 0f;
     private bool SpawnFlag = true;
 
+    private bool finalWaveTriggered = false;
+    private bool finalWaveCleared = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -67,6 +70,16 @@ public class TutGameManager : MonoBehaviour
             ShowFailScreen();
             Time.timeScale = 0f;
         }
+        if (finalWaveTriggered && !finalWaveCleared)       //最后一波怪
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            if (enemies.Length == 0)
+            {
+                finalWaveCleared = true;
+                ShowVictoryPanel();
+            }
+        }
+
     }
 
     public void setSpawnFlag(bool flag)
@@ -160,6 +173,15 @@ public class TutGameManager : MonoBehaviour
         PlayerPrefs.Save();
 
         SceneManager.LoadScene(2); //跳转到GameOver场景
+        }
+    }
+
+    private void ShowVictoryPanel()
+    {
+        if (uiManager != null)
+        {
+            uiManager.ShowVictoryPopup();
+            Time.timeScale = 0f;
         }
     }
 

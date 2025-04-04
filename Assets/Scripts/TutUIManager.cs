@@ -12,6 +12,7 @@ public class TutUIManager : MonoBehaviour
     public TextMeshProUGUI goldWarningText; //金币不足的提示文本
     public TextMeshProUGUI timerText; //计时器UI
     public GameObject pausePanel; //暂停窗口  
+    public GameObject victoryPanel; // 胜利结算提示面板
     public bool isPaused =false; 
     private bool isTimerRunning = true;//计时器是否运行
     public TextMeshProUGUI playerHealthText; //血量UI
@@ -24,7 +25,17 @@ public class TutUIManager : MonoBehaviour
         UpdateGoldUI();
         UpdateTowerCostUI(); //初始化塔价格显示
         pausePanel.SetActive(false);                 //默认隐藏暂停窗口
+        if (victoryPanel != null) 
+            victoryPanel.SetActive(false); // 隐藏胜利窗口
         UpdateHealthUI(); //初始化血量UI
+    }
+
+    public void ShowVictoryPopup() // 显示胜利提示
+    {
+        if (victoryPanel != null)
+        {
+            victoryPanel.SetActive(true);
+        }
     }
     //更新金币UI
     public void UpdateGoldUI()
@@ -198,6 +209,8 @@ public class TutUIManager : MonoBehaviour
         GameManager.Instance.SendDataFirebase();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // 重新加载当前关卡
     }
+
+    
     public void UpdateBuyButtonState()
     {
         //金币足够且棋盘未满
