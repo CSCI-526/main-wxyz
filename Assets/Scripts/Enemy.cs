@@ -7,8 +7,10 @@ public class Enemy : MonoBehaviour
     public UIManager uiManager;
     public Transform[] waypoints;
     public int index;
+
     public float distance = 0f;
     public bool IsAlive { get; protected set; } = true;
+
 
     protected float currentSpeed = 1f;
     protected float originalSpeed = 1f;
@@ -44,8 +46,10 @@ public class Enemy : MonoBehaviour
             distance += Vector2.Distance(startPoint.position, waypoints[i].position);
             startPoint = waypoints[i];
         }
+
         
         if (uiManager == null)
+
         {
             uiManager = Object.FindFirstObjectByType<UIManager>();
         }
@@ -147,9 +151,14 @@ public class Enemy : MonoBehaviour
         }
 
         currentHealth -= damage;
+
         Debug.Log($"{name} took {damage} damage ({originalHealth} / {currentHealth}) from {type}");
+
+
         if (currentHealth <= 0)
             Defeated();
+
+
     }
 
     public void SetMaxHealth(float maxHealth)
