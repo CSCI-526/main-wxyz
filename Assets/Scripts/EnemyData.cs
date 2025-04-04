@@ -9,6 +9,4 @@ public class EnemyData : ScriptableObject
     
     //Enemy damage to base
     public float damage;
-
-
 }
