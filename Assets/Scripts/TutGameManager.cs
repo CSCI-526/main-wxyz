@@ -287,6 +287,31 @@ public class TutGameManager : MonoBehaviour
 
         int randomIndex = Random.Range(0, towerPrefabs.Count);
         GameObject newTowerObj = Instantiate(towerPrefabs[randomIndex], spawnPos, Quaternion.identity);
+
+        //判断金币塔
+
+        if (towerToUpgrade is GoldTowerController)
+        {
+            List<GameObject> otherTowers = towerPrefabs.FindAll(p => !p.name.Contains("Gold"));
+            if (otherTowers.Count > 0)
+            {
+                int randIndex = Random.Range(0, otherTowers.Count);
+                newTowerObj = Instantiate(otherTowers[randIndex], GetSpawnPos(pos), Quaternion.identity);
+            }
+            else
+            {
+                Debug.LogError("No other tower types found for GoldTower upgrade.");
+                return false;
+            }
+        }
+        else
+        {
+            int randIndex = Random.Range(0, towerPrefabs.Count);
+            newTowerObj = Instantiate(towerPrefabs[randIndex], GetSpawnPos(pos), Quaternion.identity);
+        }
+
+
+
         TowerController newTowerController = newTowerObj.GetComponent<TowerController>();
         newTowerController.gridPosition = pos;
 
@@ -298,6 +323,14 @@ public class TutGameManager : MonoBehaviour
         boardManager.tiles[pos.y, pos.x].towerOnTile = newTowerController;
 
         return true;
+    }
+
+    private Vector3 GetSpawnPos(Vector2Int pos)
+    {
+        float spacing = boardManager.tileSpacing;
+        float offsetX = (boardManager.columns - 1) / 2.0f;
+        float offsetY = (boardManager.rows - 1) / 2.0f;
+        return new Vector3((pos.x - offsetX) * spacing, (offsetY - pos.y) * spacing, 0);
     }
 
 

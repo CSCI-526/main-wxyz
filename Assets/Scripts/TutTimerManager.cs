@@ -31,6 +31,13 @@ public class TutTimerManager : MonoBehaviour
     private bool energyTowerTutorialcomplete = false;
     private bool energyTowerTutorialTriggered = false;
 
+    //是否触发了金币塔教学阶段
+    private bool goldTowerTutorialTriggered = false;
+    private bool goldTowerTutorialcomplete = false;
+    private bool goldTowerUIPopped = false;
+
+    public GameObject goldTowerPanel;
+
     public GameObject cannonTowerPanel;
 
     public GameObject frozenTowerPanel;
@@ -249,6 +256,33 @@ public class TutTimerManager : MonoBehaviour
 
         }
 
+        //金币塔生成
+
+        if (towerLevel3TutorialTriggered && !goldTowerTutorialTriggered && !energyTowerPanel.activeSelf && HasEnergyTower(boardManager) && gameManager.playerGold >= 45)
+        {
+            goldTowerTutorialTriggered = true;
+            energyTowerTutorialcomplete = true;
+            helpText.text = "Now let's try the Gold Tower! It generates gold over time!";
+            TutGameManager.Instance.setSpawnFlag(true);
+
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+
+            if (buttonPulseAnimation != null)
+                buttonPulseAnimation.StartPulsing();
+
+            if (gameManager != null)
+                gameManager.AddCoin(35);
+        }
+        if (!goldTowerUIPopped && HasGoldTower(boardManager))
+        {
+            goldTowerUIPopped = true;
+            if (goldTowerPanel != null)
+                goldTowerPanel.SetActive(true);
+
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+        }
 
     }
     
@@ -348,6 +382,11 @@ public class TutTimerManager : MonoBehaviour
     }
 
 
+    public bool IsGoldTowerPhase()
+    {
+        return !goldTowerTutorialcomplete;
+    }
+
     private bool HasCannonTower(BoardManager board)
     {
         List<TowerController> towers = board.GetAllTowersOnBoard();
@@ -400,6 +439,19 @@ public class TutTimerManager : MonoBehaviour
         return false;
     }
 
+    private bool HasGoldTower(BoardManager board)
+    {
+        List<TowerController> towers = board.GetAllTowersOnBoard();
+        foreach (var tower in towers)
+        {
+            if (tower != null && tower.towerName.Contains("TutGoldTower")) 
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public void OnContinueFromPanel()
     {
@@ -415,6 +467,10 @@ public class TutTimerManager : MonoBehaviour
 
         if (energyTowerPanel != null)
             energyTowerPanel.SetActive(false);
+
+        if (goldTowerPanel != null)
+            goldTowerPanel.SetActive(false);
+
 
         // 恢复游戏
         if (uiManager != null)

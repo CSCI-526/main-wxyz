@@ -109,6 +109,18 @@ public class TutUIManager : MonoBehaviour
                 }
                 return;
             }
+            else if (timerManager.IsGoldTowerPhase())
+            {
+                bool success = gameManager.SpawnSpecificTower("GoldTower");
+                if (success)
+                {
+                    gameManager.DeductCost();
+                    UpdateGoldUI();
+                    UpdateTowerCostUI();
+                    UpdateBuyButtonState();
+                }
+                return;
+            }
 
         }
 
