@@ -2348,7 +2348,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 788335432}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2007967492}
+        m_TargetAssemblyTypeName: TutTimerManager, Assembly-CSharp
+        m_MethodName: OnContinueFromPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &788335432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3561,6 +3573,7 @@ MonoBehaviour:
   - {fileID: 1001787181882085309, guid: fab5f7ea9cf324f6c811c7705e22f610, type: 3}
   - {fileID: 49547057150472206, guid: ed19bb8838b013e41bdff3512a43032b, type: 3}
   - {fileID: 49547057150472206, guid: aaf56628bdce84451bdae985fca3ea02, type: 3}
+  - {fileID: 7710871422812722048, guid: 96259937bd932ff46a1af3c187588de3, type: 3}
   uiManager: {fileID: 757867165}
   timerManager: {fileID: 2007967492}
   FirebaseManager: {fileID: 0}
@@ -4830,6 +4843,7 @@ MonoBehaviour:
   cannonTowerPanel: {fileID: 432313824}
   frozenTowerPanel: {fileID: 1750182391}
   burningTowerPanel: {fileID: 2010798588}
+  energyTowerPanel: {fileID: 821636389}
   uiManager: {fileID: 757867165}
   buttonPulseAnimation: {fileID: 1910519309}
   gameManager: {fileID: 1536617446}

@@ -218,7 +218,7 @@ public class TutTimerManager : MonoBehaviour
         }
 
         //能量塔生成
-        if (towerLevel3TutorialTriggered && !energyTowerTutorialTriggered && !burningTowerPanel.activeSelf && HasBurningTower(boardManager) && gameManager.playerGold >= 25)
+        if (towerLevel3TutorialTriggered && !energyTowerTutorialTriggered && !burningTowerPanel.activeSelf && HasBurningTower(boardManager) && gameManager.playerGold >= 40)
         {
             energyTowerTutorialTriggered = true;
             burningTowerTutorialcomplete = true;
@@ -234,7 +234,7 @@ public class TutTimerManager : MonoBehaviour
                 buttonPulseAnimation.StartPulsing();
 
             if (gameManager != null)
-                gameManager.AddCoin(45);
+                gameManager.AddCoin(30);
         }
         
         if (!energyTowerUIPopped && HasEnergyTower(boardManager))

@@ -99,7 +99,7 @@ public class TutUIManager : MonoBehaviour
             }
             else if (timerManager.IsEnergyTowerPhase())
             {
-                bool success = gameManager.SpawnSpecificTower("TutEnergyTower");
+                bool success = gameManager.SpawnSpecificTower("EnergyTower");
                 if (success)
                 {
                     gameManager.DeductCost();
