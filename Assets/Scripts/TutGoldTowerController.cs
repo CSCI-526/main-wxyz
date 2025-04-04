@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-public class TutGoldTowerController : GoldTowerController
+public class TutGoldTowerController : TowerController
 {
     public int goldPerCycle = 10; // 每次生产的金币数量
     public float generateInterval = 5f; // 生产金币的间隔时间
