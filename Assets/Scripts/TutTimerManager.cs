@@ -127,7 +127,7 @@ public class TutTimerManager : MonoBehaviour
                 buttonPulseAnimation.StartPulsing();
             
             helpText.text = "Let's buy another tower";
-            TutGameManager.Instance.setSpawnFlag(false);
+            //TutGameManager.Instance.setSpawnFlag(false);
         }
 
         if (!towerLevel3TutorialTriggered && boardManager != null)
@@ -194,6 +194,8 @@ public class TutTimerManager : MonoBehaviour
                 uiManager.TogglePauseGameNoPanel();
         }
 
+        //Debug.Log("1234"+TutGameManager.Instance.getSpawnFlag());
+        
         // 添加新的教学阶段：引导生成燃烧塔
         if (towerLevel3TutorialTriggered && !burningTowerTutorialTriggered && !frozenTowerPanel.activeSelf && HasFrozenTower(boardManager) && gameManager.playerGold >= 25)
         {
@@ -202,6 +204,7 @@ public class TutTimerManager : MonoBehaviour
 
             TutGameManager.Instance.setSpawnFlag(true);
 
+            Debug.Log("12345"+TutGameManager.Instance.getSpawnFlag());
             helpText.text = "Now let's buy a new tower: Burning Tower! ";
 
             if (uiManager != null)
@@ -260,7 +263,7 @@ public class TutTimerManager : MonoBehaviour
 
         //金币塔生成
 
-        if (towerLevel3TutorialTriggered && !goldTowerTutorialTriggered && !energyTowerPanel.activeSelf && HasEnergyTower(boardManager) && gameManager.playerGold >= 45)
+        if (towerLevel3TutorialTriggered && !goldTowerTutorialTriggered && !energyTowerPanel.activeSelf && HasEnergyTower(boardManager) && gameManager.playerGold >= 50)
         {
             goldTowerTutorialTriggered = true;
             energyTowerTutorialcomplete = true;
@@ -274,7 +277,7 @@ public class TutTimerManager : MonoBehaviour
                 buttonPulseAnimation.StartPulsing();
 
             if (gameManager != null)
-                gameManager.AddCoin(35);
+                gameManager.AddCoin(30);
         }
         if (!goldTowerUIPopped && HasGoldTower(boardManager))
         {

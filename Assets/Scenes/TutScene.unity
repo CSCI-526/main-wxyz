@@ -1847,14 +1847,14 @@ MonoBehaviour:
     timeAfterWave: 5
     count: 4
   - enemyPrefab: {fileID: 4336658664315684068, guid: 87f2fc39a06d5994684dafdab143d7b0, type: 3}
-    enemyHealth: 100
+    enemyHealth: 150
     enemySpeed: 1
     enemyCoin: 5
     timeBetweenEnemies: 1
     timeAfterWave: 5
     count: 4
   - enemyPrefab: {fileID: 4336658664315684068, guid: 87f2fc39a06d5994684dafdab143d7b0, type: 3}
-    enemyHealth: 100
+    enemyHealth: 150
     enemySpeed: 1.5
     enemyCoin: 5
     timeBetweenEnemies: 1
@@ -1870,10 +1870,10 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 1294982609953914983, guid: c352b76ef98420548b28cf1d6b44c520, type: 3}
     enemyHealth: 300
     enemySpeed: 0.7
-    enemyCoin: 15
+    enemyCoin: 10
     timeBetweenEnemies: 1
     timeAfterWave: 5
-    count: 3
+    count: 5
   enemyPrefab1: {fileID: 4336658664315684068, guid: 87f2fc39a06d5994684dafdab143d7b0, type: 3}
   enemyPrefab2: {fileID: 1294982609953914983, guid: c352b76ef98420548b28cf1d6b44c520, type: 3}
   enemyData: {fileID: 11400000, guid: 6b0eed3b0bff246f79745dbe2d9fedad, type: 2}
