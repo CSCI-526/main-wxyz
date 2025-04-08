@@ -75,6 +75,9 @@ public class BoardManager : MonoBehaviour
     }
     public void MoveTowers(Vector2Int direction)
     {
+        // Track whether a tile has already been merged into
+        bool[,] hasMerged = new bool[rows, columns];
+
         bool anyMoved = false;
 
         if (direction.x != 0)
@@ -83,33 +86,45 @@ public class BoardManager : MonoBehaviour
             {
                 if (direction.x < 0) 
                 {
+                    // Move left
                     for (int j = 1; j < columns - 1; j++)
                     {
                         TowerController tower = tiles[i, j].towerOnTile;
                         if (tower != null)
                         {
                             int currentPos = j;
+                            // slide as far left as possible
                             while (currentPos > 1 && tiles[i, currentPos - 1].towerOnTile == null)
                             {
                                 currentPos--;
                             }
+
+                            // check if we can merge
                             if (currentPos > 1 && tiles[i, currentPos - 1].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[i, currentPos - 1].towerOnTile;
-                                if (destTower.rankValue == tower.rankValue &&
+                                // Check the “already merged” flag here
+                                if (!hasMerged[i, currentPos - 1] &&
+                                    destTower.rankValue == tower.rankValue &&
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
+                                    // Merge
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
-                                    string towerName = tower.towerName;
 
+                                    // Upgrade the destination tower
                                     destTower.UpgradeTower();
 
+                                    // Mark that destTower has merged so it doesn't merge again
+                                    hasMerged[i, currentPos - 1] = true;
+
+                                    // Destroy the old tower
                                     Destroy(tower.gameObject);
                                     continue;
                                 }
                             }
+                            // if we didn't merge but we can still move, do the move
                             if (currentPos != j)
                             {
                                 tiles[i, j].towerOnTile = null;
@@ -123,33 +138,41 @@ public class BoardManager : MonoBehaviour
                 }
                 else if (direction.x > 0) 
                 {
+                    // Move right
                     for (int j = columns - 2; j >= 1; j--)
                     {
                         TowerController tower = tiles[i, j].towerOnTile;
                         if (tower != null)
                         {
                             int currentPos = j;
+                            // slide as far right as possible
                             while (currentPos < columns - 2 && tiles[i, currentPos + 1].towerOnTile == null)
                             {
                                 currentPos++;
                             }
+
+                            // check if we can merge
                             if (currentPos < columns - 2 && tiles[i, currentPos + 1].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[i, currentPos + 1].towerOnTile;
-                                if (destTower.rankValue == tower.rankValue &&
+                                // Also check the “already merged” flag
+                                if (!hasMerged[i, currentPos + 1] &&
+                                    destTower.rankValue == tower.rankValue &&
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
+                                    // Merge
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
-                                    string towerName = tower.towerName;
 
                                     destTower.UpgradeTower();
+                                    hasMerged[i, currentPos + 1] = true;
 
                                     Destroy(tower.gameObject);
                                     continue;
                                 }
                             }
+                            // if we didn’t merge but can move, do the move
                             if (currentPos != j)
                             {
                                 tiles[i, j].towerOnTile = null;
@@ -167,6 +190,7 @@ public class BoardManager : MonoBehaviour
         {
             if (direction.y < 0) 
             {
+                // Move down
                 for (int j = 1; j < columns - 1; j++)
                 {
                     for (int i = rows - 2; i >= 1; i--)
@@ -175,30 +199,40 @@ public class BoardManager : MonoBehaviour
                         if (tower != null)
                         {
                             int currentPos = i;
+                            // slide as far down as possible
                             while (currentPos < rows - 2 && tiles[currentPos + 1, j].towerOnTile == null)
                             {
                                 currentPos++;
                             }
+
+                            // check if we can merge
                             if (currentPos < rows - 2 && tiles[currentPos + 1, j].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[currentPos + 1, j].towerOnTile;
-                                if (destTower.rankValue == tower.rankValue &&
+                                // Check hasMerged
+                                if (!hasMerged[currentPos + 1, j] &&
+                                    destTower.rankValue == tower.rankValue &&
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
+                                    // Merge
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
-                                    string towerName = tower.towerName;
+
                                     destTower.UpgradeTower();
+                                    hasMerged[currentPos + 1, j] = true;
+
                                     Destroy(tower.gameObject);
                                     continue;
                                 }
                             }
+                            // if we didn’t merge but can move, do the move
                             if (currentPos != i)
                             {
                                 tiles[i, j].towerOnTile = null;
                                 tiles[currentPos, j].towerOnTile = tower;
                                 tower.transform.position = tiles[currentPos, j].transform.position;
+                                // Be careful with row/col in the gridPosition
                                 tower.gridPosition = new Vector2Int(j, currentPos);
                                 anyMoved = true;
                             }
@@ -208,6 +242,7 @@ public class BoardManager : MonoBehaviour
             }
             else if (direction.y > 0) 
             {
+                // Move up
                 for (int j = 1; j < columns - 1; j++)
                 {
                     for (int i = 1; i < rows - 1; i++)
@@ -216,27 +251,34 @@ public class BoardManager : MonoBehaviour
                         if (tower != null)
                         {
                             int currentPos = i;
+                            // slide as far up as possible
                             while (currentPos > 1 && tiles[currentPos - 1, j].towerOnTile == null)
                             {
                                 currentPos--;
                             }
+
+                            // check if we can merge
                             if (currentPos > 1 && tiles[currentPos - 1, j].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[currentPos - 1, j].towerOnTile;
-                                if (destTower.rankValue == tower.rankValue &&
+                                // Check hasMerged
+                                if (!hasMerged[currentPos - 1, j] &&
+                                    destTower.rankValue == tower.rankValue &&
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
+                                    // Merge
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
-                                    string towerName = tower.towerName;
 
                                     destTower.UpgradeTower();
+                                    hasMerged[currentPos - 1, j] = true;
 
                                     Destroy(tower.gameObject);
                                     continue;
                                 }
                             }
+                            // if we didn’t merge but can move, do the move
                             if (currentPos != i)
                             {
                                 tiles[i, j].towerOnTile = null;
@@ -256,6 +298,7 @@ public class BoardManager : MonoBehaviour
             Debug.Log("Towers moved and merged within the inner grid.");
         }
     }
+
 
     public void LightAllTileHovers()
     {

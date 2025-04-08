@@ -293,7 +293,7 @@ public class TutGameManager : MonoBehaviour
 
 
 
-    public bool UpgradeRandomTower(TowerController towerToUpgrade)
+    public bool UpgradeRandomTower(TowerController towerToUpgrade,GameObject TargetTower)
     {
         int currentRank = towerToUpgrade.rankValue;
 
@@ -307,34 +307,7 @@ public class TutGameManager : MonoBehaviour
 
         Destroy(towerToUpgrade.gameObject);
 
-        int randomIndex = Random.Range(0, towerPrefabs.Count);
-        GameObject newTowerObj = Instantiate(towerPrefabs[randomIndex], spawnPos, Quaternion.identity);
-
-        //判断金币塔
-
-        if (towerToUpgrade is GoldTowerController)
-        {
-            List<GameObject> otherTowers = towerPrefabs.FindAll(p => !p.name.Contains("Gold"));
-            if (otherTowers.Count > 0)
-            {
-                int randIndex = Random.Range(0, otherTowers.Count);
-                newTowerObj = Instantiate(otherTowers[randIndex], GetSpawnPos(pos), Quaternion.identity);
-            }
-            else
-            {
-                Debug.LogError("No other tower types found for GoldTower upgrade.");
-                return false;
-            }
-        }
-        else
-        {
-            int randIndex = Random.Range(0, towerPrefabs.Count);
-            newTowerObj = Instantiate(towerPrefabs[randIndex], GetSpawnPos(pos), Quaternion.identity);
-        }
-
-
-
-        TowerController newTowerController = newTowerObj.GetComponent<TowerController>();
+        TowerController newTowerController = TargetTower.GetComponent<TowerController>();
         newTowerController.gridPosition = pos;
 
         newTowerController.rankValue = currentRank;

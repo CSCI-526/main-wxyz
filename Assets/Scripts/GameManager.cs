@@ -201,7 +201,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public bool UpgradeRandomTower(TowerController towerToUpgrade)
+    public bool UpgradeRandomTower(TowerController towerToUpgrade,GameObject TargetTower)
     {
         int currentRank = towerToUpgrade.rankValue;
 
@@ -216,7 +216,7 @@ public class GameManager : MonoBehaviour
         Destroy(towerToUpgrade.gameObject);
 
         int randomIndex = Random.Range(0, towerPrefabs.Count);
-        GameObject newTowerObj = Instantiate(towerPrefabs[randomIndex], spawnPos, Quaternion.identity);
+        GameObject newTowerObj = Instantiate(TargetTower, spawnPos, Quaternion.identity);
         TowerController newTowerController = newTowerObj.GetComponent<TowerController>();
         newTowerController.gridPosition = pos;
 
