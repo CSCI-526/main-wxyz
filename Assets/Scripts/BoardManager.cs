@@ -75,7 +75,7 @@ public class BoardManager : MonoBehaviour
     }
     public void MoveTowers(Vector2Int direction)
     {
-        // Track whether a tile has already been merged into
+       
         bool[,] hasMerged = new bool[rows, columns];
 
         bool anyMoved = false;
@@ -103,7 +103,7 @@ public class BoardManager : MonoBehaviour
                             if (currentPos > 1 && tiles[i, currentPos - 1].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[i, currentPos - 1].towerOnTile;
-                                // Check the “already merged” flag here
+                            
                                 if (!hasMerged[i, currentPos - 1] &&
                                     destTower.rankValue == tower.rankValue &&
                                     destTower.rankValue < 4 &&
@@ -116,7 +116,6 @@ public class BoardManager : MonoBehaviour
                                     // Upgrade the destination tower
                                     destTower.UpgradeTower();
 
-                                    // Mark that destTower has merged so it doesn't merge again
                                     hasMerged[i, currentPos - 1] = true;
 
                                     // Destroy the old tower
@@ -124,7 +123,7 @@ public class BoardManager : MonoBehaviour
                                     continue;
                                 }
                             }
-                            // if we didn't merge but we can still move, do the move
+                          
                             if (currentPos != j)
                             {
                                 tiles[i, j].towerOnTile = null;
@@ -151,11 +150,11 @@ public class BoardManager : MonoBehaviour
                                 currentPos++;
                             }
 
-                            // check if we can merge
+                           
                             if (currentPos < columns - 2 && tiles[i, currentPos + 1].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[i, currentPos + 1].towerOnTile;
-                                // Also check the “already merged” flag
+
                                 if (!hasMerged[i, currentPos + 1] &&
                                     destTower.rankValue == tower.rankValue &&
                                     destTower.rankValue < 4 &&
@@ -172,7 +171,7 @@ public class BoardManager : MonoBehaviour
                                     continue;
                                 }
                             }
-                            // if we didn’t merge but can move, do the move
+                           
                             if (currentPos != j)
                             {
                                 tiles[i, j].towerOnTile = null;
@@ -226,13 +225,12 @@ public class BoardManager : MonoBehaviour
                                     continue;
                                 }
                             }
-                            // if we didn’t merge but can move, do the move
+                            
                             if (currentPos != i)
                             {
                                 tiles[i, j].towerOnTile = null;
                                 tiles[currentPos, j].towerOnTile = tower;
                                 tower.transform.position = tiles[currentPos, j].transform.position;
-                                // Be careful with row/col in the gridPosition
                                 tower.gridPosition = new Vector2Int(j, currentPos);
                                 anyMoved = true;
                             }
@@ -251,7 +249,6 @@ public class BoardManager : MonoBehaviour
                         if (tower != null)
                         {
                             int currentPos = i;
-                            // slide as far up as possible
                             while (currentPos > 1 && tiles[currentPos - 1, j].towerOnTile == null)
                             {
                                 currentPos--;
@@ -278,7 +275,6 @@ public class BoardManager : MonoBehaviour
                                     continue;
                                 }
                             }
-                            // if we didn’t merge but can move, do the move
                             if (currentPos != i)
                             {
                                 tiles[i, j].towerOnTile = null;
