@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using System.Collections;
 
 public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -16,11 +15,10 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public GameManager gameManager;
     public UIManager uiManager;
 
-    public Image parentCooldownImage;
-
-    // Cooldown length in seconds.
-    public float cooldownDuration = 60f;
-    private bool onCooldown = false;
+    public GameObject towerPrefab;
+    // Reference to the new UI cooldown + panel script
+    [Header("UI Overlay Manager (Cooldown + Panel Toggle)")]
+    public UIToggleAndOverlay uiOverlayManager;
 
     private void Awake()
     {
@@ -43,28 +41,29 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-
-        if ((uiManager != null && uiManager.isPaused) || onCooldown)
+        // If paused or on cooldown, do nothing
+        if ((uiManager != null && uiManager.isPaused) || 
+            (uiOverlayManager != null && uiOverlayManager.IsOnCooldown))
         {
             return;
         }
 
         isDraggingArrow = true;
 
-
+        // Light up possible tiles
         if (boardManager != null)
         {
             boardManager.LightAllTileHovers();
         }
 
-        // Calculate pointer offset.
+        // Calculate pointer offset
         RectTransform parentRectTransform = rectTransform.parent as RectTransform;
         Vector2 localPointerPosition;
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            parentRectTransform,
-            eventData.position,
-            eventData.pressEventCamera,
-            out localPointerPosition))
+                parentRectTransform,
+                eventData.position,
+                eventData.pressEventCamera,
+                out localPointerPosition))
         {
             pointerOffset = rectTransform.anchoredPosition - localPointerPosition;
         }
@@ -72,7 +71,9 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnDrag(PointerEventData eventData)
     {
-        if ((uiManager != null && uiManager.isPaused) || onCooldown)
+        // If paused or on cooldown, do nothing
+        if ((uiManager != null && uiManager.isPaused) || 
+            (uiOverlayManager != null && uiOverlayManager.IsOnCooldown))
         {
             return;
         }
@@ -80,14 +81,15 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         RectTransform parentRectTransform = rectTransform.parent as RectTransform;
         Vector2 localPointerPosition;
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            parentRectTransform,
-            eventData.position,
-            eventData.pressEventCamera,
-            out localPointerPosition))
+                parentRectTransform,
+                eventData.position,
+                eventData.pressEventCamera,
+                out localPointerPosition))
         {
             rectTransform.anchoredPosition = localPointerPosition + pointerOffset;
         }
 
+        // Convert arrow position to world coords
         Vector3 arrowScreenPos = RectTransformUtility.WorldToScreenPoint(
             eventData.pressEventCamera, 
             rectTransform.position
@@ -95,6 +97,7 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         Vector3 arrowWorldPos = Camera.main.ScreenToWorldPoint(arrowScreenPos);
         arrowWorldPos.z = 0f;
 
+        // Update tile highlight for the tile under the arrow
         if (boardManager != null)
         {
             TileController tileUnderArrow = boardManager.GetTileUnderPosition(arrowWorldPos);
@@ -104,8 +107,9 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnEndDrag(PointerEventData eventData)
     {
-
-        if ((uiManager != null && uiManager.isPaused) || onCooldown)
+        // If paused or on cooldown, do nothing
+        if ((uiManager != null && uiManager.isPaused) || 
+            (uiOverlayManager != null && uiOverlayManager.IsOnCooldown))
         {
             return;
         }
@@ -130,10 +134,15 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
                 TowerController towerOnTile = tileAtDrop.towerOnTile;
                 if (towerOnTile != null && towerOnTile.rankValue < 4)
                 {
-                    bool upgraded = gameManager.UpgradeRandomTower(towerOnTile);
+                    bool upgraded = gameManager.UpgradeRandomTower(towerOnTile, towerPrefab);
                     if (upgraded)
                     {
-                        StartCoroutine(CooldownRoutine());
+                        // 1) Start the cooldown on the UI overlay
+                        if (uiOverlayManager != null)
+                        {
+                            uiOverlayManager.StartCooldown();
+                            uiOverlayManager.CloseColorPanel();  // Hide the panel after a successful upgrade
+                        }
                     }
                 }
             }
@@ -141,42 +150,5 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         // Reset arrow to original UI location
         rectTransform.anchoredPosition = initialAnchoredPosition;
-    }
-
-    /// <summary>
-    /// Animates the parent's cooldown image from full -> 0 over the cooldown duration,
-    /// then re-enables dragging.
-    /// </summary>
-    private IEnumerator CooldownRoutine()
-    {
-        onCooldown = true;
-
-        if (parentCooldownImage != null)
-        {
-            // Fill at 100% initially to represent the start of cooldown
-            parentCooldownImage.fillAmount = 1f;
-        }
-
-        float remainingTime = cooldownDuration;
-        while (remainingTime > 0f)
-        {
-            remainingTime -= Time.deltaTime;
-            // Update fill to reflect how much time remains
-            if (parentCooldownImage != null)
-            {
-                parentCooldownImage.fillAmount = remainingTime / cooldownDuration;
-            }
-
-            yield return null;
-        }
-
-        // Cooldown finished
-        if (parentCooldownImage != null)
-        {
-            // Optionally set fill to 0 to indicate off cooldown
-            parentCooldownImage.fillAmount = 0f;
-        }
-
-        onCooldown = false;
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ButtonPulseAnimation : MonoBehaviour
 {
@@ -58,6 +59,8 @@ public class ButtonPulseAnimation : MonoBehaviour
     }
     public void TransistToNewScene()
     {
+        SceneManager.LoadScene("SampleScene");
         Debug.Log("Jump to next level");
     }
+
 }

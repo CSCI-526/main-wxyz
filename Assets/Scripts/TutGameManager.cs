@@ -31,6 +31,12 @@ public class TutGameManager : MonoBehaviour
     private float score = 0f;
     private float mergeCount = 0f;
     private bool SpawnFlag = true;
+<<<<<<< HEAD
+=======
+
+    private bool finalWaveTriggered = false;
+    private bool finalWaveCleared = false;
+>>>>>>> f2e03a7c992f933402dfb771e2b6aebdfe3b3d24
 
     private void Awake()
     {
@@ -67,6 +73,26 @@ public class TutGameManager : MonoBehaviour
             ShowFailScreen();
             Time.timeScale = 0f;
         }
+        if (finalWaveTriggered && !finalWaveCleared)       //最后一波怪
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            if (enemies.Length == 0)
+            {
+                finalWaveCleared = true;
+                ShowVictoryPanel();
+            }
+        }
+
+    }
+
+    public void setSpawnFlag(bool flag)
+    {
+        SpawnFlag = flag;
+    }
+ 
+    public bool getSpawnFlag()
+    {
+        return SpawnFlag;
     }
 
     /*** TODO ***/
@@ -165,6 +191,15 @@ public class TutGameManager : MonoBehaviour
         }
     }
 
+    private void ShowVictoryPanel()
+    {
+        if (uiManager != null)
+        {
+            uiManager.ShowVictoryPopup();
+            Time.timeScale = 0f;
+        }
+    }
+
     public bool SpawnRandomTower()
     {
         if (playerGold < spawnCost)
@@ -214,8 +249,66 @@ public class TutGameManager : MonoBehaviour
         return true;
     }
 
+    //生成特定塔
+    public bool SpawnSpecificTower(string towerName)
+    {
+        if (playerGold < spawnCost)
+        {
+            return false;
+        }
 
-    public bool UpgradeRandomTower(TowerController towerToUpgrade)
+        List<Vector2Int> availableTiles = new List<Vector2Int>();
+        for (int r = 1; r < boardManager.rows - 1; r++)
+        {
+            for (int c = 1; c < boardManager.columns - 1; c++)
+            {
+                if (boardManager.tiles[r, c].towerOnTile == null)
+                {
+                    availableTiles.Add(new Vector2Int(c, r));
+                }
+            }
+        }
+
+        if (availableTiles.Count == 0)
+        {
+            Debug.Log("No available tiles to spawn a tower.");
+            return false;
+        }
+
+        if (towerPrefabs == null || towerPrefabs.Count == 0)
+        {
+            Debug.LogError("No tower prefabs assigned in GameManager.");
+            return false;
+        }
+
+        GameObject targetPrefab = towerPrefabs.Find(prefab => prefab.name == towerName);
+        if (targetPrefab == null)
+        {
+            Debug.LogError("Tower prefab with name '" + towerName + "' not found.");
+            return false;
+        }
+
+        Vector2Int chosenTile = availableTiles[Random.Range(0, availableTiles.Count)];
+        int gridCol = chosenTile.x;
+        int gridRow = chosenTile.y;
+
+        float spacing = boardManager.tileSpacing;
+        float offsetX = (boardManager.columns - 1) / 2.0f;
+        float offsetY = (boardManager.rows - 1) / 2.0f;
+        Vector3 spawnPos = new Vector3((gridCol - offsetX) * spacing, (offsetY - gridRow) * spacing, 0);
+
+        GameObject towerObj = Instantiate(targetPrefab, spawnPos, Quaternion.identity);
+        TowerController towerController = towerObj.GetComponent<TowerController>();
+        towerController.gridPosition = new Vector2Int(gridCol, gridRow);
+
+        boardManager.tiles[gridRow, gridCol].towerOnTile = towerController;
+
+        return true;
+    }
+
+
+
+    public bool UpgradeRandomTower(TowerController towerToUpgrade,GameObject TargetTower)
     {
         int currentRank = towerToUpgrade.rankValue;
 
@@ -229,9 +322,7 @@ public class TutGameManager : MonoBehaviour
 
         Destroy(towerToUpgrade.gameObject);
 
-        int randomIndex = Random.Range(0, towerPrefabs.Count);
-        GameObject newTowerObj = Instantiate(towerPrefabs[randomIndex], spawnPos, Quaternion.identity);
-        TowerController newTowerController = newTowerObj.GetComponent<TowerController>();
+        TowerController newTowerController = TargetTower.GetComponent<TowerController>();
         newTowerController.gridPosition = pos;
 
         newTowerController.rankValue = currentRank;
@@ -242,6 +333,14 @@ public class TutGameManager : MonoBehaviour
         boardManager.tiles[pos.y, pos.x].towerOnTile = newTowerController;
 
         return true;
+    }
+
+    private Vector3 GetSpawnPos(Vector2Int pos)
+    {
+        float spacing = boardManager.tileSpacing;
+        float offsetX = (boardManager.columns - 1) / 2.0f;
+        float offsetY = (boardManager.rows - 1) / 2.0f;
+        return new Vector3((pos.x - offsetX) * spacing, (offsetY - pos.y) * spacing, 0);
     }
 
 

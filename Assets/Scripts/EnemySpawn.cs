@@ -26,9 +26,10 @@ public class EnemySpawn : MonoBehaviour
     private Transform spawnPoint;                       // 敌人出生点
     private Transform[] path = new Transform[4];        // 敌人路径点
 
+
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -91,16 +92,28 @@ public class EnemySpawn : MonoBehaviour
             {
                 for (int i = 0; i < wave.count; i++)
                 {
+                    Debug.Log("Spawning enemy at: " + spawnPoint.position);
                     GameObject enemy = Instantiate(wave.enemyPrefab, spawnPoint.position, Quaternion.identity);
                     enemy.GetComponent<Enemy>().InitiateEnemy(path, wave.enemyHealth, wave.enemySpeed, wave.enemyCoin);
                     yield return new WaitForSeconds(wave.timeBetweenEnemies);
                 }
+<<<<<<< HEAD
                 // yield return new WaitForSeconds(wave.timeAfterWave);
                 if (enableSpawnFlag)
                 {
                     TutGameManager.Instance.setSpawnFlag(false);
                     while (!TutGameManager.Instance.getSpawnFlag())
                     { 
+=======
+
+                // yield return new WaitForSeconds(wave.timeAfterWave);
+                if (enableSpawnFlag)
+                {
+                    yield return new WaitForSeconds(0.1f);
+                    TutGameManager.Instance.setSpawnFlag(false);
+                    while (!TutGameManager.Instance.getSpawnFlag())
+                    {
+>>>>>>> f2e03a7c992f933402dfb771e2b6aebdfe3b3d24
                         yield return new WaitForSeconds(0.3f);
                     }
                 }
@@ -108,8 +121,11 @@ public class EnemySpawn : MonoBehaviour
                 {
                     yield return new WaitForSeconds(wave.timeAfterWave);
                 }
+<<<<<<< HEAD
                 
                 
+=======
+>>>>>>> f2e03a7c992f933402dfb771e2b6aebdfe3b3d24
             }
         }
 

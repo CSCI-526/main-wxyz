@@ -12,6 +12,7 @@ public class TutUIManager : MonoBehaviour
     public TextMeshProUGUI goldWarningText; //金币不足的提示文本
     public TextMeshProUGUI timerText; //计时器UI
     public GameObject pausePanel; //暂停窗口  
+    public GameObject victoryPanel; // 胜利结算提示面板
     public bool isPaused =false; 
     private bool isTimerRunning = true;//计时器是否运行
     public TextMeshProUGUI playerHealthText; //血量UI
@@ -24,7 +25,17 @@ public class TutUIManager : MonoBehaviour
         UpdateGoldUI();
         UpdateTowerCostUI(); //初始化塔价格显示
         pausePanel.SetActive(false);                 //默认隐藏暂停窗口
+        if (victoryPanel != null) 
+            victoryPanel.SetActive(false); // 隐藏胜利窗口
         UpdateHealthUI(); //初始化血量UI
+    }
+
+    public void ShowVictoryPopup() // 显示胜利提示
+    {
+        if (victoryPanel != null)
+        {
+            victoryPanel.SetActive(true);
+        }
     }
     //更新金币UI
     public void UpdateGoldUI()
@@ -38,7 +49,7 @@ public class TutUIManager : MonoBehaviour
         towerCostText.text = ": " + gameManager.spawnCost;
     }
     //购买塔
-    public void OnBuyTowerClicked()
+    /*public void OnBuyTowerClicked()
     {
         if (!buyButton.interactable) return; //如果按钮是灰色的，直接返回（不执行）
 
@@ -48,6 +59,114 @@ public class TutUIManager : MonoBehaviour
             UpdateGoldUI();
             UpdateTowerCostUI();
             UpdateBuyButtonState(); //购买后更新按钮状态
+        }
+        else
+        {
+            Debug.Log("Board is full. Cannot buy tower.");
+        }
+    }*/
+
+    //基地血量跳动
+    public void AnimateHealthText()
+    {
+        StartCoroutine(PulseText(playerHealthText));
+    }
+
+    IEnumerator PulseText(TextMeshProUGUI text)
+    {
+        Vector3 originalScale = text.transform.localScale;
+        float pulseDuration = 0.8f;
+        int pulseCount = 5; // 设置跳动次数
+
+        for (int i = 0; i < pulseCount; i++)
+        {
+            // 放大
+            text.transform.localScale = originalScale * 1.3f;
+            yield return new WaitForSeconds(pulseDuration);
+
+            // 缩小回原样
+            text.transform.localScale = originalScale;
+            yield return new WaitForSeconds(pulseDuration);
+        }
+    }
+
+
+
+    public void OnBuyTowerClicked()
+    {
+        if (!buyButton.interactable) return;
+
+        if (timerManager != null)
+        {
+            if (timerManager.IsInTutorialPhase())
+            {
+                bool success = gameManager.SpawnSpecificTower("Cannon");
+                if (success)
+                {
+                    gameManager.DeductCost();
+                    UpdateGoldUI();
+                    UpdateTowerCostUI();
+                    UpdateBuyButtonState();
+                }
+                return;
+            }
+            else if (timerManager.IsFrozenTowerPhase())
+            {
+                bool success = gameManager.SpawnSpecificTower("TutFrozenTower");
+                if (success)
+                {
+                    gameManager.DeductCost();
+                    UpdateGoldUI();
+                    UpdateTowerCostUI();
+                    UpdateBuyButtonState();
+                }
+                return;
+            }
+            else if (timerManager.IsBurningTowerPhase())
+            {
+                bool success = gameManager.SpawnSpecificTower("TutBurningTower");
+                if (success)
+                {
+                    gameManager.DeductCost();
+                    UpdateGoldUI();
+                    UpdateTowerCostUI();
+                    UpdateBuyButtonState();
+                }
+                return;
+            }
+            else if (timerManager.IsEnergyTowerPhase())
+            {
+                bool success = gameManager.SpawnSpecificTower("EnergyTower");
+                if (success)
+                {
+                    gameManager.DeductCost();
+                    UpdateGoldUI();
+                    UpdateTowerCostUI();
+                    UpdateBuyButtonState();
+                }
+                return;
+            }
+            else if (timerManager.IsGoldTowerPhase())
+            {
+                bool success = gameManager.SpawnSpecificTower("TutGoldTower");
+                if (success)
+                {
+                    gameManager.DeductCost();
+                    UpdateGoldUI();
+                    UpdateTowerCostUI();
+                    UpdateBuyButtonState();
+                }
+                return;
+            }
+
+        }
+
+        if (gameManager.SpawnRandomTower())
+        {
+            gameManager.DeductCost();
+            UpdateGoldUI();
+            UpdateTowerCostUI();
+            UpdateBuyButtonState();
         }
         else
         {
@@ -91,6 +210,7 @@ public class TutUIManager : MonoBehaviour
         TogglePauseGame();
     }
 
+
   //退出游戏
     public void QuitGame()
     {
@@ -115,6 +235,8 @@ public class TutUIManager : MonoBehaviour
         GameManager.Instance.SendDataFirebase();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // 重新加载当前关卡
     }
+
+    
     public void UpdateBuyButtonState()
     {
         //金币足够且棋盘未满

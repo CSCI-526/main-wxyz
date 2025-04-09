@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5565194724834910087}
   - component: {fileID: 6282325720260741598}
-  - component: {fileID: 5162412661748993997}
+  - component: {fileID: -3244254410543136281}
   m_Layer: 0
-  m_Name: FrozenTower
+  m_Name: TutGoldTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5162412661748993997
+--- !u!114 &-3244254410543136281
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,11 +97,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 49547057150472206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c48273ed093fa4b55aa78a94a55268e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 4af3b6e30e4b63d4ebe8315ca6980d2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rankValue: 1
-  towerName: FrozenTower
+  towerName: TutGoldernTower
   towerSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   attackRange: 0
   attackDamage: 0
@@ -112,4 +112,7 @@ MonoBehaviour:
   - {fileID: 2729133250331387908, guid: 9e77472785924463dbc0dd96e7fcc0f1, type: 3}
   - {fileID: 6734909066804063127, guid: 1e20dd86615b14cd2ba6b808f1daed89, type: 3}
   gridPosition: {x: 0, y: 0}
-  slowDuration: 3
+  goldPerCycle: 10
+  generateInterval: 1
+  goldPerCycle: 10
+  generateInterval: 5

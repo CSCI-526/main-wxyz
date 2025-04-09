@@ -18,8 +18,42 @@ public class TutTimerManager : MonoBehaviour
 
     private bool rewardGold = false;
 
-
+    private bool cannonTowerUIPopped = false;
     private bool towerLevel3TutorialTriggered = false;
+    private bool frozenTowerTutorialTriggered = false;
+    private bool frozenTowerTutorialcomplete = false;
+
+    //是否触发了燃烧塔教学阶段
+    private bool burningTowerTutorialcomplete = false;
+    private bool burningTowerTutorialTriggered = false;
+
+    //是否触发了能量塔教学阶段
+    private bool energyTowerTutorialcomplete = false;
+    private bool energyTowerTutorialTriggered = false;
+
+    //是否触发了金币塔教学阶段
+    private bool goldTowerTutorialTriggered = false;
+    private bool goldTowerTutorialcomplete = false;
+    private bool goldTowerUIPopped = false;
+
+    public GameObject goldTowerPanel;
+
+    public GameObject cannonTowerPanel;
+
+    public GameObject frozenTowerPanel;
+    private bool frozenTowerUIPopped = false;
+
+    public GameObject burningTowerPanel;  // 拖拽你的 TowerPanel 进来
+    private bool burningTowerUIPopped = false;  // 防止重复弹窗
+
+    public GameObject energyTowerPanel;  
+    private bool energyTowerUIPopped = false;
+
+
+    private bool finalWaveTriggered = false; //最后一波怪
+
+
+
 
     public TutUIManager uiManager;
     public ButtonPulseAnimation buttonPulseAnimation;
@@ -30,6 +64,8 @@ public class TutTimerManager : MonoBehaviour
     
     void Start()
     {
+        helpText.text = "Goal of the game:\nPurchase and Upgrade Random Towers to Defend Enemies!\nSurvive as long as possible!";
+        uiManager.AnimateHealthText();
         if (timerText == null)
             Debug.LogError("TimerText is NULL! Assign it in the Inspector.");
         if (helpText == null)
@@ -39,7 +75,7 @@ public class TutTimerManager : MonoBehaviour
         if (continueButton != null)
             continueButton.gameObject.SetActive(false);
     }
-    
+
     void Update()
     {
         if (!isTimerRunning) return;
@@ -48,14 +84,26 @@ public class TutTimerManager : MonoBehaviour
         elapsedTime += Time.deltaTime;
         UpdateTimerUI();
 
-        if (!helpTextUpdated && elapsedTime >= 3f)
+        if (!helpTextUpdated && elapsedTime >= 8f)
         {
             helpText.text = "Buy your first tower";
             helpTextUpdated = true;
         }
+
+        if (!cannonTowerUIPopped && HasCannonTower(boardManager))
+        {
+            cannonTowerUIPopped = true;
+            
+
+            if (cannonTowerPanel != null)
+                cannonTowerPanel.SetActive(true);
+            
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+        }
         
 
-        if (!pulseTriggered && elapsedTime >= 3f)
+        if (!pulseTriggered && elapsedTime >= 8f)
         {
             pulseTriggered = true;
             
@@ -81,8 +129,8 @@ public class TutTimerManager : MonoBehaviour
                 buttonPulseAnimation.StartPulsing();
             
             helpText.text = "Let's buy another tower";
+            //TutGameManager.Instance.setSpawnFlag(false);
         }
-
 
         if (!towerLevel3TutorialTriggered && boardManager != null)
         {
@@ -91,28 +139,182 @@ public class TutTimerManager : MonoBehaviour
                 towerLevel3TutorialTriggered = true;
 
 
-                if (buyButton != null)
-                    buyButton.gameObject.SetActive(false);
+                /*if (buyButton != null)
+                    buyButton.gameObject.SetActive(false);*/
 
-                if (continueButton != null)
-                    continueButton.gameObject.SetActive(true);
+                /*if (continueButton != null)
+                    continueButton.gameObject.SetActive(true);*/
 
-                helpText.text = "You have a Level 3 Tower! Press Continue to proceed...";
+                /*helpText.text = "You have a Level 3 Tower! Press Continue to proceed...";*/
             }
             if (HasLevel2Tower(boardManager))
             {
 
-                helpText.text = "You have a level 2 tower! Keep buying more towers to merge and upgrade!";
+                helpText.text = "You have a level 2 tower! Keep buying and merging to get a level 3 tower!";
                 if (!rewardGold)
                 {
-                    gameManager.AddCoin(100);
+                    gameManager.AddCoin(50);
                     rewardGold = true;
+                    TutGameManager.Instance.setSpawnFlag(true);
+                }
+
+                if(gameManager.playerGold >= 40)
+                {
+                    if (buttonPulseAnimation != null)
+                        buttonPulseAnimation.StartPulsing();
                 }
                 
             }
         }
+
+        if (towerLevel3TutorialTriggered && !frozenTowerTutorialTriggered)
+        {
+            frozenTowerTutorialTriggered = true;
+
+            helpText.text = "You have a Level 3 Tower! Let's buy and explore more tower";
+
+            TutGameManager.Instance.setSpawnFlag(true);
+            
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+            
+            if (buttonPulseAnimation != null)
+                buttonPulseAnimation.StartPulsing();
+            
+            if (gameManager != null)
+                gameManager.AddCoin(50);
+        }
+        // 当检测到 Frozen Tower 出现时，弹出相应的面板（防止重复）
+        if (!frozenTowerUIPopped && HasFrozenTower(boardManager))
+        {
+            frozenTowerUIPopped = true;
+
+            if (frozenTowerPanel != null)
+                frozenTowerPanel.SetActive(true);
+            
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+        }
+
+        //Debug.Log("1234"+TutGameManager.Instance.getSpawnFlag());
+        
+        // 添加新的教学阶段：引导生成燃烧塔
+        if (towerLevel3TutorialTriggered && !burningTowerTutorialTriggered && !frozenTowerPanel.activeSelf && HasFrozenTower(boardManager) && gameManager.playerGold >= 25)
+        {
+            burningTowerTutorialTriggered = true;
+            frozenTowerTutorialcomplete = true;
+
+            TutGameManager.Instance.setSpawnFlag(true);
+
+            Debug.Log("12345"+TutGameManager.Instance.getSpawnFlag());
+            helpText.text = "Too many enemies! Is there any tower can deal with this situation? Let's buy a new tower!";
+
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+
+            if (buttonPulseAnimation != null)
+                buttonPulseAnimation.StartPulsing();
+
+            if (gameManager != null)
+                gameManager.AddCoin(35);
+        }
+        // 首次出现 Burning Tower 时弹出 UI(先注释掉)
+        if (!burningTowerUIPopped && HasBurningTower(boardManager))
+        {
+            burningTowerUIPopped = true;
+
+            if (burningTowerPanel != null)
+                burningTowerPanel.SetActive(true);
+            
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+
+        }
+
+        //能量塔生成
+        if (towerLevel3TutorialTriggered && !energyTowerTutorialTriggered && !burningTowerPanel.activeSelf && HasBurningTower(boardManager) && gameManager.playerGold >= 40)
+        {
+            energyTowerTutorialTriggered = true;
+            burningTowerTutorialcomplete = true;
+
+            TutGameManager.Instance.setSpawnFlag(true);
+
+            helpText.text = "Some enemies are too tanky, maybe we can buy and pray there has another kind of Tower to solve this! ";
+
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+
+            if (buttonPulseAnimation != null)
+                buttonPulseAnimation.StartPulsing();
+
+            if (gameManager != null)
+                gameManager.AddCoin(30);
+        }
+        
+        if (!energyTowerUIPopped && HasEnergyTower(boardManager))
+        {
+            energyTowerUIPopped = true;
+
+            if (energyTowerPanel != null)
+                energyTowerPanel.SetActive(true);
+
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+
+        }
+
+        //金币塔生成
+
+        if (towerLevel3TutorialTriggered && !goldTowerTutorialTriggered && !energyTowerPanel.activeSelf && HasEnergyTower(boardManager) && gameManager.playerGold >= 50)
+        {
+            goldTowerTutorialTriggered = true;
+            energyTowerTutorialcomplete = true;
+            helpText.text = "Gold is too slow to gain! Will we be lucky enough to buy a tower that can produce gold?";
+            // TutGameManager.Instance.setSpawnFlag(true);
+
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+
+            if (buttonPulseAnimation != null)
+                buttonPulseAnimation.StartPulsing();
+
+            if (gameManager != null)
+                gameManager.AddCoin(30);
+        }
+        if (!goldTowerUIPopped && HasGoldTower(boardManager))
+        {
+            goldTowerUIPopped = true;
+            if (goldTowerPanel != null)
+                goldTowerPanel.SetActive(true);
+
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+        }
+
+        // 教学完成后刷出最后一波怪（只触发一次）
+        /*if (!finalWaveTriggered && goldTowerUIPopped && goldTowerTutorialcomplete)
+        {
+            finalWaveTriggered = true;
+            helpText.text = "Get ready! Final wave incoming!";
+            TutGameManager.Instance.enemyManager.EnemySpawnConfigInit();
+            TutGameManager.Instance.StartCoroutine(TutGameManager.Instance.enemyManager.SpawnWaves());
+        }*/
+
+        if (!finalWaveTriggered && goldTowerUIPopped && gameManager.playerGold >= 50)
+        {
+            if (buyButton != null)
+                buyButton.gameObject.SetActive(false);
+
+            if (continueButton != null)
+                continueButton.gameObject.SetActive(true);
+            finalWaveTriggered = true;
+            helpText.text = "You've finished the tutorial! Let's go to the main game!";
+
+        }
+
     }
     
+
 
     private bool HasLevel3Tower(BoardManager board)
     {
@@ -182,5 +384,124 @@ public class TutTimerManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat("FinalSurvivalTime", elapsedTime);
         PlayerPrefs.Save();
+    }
+
+    //操作教学
+    public bool IsInTutorialPhase()
+    {
+        return !towerLevel3TutorialTriggered;
+    }
+
+    public bool IsFrozenTowerPhase()
+    {
+        return !frozenTowerTutorialcomplete;
+    }
+
+    //燃烧塔教学
+    public bool IsBurningTowerPhase()
+    {
+        return !burningTowerTutorialcomplete;
+    }
+    //能量塔教学
+
+    public bool IsEnergyTowerPhase()
+    {
+        return !energyTowerTutorialcomplete;
+    }
+
+
+    public bool IsGoldTowerPhase()
+    {
+        return !goldTowerTutorialcomplete;
+    }
+
+    private bool HasCannonTower(BoardManager board)
+    {
+        List<TowerController> towers = board.GetAllTowersOnBoard();
+        foreach (var tower in towers)
+        {
+            if (tower != null && tower.towerName.Contains("Tank"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 检测 Frozen Tower 是否存在
+    private bool HasFrozenTower(BoardManager board)
+    {
+        List<TowerController> towers = board.GetAllTowersOnBoard();
+        foreach (var tower in towers)
+        {
+            if (tower != null && tower.towerName.Contains("TutFrozenTower"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    private bool HasBurningTower(BoardManager board)
+    {
+        List<TowerController> towers = board.GetAllTowersOnBoard();
+        foreach (var tower in towers)
+        {
+            if (tower != null && tower.towerName.Contains("TutBurningTower"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool HasEnergyTower(BoardManager board)
+    {
+        List<TowerController> towers = board.GetAllTowersOnBoard();
+        foreach (var tower in towers)
+        {
+            if (tower != null && tower.towerName.Contains("Energy"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool HasGoldTower(BoardManager board)
+    {
+        List<TowerController> towers = board.GetAllTowersOnBoard();
+        foreach (var tower in towers)
+        {
+            if (tower != null && tower.towerName.Contains("TutGoldernTower")) 
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public void OnContinueFromPanel()
+    {
+        if (cannonTowerPanel != null)
+            cannonTowerPanel.SetActive(false);
+
+        if (frozenTowerPanel != null)
+            frozenTowerPanel.SetActive(false);
+
+        // 关闭 Panel
+        if (burningTowerPanel != null)
+            burningTowerPanel.SetActive(false);
+
+        if (energyTowerPanel != null)
+            energyTowerPanel.SetActive(false);
+
+        if (goldTowerPanel != null)
+            goldTowerPanel.SetActive(false);
+
+
+        // 恢复游戏
+        if (uiManager != null)
+            uiManager.TogglePauseGameNoPanel();
     }
 }
