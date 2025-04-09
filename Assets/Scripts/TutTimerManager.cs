@@ -64,6 +64,8 @@ public class TutTimerManager : MonoBehaviour
     
     void Start()
     {
+        helpText.text = "Goal of the game:\nPurchase and Upgrade Random Towers to Defend Enemies!\nSurvive as long as possible!";
+        uiManager.AnimateHealthText();
         if (timerText == null)
             Debug.LogError("TimerText is NULL! Assign it in the Inspector.");
         if (helpText == null)
@@ -82,7 +84,7 @@ public class TutTimerManager : MonoBehaviour
         elapsedTime += Time.deltaTime;
         UpdateTimerUI();
 
-        if (!helpTextUpdated && elapsedTime >= 5f)
+        if (!helpTextUpdated && elapsedTime >= 8f)
         {
             helpText.text = "Buy your first tower";
             helpTextUpdated = true;
@@ -101,7 +103,7 @@ public class TutTimerManager : MonoBehaviour
         }
         
 
-        if (!pulseTriggered && elapsedTime >= 5f)
+        if (!pulseTriggered && elapsedTime >= 8f)
         {
             pulseTriggered = true;
             
@@ -169,7 +171,7 @@ public class TutTimerManager : MonoBehaviour
         {
             frozenTowerTutorialTriggered = true;
 
-            helpText.text = "You have a Level 3 Tower! let's buy and explore more tower";
+            helpText.text = "You have a Level 3 Tower! Let's buy and explore more tower";
 
             TutGameManager.Instance.setSpawnFlag(true);
             
@@ -237,7 +239,7 @@ public class TutTimerManager : MonoBehaviour
 
             TutGameManager.Instance.setSpawnFlag(true);
 
-            helpText.text = "Some enemies are too tanky, maybe we can buy and pray there has a new kind of Tower to solve this! ";
+            helpText.text = "Some enemies are too tanky, maybe we can buy and pray there has another kind of Tower to solve this! ";
 
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
@@ -298,7 +300,7 @@ public class TutTimerManager : MonoBehaviour
             TutGameManager.Instance.StartCoroutine(TutGameManager.Instance.enemyManager.SpawnWaves());
         }*/
 
-        if (!finalWaveTriggered && goldTowerUIPopped && gameManager.playerGold >= 20)
+        if (!finalWaveTriggered && goldTowerUIPopped && gameManager.playerGold >= 50)
         {
             if (buyButton != null)
                 buyButton.gameObject.SetActive(false);
