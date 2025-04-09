@@ -66,6 +66,32 @@ public class TutUIManager : MonoBehaviour
         }
     }*/
 
+    //基地血量跳动
+    public void AnimateHealthText()
+    {
+        StartCoroutine(PulseText(playerHealthText));
+    }
+
+    IEnumerator PulseText(TextMeshProUGUI text)
+    {
+        Vector3 originalScale = text.transform.localScale;
+        float pulseDuration = 0.8f;
+        int pulseCount = 5; // 设置跳动次数
+
+        for (int i = 0; i < pulseCount; i++)
+        {
+            // 放大
+            text.transform.localScale = originalScale * 1.3f;
+            yield return new WaitForSeconds(pulseDuration);
+
+            // 缩小回原样
+            text.transform.localScale = originalScale;
+            yield return new WaitForSeconds(pulseDuration);
+        }
+    }
+
+
+
     public void OnBuyTowerClicked()
     {
         if (!buyButton.interactable) return;
