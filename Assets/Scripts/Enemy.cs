@@ -123,27 +123,27 @@ public class Enemy : MonoBehaviour
                     gameManager.AddDamageFromEnergyTower(damage);
                     break;
                 default:
-                    gameManager.AddDamageFromTankTower(damage);
+                    gameManager.AddDamageFromCanonTower(damage);
                     break;
             }
         }
         else if (tutGameManager != null)
         {
-            switch (type)
-            {
-                case "burning":
-                    tutGameManager.AddDamageFromBurningTower(damage);
-                    break;
-                case "slow":
-                    tutGameManager.AddDamageFromSlowTower(damage);
-                    break;
-                case "energy":
-                    tutGameManager.AddDamageFromEnergyTower(damage);
-                    break;
-                default:
-                    tutGameManager.AddDamageFromTankTower(damage);
-                    break;
-            }
+            // switch (type)
+            // {
+            //     case "burning":
+            //         tutGameManager.AddDamageFromBurningTower(damage);
+            //         break;
+            //     case "slow":
+            //         tutGameManager.AddDamageFromSlowTower(damage);
+            //         break;
+            //     case "energy":
+            //         tutGameManager.AddDamageFromEnergyTower(damage);
+            //         break;
+            //     default:
+            //         tutGameManager.AddDamageFromCanonTower(damage);
+            //         break;
+            // }
         }
 
         currentHealth -= damage;

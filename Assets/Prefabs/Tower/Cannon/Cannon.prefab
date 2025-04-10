@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rankValue: 1
-  towerName: Tank
+  towerName: Canon
   towerSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   attackRange: 4
   attackDamage: 50

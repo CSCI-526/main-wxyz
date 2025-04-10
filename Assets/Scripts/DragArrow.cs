@@ -137,6 +137,7 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
                     bool upgraded = gameManager.UpgradeRandomTower(towerOnTile, towerPrefab);
                     if (upgraded)
                     {
+                        gameManager.AddChangeColorCount();
                         // 1) Start the cooldown on the UI overlay
                         if (uiOverlayManager != null)
                         {

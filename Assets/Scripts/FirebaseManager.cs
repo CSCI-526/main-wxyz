@@ -27,19 +27,29 @@ public class FirebaseManager : MonoBehaviour
     {
         // StartCoroutine(PostRequest(databaseURL + "AlphaPlayTestData.json", json));
         StartCoroutine(PostRequest(databaseURL + "BetaPlayTestData.json", json));
+        // StartCoroutine(PostRequest(databaseURL + "BetaPlayTestData1.json", json));
+        // StartCoroutine(PostRequest(databaseURL + "BetaPlayTestData2.json", json));
         // StartCoroutine(PostRequest(databaseURL + "BetaPlayPublishData.json", json));
+        // StartCoroutine(PostRequest(databaseURL + "GoldPlayTestData.json", json));
+        // StartCoroutine(PostRequest(databaseURL + "GoldPlayTestData1.json", json));
+        // StartCoroutine(PostRequest(databaseURL + "GoldPlayTestData2.json", json));
+        // StartCoroutine(PostRequest(databaseURL + "GoldPlayPublishData.json", json));
     }
 
     public void ReadData()
     {
         StartCoroutine(GetRequest(databaseURL + "BetaRankListTestData.json"));
         // StartCoroutine(GetRequest(databaseURL + "BetaRankListPublishData.json"));
+        // StartCoroutine(GetRequest(databaseURL + "GoldRankListTestData.json"));
+        // StartCoroutine(GetRequest(databaseURL + "GoldRankListPublishData.json"));
     }
 
     public void RepalceData(string json)
     {
         StartCoroutine(PutRequest(databaseURL + "BetaRankListTestData.json", json));
         // StartCoroutine(PutRequest(databaseURL + "BetaRankListPublishData.json", json));
+        // StartCoroutine(PutRequest(databaseURL + "GoldRankListTestData.json"));
+        // StartCoroutine(PutRequest(databaseURL + "GoldRankListPublishData.json"));
     }
 
 
