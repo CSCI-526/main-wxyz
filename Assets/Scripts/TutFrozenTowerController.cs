@@ -29,8 +29,8 @@ public class TutFrozenTowerController : TowerController
         {
             switch (tower.rankValue)  // 直接使用 TowerController 的 rankValue
             {
-                case 1: return 0.8f;
-                case 2: return 0.6f;
+                case 1: return 0.6f;
+                case 2: return 0.5f;
                 case 3: return 0.4f;
                 case 4: return 0.2f;
                 default: return 0.8f;
