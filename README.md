@@ -28,7 +28,7 @@ public IEnumerator SpawnWaves(); --> 协程调用，开始无限生成enemy<br>
 <br>
 
 ## Enemy.cs<br>
-### !!! bug: 我在做数据统计时发现了一个关于energy tower的问题，因为它每一帧造成伤害，导致会重复调用AddScore使分数虚高，但解决重复调用问题后UI出现问题，多个energy tower时会有一个tower的能量柱在Enemy死亡后不消失(为了解决不同类型伤害统计问题，我稍微改了下energy tower的文件)<br>
+### (DONE)!!! bug: 我在做数据统计时发现了一个关于energy tower的问题，因为它每一帧造成伤害，导致会重复调用AddScore使分数虚高，但解决重复调用问题后UI出现问题，多个energy tower时会有一个tower的能量柱在Enemy死亡后不消失(为了解决不同类型伤害统计问题，我稍微改了下energy tower的文件)<br>
 <br>
 public EnemyData enemyData; --> 连接enemyData<br>
 public UIManager uiManager; --> 连接UIManager(其实对UIManager进行单例设置更佳)<br>
