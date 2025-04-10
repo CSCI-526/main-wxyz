@@ -10,6 +10,11 @@ public class TowerGalleryController : MonoBehaviour
       galleryPanel.SetActive(true);
       Time.timeScale = 0f;
    }
+   public void CloseGallery()
+   {
+      galleryPanel.SetActive(false);
+      Time.timeScale = 1f;
+   }
 
    public void OpenTowerPanel(int index)
    {
