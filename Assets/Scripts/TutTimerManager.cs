@@ -41,6 +41,10 @@ public class TutTimerManager : MonoBehaviour
     public GameObject cannonTowerPanel;
 
     public GameObject frozenTowerPanel;
+
+    private bool DragButtonPanelUIPopped = false;
+    public GameObject ButtonPanel;
+    private bool ButtonPanelUIPopped = false;
     private bool frozenTowerUIPopped = false;
 
     public GameObject burningTowerPanel;  // 拖拽你的 TowerPanel 进来
@@ -306,9 +310,18 @@ public class TutTimerManager : MonoBehaviour
             if (continueButton != null)
                 continueButton.gameObject.SetActive(true);
             finalWaveTriggered = true;
-            helpText.text = "You've finished the tutorial!\nLet's go to the main game!";
-
+            helpText.text = "Now let's learn how to use the change color feature!";
         }
+
+        /*if (finalWaveTriggered && !DragButtonPanelUIPopped)
+        {
+            DragButtonPanelUIPopped = true;
+            if (DragButtonPanel != null)
+                DragButtonPanel.SetActive(true);
+
+            if (uiManager != null)
+                uiManager.TogglePauseGameNoPanel();
+        }*/
 
     }
     

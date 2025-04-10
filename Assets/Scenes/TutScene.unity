@@ -679,7 +679,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00030517578}
+  m_AnchoredPosition: {x: 0, y: 0.00036621094}
   m_SizeDelta: {x: 0, y: 0.00036621}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &245981054
@@ -1165,7 +1165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0.00012207031}
   m_SizeDelta: {x: 0, y: -0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &432313826
@@ -1939,7 +1939,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Continue
+  m_text: Main Game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3055,7 +3055,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0.00012207031}
   m_SizeDelta: {x: 0, y: -0.00024414}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &821636391
@@ -3108,6 +3108,7 @@ GameObject:
   - component: {fileID: 861338152}
   - component: {fileID: 861338151}
   - component: {fileID: 861338150}
+  - component: {fileID: 861338153}
   m_Layer: 5
   m_Name: ContinueButtonButton
   m_TagString: Untagged
@@ -3179,9 +3180,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2007967492}
-        m_TargetAssemblyTypeName: TutTimerManager, Assembly-CSharp
-        m_MethodName: OnContinueFromPanel
+      - m_Target: {fileID: 861338153}
+        m_TargetAssemblyTypeName: ButtonPulseAnimation, Assembly-CSharp
+        m_MethodName: OnContinue2Clicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3229,6 +3230,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861338148}
   m_CullTransparentMesh: 1
+--- !u!114 &861338153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861338148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae612d4543b2404bb56f5a9323a1a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulseSpeed: 2
+  pulseAmplitude: 0.1
+  uiManager: {fileID: 0}
+  helpText: {fileID: 0}
+  DragButtonPanel: {fileID: 803965530}
+  ButtonPanel: {fileID: 1160185448}
 --- !u!1 &861398203
 GameObject:
   m_ObjectHideFlags: 0
@@ -3862,7 +3881,7 @@ GameObject:
   - component: {fileID: 1160185451}
   - component: {fileID: 1160185450}
   m_Layer: 5
-  m_Name: ?ButtonPanel
+  m_Name: ButtonPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3992,7 +4011,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1226761974}
         m_TargetAssemblyTypeName: ButtonPulseAnimation, Assembly-CSharp
-        m_MethodName: TransistToNewScene
+        m_MethodName: OnContinue1Clicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4018,6 +4037,8 @@ MonoBehaviour:
   pulseAmplitude: 0.1
   uiManager: {fileID: 757867165}
   helpText: {fileID: 861398205}
+  DragButtonPanel: {fileID: 803965530}
+  ButtonPanel: {fileID: 0}
 --- !u!114 &1226761975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4925,6 +4946,7 @@ GameObject:
   - component: {fileID: 1658834887}
   - component: {fileID: 1658834886}
   - component: {fileID: 1658834885}
+  - component: {fileID: 1658834888}
   m_Layer: 5
   m_Name: ContinueButtonButton
   m_TagString: Untagged
@@ -4996,9 +5018,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2007967492}
-        m_TargetAssemblyTypeName: TutTimerManager, Assembly-CSharp
-        m_MethodName: OnContinueFromPanel
+      - m_Target: {fileID: 1658834888}
+        m_TargetAssemblyTypeName: ButtonPulseAnimation, Assembly-CSharp
+        m_MethodName: TransistToNewScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5046,6 +5068,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658834883}
   m_CullTransparentMesh: 1
+--- !u!114 &1658834888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658834883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae612d4543b2404bb56f5a9323a1a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulseSpeed: 2
+  pulseAmplitude: 0.1
+  uiManager: {fileID: 0}
+  helpText: {fileID: 0}
+  DragButtonPanel: {fileID: 803965530}
+  ButtonPanel: {fileID: 1160185448}
 --- !u!1 &1678431760
 GameObject:
   m_ObjectHideFlags: 0
@@ -5933,6 +5973,8 @@ MonoBehaviour:
   pulseAmplitude: 0.1
   uiManager: {fileID: 757867165}
   helpText: {fileID: 861398205}
+  DragButtonPanel: {fileID: 0}
+  ButtonPanel: {fileID: 0}
 --- !u!1 &1917469698
 GameObject:
   m_ObjectHideFlags: 0
@@ -6190,6 +6232,7 @@ MonoBehaviour:
   goldTowerPanel: {fileID: 245981052}
   cannonTowerPanel: {fileID: 432313824}
   frozenTowerPanel: {fileID: 1750182391}
+  ButtonPanel: {fileID: 1160185448}
   burningTowerPanel: {fileID: 2010798588}
   energyTowerPanel: {fileID: 821636389}
   uiManager: {fileID: 757867165}

@@ -14,6 +14,10 @@ public class ButtonPulseAnimation : MonoBehaviour
 
     public TextMeshProUGUI helpText;
 
+    public GameObject DragButtonPanel;
+
+    public GameObject ButtonPanel;
+
     void Start()
     {
         originalScale = transform.localScale;
@@ -68,6 +72,17 @@ public class ButtonPulseAnimation : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
         Debug.Log("Jump to next level");
+    }
+
+    public void OnContinue1Clicked()
+    {
+        DragButtonPanel.SetActive(true);
+    }
+
+    public void OnContinue2Clicked()
+    {
+        DragButtonPanel.SetActive(false);
+        ButtonPanel.SetActive(true);
     }
 
 }
