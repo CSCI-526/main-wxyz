@@ -97,14 +97,6 @@ public class EnemySpawn : MonoBehaviour
                     enemy.GetComponent<Enemy>().InitiateEnemy(path, wave.enemyHealth, wave.enemySpeed, wave.enemyCoin);
                     yield return new WaitForSeconds(wave.timeBetweenEnemies);
                 }
-<<<<<<< HEAD
-                // yield return new WaitForSeconds(wave.timeAfterWave);
-                if (enableSpawnFlag)
-                {
-                    TutGameManager.Instance.setSpawnFlag(false);
-                    while (!TutGameManager.Instance.getSpawnFlag())
-                    { 
-=======
 
                 // yield return new WaitForSeconds(wave.timeAfterWave);
                 if (enableSpawnFlag)
@@ -113,7 +105,6 @@ public class EnemySpawn : MonoBehaviour
                     TutGameManager.Instance.setSpawnFlag(false);
                     while (!TutGameManager.Instance.getSpawnFlag())
                     {
->>>>>>> f2e03a7c992f933402dfb771e2b6aebdfe3b3d24
                         yield return new WaitForSeconds(0.3f);
                     }
                 }
@@ -121,11 +112,6 @@ public class EnemySpawn : MonoBehaviour
                 {
                     yield return new WaitForSeconds(wave.timeAfterWave);
                 }
-<<<<<<< HEAD
-                
-                
-=======
->>>>>>> f2e03a7c992f933402dfb771e2b6aebdfe3b3d24
             }
         }
 

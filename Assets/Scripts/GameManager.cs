@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using Newtonsoft.Json;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,17 +20,22 @@ public class GameManager : MonoBehaviour
     public int playerHealth = 100; 
 
     private bool hasLost = false;
-    private float damageFromTankTower = 0f;
+
+    /*** analytic ***/
+    private float damageFromCanonTower = 0f;
     private float damageFromBurningTower = 0f;
     private float damageFromSlowTower = 0f;
     private float damageFromEnergyTower = 0f;
-    private int TankTowerNum = 0;
+    private List<TowersOnTile> towersOnTileList = new List<TowersOnTile>();
+    private int CanonTowerNum = 0;
     private int BurningTowerNum = 0;
     private int SlowTowerNum = 0;
     private int EnergyTowerNum = 0;
     private int GoldTowerNum = 0;
     private float score = 0f;
     private float mergeCount = 0f;
+    private float changeColorCount = 0f;
+    /*** analytic ***/
 
     private void Awake()
     {
@@ -51,6 +58,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(enemyManager.SpawnWaves());
         uiManager.UpdateHealthUI(); // Update health UI at game start
         FirebaseManager.ReadData();
+        StartCoroutine(RecordTowersOnTile());
         // string json = "{ \"BetaRankList\": { \"1\": { \"score\": 10000, \"surviveTime\": 30 }, \"2\": { \"score\": 5000, \"surviveTime\": 20 } } }";
         // PlayerPrefs.SetString("RankList", json);
         // PlayerPrefs.Save();
@@ -61,6 +69,7 @@ public class GameManager : MonoBehaviour
     {
         if (playerHealth <= 0) 
         {
+            Time.timeScale = 0f;
             SendDataFirebase();
             ShowFailScreen();
             Time.timeScale = 0f;
@@ -71,58 +80,92 @@ public class GameManager : MonoBehaviour
     {
         
         float playerTime = timerManager.GetElapsedTime();
-        TileController[,] tiles = boardManager.tiles;
-        for (int x = 0; x < tiles.GetLength(0); x++)
-        {
-            for (int y = 0; y < tiles.GetLength(1); y++)
-            {
-                TileController tile = tiles[x, y];
-                if (tile.towerOnTile != null)
-                {
-                    Debug.Log(tile.towerOnTile.towerName);
-                    switch (tile.towerOnTile.towerName)
-                    {
-                        case "Gold":
-                            GoldTowerNum++;
-                            break;
-                        case "Canon":
-                            TankTowerNum++;
-                            break;
-                        case "Burn":
-                            BurningTowerNum++;
-                            break;
-                        case "Energy":
-                            EnergyTowerNum++;
-                            break;
-                        case "Frozen":
-                            SlowTowerNum++;
-                            break;
-                        default:
-                            TankTowerNum++;
-                            break;
-                    }
-                }
-            }
-        }
+        // TileController[,] tiles = boardManager.tiles;
+        // for (int x = 0; x < tiles.GetLength(0); x++)
+        // {
+        //     for (int y = 0; y < tiles.GetLength(1); y++)
+        //     {
+        //         TileController tile = tiles[x, y];
+        //         if (tile.towerOnTile != null)
+        //         {
+        //             Debug.Log(tile.towerOnTile.towerName);
+        //             switch (tile.towerOnTile.towerName)
+        //             {
+        //                 case "Gold":
+        //                     GoldTowerNum++;
+        //                     break;
+        //                 case "Canon":
+        //                     CanonTowerNum++;
+        //                     break;
+        //                 case "Burn":
+        //                     BurningTowerNum++;
+        //                     break;
+        //                 case "Energy":
+        //                     EnergyTowerNum++;
+        //                     break;
+        //                 case "Frozen":
+        //                     SlowTowerNum++;
+        //                     break;
+        //                 default:
+        //                     CanonTowerNum++;
+        //                     break;
+        //             }
+        //         }
+        //     }
+        // }
 
-        Debug.Log(
-            "playerTime: " + playerTime +
-            "s score: " + score +
-            " perDamageFromTankTower: " + damageFromTankTower/TankTowerNum+ 
-            " perDamageFromBurningTower: " + damageFromBurningTower/BurningTowerNum +
-            " perDamageFromSlowTower: " + damageFromSlowTower/SlowTowerNum +
-            " perDamageFromEnergyTower: " + damageFromEnergyTower/EnergyTowerNum +
-            " GoldTower number: " + GoldTowerNum +
-            " mergeCount: " + mergeCount
-        );
+        // Debug.Log(
+        //     "PlayerTime: " + playerTime +
+        //     "s score: " + score +
+        //     " DamageFromCanonTower: " + damageFromCanonTower+ 
+        //     " DamageFromBurningTower: " + damageFromBurningTower +
+        //     " DamageFromFrozenTower: " + damageFromSlowTower +
+        //     " DamageFromEnergyTower: " + damageFromEnergyTower +
+        //     " GoldTower number: " + GoldTowerNum +
+        //     " mergeCount: " + mergeCount +
+        //     " changeColorCount: " + changeColorCount
+        // );
+
+        // Debug.Log("tower recording every minute:");
+        // foreach (TowersOnTile towersOnTile in towersOnTileList)
+        // {
+        //     Debug.Log(
+        //         "CanonTowerNum: " + towersOnTile.canonTowerNum + 
+        //         " goldTowerNum: " + towersOnTile.goldTowerNum + 
+        //         " burningTowerNum: " + towersOnTile.burningTowerNum + 
+        //         " frozenTowerNum: " + towersOnTile.slowTowerNum + 
+        //         " energyTowerNum: " + towersOnTile.energyTowerNum);
+
+        // }
+
+        var data = new
+        {
+            PlayerTime = playerTime,
+            Score = score,
+            DamageFromCanonTower = damageFromCanonTower,
+            DamageFromBurningTower = damageFromBurningTower,
+            DamageFromFrozenTower = damageFromSlowTower,
+            DamageFromEnergyTower = damageFromEnergyTower,
+            MergeCount = mergeCount,
+            ChangeColorCount = changeColorCount,
+            TowersOnTileList = towersOnTileList
+        };
+
+        string jsonString = JsonConvert.SerializeObject(data, Formatting.Indented);
+        Debug.Log("Data sent to Firebase: " + jsonString);
+        FirebaseManager.SaveData(jsonString);
         
-        // string json = $"\{\"playerTime\":{playerTime},\"score\":{score},\"damageFromTankTower\":{damageFromTankTower},\"damageFromBurningTower\":{damageFromBurningTower},\"damageFromSlowTower\":{damageFromSlowTower},\"mergeCount\":{mergeCount}\}";
-        string json = string.Format("{{\"playerTime\": \"{0}\", \"score\": {1},\"damageFromTankTower\":{2},\"damageFromBurningTower\":{3},\"damageFromSlowTower\":{4},\"damageFromEnergyTower\":{5},\"mergeCount\":{6}}}", playerTime, score, damageFromTankTower, damageFromBurningTower, damageFromSlowTower, damageFromEnergyTower, mergeCount);
-        FirebaseManager.SaveData(json);
+        // string json = $"\{\"playerTime\":{playerTime},\"score\":{score},\"damageFromCanonTower\":{damageFromCanonTower},\"damageFromBurningTower\":{damageFromBurningTower},\"damageFromSlowTower\":{damageFromSlowTower},\"mergeCount\":{mergeCount}\}";
+        // string json = string.Format(
+        //     "{{\"playerTime\": \"{0}\", \"score\": {1}, \"damageFromCanonTower\":{2}, \"damageFromBurningTower\":{3}, \"damageFromSlowTower\":{4}, \"damageFromEnergyTower\":{5}, \"mergeCount\":{6}, \"changeColorCount\":{7}}}", 
+        //     playerTime, score, damageFromCanonTower, damageFromBurningTower, damageFromSlowTower, 
+        //     damageFromEnergyTower, mergeCount, changeColorCount
+        // );
+        // FirebaseManager.SaveData(json);
         // FirebaseManager.SaveData(
         //     playerTime, 
         //     score, 
-        //     damageFromTankTower, damageFromBurningTower, damageFromSlowTower,
+        //     damageFromCanonTower, damageFromBurningTower, damageFromSlowTower,
         //     mergeCount
         // );
     }
@@ -271,9 +314,60 @@ public class GameManager : MonoBehaviour
         uiManager.UpdateHealthUI();
     }
 
-    public void AddDamageFromTankTower(float damage)
+
+    /*** analytic ***/
+    IEnumerator RecordTowersOnTile()
     {
-        damageFromTankTower += damage;
+        while(true)
+        {
+            yield return new WaitForSeconds(60f);
+            Debug.Log("Recording all towers on tile...");
+            TowersOnTile towersOnTileTemp = new TowersOnTile();
+            TileController[,] tiles = boardManager.tiles;
+            for (int x = 0; x < tiles.GetLength(0); x++)
+            {
+                for (int y = 0; y < tiles.GetLength(1); y++)
+                {
+                    TileController tile = tiles[x, y];
+                    if (tile.towerOnTile != null)
+                    {
+                        Debug.Log("Tower on tile name: " + tile.towerOnTile.towerName);
+                        switch (tile.towerOnTile.towerName)
+                        {
+                            case "Gold":
+                                towersOnTileTemp.goldTowerNum ++;
+                                // GoldTowerNum++;
+                                break;
+                            case "Canon":
+                                towersOnTileTemp.canonTowerNum ++;
+                                // CanonTowerNum++;
+                                break;
+                            case "BurningTower":
+                                towersOnTileTemp.burningTowerNum ++;
+                                // BurningTowerNum++;
+                                break;
+                            case "Energy":
+                                towersOnTileTemp.energyTowerNum ++;
+                                // EnergyTowerNum++;
+                                break;
+                            case "FrozenTower":
+                                towersOnTileTemp.slowTowerNum ++;
+                                // SlowTowerNum++;
+                                break;
+                            default:
+                                towersOnTileTemp.canonTowerNum ++;
+                                // CanonTowerNum++;
+                                break;
+                        }
+                    }
+                }
+            }
+            towersOnTileList.Add(towersOnTileTemp);
+        }
+    }
+    public void AddDamageFromCanonTower(float damage)
+    {
+        damageFromCanonTower += damage;
     }
 
     public void AddDamageFromBurningTower(float damage)
@@ -302,5 +396,20 @@ public class GameManager : MonoBehaviour
         mergeCount += 1f;
     }
 
+    public void AddChangeColorCount()
+    {
+        changeColorCount += 1f;
+    }
+    /*** analytic ***/
 
+}
+
+[System.Serializable]
+public class TowersOnTile
+{
+    public int canonTowerNum;
+    public int goldTowerNum;
+    public int burningTowerNum;
+    public int slowTowerNum;
+    public int energyTowerNum;
 }

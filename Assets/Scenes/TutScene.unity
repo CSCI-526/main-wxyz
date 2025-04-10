@@ -1837,11 +1837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableCustomConfig: 1
-<<<<<<< HEAD
-  enableSpawnFlag: 0
-=======
   enableSpawnFlag: 1
->>>>>>> f2e03a7c992f933402dfb771e2b6aebdfe3b3d24
   enemyWaves:
   - enemyPrefab: {fileID: 4336658664315684068, guid: 87f2fc39a06d5994684dafdab143d7b0, type: 3}
     enemyHealth: 80

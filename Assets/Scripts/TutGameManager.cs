@@ -31,12 +31,9 @@ public class TutGameManager : MonoBehaviour
     private float score = 0f;
     private float mergeCount = 0f;
     private bool SpawnFlag = true;
-<<<<<<< HEAD
-=======
 
     private bool finalWaveTriggered = false;
     private bool finalWaveCleared = false;
->>>>>>> f2e03a7c992f933402dfb771e2b6aebdfe3b3d24
 
     private void Awake()
     {
@@ -93,78 +90,6 @@ public class TutGameManager : MonoBehaviour
     public bool getSpawnFlag()
     {
         return SpawnFlag;
-    }
-
-    /*** TODO ***/
-    public void setSpawnFlag(bool flag)
-    {
-        SpawnFlag = flag;
-    }
-
-    public bool getSpawnFlag()
-    {
-        return SpawnFlag;
-    }
-    /*** TODO ***/
-
-    public void SendDataFirebase()
-    {
-        
-        float playerTime = timerManager.GetElapsedTime();
-        TileController[,] tiles = boardManager.tiles;
-        for (int x = 0; x < tiles.GetLength(0); x++)
-        {
-            for (int y = 0; y < tiles.GetLength(1); y++)
-            {
-                TileController tile = tiles[x, y];
-                if (tile.towerOnTile != null)
-                {
-                    Debug.Log(tile.towerOnTile.towerName);
-                    switch (tile.towerOnTile.towerName)
-                    {
-                        case "Gold":
-                            GoldTowerNum++;
-                            break;
-                        case "Canon":
-                            TankTowerNum++;
-                            break;
-                        case "Burn":
-                            BurningTowerNum++;
-                            break;
-                        case "Energy":
-                            EnergyTowerNum++;
-                            break;
-                        case "Frozen":
-                            SlowTowerNum++;
-                            break;
-                        default:
-                            TankTowerNum++;
-                            break;
-                    }
-                }
-            }
-        }
-
-        Debug.Log(
-            "playerTime: " + playerTime +
-            "s score: " + score +
-            " perDamageFromTankTower: " + damageFromTankTower/TankTowerNum+ 
-            " perDamageFromBurningTower: " + damageFromBurningTower/BurningTowerNum +
-            " perDamageFromSlowTower: " + damageFromSlowTower/SlowTowerNum +
-            " perDamageFromEnergyTower: " + damageFromEnergyTower/EnergyTowerNum +
-            " GoldTower number: " + GoldTowerNum +
-            " mergeCount: " + mergeCount
-        );
-        
-        // string json = $"\{\"playerTime\":{playerTime},\"score\":{score},\"damageFromTankTower\":{damageFromTankTower},\"damageFromBurningTower\":{damageFromBurningTower},\"damageFromSlowTower\":{damageFromSlowTower},\"mergeCount\":{mergeCount}\}";
-        string json = string.Format("{{\"playerTime\": \"{0}\", \"score\": {1},\"damageFromTankTower\":{2},\"damageFromBurningTower\":{3},\"damageFromSlowTower\":{4},\"damageFromEnergyTower\":{5},\"mergeCount\":{6}}}", playerTime, score, damageFromTankTower, damageFromBurningTower, damageFromSlowTower, damageFromEnergyTower, mergeCount);
-        FirebaseManager.SaveData(json);
-        // FirebaseManager.SaveData(
-        //     playerTime, 
-        //     score, 
-        //     damageFromTankTower, damageFromBurningTower, damageFromSlowTower,
-        //     mergeCount
-        // );
     }
 
     private void ShowFailScreen()
