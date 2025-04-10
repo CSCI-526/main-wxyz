@@ -132,7 +132,7 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             if (tileAtDrop != null)
             {
                 TowerController towerOnTile = tileAtDrop.towerOnTile;
-                if (towerOnTile != null && towerOnTile.rankValue < 4)
+                if (towerOnTile != null && towerOnTile.rankValue <= 4)
                 {
                     bool upgraded = gameManager.UpgradeRandomTower(towerOnTile, towerPrefab);
                     if (upgraded)

@@ -64,7 +64,7 @@ public class TutTimerManager : MonoBehaviour
     
     void Start()
     {
-        helpText.text = "Goal of the game:\nPurchase and Upgrade Random Towers to Defend Enemies!\nSurvive as long as possible!";
+        helpText.text = "Buy and Upgrade Towers to Defend Enemies!\nSurvive as long as possible!";
         uiManager.AnimateHealthText();
         if (timerText == null)
             Debug.LogError("TimerText is NULL! Assign it in the Inspector.");
@@ -84,9 +84,9 @@ public class TutTimerManager : MonoBehaviour
         elapsedTime += Time.deltaTime;
         UpdateTimerUI();
 
-        if (!helpTextUpdated && elapsedTime >= 8f)
+        if (!helpTextUpdated && elapsedTime >= 5f)
         {
-            helpText.text = "Buy your first tower";
+            helpText.text = "Buy your first tower!";
             helpTextUpdated = true;
         }
 
@@ -103,7 +103,7 @@ public class TutTimerManager : MonoBehaviour
         }
         
 
-        if (!pulseTriggered && elapsedTime >= 8f)
+        if (!pulseTriggered && elapsedTime >= 5f)
         {
             pulseTriggered = true;
             
@@ -128,7 +128,7 @@ public class TutTimerManager : MonoBehaviour
             if (buttonPulseAnimation != null)
                 buttonPulseAnimation.StartPulsing();
             
-            helpText.text = "Let's buy another tower";
+            helpText.text = "Let's buy another tower!";
             //TutGameManager.Instance.setSpawnFlag(false);
         }
 
@@ -150,7 +150,7 @@ public class TutTimerManager : MonoBehaviour
             if (HasLevel2Tower(boardManager))
             {
 
-                helpText.text = "You have a level 2 tower! Keep buying and merging to get a level 3 tower!";
+                helpText.text = "You have a level 2 tower!\nKeep buying and merging to get a level 3 tower!";
                 if (!rewardGold)
                 {
                     gameManager.AddCoin(50);
@@ -171,7 +171,7 @@ public class TutTimerManager : MonoBehaviour
         {
             frozenTowerTutorialTriggered = true;
 
-            helpText.text = "You have a Level 3 Tower! Let's buy and explore more tower";
+            helpText.text = "You have a Level 3 Tower!\nLet's buy and explore more towers!";
 
             TutGameManager.Instance.setSpawnFlag(true);
             
@@ -196,7 +196,6 @@ public class TutTimerManager : MonoBehaviour
                 uiManager.TogglePauseGameNoPanel();
         }
 
-        //Debug.Log("1234"+TutGameManager.Instance.getSpawnFlag());
         
         // 添加新的教学阶段：引导生成燃烧塔
         if (towerLevel3TutorialTriggered && !burningTowerTutorialTriggered && !frozenTowerPanel.activeSelf && HasFrozenTower(boardManager) && gameManager.playerGold >= 25)
@@ -206,8 +205,7 @@ public class TutTimerManager : MonoBehaviour
 
             TutGameManager.Instance.setSpawnFlag(true);
 
-            Debug.Log("12345"+TutGameManager.Instance.getSpawnFlag());
-            helpText.text = "Too many enemies! Is there any tower can deal with this situation? Let's buy a new tower!";
+            helpText.text = "Let's buy a new tower!";
 
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
@@ -239,7 +237,7 @@ public class TutTimerManager : MonoBehaviour
 
             TutGameManager.Instance.setSpawnFlag(true);
 
-            helpText.text = "Some enemies are too tanky, maybe we can buy and pray there has another kind of Tower to solve this! ";
+            helpText.text = "Let's buy a new tower!";
 
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
@@ -269,8 +267,8 @@ public class TutTimerManager : MonoBehaviour
         {
             goldTowerTutorialTriggered = true;
             energyTowerTutorialcomplete = true;
-            helpText.text = "Gold is too slow to gain! Will we be lucky enough to buy a tower that can produce gold?";
-            // TutGameManager.Instance.setSpawnFlag(true);
+            helpText.text = "Let's buy a new tower!";
+            uiManager.AnimateGoldText();
 
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
@@ -308,7 +306,7 @@ public class TutTimerManager : MonoBehaviour
             if (continueButton != null)
                 continueButton.gameObject.SetActive(true);
             finalWaveTriggered = true;
-            helpText.text = "You've finished the tutorial! Let's go to the main game!";
+            helpText.text = "You've finished the tutorial!\nLet's go to the main game!";
 
         }
 
