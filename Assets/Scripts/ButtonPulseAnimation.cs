@@ -43,15 +43,22 @@ public class ButtonPulseAnimation : MonoBehaviour
     {
         StopPulsing();
         
-        if (helpText != null && helpText.text == "Buy your first tower")
+        if (helpText != null && helpText.text == "Buy your first tower!")
         {
-            helpText.text = "Tank Tower will shoot the first enemy";
+            helpText.text = "";
         }
-        if (helpText != null && helpText.text == "Let's buy another tower")
+        if (helpText != null && helpText.text == "Let's buy another tower!")
         {
-            helpText.text = "USE ↑ ,↓,→,← keys to merge tower";
+            helpText.text = "USE ↑, ↓, →, ← keys to merge tower!";
         }
-
+        if (helpText != null && helpText.text == "You have a Level 3 Tower!\nLet's buy and explore more towers!")
+        {
+            helpText.text = "";
+        }
+        if (helpText != null && helpText.text == "Let's buy a new tower!")
+        {
+            helpText.text = "";
+        }
         if (uiManager != null && uiManager.isPaused)
             uiManager.TogglePauseGameNoPanel();
         else

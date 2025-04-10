@@ -72,6 +72,11 @@ public class TutUIManager : MonoBehaviour
         StartCoroutine(PulseText(playerHealthText));
     }
 
+    public void AnimateGoldText()
+    {
+        StartCoroutine(PulseText(goldText));
+    }
+
     IEnumerator PulseText(TextMeshProUGUI text)
     {
         Vector3 originalScale = text.transform.localScale;
