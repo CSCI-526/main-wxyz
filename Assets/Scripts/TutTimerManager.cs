@@ -71,14 +71,17 @@ public class TutTimerManager : MonoBehaviour
     public Button continueButton;
 
     public VideoPlayer sharedVideoPlayer;
-    public VideoClip cannonClip;
-    public VideoClip frozenClip;
-    public VideoClip burningClip;
-    public VideoClip energyClip;
-    public VideoClip goldClip;
-    public VideoClip drageClip;
-    public VideoClip buttonClip;
 
+    private readonly Dictionary<string, string> videoPaths = new Dictionary<string, string>()
+    {
+        { "Burning", "Videos/burning.mp4" },
+        { "Button", "Videos/button.mp4" },
+        { "Cannon", "Videos/Cannon.mp4" },
+        { "Drag", "Videos/Drage.mp4" },
+        { "Energy",   "Videos/EnegyTower.mp4" },
+        { "Frozen",   "Videos/Frozen.mp4" },
+        { "Gold" , "Videos/Gold.mp4" }
+    };
 
 
     void Start()
@@ -118,7 +121,7 @@ public class TutTimerManager : MonoBehaviour
             if (cannonTowerPanel != null)
                 cannonTowerPanel.SetActive(true);
 
-            PlaySharedVideo(cannonClip);
+            PlaySharedVideo("Cannon");
 
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
@@ -214,7 +217,7 @@ public class TutTimerManager : MonoBehaviour
             if (frozenTowerPanel != null)
                 frozenTowerPanel.SetActive(true);
 
-            PlaySharedVideo(frozenClip);
+            PlaySharedVideo("Frozen");
 
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
@@ -248,7 +251,7 @@ public class TutTimerManager : MonoBehaviour
             if (burningTowerPanel != null)
                 burningTowerPanel.SetActive(true);
 
-            PlaySharedVideo(burningClip);
+            PlaySharedVideo("Burning");
 
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
@@ -282,7 +285,8 @@ public class TutTimerManager : MonoBehaviour
             if (energyTowerPanel != null)
                 energyTowerPanel.SetActive(true);
 
-            PlaySharedVideo(energyClip);
+            PlaySharedVideo("Energy");
+
 
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
@@ -313,7 +317,8 @@ public class TutTimerManager : MonoBehaviour
             if (goldTowerPanel != null)
                 goldTowerPanel.SetActive(true);
 
-            PlaySharedVideo(goldClip);
+            PlaySharedVideo("Gold");
+
 
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
@@ -564,26 +569,33 @@ public class TutTimerManager : MonoBehaviour
     public void OnContinue1Clicked()
     {
         DragButtonPanel.SetActive(true);
-        PlaySharedVideo(drageClip);
+        PlaySharedVideo("Drag");
+
     }
 
     public void OnContinue2Clicked()
     {
         DragButtonPanel.SetActive(false);
         ButtonPanel.SetActive(true);
-        PlaySharedVideo(buttonClip);
+        PlaySharedVideo("Button");
     }
 
-    private void PlaySharedVideo(VideoClip clip)
+    private void PlaySharedVideo(string key)
     {
-        if (sharedVideoPlayer != null)
-        {
-            sharedVideoPlayer.Stop();
-            ClearVideoRenderTexture();
-            sharedVideoPlayer.clip = clip;
-            sharedVideoPlayer.time = 0;
-            sharedVideoPlayer.Play();
-        }
+        if (!videoPaths.ContainsKey(key)) return;
+
+        string filePath;
+    #if UNITY_WEBGL && !UNITY_EDITOR
+    filePath = Application.streamingAssetsPath + "/" + videoPaths[key];
+    #else
+        filePath = "file://" + Application.streamingAssetsPath + "/" + videoPaths[key];
+    #endif
+
+        sharedVideoPlayer.Stop();
+        ClearVideoRenderTexture();
+        sharedVideoPlayer.source = VideoSource.Url;
+        sharedVideoPlayer.url = filePath;
+        sharedVideoPlayer.Play();
     }
 
     private void ClearVideoRenderTexture()
