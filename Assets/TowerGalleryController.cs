@@ -11,11 +11,11 @@ public class TowerGalleryController : MonoBehaviour
 
    private readonly Dictionary<int, string> videoPaths = new Dictionary<int, string>()
     {
-        { 0, "videos/cannon.mp4" },
+        { 0, "Videos/Cannon.mp4" },
         { 1, "Videos/EnegyTower.mp4" },
-        { 2,  "videos/gold.mp4"},
-        { 3, "videos/burning.mp4" },
-        { 4, "videos/frozen.mp4" }
+        { 2,  "Videos/Gold.mp4"},
+        { 3, "Videos/burning.mp4" },
+        { 4, "Videos/Frozen.mp4" }
     };
 
    public void OpenGallery()
