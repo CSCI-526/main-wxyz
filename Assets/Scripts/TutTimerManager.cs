@@ -83,7 +83,7 @@ public class TutTimerManager : MonoBehaviour
 
     void Start()
     {
-        helpText.text = "Buy and Upgrade Towers to Defend Enemies!\nSurvive as long as possible!";
+        helpText.text = "Buy and Upgrade Towers to Defend evolutionary Enemies!\nSurvive as long as possible!";
         uiManager.AnimateHealthText();
         if (timerText == null)
             Debug.LogError("TimerText is NULL! Assign it in the Inspector.");
