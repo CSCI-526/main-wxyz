@@ -431,7 +431,7 @@ public class TutTimerManager : MonoBehaviour
         List<TowerController> towers = board.GetAllTowersOnBoard();
         foreach (var tower in towers)
         {
-            if (tower != null && tower.towerName.Contains("Tank"))
+            if (tower != null && tower.towerName.Contains("Cannon"))
             {
                 return true;
             }

@@ -49,7 +49,7 @@ public class ButtonPulseAnimation : MonoBehaviour
         
         if (helpText != null && helpText.text == "Buy your first tower!")
         {
-            helpText.text = "";
+            helpText.text = "Towers will generate at random positions on the board.";
         }
         if (helpText != null && helpText.text == "Let's buy another tower!")
         {

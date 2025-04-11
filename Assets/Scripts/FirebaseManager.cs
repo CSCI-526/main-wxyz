@@ -26,8 +26,8 @@ public class FirebaseManager : MonoBehaviour
     public void SaveData(string json)
     {
         // StartCoroutine(PostRequest(databaseURL + "AlphaPlayTestData.json", json));
-        StartCoroutine(PostRequest(databaseURL + "BetaPlayTestData.json", json));
-        // StartCoroutine(PostRequest(databaseURL + "BetaPlayTestData1.json", json));
+        //StartCoroutine(PostRequest(databaseURL + "BetaPlayTestData.json", json));
+        StartCoroutine(PostRequest(databaseURL + "BetaPlayTestData1.json", json));
         // StartCoroutine(PostRequest(databaseURL + "BetaPlayTestData2.json", json));
         // StartCoroutine(PostRequest(databaseURL + "BetaPlayPublishData.json", json));
         // StartCoroutine(PostRequest(databaseURL + "GoldPlayTestData.json", json));
