@@ -1,19 +1,21 @@
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class TutTimerManager : MonoBehaviour
 {
     // UI Texts
-    public TextMeshProUGUI timerText;   
-    public TextMeshProUGUI helpText;    
-    
-    private float elapsedTime = 0f;     
-    private bool isTimerRunning = true; 
+    public TextMeshProUGUI timerText;
+    public TextMeshProUGUI helpText;
 
-    private bool helpTextUpdated = false; 
-    private bool pulseTriggered = false;  
+    private float elapsedTime = 0f;
+    private bool isTimerRunning = true;
+
+    private bool helpTextUpdated = false;
+    private bool pulseTriggered = false;
     private bool mergeTutorialTriggered = false;
 
     private bool rewardGold = false;
@@ -50,11 +52,13 @@ public class TutTimerManager : MonoBehaviour
     public GameObject burningTowerPanel;  // 拖拽你的 TowerPanel 进来
     private bool burningTowerUIPopped = false;  // 防止重复弹窗
 
-    public GameObject energyTowerPanel;  
+    public GameObject energyTowerPanel;
     private bool energyTowerUIPopped = false;
 
 
     private bool finalWaveTriggered = false; //最后一波怪
+
+    public GameObject DragButtonPanel;
 
 
 
@@ -62,10 +66,21 @@ public class TutTimerManager : MonoBehaviour
     public TutUIManager uiManager;
     public ButtonPulseAnimation buttonPulseAnimation;
     public TutGameManager gameManager;
-    public BoardManager boardManager; 
-    public Button buyButton;         
-    public Button continueButton;    
-    
+    public BoardManager boardManager;
+    public Button buyButton;
+    public Button continueButton;
+
+    public VideoPlayer sharedVideoPlayer;
+    public VideoClip cannonClip;
+    public VideoClip frozenClip;
+    public VideoClip burningClip;
+    public VideoClip energyClip;
+    public VideoClip goldClip;
+    public VideoClip drageClip;
+    public VideoClip buttonClip;
+
+
+
     void Start()
     {
         helpText.text = "Buy and Upgrade Towers to Defend Enemies!\nSurvive as long as possible!";
@@ -78,12 +93,13 @@ public class TutTimerManager : MonoBehaviour
 
         if (continueButton != null)
             continueButton.gameObject.SetActive(false);
+
     }
 
     void Update()
     {
         if (!isTimerRunning) return;
-        
+
         // Update elapsed time
         elapsedTime += Time.deltaTime;
         UpdateTimerUI();
@@ -97,41 +113,43 @@ public class TutTimerManager : MonoBehaviour
         if (!cannonTowerUIPopped && HasCannonTower(boardManager))
         {
             cannonTowerUIPopped = true;
-            
+
 
             if (cannonTowerPanel != null)
                 cannonTowerPanel.SetActive(true);
-            
+
+            PlaySharedVideo(cannonClip);
+
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
         }
-        
+
 
         if (!pulseTriggered && elapsedTime >= 5f)
         {
             pulseTriggered = true;
-            
+
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
-            
+
             if (buttonPulseAnimation != null)
                 buttonPulseAnimation.StartPulsing();
-            
+
             if (gameManager != null)
                 gameManager.AddCoin(10);
         }
-        
+
 
         if (!mergeTutorialTriggered && gameManager != null && gameManager.playerGold >= 20)
         {
             mergeTutorialTriggered = true;
-            
+
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
-            
+
             if (buttonPulseAnimation != null)
                 buttonPulseAnimation.StartPulsing();
-            
+
             helpText.text = "Let's buy another tower!";
             //TutGameManager.Instance.setSpawnFlag(false);
         }
@@ -162,12 +180,12 @@ public class TutTimerManager : MonoBehaviour
                     TutGameManager.Instance.setSpawnFlag(true);
                 }
 
-                if(gameManager.playerGold >= 40)
+                if (gameManager.playerGold >= 40)
                 {
                     if (buttonPulseAnimation != null)
                         buttonPulseAnimation.StartPulsing();
                 }
-                
+
             }
         }
 
@@ -178,13 +196,13 @@ public class TutTimerManager : MonoBehaviour
             helpText.text = "You have a Level 3 Tower!\nLet's buy and explore more towers!";
 
             TutGameManager.Instance.setSpawnFlag(true);
-            
+
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
-            
+
             if (buttonPulseAnimation != null)
                 buttonPulseAnimation.StartPulsing();
-            
+
             if (gameManager != null)
                 gameManager.AddCoin(50);
         }
@@ -195,12 +213,14 @@ public class TutTimerManager : MonoBehaviour
 
             if (frozenTowerPanel != null)
                 frozenTowerPanel.SetActive(true);
-            
+
+            PlaySharedVideo(frozenClip);
+
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
         }
 
-        
+
         // 添加新的教学阶段：引导生成燃烧塔
         if (towerLevel3TutorialTriggered && !burningTowerTutorialTriggered && !frozenTowerPanel.activeSelf && HasFrozenTower(boardManager) && gameManager.playerGold >= 25)
         {
@@ -227,7 +247,9 @@ public class TutTimerManager : MonoBehaviour
 
             if (burningTowerPanel != null)
                 burningTowerPanel.SetActive(true);
-            
+
+            PlaySharedVideo(burningClip);
+
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
 
@@ -252,13 +274,15 @@ public class TutTimerManager : MonoBehaviour
             if (gameManager != null)
                 gameManager.AddCoin(30);
         }
-        
+
         if (!energyTowerUIPopped && HasEnergyTower(boardManager))
         {
             energyTowerUIPopped = true;
 
             if (energyTowerPanel != null)
                 energyTowerPanel.SetActive(true);
+
+            PlaySharedVideo(energyClip);
 
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
@@ -289,6 +313,8 @@ public class TutTimerManager : MonoBehaviour
             if (goldTowerPanel != null)
                 goldTowerPanel.SetActive(true);
 
+            PlaySharedVideo(goldClip);
+
             if (uiManager != null)
                 uiManager.TogglePauseGameNoPanel();
         }
@@ -305,13 +331,19 @@ public class TutTimerManager : MonoBehaviour
         if (!finalWaveTriggered && goldTowerUIPopped && gameManager.playerGold >= 50)
         {
             if (buyButton != null)
+            {
                 buyButton.gameObject.SetActive(false);
+            }
 
             if (continueButton != null)
+            {
                 continueButton.gameObject.SetActive(true);
+            }
+
             finalWaveTriggered = true;
             helpText.text = "Now let's learn how to use the change color feature!";
         }
+
 
         /*if (finalWaveTriggered && !DragButtonPanelUIPopped)
         {
@@ -324,7 +356,7 @@ public class TutTimerManager : MonoBehaviour
         }*/
 
     }
-    
+
 
 
     private bool HasLevel3Tower(BoardManager board)
@@ -357,14 +389,14 @@ public class TutTimerManager : MonoBehaviour
     {
         if (timerText == null)
             return;
-        
+
         int hours = Mathf.FloorToInt(elapsedTime / 3600);
         int minutes = Mathf.FloorToInt((elapsedTime % 3600) / 60);
         int seconds = Mathf.FloorToInt(elapsedTime % 60);
-        
+
         timerText.text = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
     }
-    
+
     public void PauseTimer()
     {
         isTimerRunning = false;
@@ -390,7 +422,7 @@ public class TutTimerManager : MonoBehaviour
     {
         return elapsedTime;
     }
-    
+
     public void SaveFinalTime()
     {
         PlayerPrefs.SetFloat("FinalSurvivalTime", elapsedTime);
@@ -483,7 +515,7 @@ public class TutTimerManager : MonoBehaviour
         List<TowerController> towers = board.GetAllTowersOnBoard();
         foreach (var tower in towers)
         {
-            if (tower != null && tower.towerName.Contains("TutGoldernTower")) 
+            if (tower != null && tower.towerName.Contains("TutGoldernTower"))
             {
                 return true;
             }
@@ -494,25 +526,77 @@ public class TutTimerManager : MonoBehaviour
 
     public void OnContinueFromPanel()
     {
+        if (sharedVideoPlayer != null)
+            sharedVideoPlayer.Stop();
+
         if (cannonTowerPanel != null)
             cannonTowerPanel.SetActive(false);
+
 
         if (frozenTowerPanel != null)
             frozenTowerPanel.SetActive(false);
 
-        // 关闭 Panel
+
         if (burningTowerPanel != null)
             burningTowerPanel.SetActive(false);
 
+
         if (energyTowerPanel != null)
             energyTowerPanel.SetActive(false);
+
 
         if (goldTowerPanel != null)
             goldTowerPanel.SetActive(false);
 
 
-        // 恢复游戏
         if (uiManager != null)
             uiManager.TogglePauseGameNoPanel();
     }
+
+
+    public void TransistToNewScene()
+    {
+        SceneManager.LoadScene("SampleScene");
+        Debug.Log("Jump to next level");
+
+    }
+
+    public void OnContinue1Clicked()
+    {
+        DragButtonPanel.SetActive(true);
+        PlaySharedVideo(drageClip);
+    }
+
+    public void OnContinue2Clicked()
+    {
+        DragButtonPanel.SetActive(false);
+        ButtonPanel.SetActive(true);
+        PlaySharedVideo(buttonClip);
+    }
+
+    private void PlaySharedVideo(VideoClip clip)
+    {
+        if (sharedVideoPlayer != null)
+        {
+            sharedVideoPlayer.Stop();
+            ClearVideoRenderTexture();
+            sharedVideoPlayer.clip = clip;
+            sharedVideoPlayer.time = 0;
+            sharedVideoPlayer.Play();
+        }
+    }
+
+    private void ClearVideoRenderTexture()
+    {
+        if (sharedVideoPlayer != null && sharedVideoPlayer.targetTexture != null)
+        {
+            RenderTexture rt = sharedVideoPlayer.targetTexture;
+            sharedVideoPlayer.targetTexture = null;
+            RenderTexture.active = rt;
+            GL.Clear(true, true, Color.clear);
+            RenderTexture.active = null;
+            sharedVideoPlayer.targetTexture = rt;
+        }
+    }
+
 }

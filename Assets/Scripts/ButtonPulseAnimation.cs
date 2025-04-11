@@ -14,9 +14,9 @@ public class ButtonPulseAnimation : MonoBehaviour
 
     public TextMeshProUGUI helpText;
 
-    public GameObject DragButtonPanel;
+    // public GameObject DragButtonPanel;
 
-    public GameObject ButtonPanel;
+    // public GameObject ButtonPanel;
 
     void Start()
     {
@@ -68,21 +68,5 @@ public class ButtonPulseAnimation : MonoBehaviour
         else
             Debug.LogWarning("UIManager reference not set in ButtonPulseAnimation.");
     }
-    public void TransistToNewScene()
-    {
-        SceneManager.LoadScene("SampleScene");
-        Debug.Log("Jump to next level");
-    }
-
-    public void OnContinue1Clicked()
-    {
-        DragButtonPanel.SetActive(true);
-    }
-
-    public void OnContinue2Clicked()
-    {
-        DragButtonPanel.SetActive(false);
-        ButtonPanel.SetActive(true);
-    }
-
+    
 }
