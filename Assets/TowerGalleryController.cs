@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Video;
+using System.Collections.Generic;
 
 public class TowerGalleryController : MonoBehaviour
 {
@@ -8,7 +9,14 @@ public class TowerGalleryController : MonoBehaviour
 
    public VideoPlayer sharedVideoPlayer;
 
-   public VideoClip[] towerVideoClips;
+   private readonly Dictionary<int, string> videoPaths = new Dictionary<int, string>()
+    {
+        { 0, "videos/cannon.mp4" },
+        { 1, "Videos/EnegyTower.mp4" },
+        { 2,  "videos/gold.mp4"},
+        { 3, "videos/burning.mp4" },
+        { 4, "videos/frozen.mp4" }
+    };
 
    public void OpenGallery()
    {
@@ -26,11 +34,7 @@ public class TowerGalleryController : MonoBehaviour
       galleryPanel.SetActive(false);
       towerPanels[index].SetActive(true);
 
-      sharedVideoPlayer.Stop();
-      ClearVideoRenderTexture();
-      sharedVideoPlayer.clip = towerVideoClips[index];
-      sharedVideoPlayer.time = 0;
-      sharedVideoPlayer.Play();
+      PlaySharedVideo(index);
    }
 
 
@@ -44,13 +48,38 @@ public class TowerGalleryController : MonoBehaviour
       Time.timeScale = 1f;
    }
 
+   private void PlaySharedVideo(int index)
+    {
+        if (!videoPaths.ContainsKey(index)) return;
+
+        string filePath;
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+        filePath = Application.streamingAssetsPath + "/" + videoPaths[index];
+#else
+        filePath = "file://" + Application.streamingAssetsPath + "/" + videoPaths[index];
+#endif
+
+        sharedVideoPlayer.Stop();
+        ClearVideoRenderTexture();
+        sharedVideoPlayer.source = VideoSource.Url;
+        sharedVideoPlayer.url = filePath;
+
+        sharedVideoPlayer.Prepare();
+        sharedVideoPlayer.prepareCompleted += vp => vp.Play();
+    }
+
+
    private void ClearVideoRenderTexture()
-   {
-      RenderTexture rt = sharedVideoPlayer.targetTexture;
-      sharedVideoPlayer.targetTexture = null;
-      RenderTexture.active = rt;
-      GL.Clear(true, true, Color.clear);
-      RenderTexture.active = null;
-      sharedVideoPlayer.targetTexture = rt;
-   }
+    {
+        if (sharedVideoPlayer != null && sharedVideoPlayer.targetTexture != null)
+        {
+            RenderTexture rt = sharedVideoPlayer.targetTexture;
+            sharedVideoPlayer.targetTexture = null;
+            RenderTexture.active = rt;
+            GL.Clear(true, true, Color.clear);
+            RenderTexture.active = null;
+            sharedVideoPlayer.targetTexture = rt;
+        }
+    }
 }
