@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rankValue: 1
   towerName: FrozenTower
-  towerSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  towerSprite: {fileID: 5251734906795025119, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
   attackRange: 0
   attackDamage: 0
   towerBasePrefab: {fileID: 0}
@@ -113,3 +113,8 @@ MonoBehaviour:
   - {fileID: 6734909066804063127, guid: 1e20dd86615b14cd2ba6b808f1daed89, type: 3}
   gridPosition: {x: 0, y: 0}
   slowDuration: 3
+  freezeFrames:
+  - {fileID: 5251734906795025119, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
+  - {fileID: 2487218932450820861, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
+  - {fileID: 8772919823634052326, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
+  - {fileID: 778038079289728889, guid: 7f34e341c9d8349f2bfbbd35bbecbdc4, type: 3}

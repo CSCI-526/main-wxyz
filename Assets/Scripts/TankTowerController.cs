@@ -7,15 +7,53 @@ public class TankTowerController : TowerController
     public GameObject projectilePrefab;
     public float fireRate;
     private float lastFireTime;
+    private Transform turretTransform;
+    public GameObject turretPrefab;
+    private Enemy currentTarget;
 
-    void Update()
-    {
-        FireAtEnemy();
-    }
     void Start()
     {
         base.Start();
+        CreateTurret();
     }
+
+    void Update()
+    {
+        UpdateTarget();
+        UpdateTurretRotation();
+        FireIfReady();
+    }
+
+    void UpdateTarget()
+    {
+        currentTarget = FindTargetEnemy();
+    }
+
+    void UpdateTurretRotation()
+    {
+        if (currentTarget == null || turretTransform == null) return;
+
+        Vector2 dir = currentTarget.transform.position - turretTransform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle - 90f);
+
+        // 平滑插值旋转
+        turretTransform.rotation = Quaternion.Lerp(
+            turretTransform.rotation,
+            targetRotation,
+            Time.deltaTime * 15f // 可调快慢
+        );
+    }
+
+    void FireIfReady()
+    {
+        if (Time.time - lastFireTime >= fireRate && currentTarget != null)
+        {
+            ShootProjectile(currentTarget);
+            lastFireTime = Time.time;
+        }
+    }
+
 
     void FireAtEnemy()
     {
@@ -24,9 +62,31 @@ public class TankTowerController : TowerController
             Enemy targetEnemy = FindTargetEnemy();
             if (targetEnemy != null)
             {
+                currentTarget = targetEnemy; // 保存目标
                 ShootProjectile(targetEnemy);
                 lastFireTime = Time.time;
             }
+        }
+    }
+
+    void ShootProjectile(Enemy target)
+    {
+        StartCoroutine(FireProjectilesWithDelay(target));
+    }
+
+    IEnumerator FireProjectilesWithDelay(Enemy target)
+    {
+        float fireInterval = 0.1f; // 每颗子弹的间隔时间，可调整
+
+        for (int i = 0; i < rankValue; i++)
+        {
+            GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            Projectile projectile = projectileObj.GetComponent<Projectile>();
+            projectile.target = target;
+            projectile.damage = 40f;
+            projectile.InitializeProjectile();
+
+            yield return new WaitForSeconds(fireInterval); // 等待一定时间再发射下一颗子弹
         }
     }
 
@@ -51,49 +111,18 @@ public class TankTowerController : TowerController
         return targetEnemy;
     }
 
-
-    /*void ShootProjectile(Enemy target)
+    void CreateTurret()
     {
-        for (int i = 0; i < rankValue; i++) {
-            GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-            Projectile projectile = projectileObj.GetComponent<Projectile>();
-            projectile.target = target;
-            projectile.damage = 50f;
-            //Debug.Log("Tower Rank: " + rankValue + " | Damage: " + projectile.damage);
-            projectile.InitializeProjectile();
-        }
-    }*/
-
-    void ShootProjectile(Enemy target)
-    {
-        StartCoroutine(FireProjectilesWithDelay(target));
-    }
-
-    IEnumerator FireProjectilesWithDelay(Enemy target)
-    {
-        float fireInterval = 0.1f; // 每颗子弹的间隔时间，可调整
-
-        for (int i = 0; i < rankValue; i++)
+        if (turretPrefab != null)
         {
-            GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-            Projectile projectile = projectileObj.GetComponent<Projectile>();
-            projectile.target = target;
-            projectile.damage = 40f;
-            projectile.InitializeProjectile();
-
-            yield return new WaitForSeconds(fireInterval); // 等待一定时间再发射下一颗子弹
+            GameObject turret = Instantiate(turretPrefab, transform);
+            turret.name = "Turret";
+            turret.transform.localPosition = Vector3.zero;
+            turretTransform = turret.transform;
+        }
+        else
+        {
+            Debug.LogWarning("Turret Prefab 未设置！");
         }
     }
-
-     /*float CalculateDamage()
-     {
-         switch (rankValue)  // 直接根据 rankValue 返回固定伤害
-         {
-             case 1: return 20f;  
-             case 2: return 40f;  
-             case 3: return 60f;  
-             case 4: return 80f;  
-             default: return 10f;  
-         }
-    }*/
 }
