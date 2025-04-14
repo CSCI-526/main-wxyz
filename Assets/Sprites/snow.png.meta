@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -151,10 +151,10 @@ TextureImporter:
       name: snow_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 74
-        width: 48
-        height: 44
+        x: 3
+        y: 36
+        width: 26
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,10 +173,10 @@ TextureImporter:
       name: snow_1
       rect:
         serializedVersion: 2
-        x: 72
-        y: 74
-        width: 48
-        height: 44
+        x: 35
+        y: 36
+        width: 26
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,10 +195,10 @@ TextureImporter:
       name: snow_2
       rect:
         serializedVersion: 2
-        x: 8
-        y: 10
-        width: 48
-        height: 44
+        x: 3
+        y: 4
+        width: 26
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,10 +217,10 @@ TextureImporter:
       name: snow_3
       rect:
         serializedVersion: 2
-        x: 72
-        y: 10
-        width: 48
-        height: 44
+        x: 35
+        y: 4
+        width: 26
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,7 +248,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      snow_0: 5251734906795025119
+      snow_1: 2487218932450820861
+      snow_2: 8772919823634052326
+      snow_3: -6643491068388988048
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
