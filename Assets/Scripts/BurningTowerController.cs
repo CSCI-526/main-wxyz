@@ -79,16 +79,16 @@ public class BurningTowerController : TowerController
 
         // 帧1
         burningTowerRenderer.sprite = burnFrames[0];
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.1f);
         // 帧2
         burningTowerRenderer.sprite = burnFrames[1];
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.1f);
         // 帧3
         burningTowerRenderer.sprite = burnFrames[2];
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.1f);
         // 帧4(保持燃烧)
         burningTowerRenderer.sprite = burnFrames[3];
-        float holdDuration = burnDuration - 0.45f;
+        float holdDuration = burnDuration - 0.3f;
         yield return new WaitForSeconds(holdDuration);
         // 回到帧0
         burningTowerRenderer.sprite = burnFrames[0];

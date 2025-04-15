@@ -5,10 +5,13 @@ public class TutBurningTowerController : TowerController
 {
     private BoardManager board;
     public float burnDuration = 3f;
+    public Sprite[] burnFrames;  // 四帧动画
+    private SpriteRenderer burningTowerRenderer;
 
     void Start()
     {
         base.Start();
+        burningTowerRenderer = GetComponent<SpriteRenderer>();
         board = FindObjectOfType<BoardManager>();
         if (board == null)
         {
@@ -21,59 +24,76 @@ public class TutBurningTowerController : TowerController
 
     public float GetBurnDamage()
     {
-        TowerController tower = GetComponent<TowerController>(); // 获取 TowerController
+        TowerController tower = GetComponent<TowerController>();
         if (tower != null)
         {
-            switch (tower.rankValue)  // 直接使用 TowerController 的 rankValue
+            switch (tower.rankValue)
             {
-                case 1: return 20;
-                case 2: return 25;
-                case 3: return 35;
-                case 4: return 50;
-                default: return 20;
+                case 1: return 20f;
+                case 2: return 25f;
+                case 3: return 35f;
+                case 4: return 50f;
+                default: return 20f;
             }
         }
-        return 20;
+        return 20f;
     }
-
 
     IEnumerator BurnRandomBorderTile()
     {
         while (true)
         {
-            yield return new WaitForSeconds(3f);
-
             TileController[] borderTiles = GetBorderTiles();
-            if (borderTiles.Length == 0) continue;
+            if (borderTiles.Length == 0)
+            {
+                yield return null;
+                continue;
+            }
 
             TileController selectedTile = borderTiles[Random.Range(0, borderTiles.Length)];
 
             float burnDamage = GetBurnDamage();
             selectedTile.SetTileState(2, burnDamage, burnDuration);
 
+            // 变色显示燃烧状态
             SpriteRenderer sr = selectedTile.GetComponent<SpriteRenderer>();
             if (sr != null)
             {
-                sr.color = Color.magenta;
+                sr.color = Color.red;  // 用红色表示燃烧
             }
 
-            // 立即对Tile上的所有敌人施加燃烧效果
             selectedTile.ApplyEffect(burnDamage, burnDuration);
-
-            // 使用协程处理燃烧效果的持续时间
             selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
 
-            /*yield return new WaitForSeconds(burnDuration);
+            // 播放燃烧动画
+            StartCoroutine(PlayBurnAnimation());
 
-            if (sr != null)
-            {
-                sr.color = Color.white;
-            }
-            selectedTile.SetTileState(0);*/
+            yield return new WaitForSeconds(5f); // 每 5 秒触发一次
         }
     }
 
-    
+    IEnumerator PlayBurnAnimation()
+    {
+        if (burnFrames == null || burnFrames.Length < 3 || burningTowerRenderer == null)
+            yield break;
+
+        // 帧1
+        burningTowerRenderer.sprite = burnFrames[0];
+        yield return new WaitForSeconds(0.1f);
+        // 帧2
+        burningTowerRenderer.sprite = burnFrames[1];
+        yield return new WaitForSeconds(0.1f);
+        // 帧3
+        burningTowerRenderer.sprite = burnFrames[2];
+        yield return new WaitForSeconds(0.1f);
+        // 帧4(保持燃烧)
+        burningTowerRenderer.sprite = burnFrames[3];
+        float holdDuration = burnDuration - 0.3f;
+        yield return new WaitForSeconds(holdDuration);
+        // 回到帧0
+        burningTowerRenderer.sprite = burnFrames[0];
+    }
+
     TileController[] GetBorderTiles()
     {
         if (board == null || board.tiles == null) return new TileController[0];
@@ -96,6 +116,5 @@ public class TutBurningTowerController : TowerController
 
         return borderTiles.ToArray();
     }
-
-
 }
+
