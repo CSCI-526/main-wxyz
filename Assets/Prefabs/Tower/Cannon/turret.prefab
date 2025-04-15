@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &49547057150472206
+--- !u!1 &4803166709393479998
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5565194724834910087}
-  - component: {fileID: 6282325720260741598}
-  - component: {fileID: 5162412661748993997}
+  - component: {fileID: 374262057034670638}
+  - component: {fileID: 2092350090985396447}
   m_Layer: 0
-  m_Name: FrozenTower
+  m_Name: turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5565194724834910087
+--- !u!4 &374262057034670638
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49547057150472206}
+  m_GameObject: {fileID: 4803166709393479998}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.85, y: 0.85, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6282325720260741598
+--- !u!212 &2092350090985396447
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49547057150472206}
+  m_GameObject: {fileID: 4803166709393479998}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -77,44 +76,14 @@ SpriteRenderer:
   m_SortingLayerID: -1734777079
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -539579915749326718, guid: 3d4decf0dddac41f5a672d8a3244f640, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.16, y: 0.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5162412661748993997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49547057150472206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c48273ed093fa4b55aa78a94a55268e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rankValue: 1
-  towerName: FrozenTower
-  towerSprite: {fileID: 5251734906795025119, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
-  attackRange: 0
-  attackDamage: 0
-  towerBasePrefab: {fileID: 0}
-  basePrefabs:
-  - {fileID: 5382328371828604995, guid: a3ff432b1b7aa43c0bc9095c5f5d0c18, type: 3}
-  - {fileID: 1169137949355460633, guid: 665debfea4c9941c1bbb8bc05f3297b2, type: 3}
-  - {fileID: 2729133250331387908, guid: 9e77472785924463dbc0dd96e7fcc0f1, type: 3}
-  - {fileID: 6734909066804063127, guid: 1e20dd86615b14cd2ba6b808f1daed89, type: 3}
-  gridPosition: {x: 0, y: 0}
-  slowDuration: 3
-  freezeFrames:
-  - {fileID: 5251734906795025119, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
-  - {fileID: 2487218932450820861, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
-  - {fileID: 8772919823634052326, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
-  - {fileID: -6643491068388988048, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
