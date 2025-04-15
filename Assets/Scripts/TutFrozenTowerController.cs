@@ -7,12 +7,12 @@ public class TutFrozenTowerController : TowerController
     //public int rankValue = 1; // 塔的等级
     public float slowDuration = 3f; // 减速持续时间
     public Sprite[] freezeFrames;  // 四帧动画
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer slowTowerRenderer;
 
     void Start()
     {
         base.Start();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        slowTowerRenderer = GetComponent<SpriteRenderer>();
         board = FindObjectOfType<BoardManager>();
         if (board == null)
         {
@@ -39,7 +39,7 @@ public class TutFrozenTowerController : TowerController
                 default: return 0.8f;
             }
         }
-        return 0.8f;
+        return 0.8f; 
     }
 
 
@@ -58,7 +58,7 @@ public class TutFrozenTowerController : TowerController
             selectedTile.SetTileState(1, SlowEffectAmount, slowDuration);
 
 
-
+            
             // 变色并设置减速状态
             SpriteRenderer sr = selectedTile.GetComponent<SpriteRenderer>();
             if (sr != null)
@@ -70,42 +70,40 @@ public class TutFrozenTowerController : TowerController
             // 使用协程处理减速效果的持续时间
             selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
 
-            /* // 减速持续时间后恢复颜色并重置状态
-             yield return new WaitForSeconds(slowDuration);
-             if (sr != null)
-             {
-                 sr.color = Color.white;
-             }
-             selectedTile.SetTileState(0); // 恢复 Tile 状态为无状态（0）*/
+           /* // 减速持续时间后恢复颜色并重置状态
+            yield return new WaitForSeconds(slowDuration);
+            if (sr != null)
+            {
+                sr.color = Color.white;
+            }
+            selectedTile.SetTileState(0); // 恢复 Tile 状态为无状态（0）*/
 
             StartCoroutine(PlayFreezeAnimation());
-
-            yield return new WaitForSeconds(6f); // 每 3 秒触发一次
+            
+            yield return new WaitForSeconds(5f); // 每 3 秒触发一次
         }
     }
 
     IEnumerator PlayFreezeAnimation()
     {
-        if (freezeFrames == null || freezeFrames.Length < 4 || spriteRenderer == null)
+        if (freezeFrames == null || freezeFrames.Length < 4 || slowTowerRenderer == null)
             yield break;
 
-        // Step 1: 变蓝（帧 1 → 帧 2）
-        spriteRenderer.sprite = freezeFrames[1];
-        yield return new WaitForSeconds(0.01f);
+        slowTowerRenderer.sprite = freezeFrames[0];
+        yield return new WaitForSeconds(0.1f);
 
-        // Step 2: 发光（帧 3），维持主状态
-        spriteRenderer.sprite = freezeFrames[2];
-        float holdDuration = slowDuration - 0.02f;
+        slowTowerRenderer.sprite = freezeFrames[1];
+        yield return new WaitForSeconds(0.1f);
+
+        slowTowerRenderer.sprite = freezeFrames[2];
+        yield return new WaitForSeconds(0.1f);
+
+        slowTowerRenderer.sprite = freezeFrames[3];
+        float holdDuration = slowDuration - 0.3f;
         yield return new WaitForSeconds(holdDuration);
 
-        // Step 3: 消退（帧 4）
-        spriteRenderer.sprite = freezeFrames[3];
-        yield return new WaitForSeconds(0.01f);
-
-        // Step 4: 回到普通状态（帧 1）
-        spriteRenderer.sprite = freezeFrames[0];
-    }
-
+        slowTowerRenderer.sprite = freezeFrames[0];
+    } 
     TileController[] GetBorderTiles()
     {
         if (board == null || board.tiles == null) return new TileController[0];
