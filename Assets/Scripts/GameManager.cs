@@ -309,7 +309,10 @@ public class GameManager : MonoBehaviour
 
     public void ReduceHealth(int damage)
     {
-        playerHealth -= damage;
+        if (playerHealth > 0)
+        {
+            playerHealth -= damage;
+        }
         Debug.Log("Player health after damage: " + playerHealth);
         uiManager.UpdateHealthUI();
     }

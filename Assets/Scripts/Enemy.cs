@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Enemy : MonoBehaviour
     protected float currentHealth = 100f;
     protected float originalHealth = 100f;
     protected Color originalColor;
+    protected float originalWidthHealthBar = 0.35f;
 
     protected Coroutine slowEffectCoroutine;
     protected Coroutine burnEffectCoroutine;
@@ -28,6 +30,9 @@ public class Enemy : MonoBehaviour
     private GameManager gameManager;
     private TutGameManager tutGameManager;
 
+
+    public Image healthBar;
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -38,6 +43,8 @@ public class Enemy : MonoBehaviour
         originalColor = spriteRenderer.color;
         currentHealth = originalHealth;
         currentSpeed = originalSpeed;
+        originalWidthHealthBar = healthBar.GetComponent<RectTransform>().sizeDelta.x;
+
         Transform startPoint = transform;
         for (int i = 0; i < waypoints.Length; i++)
         {
@@ -57,7 +64,7 @@ public class Enemy : MonoBehaviour
         if (enemyData != null)
         {
             // Optionally update appearance here.
-            // UpdateAppearance();
+            UpdateAppearance();
         }
     }
 
@@ -87,15 +94,21 @@ public class Enemy : MonoBehaviour
     /*** Enemy wayfinding ***/
     protected void EnemyBehavior()
     {
+        // healthBar.fillAmount = currentHealth / originalHealth;
+        RectTransform rt = healthBar.GetComponent<RectTransform>();
+        // float maxWidth = rt.sizeDelta.x; // 初始宽度
+        rt.sizeDelta = new Vector2(originalWidthHealthBar * (currentHealth / originalHealth), rt.sizeDelta.y);
         if (wayfindingIndex < waypoints.Length)
         {
             Transform targetPoint = waypoints[wayfindingIndex];
             transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, currentSpeed * Time.deltaTime);
             distance -= currentSpeed * Time.deltaTime;
-            Debug.Log($"{name} remains {distance} distance to destination");
+            // Debug.Log($"{name} remains {distance} distance to destination");
             if (Vector3.Distance(transform.position, targetPoint.position) < 0.01f)
             {
                 wayfindingIndex++;
+                if (wayfindingIndex == 1)   spriteRenderer.flipX = true;  // 水平翻转
+                if (wayfindingIndex == 3)   spriteRenderer.flipX = false; 
             }
         }
         else if (wayfindingIndex == waypoints.Length)
@@ -226,6 +239,7 @@ public class Enemy : MonoBehaviour
 
         while (duration > 0)
         {
+            slowEffectRender();
             EnemyTakeDamage(20f, "slow");
             yield return new WaitForSeconds(1f);
             duration -= 1f;
@@ -259,8 +273,22 @@ public class Enemy : MonoBehaviour
         while (duration > 0)
         {
             EnemyTakeDamage(damagePerSecond, "burning");
-            yield return new WaitForSeconds(1f);
-            duration -= 1f;
+            int freq = 2;
+            float interval = 1f / freq;
+            for (int i = 0; i < freq; i++)
+            {
+                burnEffectRender();
+                yield return new WaitForSeconds(interval / 2); // 燃烧显示半个 interval
+                originalRender();
+                yield return new WaitForSeconds(interval / 2); // 原始状态显示半个 interval
+                duration -= interval;
+            }
+            // burnEffectRender();
+            // yield return new WaitForSeconds(0.5f);
+            // duration -= 0.5f;
+            // originalRender();
+            // yield return new WaitForSeconds(0.5f);
+            // duration -= 0.5f;
         }
 
         originalRender();
