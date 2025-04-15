@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rankValue: 1
   towerName: BurningTower
-  towerSprite: {fileID: 2801448113155347191, guid: d799a83a1ff5a3b45b54db27288963f1, type: 3}
+  towerSprite: {fileID: 7969504016598837064, guid: fdc7fb238c705004b9136a1b39a4ed6e, type: 3}
   attackRange: 0
   attackDamage: 0
   towerBasePrefab: {fileID: 0}
@@ -114,6 +114,7 @@ MonoBehaviour:
   gridPosition: {x: 0, y: 0}
   burnDuration: 3
   burnFrames:
-  - {fileID: 2801448113155347191, guid: d799a83a1ff5a3b45b54db27288963f1, type: 3}
-  - {fileID: -1764656385636193396, guid: d799a83a1ff5a3b45b54db27288963f1, type: 3}
-  - {fileID: 663332445445551136, guid: d799a83a1ff5a3b45b54db27288963f1, type: 3}
+  - {fileID: 7969504016598837064, guid: fdc7fb238c705004b9136a1b39a4ed6e, type: 3}
+  - {fileID: -4041298643086001914, guid: fdc7fb238c705004b9136a1b39a4ed6e, type: 3}
+  - {fileID: 2385761270193732233, guid: fdc7fb238c705004b9136a1b39a4ed6e, type: 3}
+  - {fileID: -4672568969694325844, guid: fdc7fb238c705004b9136a1b39a4ed6e, type: 3}

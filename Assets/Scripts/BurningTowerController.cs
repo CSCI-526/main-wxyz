@@ -77,17 +77,20 @@ public class BurningTowerController : TowerController
         if (burnFrames == null || burnFrames.Length < 3 || burningTowerRenderer == null)
             yield break;
 
-        // Step 1: 点燃瞬间（帧1）
+        // 帧1
         burningTowerRenderer.sprite = burnFrames[0];
-        yield return new WaitForSeconds(0.01f);
-
-        // Step 2: 持续燃烧状态（帧2）
+        yield return new WaitForSeconds(0.15f);
+        // 帧2
         burningTowerRenderer.sprite = burnFrames[1];
-        float holdDuration = burnDuration - 0.01f;
+        yield return new WaitForSeconds(0.15f);
+        // 帧3
+        burningTowerRenderer.sprite = burnFrames[2];
+        yield return new WaitForSeconds(0.15f);
+        // 帧4(保持燃烧)
+        burningTowerRenderer.sprite = burnFrames[3];
+        float holdDuration = burnDuration - 0.45f;
         yield return new WaitForSeconds(holdDuration);
-
-
-        // Step 3: 回到默认塔（帧0）
+        // 回到帧0
         burningTowerRenderer.sprite = burnFrames[0];
     }
 
