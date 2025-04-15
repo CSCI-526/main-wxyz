@@ -57,13 +57,11 @@ public class Enemy : MonoBehaviour
             uiManager = Object.FindFirstObjectByType<UIManager>();
         }
         
-        // Try to find a GameManager and TutGameManager.
         gameManager = Object.FindFirstObjectByType<GameManager>();
         tutGameManager = Object.FindFirstObjectByType<TutGameManager>();
         
         if (enemyData != null)
         {
-            // Optionally update appearance here.
             UpdateAppearance();
         }
     }
@@ -94,10 +92,9 @@ public class Enemy : MonoBehaviour
     /*** Enemy wayfinding ***/
     protected void EnemyBehavior()
     {
-        // healthBar.fillAmount = currentHealth / originalHealth;
         RectTransform rt = healthBar.GetComponent<RectTransform>();
-        // float maxWidth = rt.sizeDelta.x; // 初始宽度
         rt.sizeDelta = new Vector2(originalWidthHealthBar * (currentHealth / originalHealth), rt.sizeDelta.y);
+        
         if (wayfindingIndex < waypoints.Length)
         {
             Transform targetPoint = waypoints[wayfindingIndex];
@@ -278,9 +275,9 @@ public class Enemy : MonoBehaviour
             for (int i = 0; i < freq; i++)
             {
                 burnEffectRender();
-                yield return new WaitForSeconds(interval / 2); // 燃烧显示半个 interval
+                yield return new WaitForSeconds(interval / 2);
                 originalRender();
-                yield return new WaitForSeconds(interval / 2); // 原始状态显示半个 interval
+                yield return new WaitForSeconds(interval / 2);
                 duration -= interval;
             }
             // burnEffectRender();
