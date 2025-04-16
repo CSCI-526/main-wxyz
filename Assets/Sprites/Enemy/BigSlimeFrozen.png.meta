@@ -75,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 77
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -360,7 +360,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BigSlimeFrozen_0: 2776978806679789562
+      BigSlimeFrozen_1: 451739911967668741
+      BigSlimeFrozen_2: -1572617341626487418
+      BigSlimeFrozen_3: -811339556861400392
+      BigSlimeFrozen_4: -5007603711692646560
+      BigSlimeFrozen_5: 7808507098126628213
+      BigSlimeFrozen_6: -2884751947106892758
+      BigSlimeFrozen_7: -8465203652756251156
+      BigSlimeFrozen_8: -1940186495182226907
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,34 +1,34 @@
 fileFormatVersion: 2
-guid: 3f2b277b1efb39949aa67b0881e90171
+guid: 50428bef9e904554a998806c4345979c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7936232492216139047
-    second: BigSlimeBurning_0
+      213: 6327632980937489168
+    second: 6965dc876642ea167ffa5cd15e22bc5_0
   - first:
-      213: -5238692156167127598
-    second: BigSlimeBurning_1
+      213: -1906833487281978654
+    second: 6965dc876642ea167ffa5cd15e22bc5_1
   - first:
-      213: -9186565766258292110
-    second: BigSlimeBurning_2
+      213: 9135398740004628737
+    second: 6965dc876642ea167ffa5cd15e22bc5_2
   - first:
-      213: -8143688753432477210
-    second: BigSlimeBurning_3
+      213: -5517107968145452491
+    second: 6965dc876642ea167ffa5cd15e22bc5_3
   - first:
-      213: -825381633041146315
-    second: BigSlimeBurning_4
+      213: -6099622451734512914
+    second: 6965dc876642ea167ffa5cd15e22bc5_4
   - first:
-      213: -1416929052509617287
-    second: BigSlimeBurning_5
+      213: 1030887746305524286
+    second: 6965dc876642ea167ffa5cd15e22bc5_5
   - first:
-      213: -8919079042627378823
-    second: BigSlimeBurning_6
+      213: 5092292863849112304
+    second: 6965dc876642ea167ffa5cd15e22bc5_6
   - first:
-      213: -3230761363292330418
-    second: BigSlimeBurning_7
+      213: 201946985844646688
+    second: 6965dc876642ea167ffa5cd15e22bc5_7
   - first:
-      213: -4983717170191778924
-    second: BigSlimeBurning_8
+      213: -907576864644383947
+    second: 6965dc876642ea167ffa5cd15e22bc5_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 77
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -150,13 +150,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BigSlimeBurning_0
+      name: 6965dc876642ea167ffa5cd15e22bc5_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 63
-        width: 26
-        height: 29
+        x: 4
+        y: 64
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,84 +165,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9d24b86a896dcd190800000000000000
-      internalID: -7936232492216139047
+      spriteID: 01b33d1cba440d750800000000000000
+      internalID: 6327632980937489168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigSlimeBurning_1
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 35
-        width: 27
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2dd78006d3d6c47b0800000000000000
-      internalID: -5238692156167127598
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BigSlimeBurning_2
-      rect:
-        serializedVersion: 2
-        x: 34
-        y: 63
-        width: 27
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 27a096cab13c28080800000000000000
-      internalID: -9186565766258292110
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BigSlimeBurning_3
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 63
-        width: 27
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6e14052d93ecbfe80800000000000000
-      internalID: -8143688753432477210
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BigSlimeBurning_4
+      name: 6965dc876642ea167ffa5cd15e22bc5_1
       rect:
         serializedVersion: 2
         x: 35
-        y: 35
+        y: 64
         width: 26
         height: 27
       alignment: 0
@@ -253,19 +187,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 53e537e17c7ab84f0800000000000000
-      internalID: -825381633041146315
+      spriteID: 2e20db0db019985e0800000000000000
+      internalID: -1906833487281978654
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigSlimeBurning_5
+      name: 6965dc876642ea167ffa5cd15e22bc5_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 35
-        width: 27
+        x: 68
+        y: 67
+        width: 28
         height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -275,20 +209,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 973cb31b88e065ce0800000000000000
-      internalID: -1416929052509617287
+      spriteID: 109e68ba0c477ce70800000000000000
+      internalID: 9135398740004628737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigSlimeBurning_6
+      name: 6965dc876642ea167ffa5cd15e22bc5_3
       rect:
         serializedVersion: 2
-        x: 5
-        y: 5
-        width: 27
-        height: 27
+        x: 3
+        y: 35
+        width: 26
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,20 +231,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9716094bdd0193480800000000000000
-      internalID: -8919079042627378823
+      spriteID: 532963ba88b4f63b0800000000000000
+      internalID: -5517107968145452491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigSlimeBurning_7
+      name: 6965dc876642ea167ffa5cd15e22bc5_4
       rect:
         serializedVersion: 2
-        x: 34
-        y: 5
-        width: 28
-        height: 28
+        x: 35
+        y: 35
+        width: 26
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -319,20 +253,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e4667ea48a70a23d0800000000000000
-      internalID: -3230761363292330418
+      spriteID: eeafd5482b9c95ba0800000000000000
+      internalID: -6099622451734512914
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigSlimeBurning_8
+      name: 6965dc876642ea167ffa5cd15e22bc5_5
       rect:
         serializedVersion: 2
         x: 65
-        y: 5
-        width: 26
-        height: 27
+        y: 35
+        width: 29
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -341,8 +275,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 49b34b973a746dab0800000000000000
-      internalID: -4983717170191778924
+      spriteID: e3208d181f27e4e00800000000000000
+      internalID: 1030887746305524286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 6965dc876642ea167ffa5cd15e22bc5_6
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 8
+        width: 27
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f2abf921657ba640800000000000000
+      internalID: 5092292863849112304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 6965dc876642ea167ffa5cd15e22bc5_7
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 8
+        width: 29
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0232bb2b6b57dc200800000000000000
+      internalID: 201946985844646688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 6965dc876642ea167ffa5cd15e22bc5_8
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 8
+        width: 29
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53b328076a3a763f0800000000000000
+      internalID: -907576864644383947
       vertices: []
       indices: 
       edges: []
@@ -360,16 +360,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      BigSlimeBurning_0: -7936232492216139047
-      BigSlimeBurning_1: -5238692156167127598
-      BigSlimeBurning_2: -9186565766258292110
-      BigSlimeBurning_3: -8143688753432477210
-      BigSlimeBurning_4: -825381633041146315
-      BigSlimeBurning_5: -1416929052509617287
-      BigSlimeBurning_6: -8919079042627378823
-      BigSlimeBurning_7: -3230761363292330418
-      BigSlimeBurning_8: -4983717170191778924
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
