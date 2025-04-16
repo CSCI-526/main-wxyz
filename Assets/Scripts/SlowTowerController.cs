@@ -89,21 +89,20 @@ public class SlowTowerController : TowerController
         if (freezeFrames == null || freezeFrames.Length < 4 || slowTowerRenderer == null)
             yield break;
 
-        // Step 1: 变蓝（帧 1 → 帧 2）
-        slowTowerRenderer.sprite = freezeFrames[1];
-        yield return new WaitForSeconds(0.01f);
+        slowTowerRenderer.sprite = freezeFrames[0];
+        yield return new WaitForSeconds(0.1f);
 
-        // Step 2: 发光（帧 3），维持主状态
+        slowTowerRenderer.sprite = freezeFrames[1];
+        yield return new WaitForSeconds(0.1f);
+
         slowTowerRenderer.sprite = freezeFrames[2];
-        float holdDuration = slowDuration - 0.01f;
+        yield return new WaitForSeconds(0.1f);
+
+        slowTowerRenderer.sprite = freezeFrames[3];
+        float holdDuration = slowDuration - 0.3f;
         yield return new WaitForSeconds(holdDuration);
 
-        // Step 3: 消退（帧 4）
-        //spriteRenderer.sprite = freezeFrames[3];
-        //yield return new WaitForSeconds(0.01f);
-
-        // Step 4: 回到普通状态（帧 1）
-        slowTowerRenderer.sprite = freezeFrames[1];
+        slowTowerRenderer.sprite = freezeFrames[0];
     }
 
    TileController[] GetBorderTiles()

@@ -3,8 +3,8 @@ guid: 3d4decf0dddac41f5a672d8a3244f640
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -539579915749326718
-    second: Turret_0
+      213: 2323917800338813707
+    second: turret_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,7 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Turret_0
+      name: turret_0
       rect:
         serializedVersion: 2
         x: 8
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 28083d9ece60388f0800000000000000
-      internalID: -539579915749326718
+      spriteID: b03f6604de6304020800000000000000
+      internalID: 2323917800338813707
       vertices: []
       indices: 
       edges: []
@@ -173,8 +173,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      turret_0: 2323917800338813707
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
