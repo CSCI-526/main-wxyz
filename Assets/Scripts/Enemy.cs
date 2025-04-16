@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour
 
     protected Coroutine slowEffectCoroutine;
     protected Coroutine burnEffectCoroutine;
+    // protected bool slowState = false;
+    // protected bool burnState = false;
     
     protected int wayfindingIndex = 0;
     protected int coin = 5;
@@ -30,8 +32,15 @@ public class Enemy : MonoBehaviour
     private GameManager gameManager;
     private TutGameManager tutGameManager;
 
-
     public Image healthBar;
+
+    public Sprite[] normalSprites;
+    public Sprite[] slowSprites;
+    public Sprite[] burnSprites;
+    private float animTimer = 0f;
+    private int currentFrame = 0;
+    private float originalClipRatio = 0.1f;
+    private float clipRatio = 0.1f;
 
     void Awake()
     {
@@ -44,6 +53,8 @@ public class Enemy : MonoBehaviour
         currentHealth = originalHealth;
         currentSpeed = originalSpeed;
         originalWidthHealthBar = healthBar.GetComponent<RectTransform>().sizeDelta.x;
+        originalClipRatio = 1f / normalSprites.Length;
+        clipRatio = originalClipRatio;
 
         Transform startPoint = transform;
         for (int i = 0; i < waypoints.Length; i++)
@@ -92,9 +103,14 @@ public class Enemy : MonoBehaviour
     /*** Enemy wayfinding ***/
     protected void EnemyBehavior()
     {
+        // enemy health bar
         RectTransform rt = healthBar.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(originalWidthHealthBar * (currentHealth / originalHealth), rt.sizeDelta.y);
         
+        // enemy abnormal state animation switch
+        UpdateAnimation();
+
+        // enemy way finding
         if (wayfindingIndex < waypoints.Length)
         {
             Transform targetPoint = waypoints[wayfindingIndex];
@@ -136,24 +152,6 @@ public class Enemy : MonoBehaviour
                     gameManager.AddDamageFromCanonTower(damage);
                     break;
             }
-        }
-        else if (tutGameManager != null)
-        {
-            // switch (type)
-            // {
-            //     case "burning":
-            //         tutGameManager.AddDamageFromBurningTower(damage);
-            //         break;
-            //     case "slow":
-            //         tutGameManager.AddDamageFromSlowTower(damage);
-            //         break;
-            //     case "energy":
-            //         tutGameManager.AddDamageFromEnergyTower(damage);
-            //         break;
-            //     default:
-            //         tutGameManager.AddDamageFromCanonTower(damage);
-            //         break;
-            // }
         }
 
         currentHealth -= damage;
@@ -230,19 +228,19 @@ public class Enemy : MonoBehaviour
 
     protected IEnumerator SlowEffectCoroutine(float slowRatio, float duration)
     {
-        slowEffectRender();
+        // slowEffectRender();
         currentSpeed *= slowRatio;
         yield return new WaitForSeconds(0.1f);
 
         while (duration > 0)
         {
-            slowEffectRender();
+            // slowEffectRender();
             EnemyTakeDamage(20f, "slow");
             yield return new WaitForSeconds(1f);
             duration -= 1f;
         }
 
-        originalRender();
+        // originalRender();
         currentSpeed = originalSpeed;
         slowEffectCoroutine = null;
     }
@@ -261,7 +259,7 @@ public class Enemy : MonoBehaviour
             StopCoroutine(slowEffectCoroutine);
             slowEffectCoroutine = null;
             currentSpeed = originalSpeed;
-            originalRender();
+            // originalRender();
         }
 
         burnEffectRender();
@@ -270,46 +268,71 @@ public class Enemy : MonoBehaviour
         while (duration > 0)
         {
             EnemyTakeDamage(damagePerSecond, "burning");
-            int freq = 2;
-            float interval = 1f / freq;
-            for (int i = 0; i < freq; i++)
-            {
-                burnEffectRender();
-                yield return new WaitForSeconds(interval / 2);
-                originalRender();
-                yield return new WaitForSeconds(interval / 2);
-                duration -= interval;
-            }
+            // int freq = 2;
+            // float interval = 1f / freq;
+            // for (int i = 0; i < freq; i++)
+            // {
+            //     // burnEffectRender();
+            //     yield return new WaitForSeconds(interval / 2);
+            //     // originalRender();
+            //     yield return new WaitForSeconds(interval / 2);
+            //     duration -= interval;
+            // }
             // burnEffectRender();
-            // yield return new WaitForSeconds(0.5f);
-            // duration -= 0.5f;
+            yield return new WaitForSeconds(1f);
+            duration -= 1f;
             // originalRender();
             // yield return new WaitForSeconds(0.5f);
             // duration -= 0.5f;
         }
 
-        originalRender();
+        // originalRender();
         burnEffectCoroutine = null;
     }
 
     protected void originalRender()
     {
-        if (spriteRenderer != null)
-            spriteRenderer.color = originalColor;
+        // if (spriteRenderer != null)
+        //     spriteRenderer.color = originalColor;
     }
 
     protected void slowEffectRender()
     {
-        if (spriteRenderer != null)
-            spriteRenderer.color = Color.blue;
+        // if (spriteRenderer != null)
+        //     spriteRenderer.color = Color.blue;
     }
 
     protected void burnEffectRender()
     {
-        if (spriteRenderer != null)
-            spriteRenderer.color = Color.red;
+        // if (spriteRenderer != null)
+        //     spriteRenderer.color = Color.red;
     }
     /*** End enemy abnormal state effects ***/
+
+    void UpdateAnimation()
+    {
+        animTimer += Time.deltaTime;
+        if (animTimer >= clipRatio)
+        {
+            animTimer = 0f;
+            currentFrame = (currentFrame + 1) % normalSprites.Length;
+            if (burnEffectCoroutine != null)
+            {
+                spriteRenderer.sprite = burnSprites[currentFrame];
+                clipRatio = originalClipRatio;
+            }
+            else if (slowEffectCoroutine != null)
+            {
+                spriteRenderer.sprite = slowSprites[currentFrame];
+                clipRatio = originalClipRatio * (originalSpeed / currentSpeed);
+            }
+            else
+            {
+                spriteRenderer.sprite = normalSprites[currentFrame];
+                clipRatio = originalClipRatio;
+            }
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
