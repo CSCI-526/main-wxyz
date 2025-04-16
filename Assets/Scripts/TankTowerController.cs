@@ -10,6 +10,9 @@ public class TankTowerController : TowerController
     private Transform turretTransform;
     public GameObject turretPrefab;
     private Enemy currentTarget;
+    public Sprite[] turretSprites; // 根据 rank 设置不同的 sprite
+    private SpriteRenderer turretRenderer;
+
 
     void Start()
     {
@@ -24,10 +27,26 @@ public class TankTowerController : TowerController
         FireIfReady();
     }
 
+    public override void UpgradeTower()
+    {
+        base.UpgradeTower(); // 保留基类的升级行为
+        UpdateTurretSprite(); // 额外更新炮塔的 sprite
+    }
+
+
     void UpdateTarget()
     {
         currentTarget = FindTargetEnemy();
     }
+
+    void UpdateTurretSprite()
+    {
+        if (turretRenderer != null && turretSprites != null && turretSprites.Length >= rankValue)
+        {
+            turretRenderer.sprite = turretSprites[rankValue - 1];
+        }
+    }
+
 
     void UpdateTurretRotation()
     {
@@ -119,10 +138,9 @@ public class TankTowerController : TowerController
             turret.name = "Turret";
             turret.transform.localPosition = Vector3.zero;
             turretTransform = turret.transform;
-        }
-        else
-        {
-            Debug.LogWarning("Turret Prefab 未设置！");
+
+            turretRenderer = turret.GetComponent<SpriteRenderer>();
+            UpdateTurretSprite(); // 初始时设置 sprite
         }
     }
 }

@@ -611,9 +611,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc693549f7d8f4edc861e3685689e7f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorSelectionPanel: {fileID: 1371799507}
-  cooldownOverlay: {fileID: 60593426}
-  cooldownDuration: 30
 --- !u!1 &75482353
 GameObject:
   m_ObjectHideFlags: 0
@@ -2333,14 +2330,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0465b9f5eb2ec41578422d82f3b2f714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  galleryPanel: {fileID: 334312647}
-  towerPanels:
-  - {fileID: 1649950019}
-  - {fileID: 1715841776}
-  - {fileID: 1264887886}
-  - {fileID: 165300037}
-  - {fileID: 456122082}
-  sharedVideoPlayer: {fileID: 1247101848}
 --- !u!1 &456122082
 GameObject:
   m_ObjectHideFlags: 0
@@ -6091,15 +6080,11 @@ MonoBehaviour:
   boardManager: {fileID: 1613210817}
   enemyManager: {fileID: 1829153773}
   towerPrefabs:
-  - {fileID: 49547057150472206, guid: 7d08e4d4f79f9491997f765eda298cc1, type: 3}
-  - {fileID: 7710871422812722048, guid: 96259937bd932ff46a1af3c187588de3, type: 3}
-  - {fileID: 49547057150472206, guid: b12031daac76e429cad6dd67f47bf234, type: 3}
-  - {fileID: 49547057150472206, guid: 29add77e8100de444a787819656d3d75, type: 3}
   - {fileID: 1001787181882085309, guid: fab5f7ea9cf324f6c811c7705e22f610, type: 3}
-  - {fileID: 49547057150472206, guid: 7d08e4d4f79f9491997f765eda298cc1, type: 3}
   - {fileID: 7710871422812722048, guid: 96259937bd932ff46a1af3c187588de3, type: 3}
-  - {fileID: 49547057150472206, guid: 29add77e8100de444a787819656d3d75, type: 3}
+  - {fileID: 49547057150472206, guid: 7d08e4d4f79f9491997f765eda298cc1, type: 3}
   - {fileID: 49547057150472206, guid: b12031daac76e429cad6dd67f47bf234, type: 3}
+  - {fileID: 49547057150472206, guid: 29add77e8100de444a787819656d3d75, type: 3}
   uiManager: {fileID: 835782558}
   timerManager: {fileID: 397856851}
   FirebaseManager: {fileID: 1428979181}

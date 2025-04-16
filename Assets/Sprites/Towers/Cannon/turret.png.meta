@@ -5,6 +5,15 @@ TextureImporter:
   - first:
       213: 2323917800338813707
     second: turret_0
+  - first:
+      213: 6219008580301899996
+    second: turret_1
+  - first:
+      213: -5076354272350900210
+    second: turret_2
+  - first:
+      213: -1346401361294608487
+    second: turret_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -143,7 +152,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 8
-        y: 1
+        y: 33
         width: 16
         height: 28
       alignment: 0
@@ -156,6 +165,72 @@ TextureImporter:
       bones: []
       spriteID: b03f6604de6304020800000000000000
       internalID: 2323917800338813707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turret_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 33
+        width: 16
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd84004aa5b5e4650800000000000000
+      internalID: 6219008580301899996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turret_2
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 1
+        width: 17
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e00fc7a5faa2d89b0800000000000000
+      internalID: -5076354272350900210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: turret_3
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 1
+        width: 17
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 997beee681f905de0800000000000000
+      internalID: -1346401361294608487
       vertices: []
       indices: 
       edges: []
@@ -173,8 +248,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      turret_0: 2323917800338813707
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

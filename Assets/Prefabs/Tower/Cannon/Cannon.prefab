@@ -115,3 +115,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3538796072834460885, guid: d3d1509b193ff49b3822d4d64810a551, type: 3}
   fireRate: 1.1
   turretPrefab: {fileID: 4803166709393479998, guid: f2e2253a51a3a4b86adb226f743f0c71, type: 3}
+  turretSprites:
+  - {fileID: 2323917800338813707, guid: 3d4decf0dddac41f5a672d8a3244f640, type: 3}
+  - {fileID: 6219008580301899996, guid: 3d4decf0dddac41f5a672d8a3244f640, type: 3}
+  - {fileID: -5076354272350900210, guid: 3d4decf0dddac41f5a672d8a3244f640, type: 3}
+  - {fileID: -1346401361294608487, guid: 3d4decf0dddac41f5a672d8a3244f640, type: 3}
