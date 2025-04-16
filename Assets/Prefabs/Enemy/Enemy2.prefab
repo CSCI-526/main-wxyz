@@ -119,8 +119,26 @@ MonoBehaviour:
   - {fileID: 5590223441652211795, guid: 84d2a529a4bc99943a2d8e6b7d6fadec, type: 3}
   - {fileID: 4486149277403418664, guid: 84d2a529a4bc99943a2d8e6b7d6fadec, type: 3}
   - {fileID: -7214237735823453605, guid: 84d2a529a4bc99943a2d8e6b7d6fadec, type: 3}
-  slowSprites: []
-  burnSprites: []
+  slowSprites:
+  - {fileID: 2776978806679789562, guid: c801de6c0a1ef3748a6ea6b261ca5392, type: 3}
+  - {fileID: 451739911967668741, guid: c801de6c0a1ef3748a6ea6b261ca5392, type: 3}
+  - {fileID: -1572617341626487418, guid: c801de6c0a1ef3748a6ea6b261ca5392, type: 3}
+  - {fileID: -811339556861400392, guid: c801de6c0a1ef3748a6ea6b261ca5392, type: 3}
+  - {fileID: -5007603711692646560, guid: c801de6c0a1ef3748a6ea6b261ca5392, type: 3}
+  - {fileID: 7808507098126628213, guid: c801de6c0a1ef3748a6ea6b261ca5392, type: 3}
+  - {fileID: -2884751947106892758, guid: c801de6c0a1ef3748a6ea6b261ca5392, type: 3}
+  - {fileID: -8465203652756251156, guid: c801de6c0a1ef3748a6ea6b261ca5392, type: 3}
+  - {fileID: -1940186495182226907, guid: c801de6c0a1ef3748a6ea6b261ca5392, type: 3}
+  burnSprites:
+  - {fileID: -7936232492216139047, guid: 3f2b277b1efb39949aa67b0881e90171, type: 3}
+  - {fileID: -5238692156167127598, guid: 3f2b277b1efb39949aa67b0881e90171, type: 3}
+  - {fileID: -9186565766258292110, guid: 3f2b277b1efb39949aa67b0881e90171, type: 3}
+  - {fileID: -8143688753432477210, guid: 3f2b277b1efb39949aa67b0881e90171, type: 3}
+  - {fileID: -825381633041146315, guid: 3f2b277b1efb39949aa67b0881e90171, type: 3}
+  - {fileID: -1416929052509617287, guid: 3f2b277b1efb39949aa67b0881e90171, type: 3}
+  - {fileID: -8919079042627378823, guid: 3f2b277b1efb39949aa67b0881e90171, type: 3}
+  - {fileID: -3230761363292330418, guid: 3f2b277b1efb39949aa67b0881e90171, type: 3}
+  - {fileID: -4983717170191778924, guid: 3f2b277b1efb39949aa67b0881e90171, type: 3}
 --- !u!61 &-2419213759509867986
 BoxCollider2D:
   m_ObjectHideFlags: 0
