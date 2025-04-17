@@ -36,11 +36,7 @@ public class BurningTowerController : TowerController
         while (true)
         {
             TileController[] borderTiles = GetBorderTiles();
-            if (borderTiles.Length == 0)
-            {
-                yield return null;
-                continue;
-            }
+            if (borderTiles.Length == 0) continue;
 
             TileController selectedTile = borderTiles[Random.Range(0, borderTiles.Length)];
             float burnDamage = GetBurnDamage();
@@ -55,14 +51,13 @@ public class BurningTowerController : TowerController
             selectedTile.ApplyEffect(burnDamage, burnDuration);
             selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
 
-            // yield return new WaitForSeconds(burnDuration);
-            // 播放燃烧动画
             StartCoroutine(PlayBurnAnimation());
-
-            yield return new WaitForSeconds(5f); // 每 5 秒触发一次
+            yield return new WaitForSeconds(burnDuration);
+            
 
             if (sr != null && originalSprite != null) sr.sprite = originalSprite;
             selectedTile.SetTileState(0);
+            yield return new WaitForSeconds(2f); // 每 5 秒触发一次
 
 
 

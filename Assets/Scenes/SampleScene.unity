@@ -611,6 +611,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc693549f7d8f4edc861e3685689e7f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorSelectionPanel: {fileID: 0}
+  cooldownOverlay: {fileID: 0}
+  cooldownDuration: 30
 --- !u!1 &75482353
 GameObject:
   m_ObjectHideFlags: 0
@@ -2330,6 +2333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0465b9f5eb2ec41578422d82f3b2f714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  galleryPanel: {fileID: 0}
+  towerPanels: []
+  sharedVideoPlayer: {fileID: 0}
 --- !u!1 &456122082
 GameObject:
   m_ObjectHideFlags: 0

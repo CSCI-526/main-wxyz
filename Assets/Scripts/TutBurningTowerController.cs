@@ -55,15 +55,14 @@ public class TutBurningTowerController : TowerController
             selectedTile.ApplyEffect(burnDamage, burnDuration);
             selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
 
-            // yield return new WaitForSeconds(burnDuration);
-            // 播放燃烧动画
             StartCoroutine(PlayBurnAnimation());
+            yield return new WaitForSeconds(burnDuration);
 
-            yield return new WaitForSeconds(5f); // 每 5 秒触发一次
+            
 
             if (sr && originalSprite) sr.sprite = originalSprite;
             selectedTile.SetTileState(0);
-
+            yield return new WaitForSeconds(2f); // 每 5 秒触发一次
 
         }
     }

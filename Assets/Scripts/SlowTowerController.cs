@@ -8,7 +8,6 @@ public class SlowTowerController : TowerController
 
     private BoardManager board;
     //public int rankValue = 1; // 塔的等级
-    public float slowDuration = 3f; // 减速持续时间
     public Sprite[] freezeFrames;  // 四帧动画
     private SpriteRenderer slowTowerRenderer;
 
@@ -53,13 +52,15 @@ public class SlowTowerController : TowerController
             selectedTile.ApplyEffect(slowAmount, slowDuration);
             selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
 
-            // yield return new WaitForSeconds(slowDuration);
             StartCoroutine(PlayFreezeAnimation());
-
-            yield return new WaitForSeconds(5f); // 每 3 秒触发一次
+            
+            yield return new WaitForSeconds(slowDuration);
+            
 
             if (sr != null && originalSprite != null) sr.sprite = originalSprite;
             selectedTile.SetTileState(0);
+            yield return new WaitForSeconds(2f); // 每 3 秒触发一次
+            
 
 
         }
