@@ -49,35 +49,26 @@ public class BurningTowerController : TowerController
 
             TileController selectedTile = borderTiles[Random.Range(0, borderTiles.Length)];
             float burnDamage = GetBurnDamage();
-
-            // 变色显示燃烧状态
             SpriteRenderer sr = selectedTile.GetComponent<SpriteRenderer>();
-            if (sr != null)
-            {
-                sr.color = Color.red;  // 用红色表示燃烧
-            }
-
-            selectedTile.ApplyEffect(burnDamage, burnDuration);
-            selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
-
-            // 播放燃烧动画
-            StartCoroutine(PlayBurnAnimation());
-
-            /***             ***/
             Sprite originalSprite = sr != null ? sr.sprite : null;
+
+            // 灼烧伤害前端部分(播放燃烧动画，将地块替换为lava)
+            StartCoroutine(PlayBurnAnimation());
             if (sr != null && burningTileSprite != null) sr.sprite = burningTileSprite;
 
+            // 灼烧伤害逻辑部分
             selectedTile.SetTileState(2, burnDamage, burnDuration);
             selectedTile.ApplyEffect(burnDamage, burnDuration);
             selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
 
             yield return new WaitForSeconds(burnDuration);
 
+            // 恢复正常
             if (sr != null && originalSprite != null) sr.sprite = originalSprite;
             selectedTile.SetTileState(0);
-            /***             ***/
 
-            yield return new WaitForSeconds(5f); // 每 5 秒触发一次
+            // 防御塔冷却
+            yield return new WaitForSeconds(2f);
         }
     }
 
@@ -102,20 +93,6 @@ public class BurningTowerController : TowerController
         // 回到帧0
         burningTowerRenderer.sprite = burnFrames[0];
     }
-
-    //         Sprite originalSprite = sr != null ? sr.sprite : null;
-    //         if (sr != null && burningTileSprite != null) sr.sprite = burningTileSprite;
-
-    //         selectedTile.SetTileState(2, burnDamage, burnDuration);
-    //         selectedTile.ApplyEffect(burnDamage, burnDuration);
-    //         selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
-
-    //         yield return new WaitForSeconds(burnDuration);
-
-    //         if (sr != null && originalSprite != null) sr.sprite = originalSprite;
-    //         selectedTile.SetTileState(0);
-    //     }
-    // }
 
     TileController[] GetBorderTiles()
     {

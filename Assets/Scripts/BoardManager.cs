@@ -6,7 +6,7 @@ public class BoardManager : MonoBehaviour
     [Header("Grid Settings")]
     public int rows = 7;
     public int columns = 7;
-    public float tileSpacing = 1.1f;
+    public float tileSpacing = 2.1f;
     public GameObject tilePrefab;
 
     [Header("Tile Sprites")]
@@ -84,7 +84,7 @@ public class BoardManager : MonoBehaviour
         {
             for (int i = 1; i < rows - 1; i++)
             {
-                if (direction.x < 0)
+                if (direction.x > 0)
                 {
                     for (int j = 1; j < columns - 1; j++)
                         HandleHorizontalMove(i, j, -1, hasMerged, ref anyMoved);
@@ -98,7 +98,7 @@ public class BoardManager : MonoBehaviour
         }
         else if (direction.y != 0)
         {
-            if (direction.y < 0)
+            if (direction.y > 0)
             {
                 for (int j = 1; j < columns - 1; j++)
                     for (int i = rows - 2; i >= 1; i--)

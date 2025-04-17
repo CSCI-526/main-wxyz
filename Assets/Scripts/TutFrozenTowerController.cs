@@ -3,8 +3,8 @@ using System.Collections;
 
 public class TutFrozenTowerController : TowerController
 {
-    public float slowDuration = 3f;
-    public Sprite frozenTileSprite;
+    // public float slowDuration = 3f;
+    public Sprite slowTileSprite;
 
     private BoardManager board;
     //public int rankValue = 1; // 塔的等级
@@ -25,65 +25,44 @@ public class TutFrozenTowerController : TowerController
     {
         switch (rankValue)
         {
-            switch (tower.rankValue)  // 直接使用 TowerController 的 rankValue
-            {
-                case 1: return 0.8f;
-                case 2: return 0.6f;
-                case 3: return 0.4f;
-                case 4: return 0.2f;
-                default: return 0.8f;
-            }
+            case 1: return 0.8f;
+            case 2: return 0.6f;
+            case 3: return 0.4f;
+            case 4: return 0.2f;
+            default: return 0.8f;
         }
-        return 0.8f; 
     }
 
     IEnumerator SlowRandomBorderTile()
     {
         while (true)
         {
-
             TileController[] borderTiles = GetBorderTiles();
             if (borderTiles.Length == 0) continue;
 
             TileController selectedTile = borderTiles[Random.Range(0, borderTiles.Length)];
-            float slowAmount = GetSlowEffectAmount();
-
-            // float SlowEffectAmount = GetSlowEffectAmount();
-            // selectedTile.SetTileState(1, SlowEffectAmount, slowDuration);
-
-
-            
-            // 变色并设置减速状态
             SpriteRenderer sr = selectedTile.GetComponent<SpriteRenderer>();
-            Sprite originalSprite = sr ? sr.sprite : null;
-            if (sr && frozenTileSprite) sr.sprite = frozenTileSprite;
+            float slowAmount = GetSlowEffectAmount();
+            Sprite originalSprite = sr != null ? sr.sprite : null;
+            
 
+            // 冰冻前端部分(播放冰冻动画，将地块替换为ice)
+            StartCoroutine(PlayFreezeAnimation());
+            if (sr != null && slowTileSprite != null) sr.sprite = slowTileSprite;
+            
+            // 冰冻逻辑部分
             selectedTile.SetTileState(1, slowAmount, slowDuration);
             selectedTile.ApplyEffect(slowAmount, slowDuration);
             selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
 
-           /* // 减速持续时间后恢复颜色并重置状态
             yield return new WaitForSeconds(slowDuration);
-            if (sr != null)
-            {
-                sr.color = Color.white;
-            }
-            selectedTile.SetTileState(0); // 恢复 Tile 状态为无状态（0）*/
 
-            StartCoroutine(PlayFreezeAnimation());
-
-            /***             ***/
-
-            if (sr && originalSprite) sr.sprite = originalSprite;
+            // 恢复正常
+            if (sr != null && originalSprite != null) sr.sprite = originalSprite;
             selectedTile.SetTileState(0);
-            /***             ***/
             
-            yield return new WaitForSeconds(5f); // 每 3 秒触发一次
-
-            // yield return new WaitForSeconds(slowDuration);
-
-            // if (sr && originalSprite) sr.sprite = originalSprite;
-            // selectedTile.SetTileState(0);
+            // 防御塔冷却
+            yield return new WaitForSeconds(2f);
         }
     }
 
@@ -106,7 +85,8 @@ public class TutFrozenTowerController : TowerController
         yield return new WaitForSeconds(holdDuration);
 
         slowTowerRenderer.sprite = freezeFrames[0];
-    } 
+    }
+
     TileController[] GetBorderTiles()
     {
         if (board == null || board.tiles == null) return new TileController[0];
