@@ -112,10 +112,10 @@ MonoBehaviour:
   - {fileID: 2729133250331387908, guid: 9e77472785924463dbc0dd96e7fcc0f1, type: 3}
   - {fileID: 6734909066804063127, guid: 1e20dd86615b14cd2ba6b808f1daed89, type: 3}
   gridPosition: {x: 0, y: 0}
+  slowTileSprite: {fileID: 21300000, guid: 59f885644717e444a99efdd5b17946bf, type: 3}
   slowDuration: 3
   freezeFrames:
   - {fileID: 5251734906795025119, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
   - {fileID: 2487218932450820861, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
   - {fileID: 8772919823634052326, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
   - {fileID: -6643491068388988048, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
-  slowTileSprite: {fileID: 21300000, guid: 59f885644717e444a99efdd5b17946bf, type: 3}

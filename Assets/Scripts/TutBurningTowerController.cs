@@ -44,28 +44,29 @@ public class TutBurningTowerController : TowerController
 
             TileController selectedTile = borderTiles[Random.Range(0, borderTiles.Length)];
             float burnDamage = GetBurnDamage();
-
-            // 变色显示燃烧状态
             SpriteRenderer sr = selectedTile.GetComponent<SpriteRenderer>();
+            Sprite originalSprite = sr != null ? sr.sprite : null;
 
-            Sprite originalSprite = sr ? sr.sprite : null;
-            if (sr && burningTileSprite) sr.sprite = burningTileSprite;
+            // 灼烧伤害前端部分(播放燃烧动画，将地块替换为lava)
+            StartCoroutine(PlayBurnAnimation());
+            if (sr != null && burningTileSprite != null) sr.sprite = burningTileSprite;
 
+            // 灼烧伤害逻辑部分
             selectedTile.SetTileState(2, burnDamage, burnDuration);
             selectedTile.ApplyEffect(burnDamage, burnDuration);
             selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
 
-            StartCoroutine(PlayBurnAnimation());
             yield return new WaitForSeconds(burnDuration);
 
-            
-
-            if (sr && originalSprite) sr.sprite = originalSprite;
+            // 恢复正常
+            if (sr != null && originalSprite != null) sr.sprite = originalSprite;
             selectedTile.SetTileState(0);
-            yield return new WaitForSeconds(2f); // 每 5 秒触发一次
 
+            // 防御塔冷却
+            yield return new WaitForSeconds(2f);
         }
     }
+
 
     IEnumerator PlayBurnAnimation()
     {

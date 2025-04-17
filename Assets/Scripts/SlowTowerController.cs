@@ -1,9 +1,9 @@
-using System.Collections;
+susing System.Collections;
 using UnityEngine;
 
 public class SlowTowerController : TowerController
 {
-    public float slowDuration = 3f;
+    // public float slowDuration = 3f;
     public Sprite slowTileSprite;
 
     private BoardManager board;
@@ -36,33 +36,32 @@ public class SlowTowerController : TowerController
     {
         while (true)
         {
-
             TileController[] borderTiles = GetBorderTiles();
             if (borderTiles.Length == 0) continue;
 
             TileController selectedTile = borderTiles[Random.Range(0, borderTiles.Length)];
-
-            float slowAmount = GetSlowEffectAmount();
-            selectedTile.SetTileState(1, slowAmount, slowDuration);
-
             SpriteRenderer sr = selectedTile.GetComponent<SpriteRenderer>();
+            float slowAmount = GetSlowEffectAmount();
             Sprite originalSprite = sr != null ? sr.sprite : null;
-            if (sr != null && slowTileSprite != null) sr.sprite = slowTileSprite;
+            
 
+            // 冰冻前端部分(播放冰冻动画，将地块替换为ice)
+            StartCoroutine(PlayFreezeAnimation());
+            if (sr != null && slowTileSprite != null) sr.sprite = slowTileSprite;
+            
+            // 冰冻逻辑部分
+            selectedTile.SetTileState(1, slowAmount, slowDuration);
             selectedTile.ApplyEffect(slowAmount, slowDuration);
             selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
 
-            StartCoroutine(PlayFreezeAnimation());
-            
             yield return new WaitForSeconds(slowDuration);
-            
 
+            // 恢复正常
             if (sr != null && originalSprite != null) sr.sprite = originalSprite;
             selectedTile.SetTileState(0);
-            yield return new WaitForSeconds(2f); // 每 3 秒触发一次
             
-
-
+            // 防御塔冷却
+            yield return new WaitForSeconds(2f);
         }
     }
 

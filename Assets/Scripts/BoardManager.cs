@@ -6,7 +6,7 @@ public class BoardManager : MonoBehaviour
     [Header("Grid Settings")]
     public int rows = 7;
     public int columns = 7;
-    public float tileSpacing = 1.1f;
+    public float tileSpacing = 2.1f;
     public GameObject tilePrefab;
 
     [Header("Tile Sprites")]

@@ -3,8 +3,8 @@ using System.Collections;
 
 public class TutFrozenTowerController : TowerController
 {
-    public float slowDuration = 3f;
-    public Sprite frozenTileSprite;
+    // public float slowDuration = 3f;
+    public Sprite slowTileSprite;
 
     private BoardManager board;
     //public int rankValue = 1; // 塔的等级
@@ -36,29 +36,32 @@ public class TutFrozenTowerController : TowerController
     {
         while (true)
         {
-
             TileController[] borderTiles = GetBorderTiles();
             if (borderTiles.Length == 0) continue;
 
             TileController selectedTile = borderTiles[Random.Range(0, borderTiles.Length)];
-            float slowAmount = GetSlowEffectAmount();
-
             SpriteRenderer sr = selectedTile.GetComponent<SpriteRenderer>();
-            Sprite originalSprite = sr ? sr.sprite : null;
-            if (sr && frozenTileSprite) sr.sprite = frozenTileSprite;
+            float slowAmount = GetSlowEffectAmount();
+            Sprite originalSprite = sr != null ? sr.sprite : null;
+            
 
+            // 冰冻前端部分(播放冰冻动画，将地块替换为ice)
+            StartCoroutine(PlayFreezeAnimation());
+            if (sr != null && slowTileSprite != null) sr.sprite = slowTileSprite;
+            
+            // 冰冻逻辑部分
             selectedTile.SetTileState(1, slowAmount, slowDuration);
             selectedTile.ApplyEffect(slowAmount, slowDuration);
             selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
 
-            StartCoroutine(PlayFreezeAnimation());
-            
-            // yield return new WaitForSeconds(5f); // 每 3 秒触发一次
             yield return new WaitForSeconds(slowDuration);
 
-            if (sr && originalSprite) sr.sprite = originalSprite;
+            // 恢复正常
+            if (sr != null && originalSprite != null) sr.sprite = originalSprite;
             selectedTile.SetTileState(0);
-            yield return new WaitForSeconds(2f); 
+            
+            // 防御塔冷却
+            yield return new WaitForSeconds(2f);
         }
     }
 
@@ -81,7 +84,8 @@ public class TutFrozenTowerController : TowerController
         yield return new WaitForSeconds(holdDuration);
 
         slowTowerRenderer.sprite = freezeFrames[0];
-    } 
+    }
+
     TileController[] GetBorderTiles()
     {
         if (board == null || board.tiles == null) return new TileController[0];

@@ -1,34 +1,25 @@
 fileFormatVersion: 2
-guid: 8525ddc5854c0544d8184dc5e3c5cbbc
+guid: 93ac10726b2b84d49aa3fb9901c69422
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6327632980937489168
-    second: 6965dc876642ea167ffa5cd15e22bc5_0
+      213: -3375518543794657099
+    second: slime_run_0
   - first:
-      213: -1906833487281978654
-    second: 6965dc876642ea167ffa5cd15e22bc5_1
+      213: 8872943628324777954
+    second: slime_run_1
   - first:
-      213: 9135398740004628737
-    second: 6965dc876642ea167ffa5cd15e22bc5_2
+      213: -2022304912066180756
+    second: slime_run_2
   - first:
-      213: -5517107968145452491
-    second: 6965dc876642ea167ffa5cd15e22bc5_3
+      213: 1577223000374513219
+    second: slime_run_3
   - first:
-      213: -6099622451734512914
-    second: 6965dc876642ea167ffa5cd15e22bc5_4
+      213: -8519062292244568244
+    second: slime_run_4
   - first:
-      213: 1030887746305524286
-    second: 6965dc876642ea167ffa5cd15e22bc5_5
-  - first:
-      213: 5092292863849112304
-    second: 6965dc876642ea167ffa5cd15e22bc5_6
-  - first:
-      213: 201946985844646688
-    second: 6965dc876642ea167ffa5cd15e22bc5_7
-  - first:
-      213: -907576864644383947
-    second: 6965dc876642ea167ffa5cd15e22bc5_8
+      213: 4124917863510906816
+    second: slime_run_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -146,30 +137,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 6965dc876642ea167ffa5cd15e22bc5_0
+      name: slime_run_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 64
-        width: 24
-        height: 24
+        x: 5
+        y: 6
+        width: 21
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,20 +156,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 01b33d1cba440d750800000000000000
-      internalID: 6327632980937489168
+      spriteID: 5b82068c4cfb721d0800000000000000
+      internalID: -3375518543794657099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 6965dc876642ea167ffa5cd15e22bc5_1
+      name: slime_run_1
       rect:
         serializedVersion: 2
-        x: 35
-        y: 64
-        width: 26
-        height: 27
+        x: 36
+        y: 6
+        width: 23
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +178,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2e20db0db019985e0800000000000000
-      internalID: -1906833487281978654
+      spriteID: 2ef2d561837032b70800000000000000
+      internalID: 8872943628324777954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 6965dc876642ea167ffa5cd15e22bc5_2
+      name: slime_run_2
       rect:
         serializedVersion: 2
         x: 68
-        y: 67
-        width: 28
-        height: 26
+        y: 6
+        width: 23
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 109e68ba0c477ce70800000000000000
-      internalID: 9135398740004628737
+      spriteID: c6984c8a5645fe3e0800000000000000
+      internalID: -2022304912066180756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 6965dc876642ea167ffa5cd15e22bc5_3
+      name: slime_run_3
       rect:
         serializedVersion: 2
-        x: 3
-        y: 35
-        width: 26
-        height: 29
+        x: 100
+        y: 6
+        width: 23
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,64 +222,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 532963ba88b4f63b0800000000000000
-      internalID: -5517107968145452491
+      spriteID: 34e06ec56fb63e510800000000000000
+      internalID: 1577223000374513219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 6965dc876642ea167ffa5cd15e22bc5_4
+      name: slime_run_4
       rect:
         serializedVersion: 2
-        x: 35
-        y: 35
-        width: 26
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eeafd5482b9c95ba0800000000000000
-      internalID: -6099622451734512914
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 6965dc876642ea167ffa5cd15e22bc5_5
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 35
-        width: 29
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e3208d181f27e4e00800000000000000
-      internalID: 1030887746305524286
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 6965dc876642ea167ffa5cd15e22bc5_6
-      rect:
-        serializedVersion: 2
-        x: 4
+        x: 135
         y: 8
-        width: 27
-        height: 23
+        width: 17
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -310,20 +244,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0f2abf921657ba640800000000000000
-      internalID: 5092292863849112304
+      spriteID: c47665b2bf536c980800000000000000
+      internalID: -8519062292244568244
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 6965dc876642ea167ffa5cd15e22bc5_7
+      name: slime_run_5
       rect:
         serializedVersion: 2
-        x: 33
+        x: 165
         y: 8
-        width: 29
-        height: 23
+        width: 21
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -332,30 +266,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0232bb2b6b57dc200800000000000000
-      internalID: 201946985844646688
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 6965dc876642ea167ffa5cd15e22bc5_8
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 8
-        width: 29
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 53b328076a3a763f0800000000000000
-      internalID: -907576864644383947
+      spriteID: 0c71b3e21f6ae3930800000000000000
+      internalID: 4124917863510906816
       vertices: []
       indices: 
       edges: []
@@ -373,16 +285,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      6965dc876642ea167ffa5cd15e22bc5_0: 6327632980937489168
-      6965dc876642ea167ffa5cd15e22bc5_1: -1906833487281978654
-      6965dc876642ea167ffa5cd15e22bc5_2: 9135398740004628737
-      6965dc876642ea167ffa5cd15e22bc5_3: -5517107968145452491
-      6965dc876642ea167ffa5cd15e22bc5_4: -6099622451734512914
-      6965dc876642ea167ffa5cd15e22bc5_5: 1030887746305524286
-      6965dc876642ea167ffa5cd15e22bc5_6: 5092292863849112304
-      6965dc876642ea167ffa5cd15e22bc5_7: 201946985844646688
-      6965dc876642ea167ffa5cd15e22bc5_8: -907576864644383947
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
