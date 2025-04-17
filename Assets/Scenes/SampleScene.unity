@@ -2788,7 +2788,7 @@ PrefabInstance:
     - target: {fileID: 8282279412315293572, guid: fac8fe4f4779d464a9192aa78896c735, type: 3}
       propertyPath: boardTileSprite
       value: 
-      objectReference: {fileID: -5513050994037168576, guid: 07483d6e4d5814207ba9b3193a3bbc74, type: 3}
+      objectReference: {fileID: 1194921101, guid: 07483d6e4d5814207ba9b3193a3bbc74, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6105,9 +6105,6 @@ MonoBehaviour:
   - {fileID: 49547057150472206, guid: 29add77e8100de444a787819656d3d75, type: 3}
   - {fileID: 1001787181882085309, guid: fab5f7ea9cf324f6c811c7705e22f610, type: 3}
   - {fileID: 49547057150472206, guid: 7d08e4d4f79f9491997f765eda298cc1, type: 3}
-  - {fileID: 7710871422812722048, guid: 96259937bd932ff46a1af3c187588de3, type: 3}
-  - {fileID: 49547057150472206, guid: 29add77e8100de444a787819656d3d75, type: 3}
-  - {fileID: 49547057150472206, guid: b12031daac76e429cad6dd67f47bf234, type: 3}
   uiManager: {fileID: 835782558}
   timerManager: {fileID: 397856851}
   FirebaseManager: {fileID: 1428979181}

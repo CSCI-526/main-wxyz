@@ -3,19 +3,19 @@ using System.Collections;
 
 public class TutFrozenTowerController : TowerController
 {
-    // public float slowDuration = 3f;
-    public Sprite slowTileSprite;
+    // public float frozenDuration = 3f;
+    public Sprite frozenTileSprite;
 
     private BoardManager board;
     //public int rankValue = 1; // 塔的等级
-    public float slowDuration = 3f; // 减速持续时间
+    public float frozenDuration = 3f; // 减速持续时间
     public Sprite[] freezeFrames;  // 四帧动画
-    private SpriteRenderer slowTowerRenderer;
+    private SpriteRenderer frozenTowerRenderer;
 
     void Start()
     {
         base.Start();
-        slowTowerRenderer = GetComponent<SpriteRenderer>();
+        frozenTowerRenderer = GetComponent<SpriteRenderer>();
         board = FindObjectOfType<BoardManager>();
         if (board == null) { Debug.LogError("BoardManager not found"); return; }
         StartCoroutine(SlowRandomBorderTile());
@@ -42,20 +42,20 @@ public class TutFrozenTowerController : TowerController
 
             TileController selectedTile = borderTiles[Random.Range(0, borderTiles.Length)];
             SpriteRenderer sr = selectedTile.GetComponent<SpriteRenderer>();
-            float slowAmount = GetSlowEffectAmount();
+            float frozenAmount = GetSlowEffectAmount();
             Sprite originalSprite = sr != null ? sr.sprite : null;
             
 
             // 冰冻前端部分(播放冰冻动画，将地块替换为ice)
             StartCoroutine(PlayFreezeAnimation());
-            if (sr != null && slowTileSprite != null) sr.sprite = slowTileSprite;
+            if (sr != null && frozenTileSprite != null) sr.sprite = frozenTileSprite;
             
             // 冰冻逻辑部分
-            selectedTile.SetTileState(1, slowAmount, slowDuration);
-            selectedTile.ApplyEffect(slowAmount, slowDuration);
+            selectedTile.SetTileState(1, frozenAmount, frozenDuration);
+            selectedTile.ApplyEffect(frozenAmount, frozenDuration);
             selectedTile.StartCoroutine(selectedTile.ApplyEffectForDuration());
 
-            yield return new WaitForSeconds(slowDuration);
+            yield return new WaitForSeconds(frozenDuration);
 
             // 恢复正常
             if (sr != null && originalSprite != null) sr.sprite = originalSprite;
@@ -68,23 +68,23 @@ public class TutFrozenTowerController : TowerController
 
     IEnumerator PlayFreezeAnimation()
     {
-        if (freezeFrames == null || freezeFrames.Length < 4 || slowTowerRenderer == null)
+        if (freezeFrames == null || freezeFrames.Length < 4 || frozenTowerRenderer == null)
             yield break;
 
-        slowTowerRenderer.sprite = freezeFrames[0];
+        frozenTowerRenderer.sprite = freezeFrames[0];
         yield return new WaitForSeconds(0.1f);
 
-        slowTowerRenderer.sprite = freezeFrames[1];
+        frozenTowerRenderer.sprite = freezeFrames[1];
         yield return new WaitForSeconds(0.1f);
 
-        slowTowerRenderer.sprite = freezeFrames[2];
+        frozenTowerRenderer.sprite = freezeFrames[2];
         yield return new WaitForSeconds(0.1f);
 
-        slowTowerRenderer.sprite = freezeFrames[3];
-        float holdDuration = slowDuration - 0.3f;
+        frozenTowerRenderer.sprite = freezeFrames[3];
+        float holdDuration = frozenDuration - 0.3f;
         yield return new WaitForSeconds(holdDuration);
 
-        slowTowerRenderer.sprite = freezeFrames[0];
+        frozenTowerRenderer.sprite = freezeFrames[0];
     }
 
     TileController[] GetBorderTiles()

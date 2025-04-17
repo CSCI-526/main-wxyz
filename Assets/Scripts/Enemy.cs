@@ -18,9 +18,9 @@ public class Enemy : MonoBehaviour
     protected Color originalColor;
     protected float originalWidthHealthBar = 0.35f;
 
-    protected Coroutine slowEffectCoroutine;
+    protected Coroutine frozenEffectCoroutine;
     protected Coroutine burnEffectCoroutine;
-    // protected bool slowState = false;
+    // protected bool frozenState = false;
     // protected bool burnState = false;
     
     protected int wayfindingIndex = 0;
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
     public Image healthBar;
 
     public Sprite[] normalSprites;
-    public Sprite[] slowSprites;
+    public Sprite[] frozenSprites;
     public Sprite[] burnSprites;
     private float animTimer = 0f;
     private int currentFrame = 0;
@@ -142,7 +142,7 @@ public class Enemy : MonoBehaviour
                 case "burning":
                     gameManager.AddDamageFromBurningTower(damage);
                     break;
-                case "slow":
+                case "frozen":
                     gameManager.AddDamageFromSlowTower(damage);
                     break;
                 case "energy":
@@ -217,32 +217,32 @@ public class Enemy : MonoBehaviour
     /*** End enemy health management ***/
 
     /*** Enemy abnormal state effects ***/
-    public void EnemySlowEffect(float slowRatio, float duration)
+    public void EnemySlowEffect(float frozenRatio, float duration)
     {
         if (burnEffectCoroutine == null)
         {
-            if (slowEffectCoroutine != null) StopCoroutine(slowEffectCoroutine);
-            slowEffectCoroutine = StartCoroutine(SlowEffectCoroutine(slowRatio, duration));
+            if (frozenEffectCoroutine != null) StopCoroutine(frozenEffectCoroutine);
+            frozenEffectCoroutine = StartCoroutine(SlowEffectCoroutine(frozenRatio, duration));
         }
     }
 
-    protected IEnumerator SlowEffectCoroutine(float slowRatio, float duration)
+    protected IEnumerator SlowEffectCoroutine(float frozenRatio, float duration)
     {
-        // slowEffectRender();
-        currentSpeed *= slowRatio;
+        // frozenEffectRender();
+        currentSpeed *= frozenRatio;
         yield return new WaitForSeconds(0.1f);
 
         while (duration > 0)
         {
-            // slowEffectRender();
-            EnemyTakeDamage(20f, "slow");
+            // frozenEffectRender();
+            EnemyTakeDamage(20f, "frozen");
             yield return new WaitForSeconds(1f);
             duration -= 1f;
         }
 
         // originalRender();
         currentSpeed = originalSpeed;
-        slowEffectCoroutine = null;
+        frozenEffectCoroutine = null;
     }
 
     public void EnemyBurnEffect(float damagePerSecond, float duration)
@@ -254,10 +254,10 @@ public class Enemy : MonoBehaviour
 
     protected IEnumerator BurnCoroutine(float damagePerSecond, float duration)
     {
-        if (slowEffectCoroutine != null)
+        if (frozenEffectCoroutine != null)
         {
-            StopCoroutine(slowEffectCoroutine);
-            slowEffectCoroutine = null;
+            StopCoroutine(frozenEffectCoroutine);
+            frozenEffectCoroutine = null;
             currentSpeed = originalSpeed;
             // originalRender();
         }
@@ -296,7 +296,7 @@ public class Enemy : MonoBehaviour
         //     spriteRenderer.color = originalColor;
     }
 
-    protected void slowEffectRender()
+    protected void frozenEffectRender()
     {
         // if (spriteRenderer != null)
         //     spriteRenderer.color = Color.blue;
@@ -321,9 +321,9 @@ public class Enemy : MonoBehaviour
                 spriteRenderer.sprite = burnSprites[currentFrame];
                 clipRatio = originalClipRatio;
             }
-            else if (slowEffectCoroutine != null)
+            else if (frozenEffectCoroutine != null)
             {
-                spriteRenderer.sprite = slowSprites[currentFrame];
+                spriteRenderer.sprite = frozenSprites[currentFrame];
                 clipRatio = originalClipRatio * (originalSpeed / currentSpeed);
             }
             else

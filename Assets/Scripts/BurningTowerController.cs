@@ -4,10 +4,10 @@ using UnityEngine;
 public class BurningTowerController : TowerController
 {
     public float burnDuration = 3f;
-    public Sprite[] burnFrames;  // 四帧动画
-    private SpriteRenderer burningTowerRenderer;
+    public Sprite[] burnFrames;
     public Sprite burningTileSprite;
 
+    private SpriteRenderer burningTowerRenderer;
     private BoardManager board;
 
     void Start()
@@ -21,19 +21,14 @@ public class BurningTowerController : TowerController
 
     public float GetBurnDamage()
     {
-        TowerController tower = GetComponent<TowerController>();
-        if (tower != null)
+        switch (rankValue)
         {
-            switch (tower.rankValue)
-            {
-                case 1: return 20f;
-                case 2: return 25f;
-                case 3: return 35f;
-                case 4: return 50f;
-                default: return 20f;
-            }
+            case 1: return 20f;
+            case 2: return 25f;
+            case 3: return 35f;
+            case 4: return 50f;
+            default: return 20f;
         }
-        return 20f;
     }
 
     IEnumerator BurnRandomBorderTile()
@@ -41,16 +36,12 @@ public class BurningTowerController : TowerController
         while (true)
         {
             TileController[] borderTiles = GetBorderTiles();
-            if (borderTiles.Length == 0)
-            {
-                yield return null;
-                continue;
-            }
+            if (borderTiles.Length == 0)    continue;
 
             TileController selectedTile = borderTiles[Random.Range(0, borderTiles.Length)];
-            float burnDamage = GetBurnDamage();
             SpriteRenderer sr = selectedTile.GetComponent<SpriteRenderer>();
             Sprite originalSprite = sr != null ? sr.sprite : null;
+            float burnDamage = GetBurnDamage();
 
             // 灼烧伤害前端部分(播放燃烧动画，将地块替换为lava)
             StartCoroutine(PlayBurnAnimation());
