@@ -611,8 +611,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc693549f7d8f4edc861e3685689e7f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorSelectionPanel: {fileID: 0}
-  cooldownOverlay: {fileID: 0}
+  colorSelectionPanel: {fileID: 1371799507}
+  cooldownOverlay: {fileID: 60593426}
   cooldownDuration: 30
 --- !u!1 &75482353
 GameObject:
