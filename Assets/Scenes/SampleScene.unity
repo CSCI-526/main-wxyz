@@ -471,7 +471,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 453567897}
+      - m_Target: {fileID: 453567898}
         m_TargetAssemblyTypeName: TowerGalleryController, Assembly-CSharp
         m_MethodName: OpenTowerPanel
         m_Mode: 3
@@ -611,9 +611,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc693549f7d8f4edc861e3685689e7f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorSelectionPanel: {fileID: 1371799507}
-  cooldownOverlay: {fileID: 60593426}
-  cooldownDuration: 30
 --- !u!1 &75482353
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,7 +770,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 453567897}
+      - m_Target: {fileID: 453567898}
         m_TargetAssemblyTypeName: TowerGalleryController, Assembly-CSharp
         m_MethodName: ContinueGame
         m_Mode: 2
@@ -985,7 +982,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 453567897}
+      - m_Target: {fileID: 453567898}
         m_TargetAssemblyTypeName: TowerGalleryController, Assembly-CSharp
         m_MethodName: OpenTowerPanel
         m_Mode: 3
@@ -1173,7 +1170,7 @@ MonoBehaviour:
   m_text: Golden Tower Description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -4429044960763378501, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1535,7 +1532,7 @@ MonoBehaviour:
   m_text: Frozen Tower Description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -4429044960763378501, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1902,7 +1899,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 453567897}
+      - m_Target: {fileID: 453567898}
         m_TargetAssemblyTypeName: TowerGalleryController, Assembly-CSharp
         m_MethodName: OpenGallery
         m_Mode: 1
@@ -2299,6 +2296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 453567896}
   - component: {fileID: 453567897}
+  - component: {fileID: 453567898}
   m_Layer: 0
   m_Name: TowerUIManager
   m_TagString: Untagged
@@ -2333,8 +2331,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0465b9f5eb2ec41578422d82f3b2f714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  galleryPanel: {fileID: 0}
-  towerPanels: []
+--- !u!114 &453567898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453567895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194745130528a47cba8cdc503ba92e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  galleryPanel: {fileID: 334312647}
+  towerPanels:
+  - {fileID: 1649950019}
+  - {fileID: 1715841776}
+  - {fileID: 1264887886}
+  - {fileID: 165300037}
+  - {fileID: 456122082}
   sharedVideoPlayer: {fileID: 0}
 --- !u!1 &456122082
 GameObject:
@@ -2872,7 +2887,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 453567897}
+      - m_Target: {fileID: 453567898}
         m_TargetAssemblyTypeName: TowerGalleryController, Assembly-CSharp
         m_MethodName: ContinueGame
         m_Mode: 2
@@ -3296,7 +3311,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 453567897}
+      - m_Target: {fileID: 453567898}
         m_TargetAssemblyTypeName: TowerGalleryController, Assembly-CSharp
         m_MethodName: ContinueGame
         m_Mode: 2
@@ -3725,7 +3740,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 453567897}
+      - m_Target: {fileID: 453567898}
         m_TargetAssemblyTypeName: TowerGalleryController, Assembly-CSharp
         m_MethodName: ContinueGame
         m_Mode: 2
@@ -4179,7 +4194,7 @@ MonoBehaviour:
   m_text: X
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -4429044960763378501, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4203,7 +4218,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.25
+  m_fontSize: 22.3
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4445,7 +4460,7 @@ MonoBehaviour:
   m_text: Back
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -4429044960763378501, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4510,7 +4525,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &842529944
@@ -5229,7 +5244,7 @@ MonoBehaviour:
   m_text: Burning Tower Description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -4429044960763378501, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5388,7 +5403,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 453567897}
+      - m_Target: {fileID: 453567898}
         m_TargetAssemblyTypeName: TowerGalleryController, Assembly-CSharp
         m_MethodName: CloseGallery
         m_Mode: 1
@@ -5657,7 +5672,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 453567897}
+      - m_Target: {fileID: 453567898}
         m_TargetAssemblyTypeName: TowerGalleryController, Assembly-CSharp
         m_MethodName: OpenTowerPanel
         m_Mode: 3
@@ -5833,7 +5848,7 @@ MonoBehaviour:
   m_text: EnergyTower Description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -4429044960763378501, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6701,7 +6716,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 453567897}
+      - m_Target: {fileID: 453567898}
         m_TargetAssemblyTypeName: TowerGalleryController, Assembly-CSharp
         m_MethodName: OpenTowerPanel
         m_Mode: 3
@@ -7004,7 +7019,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 453567897}
+      - m_Target: {fileID: 453567898}
         m_TargetAssemblyTypeName: TowerGalleryController, Assembly-CSharp
         m_MethodName: ContinueGame
         m_Mode: 2
@@ -8844,7 +8859,7 @@ MonoBehaviour:
   m_text: Cannon Tower Description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -4429044960763378501, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9139,7 +9154,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 453567897}
+      - m_Target: {fileID: 453567898}
         m_TargetAssemblyTypeName: TowerGalleryController, Assembly-CSharp
         m_MethodName: OpenTowerPanel
         m_Mode: 3
