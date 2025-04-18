@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TutFrozenTowerController : TowerController
 {
-    // public float slowDuration = 3f;
+    public float slowDuration = 3f;
     public Sprite slowTileSprite;
 
     private BoardManager board;

@@ -1,9 +1,9 @@
-susing System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class SlowTowerController : TowerController
 {
-    // public float slowDuration = 3f;
+    public float slowDuration = 3f;
     public Sprite slowTileSprite;
 
     private BoardManager board;
