@@ -2350,7 +2350,7 @@ MonoBehaviour:
   - {fileID: 1264887886}
   - {fileID: 165300037}
   - {fileID: 456122082}
-  sharedVideoPlayer: {fileID: 0}
+  sharedVideoPlayer: {fileID: 1247101848}
 --- !u!1 &456122082
 GameObject:
   m_ObjectHideFlags: 0
