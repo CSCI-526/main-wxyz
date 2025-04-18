@@ -75,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 77
+  spritePixelsToUnits: 80
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -153,10 +153,10 @@ TextureImporter:
       name: BigSlimeBurning_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 63
-        width: 26
-        height: 29
+        x: 6
+        y: 64
+        width: 24
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,9 +175,9 @@ TextureImporter:
       name: BigSlimeBurning_1
       rect:
         serializedVersion: 2
-        x: 5
-        y: 35
-        width: 27
+        x: 35
+        y: 64
+        width: 25
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -197,10 +197,10 @@ TextureImporter:
       name: BigSlimeBurning_2
       rect:
         serializedVersion: 2
-        x: 34
-        y: 63
-        width: 27
-        height: 30
+        x: 66
+        y: 64
+        width: 25
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,10 +219,10 @@ TextureImporter:
       name: BigSlimeBurning_3
       rect:
         serializedVersion: 2
-        x: 65
-        y: 63
-        width: 27
-        height: 29
+        x: 6
+        y: 36
+        width: 25
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,10 +241,10 @@ TextureImporter:
       name: BigSlimeBurning_4
       rect:
         serializedVersion: 2
-        x: 35
-        y: 35
-        width: 26
-        height: 27
+        x: 36
+        y: 36
+        width: 24
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,10 +263,10 @@ TextureImporter:
       name: BigSlimeBurning_5
       rect:
         serializedVersion: 2
-        x: 64
-        y: 35
-        width: 27
-        height: 26
+        x: 65
+        y: 36
+        width: 25
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -285,10 +285,10 @@ TextureImporter:
       name: BigSlimeBurning_6
       rect:
         serializedVersion: 2
-        x: 5
-        y: 5
-        width: 27
-        height: 27
+        x: 6
+        y: 6
+        width: 25
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,10 +307,10 @@ TextureImporter:
       name: BigSlimeBurning_7
       rect:
         serializedVersion: 2
-        x: 34
-        y: 5
-        width: 28
-        height: 28
+        x: 35
+        y: 6
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -329,10 +329,10 @@ TextureImporter:
       name: BigSlimeBurning_8
       rect:
         serializedVersion: 2
-        x: 65
-        y: 5
-        width: 26
-        height: 27
+        x: 66
+        y: 6
+        width: 24
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -351,7 +351,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0d952c011054eae4cb8783c625fce5ec
     internalID: 0
     vertices: []
     indices: 
