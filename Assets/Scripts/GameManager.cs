@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
         //         "CanonTowerNum: " + towersOnTile.canonTowerNum + 
         //         " goldTowerNum: " + towersOnTile.goldTowerNum + 
         //         " burningTowerNum: " + towersOnTile.burningTowerNum + 
-        //         " frozenTowerNum: " + towersOnTile.slowTowerNum + 
+        //         " frozenTowerNum: " + towersOnTile.frozenTowerNum + 
         //         " energyTowerNum: " + towersOnTile.energyTowerNum);
 
         // }
@@ -354,7 +354,7 @@ public class GameManager : MonoBehaviour
                                 // EnergyTowerNum++;
                                 break;
                             case "FrozenTower":
-                                towersOnTileTemp.slowTowerNum ++;
+                                towersOnTileTemp.frozenTowerNum ++;
                                 // SlowTowerNum++;
                                 break;
                             default:
@@ -413,6 +413,6 @@ public class TowersOnTile
     public int canonTowerNum;
     public int goldTowerNum;
     public int burningTowerNum;
-    public int slowTowerNum;
+    public int frozenTowerNum;
     public int energyTowerNum;
 }
