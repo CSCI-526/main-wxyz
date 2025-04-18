@@ -189,15 +189,15 @@ public class EnergyTowerController : TowerController
                 yield break;
 
             towerRenderer.sprite = energyFrames[0];
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.3f);
             towerRenderer.sprite = energyFrames[1];
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.3f);
             towerRenderer.sprite = energyFrames[2];
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.3f);
             towerRenderer.sprite = energyFrames[3];
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.3f);
             towerRenderer.sprite = energyFrames[4];
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(4f);
 
             towerRenderer.sprite=energyFrames[0];
         }
