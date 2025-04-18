@@ -182,9 +182,9 @@ TextureImporter:
       name: goldern_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 33
         y: 32
-        width: 30
+        width: 29
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -226,9 +226,9 @@ TextureImporter:
       name: goldern_3
       rect:
         serializedVersion: 2
-        x: 32
+        x: 33
         y: 0
-        width: 30
+        width: 29
         height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
