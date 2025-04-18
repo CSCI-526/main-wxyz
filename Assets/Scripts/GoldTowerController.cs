@@ -1,22 +1,27 @@
 ﻿using UnityEngine;
+using System.Collections;
+
 public class GoldTowerController : TowerController
 {
-    public int goldPerCycle = 5; // 每次生产的金币数量
-    public float generateInterval = 5f; // 生产金币的间隔时间
-
+    public int goldPerCycle = 5;
+    public float generateInterval = 5f;
+    public Sprite[] goldFrames;
+    private SpriteRenderer goldRenderer;
     private float lastGenerateTime;
     private GameManager gameManager;
 
     void Start()
     {
         base.Start();
-        gameManager = FindObjectOfType<GameManager>(); // 获取游戏管理器
-        lastGenerateTime = Time.time; // 记录初始时间
+        goldRenderer = GetComponent<SpriteRenderer>();
+        gameManager = FindObjectOfType<GameManager>();
+        lastGenerateTime = Time.time;
+
+        StartCoroutine(GoldAnimationLoop());
     }
 
     void Update()
     {
-        // Debug.Log("GoldTower Update Running...");
         GenerateGold();
     }
 
@@ -24,17 +29,36 @@ public class GoldTowerController : TowerController
     {
         if (Time.time - lastGenerateTime >= generateInterval)
         {
-            //Debug.Log("GoldTower Generating Gold...");
             if (gameManager != null)
             {
                 gameManager.AddCoin(goldPerCycle);
-                //Debug.Log("Gold Tower added " + goldPerCycle + " coins.");
             }
             else
             {
                 Debug.LogError("GoldTowerController: gameManager is NULL!");
             }
+
             lastGenerateTime = Time.time;
+        }
+    }
+
+    IEnumerator GoldAnimationLoop()
+    {
+        while (true)
+        {
+            if (goldFrames == null || goldFrames.Length < 4 || goldRenderer == null)
+                yield break;
+
+            goldRenderer.sprite = goldFrames[0];
+            yield return new WaitForSeconds(0.6f);
+            goldRenderer.sprite = goldFrames[1];
+            yield return new WaitForSeconds(0.6f);
+            goldRenderer.sprite = goldFrames[2];
+            yield return new WaitForSeconds(0.6f);
+            goldRenderer.sprite = goldFrames[3];
+            yield return new WaitForSeconds(3f);
+
+            goldRenderer.sprite = goldFrames[0];
         }
     }
 
@@ -47,3 +71,4 @@ public class GoldTowerController : TowerController
         }
     }
 }
+

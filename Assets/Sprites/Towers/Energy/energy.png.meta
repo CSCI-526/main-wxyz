@@ -1,34 +1,22 @@
 fileFormatVersion: 2
-guid: 50428bef9e904554a998806c4345979c
+guid: d339d85e4d936e14b861be5c73a39c15
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6327632980937489168
-    second: 6965dc876642ea167ffa5cd15e22bc5_0
+      213: -5564248608999137188
+    second: energy_0
   - first:
-      213: -1906833487281978654
-    second: 6965dc876642ea167ffa5cd15e22bc5_1
+      213: 3119334169586225959
+    second: energy_1
   - first:
-      213: 9135398740004628737
-    second: 6965dc876642ea167ffa5cd15e22bc5_2
+      213: 4692399049022686247
+    second: energy_2
   - first:
-      213: -5517107968145452491
-    second: 6965dc876642ea167ffa5cd15e22bc5_3
+      213: 5693366915664821068
+    second: energy_3
   - first:
-      213: -6099622451734512914
-    second: 6965dc876642ea167ffa5cd15e22bc5_4
-  - first:
-      213: 1030887746305524286
-    second: 6965dc876642ea167ffa5cd15e22bc5_5
-  - first:
-      213: 5092292863849112304
-    second: 6965dc876642ea167ffa5cd15e22bc5_6
-  - first:
-      213: 201946985844646688
-    second: 6965dc876642ea167ffa5cd15e22bc5_7
-  - first:
-      213: -907576864644383947
-    second: 6965dc876642ea167ffa5cd15e22bc5_8
+      213: 7102075283677565631
+    second: energy_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,6 +109,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -146,216 +147,115 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: smallSlimeFrozen_0
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 65
-        width: 22
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0306cf62337e3464d8520bfbd20e4147
-      internalID: 860550479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smallSlimeFrozen_1
-      rect:
-        serializedVersion: 2
-        x: 36
-        y: 65
-        width: 24
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c96021db500cc8542aa0e2024a60e3b7
-      internalID: -1267639377
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smallSlimeFrozen_2
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 68
-        width: 26
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 022b7ef9b835ab64b914ba7a9c5720f4
-      internalID: -207459731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smallSlimeFrozen_3
+      name: energy_0
       rect:
         serializedVersion: 2
         x: 4
-        y: 36
-        width: 24
-        height: 27
+        y: 64
+        width: 23
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 1a1f8ea7e475cfb4c9f5be09d5414da3
-      internalID: -1484272126
+      spriteID: c5025aaee51d7c2b0800000000000000
+      internalID: -5564248608999137188
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: smallSlimeFrozen_4
-      rect:
-        serializedVersion: 2
-        x: 36
-        y: 36
-        width: 24
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 47bb075de7d05404cbb0fff6a4c1f30f
-      internalID: -1236283172
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smallSlimeFrozen_5
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 36
-        width: 27
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 833542c159005c647984aa9366d0ee1d
-      internalID: -248423296
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smallSlimeFrozen_6
+      name: energy_3
       rect:
         serializedVersion: 2
         x: 5
-        y: 9
+        y: 32
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 723dce976e91a4b20800000000000000
+      internalID: 3119334169586225959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 64
         width: 25
-        height: 21
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2d4fa1d2e7ba3fa4f962d760be03e189
-      internalID: -1253363212
+      spriteID: 724c06dd210ce1140800000000000000
+      internalID: 4692399049022686247
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: smallSlimeFrozen_7
+      name: energy_2
       rect:
         serializedVersion: 2
-        x: 34
-        y: 9
-        width: 27
-        height: 21
+        x: 36
+        y: 32
+        width: 23
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: e35bc93b2092ed24f81504aea79cf79c
-      internalID: 1051695717
+      spriteID: c4bb9288b07e20f40800000000000000
+      internalID: 5693366915664821068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: smallSlimeFrozen_8
+      name: energy_4
       rect:
         serializedVersion: 2
-        x: 66
-        y: 9
-        width: 27
-        height: 23
+        x: 4
+        y: 0
+        width: 23
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 88a885c732dfc394fb8c31baa4fb113a
-      internalID: 1203845114
+      spriteID: fb2dea397d3af8260800000000000000
+      internalID: 7102075283677565631
       vertices: []
       indices: 
       edges: []
@@ -364,7 +264,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dc5fde38284b961439933d8822ecbd3b
+    spriteID: 315a37243aae1da4f8ed860240d58dbe
     internalID: 0
     vertices: []
     indices: 
@@ -374,15 +274,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      smallSlimeFrozen_0: 860550479
-      smallSlimeFrozen_1: -1267639377
-      smallSlimeFrozen_2: -207459731
-      smallSlimeFrozen_3: -1484272126
-      smallSlimeFrozen_4: -1236283172
-      smallSlimeFrozen_5: -248423296
-      smallSlimeFrozen_6: -1253363212
-      smallSlimeFrozen_7: 1051695717
-      smallSlimeFrozen_8: 1203845114
+      energy_1: 4692399049022686247
+      energy_2: 5693366915664821068
+      energy_3: 3119334169586225959
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

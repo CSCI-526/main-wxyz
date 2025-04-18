@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Linq;
+using System.Collections;
+
 
 public class EnergyTowerController : TowerController
 {
     [Header("Energy Tower Settings")]
     public LineRenderer energyBeam;
     public Gradient beamColorGradient;
+    public Sprite[] energyFrames;
+    private SpriteRenderer towerRenderer;
 
     private float currentDamage;
     private Enemy currentTarget;
@@ -19,11 +23,14 @@ public class EnergyTowerController : TowerController
         InitializeTowerStats();
         energyBeam.enabled = false;
         energyBeam.useWorldSpace = true;
+
+        towerRenderer = GetComponent<SpriteRenderer>();
+        StartCoroutine(PlayEnergyAnimationLoop());
     }
 
     private void InitializeTowerStats()
     {
-        rankValue = Mathf.Clamp(rankValue, 1, 4); // 保险措施
+        rankValue = Mathf.Clamp(rankValue, 1, 4);
         currentDamage = GetMinDamage(rankValue);
         attackDamage = GetMinDamage(rankValue);
     }
@@ -32,7 +39,7 @@ public class EnergyTowerController : TowerController
     {
         if (!isAttacking && Time.time - lastCheckTime >= checkInterval)
         {
-            AcquireLowestDistanceEnemy(); // **使用基于距离的寻敌逻辑**
+            AcquireLowestDistanceEnemy();
             lastCheckTime = Time.time;
         }
 
@@ -49,7 +56,6 @@ public class EnergyTowerController : TowerController
         }
     }
 
-
     private void AcquireLowestDistanceEnemy()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
@@ -61,7 +67,7 @@ public class EnergyTowerController : TowerController
             if (collider.CompareTag("Enemy"))
             {
                 Enemy enemy = collider.GetComponent<Enemy>();
-                if (enemy != null && enemy.IsAlive && enemy.distance < minDistance) // **选择 distance最小的敌人**
+                if (enemy != null && enemy.IsAlive && enemy.distance < minDistance)
                 {
                     minDistance = enemy.distance;
                     targetEnemy = enemy;
@@ -73,16 +79,12 @@ public class EnergyTowerController : TowerController
         {
             isAttacking = true;
             currentTarget = targetEnemy;
-            // Debug.Log($"锁定目标: {currentTarget.name} | Index: {currentTarget.index}");
             currentDamage = GetMinDamage(rankValue);
         }
         else
         {
             isAttacking = false;
             DisableBeam();
-
-
-            // Debug.Log("未找到有效目标");
         }
     }
 
@@ -119,26 +121,11 @@ public class EnergyTowerController : TowerController
 
         currentTarget.EnemyTakeDamage(currentDamage * Time.deltaTime, "energy");
 
-        // **确保击杀后再检测新敌人**
         if (!currentTarget.IsAlive)
         {
             isAttacking = false;
             currentTarget = null;
-            AcquireLowestDistanceEnemy(); // 重新获取最前面的敌人
-        }
-    }
-
-    public override void UpgradeTower()
-    {
-        if (rankValue < 4)
-        {
-            rankValue++;
-            attackRange *= 1.2f;
-
-            // ** 直接更新最小值、最大值和增长速率**
-            InitializeTowerStats();
-
-            ReplaceTowerBase(); // **确保基础对象不丢失**
+            AcquireLowestDistanceEnemy();
         }
     }
 
@@ -147,8 +134,16 @@ public class EnergyTowerController : TowerController
         if (energyBeam) energyBeam.enabled = false;
     }
 
-    // **确保 `EnergyTower` 不会因 `ReplaceTowerBase()` 丢失基础组件**
-
+    public override void UpgradeTower()
+    {
+        if (rankValue < 4)
+        {
+            rankValue++;
+            attackRange *= 1.2f;
+            InitializeTowerStats();
+            ReplaceTowerBase();
+        }
+    }
 
     private float GetMinDamage(int level)
     {
@@ -166,11 +161,11 @@ public class EnergyTowerController : TowerController
     {
         switch (level)
         {
-            case 1: return 80f;
-            case 2: return 120f;
-            case 3: return 160f;
-            case 4: return 200f;
-            default: return 80f;
+            case 1: return 120f;
+            case 2: return 150f;
+            case 3: return 280f;
+            case 4: return 360f;
+            default: return 120f;
         }
     }
 
@@ -178,19 +173,35 @@ public class EnergyTowerController : TowerController
     {
         switch (level)
         {
-            case 1: return 50f;
-            case 2: return 60f;
-            case 3: return 80f;
-            case 4: return 120f;
-            default: return 40f;
+            case 1: return 30f;
+            case 2: return 50f;
+            case 3: return 70f;
+            case 4: return 90f;
+            default: return 30f;
         }
     }
 
-    /*private void OnDestroy()
+    IEnumerator PlayEnergyAnimationLoop()
     {
+        while (true)
+        {
+            if (energyFrames == null || energyFrames.Length < 5 || towerRenderer == null)
+                yield break;
 
+            towerRenderer.sprite = energyFrames[0];
+            yield return new WaitForSeconds(0.3f);
+            towerRenderer.sprite = energyFrames[1];
+            yield return new WaitForSeconds(0.3f);
+            towerRenderer.sprite = energyFrames[2];
+            yield return new WaitForSeconds(0.3f);
+            towerRenderer.sprite = energyFrames[3];
+            yield return new WaitForSeconds(0.3f);
+            towerRenderer.sprite = energyFrames[4];
+            yield return new WaitForSeconds(4f);
+
+            towerRenderer.sprite=energyFrames[0];
+        }
     }
-    */
 
     void OnDrawGizmosSelected()
     {
