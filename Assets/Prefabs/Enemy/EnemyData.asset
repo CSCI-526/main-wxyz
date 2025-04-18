@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efcaf0ce142c54253a949ec742622bda, type: 3}
   m_Name: EnemyData
   m_EditorClassIdentifier: 
-  enemySprite: {fileID: 0}
+  enemySprite: {fileID: 368543389579951487, guid: de73c4b59140a7240877717f50a3497d, type: 3}
   maxHealth: 100
   moveSpeed: 0
   damage: 0

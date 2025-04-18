@@ -1,32 +1,45 @@
 ﻿using UnityEngine;
+using System.Linq;
+using System.Collections;
+
 
 public class EnergyTowerController : TowerController
 {
     [Header("Energy Tower Settings")]
-    public float minDamage = 5f;
-    public float maxDamage = 50f;
-    public float damageGrowthRate = 2f;
     public LineRenderer energyBeam;
     public Gradient beamColorGradient;
+    public Sprite[] energyFrames;
+    private SpriteRenderer towerRenderer;
 
     private float currentDamage;
     private Enemy currentTarget;
-    private float checkInterval = 0.2f; // 检测间隔优化 <button class="citation-flag" data-index="5">
+    private bool isAttacking = false;
+    private float checkInterval = 0.2f;
     private float lastCheckTime;
 
-    public new void Start()
+    public override void Start()
     {
         base.Start();
-        currentDamage = minDamage;
-        energyBeam.enabled = false; // 初始禁用射线 <button class="citation-flag" data-index="2">
-        energyBeam.useWorldSpace = true; // 世界坐标系 <button class="citation-flag" data-index="2">
+        InitializeTowerStats();
+        energyBeam.enabled = false;
+        energyBeam.useWorldSpace = true;
+
+        towerRenderer = GetComponent<SpriteRenderer>();
+        StartCoroutine(PlayEnergyAnimationLoop());
+    }
+
+    private void InitializeTowerStats()
+    {
+        rankValue = Mathf.Clamp(rankValue, 1, 4);
+        currentDamage = GetMinDamage(rankValue);
+        attackDamage = GetMinDamage(rankValue);
     }
 
     void Update()
     {
-        if (Time.time - lastCheckTime >= checkInterval)
+        if (!isAttacking && Time.time - lastCheckTime >= checkInterval)
         {
-            AcquireNewTarget();
+            AcquireLowestDistanceEnemy();
             lastCheckTime = Time.time;
         }
 
@@ -37,41 +50,41 @@ public class EnergyTowerController : TowerController
         }
         else
         {
+            isAttacking = false;
             DisableBeam();
-            currentDamage = minDamage; // 重置伤害值 <button class="citation-flag" data-index="10">
+            currentDamage = GetMinDamage(rankValue);
         }
     }
 
-    private void AcquireNewTarget()
+    private void AcquireLowestDistanceEnemy()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
-        float closestDistance = Mathf.Infinity;
-        currentTarget = null;
+        Enemy targetEnemy = null;
+        float minDistance = float.MaxValue;
 
         foreach (Collider2D collider in colliders)
         {
-            if (collider.CompareTag("Enemy")) // 与TankTower一致的标签检测 <button class="citation-flag" data-index="1">
+            if (collider.CompareTag("Enemy"))
             {
                 Enemy enemy = collider.GetComponent<Enemy>();
-                if (enemy != null && enemy.IsAlive)
+                if (enemy != null && enemy.IsAlive && enemy.distance < minDistance)
                 {
-                    float distance = Vector3.Distance(transform.position, enemy.transform.position);
-                    if (distance < closestDistance)
-                    {
-                        closestDistance = distance;
-                        currentTarget = enemy;
-                    }
+                    minDistance = enemy.distance;
+                    targetEnemy = enemy;
                 }
             }
         }
 
-        if (currentTarget != null)
+        if (targetEnemy != null)
         {
-            Debug.Log($"锁定目标: {currentTarget.name} | 距离: {closestDistance:F2}"); // 调试信息 <button class="citation-flag" data-index="5">
+            isAttacking = true;
+            currentTarget = targetEnemy;
+            currentDamage = GetMinDamage(rankValue);
         }
         else
         {
-            Debug.Log("未找到有效目标");
+            isAttacking = false;
+            DisableBeam();
         }
     }
 
@@ -85,7 +98,8 @@ public class EnergyTowerController : TowerController
             energyBeam.SetPosition(0, transform.position);
             energyBeam.SetPosition(1, currentTarget.transform.position);
 
-            float t = (currentDamage - minDamage) / (maxDamage - minDamage);
+            float t = (currentDamage - GetMinDamage(rankValue)) /
+                      (GetMaxDamage(rankValue) - GetMinDamage(rankValue));
             energyBeam.startColor = beamColorGradient.Evaluate(t);
             energyBeam.endColor = beamColorGradient.Evaluate(t);
         }
@@ -100,18 +114,93 @@ public class EnergyTowerController : TowerController
         if (currentTarget == null || !currentTarget.IsAlive) return;
 
         currentDamage = Mathf.Clamp(
-            currentDamage + damageGrowthRate * Time.deltaTime,
-            minDamage,
-            maxDamage
+            currentDamage + GetDamageGrowthRate(rankValue) * Time.deltaTime,
+            GetMinDamage(rankValue),
+            GetMaxDamage(rankValue)
         );
 
-        currentTarget.EnemyTakeDamage(currentDamage * Time.deltaTime);
-        Debug.Log($"造成伤害: {currentDamage * Time.deltaTime} → 剩余生命值: {currentTarget.currentHealth}"); // 伤害验证 <button class="citation-flag" data-index="5">
+        currentTarget.EnemyTakeDamage(currentDamage * Time.deltaTime, "energy");
+
+        if (!currentTarget.IsAlive)
+        {
+            isAttacking = false;
+            currentTarget = null;
+            AcquireLowestDistanceEnemy();
+        }
     }
 
     private void DisableBeam()
     {
         if (energyBeam) energyBeam.enabled = false;
+    }
+
+    public override void UpgradeTower()
+    {
+        if (rankValue < 4)
+        {
+            rankValue++;
+            attackRange *= 1.2f;
+            InitializeTowerStats();
+            ReplaceTowerBase();
+        }
+    }
+
+    private float GetMinDamage(int level)
+    {
+        switch (level)
+        {
+            case 1: return 30f;
+            case 2: return 50f;
+            case 3: return 70f;
+            case 4: return 90f;
+            default: return 30f;
+        }
+    }
+
+    private float GetMaxDamage(int level)
+    {
+        switch (level)
+        {
+            case 1: return 120f;
+            case 2: return 150f;
+            case 3: return 280f;
+            case 4: return 360f;
+            default: return 120f;
+        }
+    }
+
+    private float GetDamageGrowthRate(int level)
+    {
+        switch (level)
+        {
+            case 1: return 30f;
+            case 2: return 50f;
+            case 3: return 70f;
+            case 4: return 90f;
+            default: return 30f;
+        }
+    }
+
+    IEnumerator PlayEnergyAnimationLoop()
+    {
+        while (true)
+        {
+            if (energyFrames == null || energyFrames.Length < 5 || towerRenderer == null)
+                yield break;
+
+            towerRenderer.sprite = energyFrames[0];
+            yield return new WaitForSeconds(0.3f);
+            towerRenderer.sprite = energyFrames[1];
+            yield return new WaitForSeconds(0.3f);
+            towerRenderer.sprite = energyFrames[2];
+            yield return new WaitForSeconds(0.3f);
+            towerRenderer.sprite = energyFrames[3];
+            yield return new WaitForSeconds(0.3f);
+            towerRenderer.sprite = energyFrames[4];
+            yield return new WaitForSeconds(4f);
+
+            towerRenderer.sprite=energyFrames[0];
+        }
     }
 
     void OnDrawGizmosSelected()
