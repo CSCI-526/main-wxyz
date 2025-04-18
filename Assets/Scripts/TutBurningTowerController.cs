@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TutBurningTowerController : TowerController
 {
-    public float burnDuration = 3f;
+    public float burnDuration = 4f;
     public Sprite[] burnFrames;  // 四帧动画
     private SpriteRenderer burningTowerRenderer;
     public Sprite burningTileSprite;

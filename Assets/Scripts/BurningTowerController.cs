@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BurningTowerController : TowerController
 {
-    public float burnDuration = 3f;
+    public float burnDuration = 4f;
     public Sprite[] burnFrames;
     public Sprite burningTileSprite;
 
