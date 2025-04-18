@@ -297,7 +297,7 @@ MonoBehaviour:
   - {fileID: 5478743044441126604, guid: da076a3ae0bb9ee46b140d9a6efe1651, type: 3}
   - {fileID: -3663695360980841099, guid: da076a3ae0bb9ee46b140d9a6efe1651, type: 3}
   - {fileID: 733701432343546958, guid: da076a3ae0bb9ee46b140d9a6efe1651, type: 3}
-  slowSprites:
+  frozenSprites:
   - {fileID: 860550479, guid: 50428bef9e904554a998806c4345979c, type: 3}
   - {fileID: -1267639377, guid: 50428bef9e904554a998806c4345979c, type: 3}
   - {fileID: -207459731, guid: 50428bef9e904554a998806c4345979c, type: 3}

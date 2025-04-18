@@ -12,6 +12,7 @@ public class TileController : MonoBehaviour
     private float Duration = 0f;
     
     public GameObject hover;
+    public Sprite originalSprite;
 
     void Awake()
     {
@@ -102,7 +103,7 @@ public class TileController : MonoBehaviour
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
         {
-            sr.color = Color.white; 
+            sr.sprite = originalSprite;
         }
     }
 

@@ -119,7 +119,7 @@ MonoBehaviour:
   - {fileID: 5590223441652211795, guid: 84d2a529a4bc99943a2d8e6b7d6fadec, type: 3}
   - {fileID: 4486149277403418664, guid: 84d2a529a4bc99943a2d8e6b7d6fadec, type: 3}
   - {fileID: -7214237735823453605, guid: 84d2a529a4bc99943a2d8e6b7d6fadec, type: 3}
-  slowSprites:
+  frozenSprites:
   - {fileID: 2776978806679789562, guid: c801de6c0a1ef3748a6ea6b261ca5392, type: 3}
   - {fileID: 451739911967668741, guid: c801de6c0a1ef3748a6ea6b261ca5392, type: 3}
   - {fileID: -1572617341626487418, guid: c801de6c0a1ef3748a6ea6b261ca5392, type: 3}
