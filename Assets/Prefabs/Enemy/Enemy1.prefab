@@ -286,7 +286,8 @@ MonoBehaviour:
   waypoints: []
   index: 0
   distance: 0
-  healthBar: {fileID: 1583104602229786547}
+  healthBar: {fileID: 2119440247830637205}
+  healthBarCurrentHealth: {fileID: 1583104602229786547}
   normalSprites:
   - {fileID: -8424512391191667510, guid: da076a3ae0bb9ee46b140d9a6efe1651, type: 3}
   - {fileID: 3290754440217495874, guid: da076a3ae0bb9ee46b140d9a6efe1651, type: 3}

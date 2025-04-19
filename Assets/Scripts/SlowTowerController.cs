@@ -4,7 +4,7 @@ using UnityEngine;
 public class SlowTowerController : TowerController
 {
     
-    public float frozenDuration = 3f;
+    public float frozenDuration = 4f;
     public Sprite[] freezeFrames;
     public Sprite frozenTileSprite;
 

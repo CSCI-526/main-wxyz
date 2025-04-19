@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TutBurningTowerController : TowerController
 {
-    public float burnDuration = 3f;
+    public float burnDuration = 4f;
     public Sprite[] burnFrames;  // 四帧动画
     private SpriteRenderer burningTowerRenderer;
     public Sprite burningTileSprite;
@@ -21,19 +21,14 @@ public class TutBurningTowerController : TowerController
 
     float GetBurnDamage()
     {
-        TowerController tower = GetComponent<TowerController>();
-        if (tower != null)
+        switch (rankValue)
         {
-            switch (tower.rankValue)
-            {
-                case 1: return 20f;
-                case 2: return 25f;
-                case 3: return 35f;
-                case 4: return 50f;
-                default: return 20f;
-            }
+            case 1: return 20;
+            case 2: return 25;
+            case 3: return 35;
+            case 4: return 50;
+            default: return 20;
         }
-        return 20f;
     }
 
     IEnumerator BurnRandomBorderTile()

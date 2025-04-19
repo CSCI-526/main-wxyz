@@ -8,7 +8,7 @@ public class TutFrozenTowerController : TowerController
 
     private BoardManager board;
     //public int rankValue = 1; // 塔的等级
-    public float frozenDuration = 3f; // 减速持续时间
+    public float frozenDuration = 4f; // 减速持续时间
     public Sprite[] freezeFrames;  // 四帧动画
     private SpriteRenderer frozenTowerRenderer;
 
@@ -25,8 +25,8 @@ public class TutFrozenTowerController : TowerController
     {
         switch (rankValue)
         {
-            case 1: return 0.8f;
-            case 2: return 0.6f;
+            case 1: return 0.6f;
+            case 2: return 0.5f;
             case 3: return 0.4f;
             case 4: return 0.2f;
             default: return 0.8f;

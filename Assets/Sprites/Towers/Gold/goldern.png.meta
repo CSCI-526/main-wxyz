@@ -1,10 +1,28 @@
 fileFormatVersion: 2
-guid: a7370d8b14bca422f825190bfeedde43
+guid: 43f5872d500547f48bffae18bd74d64b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8093117192702332651
-    second: Frozen_0
+      213: 2760001707912849208
+    second: goldern_0
+  - first:
+      213: -1265674866713392652
+    second: goldern_1
+  - first:
+      213: -8741875670721177666
+    second: goldern_2
+  - first:
+      213: -3636992265279778046
+    second: goldern_3
+  - first:
+      213: -456455682661265530
+    second: goldern_4
+  - first:
+      213: 4467107393527609915
+    second: goldern_5
+  - first:
+      213: -2197184511484118175
+    second: goldern_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,23 +157,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Frozen_0
+      name: goldern_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 364
-        height: 365
+        x: 1
+        y: 32
+        width: 29
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 511fe5bdac87faf80800000000000000
-      internalID: -8093117192702332651
+      spriteID: 837ed932eee7d4620800000000000000
+      internalID: 2760001707912849208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goldern_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 32
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f988602a6b6f6ee0800000000000000
+      internalID: -1265674866713392652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goldern_2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 29
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 203d729edcec68dc0800000000000000
+      internalID: -3636992265279778046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goldern_3
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 0
+        width: 29
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3afbb4b18a5efd30800000000000000
+      internalID: 4467107393527609915
       vertices: []
       indices: 
       edges: []
@@ -164,7 +248,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3936d10134e8a5d439f3f86c323f8e9d
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +258,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Frozen_0: -8093117192702332651
+      goldern_0: 2760001707912849208
+      goldern_1: -1265674866713392652
+      goldern_2: -3636992265279778046
+      goldern_3: 4467107393527609915
+      goldern_4: -456455682661265530
+      goldern_6: -2197184511484118175
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,17 +1,23 @@
 ﻿using UnityEngine;
+using System.Collections;
+
 public class TutGoldTowerController : TowerController
 {
     public int goldPerCycle = 10; // 每次生产的金币数量
     public float generateInterval = 5f; // 生产金币的间隔时间
-
+    public Sprite[] goldFrames;
+    private SpriteRenderer goldRenderer;
     private float lastGenerateTime;
     private TutGameManager tutgameManager;
 
     void Start()
     {
         base.Start();
+        goldRenderer = GetComponent<SpriteRenderer>();
         tutgameManager = FindObjectOfType<TutGameManager>();
         lastGenerateTime = Time.time;
+
+        StartCoroutine(GoldAnimationLoop());
     }
 
     void Update()
@@ -35,6 +41,26 @@ public class TutGoldTowerController : TowerController
                 Debug.LogError("GoldTowerController: gameManager is NULL!");
             }
             lastGenerateTime = Time.time;
+        }
+    }
+
+    IEnumerator GoldAnimationLoop()
+    {
+        while (true)
+        {
+            if (goldFrames == null || goldFrames.Length < 4 || goldRenderer == null)
+                yield break;
+
+            goldRenderer.sprite = goldFrames[0];
+            yield return new WaitForSeconds(0.6f);
+            goldRenderer.sprite = goldFrames[1];
+            yield return new WaitForSeconds(0.6f);
+            goldRenderer.sprite = goldFrames[2];
+            yield return new WaitForSeconds(0.6f);
+            goldRenderer.sprite = goldFrames[3];
+            yield return new WaitForSeconds(3f);
+
+            goldRenderer.sprite = goldFrames[0];
         }
     }
 
