@@ -15,7 +15,10 @@ public class BoardManager : MonoBehaviour
     public TileController monsterTurnTile3;
     public TileController monsterDestTile;
     [SerializeField] private Sprite monsterRoadSprite;   
-    [SerializeField] private Sprite innerTileSprite;    
+    [SerializeField] private Sprite innerTileSprite;
+    [SerializeField] private Sprite spawnTileSprite;
+    [SerializeField] private Sprite destTileSprite;
+
     void Start()
     {
     }
@@ -47,12 +50,14 @@ public class BoardManager : MonoBehaviour
 
                 if (i == 0 && j == 0)                         // spawn
                 {
-                    if (sr) sr.color = Color.red;
+                    // if (sr) sr.color = Color.red;
+                    if (sr) sr.sprite = spawnTileSprite;
                     monsterSpawnTile = tc;
                 }
                 else if (i == 1 && j == 0)                    // destination
                 {
-                    if (sr) sr.color = Color.green;
+                    // if (sr) sr.color = Color.green;
+                    if (sr) sr.sprite = destTileSprite;
                     monsterDestTile = tc;
                 }
                 else if (i == 0 && j == columns - 1)          

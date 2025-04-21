@@ -2867,6 +2867,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1312062003}
     - target: {fileID: 8282279412315293572, guid: fac8fe4f4779d464a9192aa78896c735, type: 3}
+      propertyPath: destTileSprite
+      value: 
+      objectReference: {fileID: -839966726, guid: 24ca2072a3c5947409bec7bba85be156, type: 3}
+    - target: {fileID: 8282279412315293572, guid: fac8fe4f4779d464a9192aa78896c735, type: 3}
       propertyPath: roadTileSprite
       value: 
       objectReference: {fileID: 21300000, guid: d8ca6b12c690b436695d7758343372af, type: 3}
@@ -2878,6 +2882,10 @@ PrefabInstance:
       propertyPath: innerTileSprite
       value: 
       objectReference: {fileID: 21300000, guid: d8ca6b12c690b436695d7758343372af, type: 3}
+    - target: {fileID: 8282279412315293572, guid: fac8fe4f4779d464a9192aa78896c735, type: 3}
+      propertyPath: spawnTileSprite
+      value: 
+      objectReference: {fileID: 2461088448735457732, guid: 685be7053d537cc4fb177dec5be55623, type: 3}
     - target: {fileID: 8282279412315293572, guid: fac8fe4f4779d464a9192aa78896c735, type: 3}
       propertyPath: monsterRoadSprite
       value: 
@@ -7734,7 +7742,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5010542259940793272, guid: 7955f32b3ae384be9a3b8a1c5ad05017, type: 3}
+  m_Sprite: {fileID: -9191926873670374997, guid: 247a4e78fb5f1634b987dff11742e308, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
