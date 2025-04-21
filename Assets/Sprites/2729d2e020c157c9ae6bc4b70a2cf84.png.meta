@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ce984b1e8847d4343b5876d2181e5971
+guid: 685be7053d537cc4fb177dec5be55623
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7795186722738518871
-    second: f0a0cc22a5cb7122ca7d0ea112997af_0
+      213: 2461088448735457732
+    second: 2729d2e020c157c9ae6bc4b70a2cf84_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cave_0
+      name: 2729d2e020c157c9ae6bc4b70a2cf84_0
       rect:
         serializedVersion: 2
         x: 0
@@ -139,10 +139,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 47da9e6dec88d004781ba290db876f2e
-      internalID: 214891356
+      spriteID: 4c1b1bb97ea872220800000000000000
+      internalID: 2461088448735457732
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d93e16e7842e22544ad07a00536cce13
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      cave_0: 214891356
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
