@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f02977e11bdcb924aa02da6178d27174
+guid: 6af43f31e750540feb3be4d4796fefe8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5930032916099688984
-    second: e244528c768323c548e08135a4edd66_0
+      213: 29034209421589096
+    second: GoldBase_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,6 +97,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -126,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: e244528c768323c548e08135a4edd66_0
+      name: GoldBase_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 12
+        y: 9
+        width: 56
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8e511814b7a44bda0800000000000000
-      internalID: -5930032916099688984
+      spriteID: 86a78eaa576276000800000000000000
+      internalID: 29034209421589096
       vertices: []
       indices: 
       edges: []

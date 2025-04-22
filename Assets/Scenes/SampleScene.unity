@@ -642,7 +642,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 210536756}
   m_Father: {fileID: 1371799508}
@@ -650,7 +650,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 50, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 86, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &75482355
 MonoBehaviour:
@@ -665,15 +665,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: -4672568969694325844, guid: fdc7fb238c705004b9136a1b39a4ed6e, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2694,7 +2694,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 165, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 57, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &480478769
 MonoBehaviour:
@@ -2709,14 +2709,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 2323917800338813707, guid: 3d4decf0dddac41f5a672d8a3244f640, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2770,7 +2770,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 510, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 94, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &510496976
 MonoBehaviour:
@@ -2785,14 +2785,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.96862745, g: 0.9061316, b: 0.007843143, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 4467107393527609915, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2869,7 +2869,7 @@ PrefabInstance:
     - target: {fileID: 8282279412315293572, guid: fac8fe4f4779d464a9192aa78896c735, type: 3}
       propertyPath: destTileSprite
       value: 
-      objectReference: {fileID: -839966726, guid: 24ca2072a3c5947409bec7bba85be156, type: 3}
+      objectReference: {fileID: -5119980863986964875, guid: 24ca2072a3c5947409bec7bba85be156, type: 3}
     - target: {fileID: 8282279412315293572, guid: fac8fe4f4779d464a9192aa78896c735, type: 3}
       propertyPath: roadTileSprite
       value: 
@@ -2885,7 +2885,7 @@ PrefabInstance:
     - target: {fileID: 8282279412315293572, guid: fac8fe4f4779d464a9192aa78896c735, type: 3}
       propertyPath: spawnTileSprite
       value: 
-      objectReference: {fileID: 2461088448735457732, guid: 685be7053d537cc4fb177dec5be55623, type: 3}
+      objectReference: {fileID: 8606453610214823136, guid: ce984b1e8847d4343b5876d2181e5971, type: 3}
     - target: {fileID: 8282279412315293572, guid: fac8fe4f4779d464a9192aa78896c735, type: 3}
       propertyPath: monsterRoadSprite
       value: 
@@ -3488,7 +3488,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 395, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 72, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &616446705
 MonoBehaviour:
@@ -3503,14 +3503,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5019608, g: 0, b: 0.5019608, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7102075283677565631, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5009,7 +5009,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 280, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 108, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1003989131
 MonoBehaviour:
@@ -5024,14 +5024,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -6643491068388988048, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6200,11 +6200,11 @@ MonoBehaviour:
   boardManager: {fileID: 1613210817}
   enemyManager: {fileID: 1829153773}
   towerPrefabs:
-  - {fileID: 1001787181882085309, guid: fab5f7ea9cf324f6c811c7705e22f610, type: 3}
   - {fileID: 7710871422812722048, guid: 96259937bd932ff46a1af3c187588de3, type: 3}
   - {fileID: 49547057150472206, guid: 7d08e4d4f79f9491997f765eda298cc1, type: 3}
   - {fileID: 49547057150472206, guid: b12031daac76e429cad6dd67f47bf234, type: 3}
   - {fileID: 49547057150472206, guid: 29add77e8100de444a787819656d3d75, type: 3}
+  - {fileID: 1001787181882085309, guid: fab5f7ea9cf324f6c811c7705e22f610, type: 3}
   uiManager: {fileID: 835782558}
   timerManager: {fileID: 397856851}
   FirebaseManager: {fileID: 1428979181}
@@ -7742,7 +7742,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -9191926873670374997, guid: 247a4e78fb5f1634b987dff11742e308, type: 3}
+  m_Sprite: {fileID: 4301844918096825189, guid: 46e0da5cbe649485690dc653d5e9a6a8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
