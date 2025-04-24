@@ -613,7 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorSelectionPanel: {fileID: 1371799507}
   cooldownOverlay: {fileID: 60593426}
-  cooldownDuration: 30
+  cooldownDuration: 15
 --- !u!1 &75482353
 GameObject:
   m_ObjectHideFlags: 0

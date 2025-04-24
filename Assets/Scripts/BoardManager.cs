@@ -308,7 +308,7 @@ public class BoardManager : MonoBehaviour
         if (gameManager != null)
         {
             int towerCount = GetAllTowersOnBoard().Count;
-            gameManager.uiManager.SetTowerCost(towerCount * 10);
+            gameManager.uiManager.SetTowerCost(towerCount * 15);
         }
     }
 
