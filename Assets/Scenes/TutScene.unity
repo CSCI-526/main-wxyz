@@ -5355,7 +5355,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Golden Tower generates coins
+  m_text: Golden Tower generates gold
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
   m_sharedMaterial: {fileID: -4429044960763378501, guid: 9ad28ea97366b4285b75cdd8b16026dc, type: 2}
@@ -7628,6 +7628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 453212287}
   helpText: {fileID: 861398205}
+  fixSpwanPos: 1
   goldTowerPanel: {fileID: 245981052}
   cannonTowerPanel: {fileID: 432313824}
   frozenTowerPanel: {fileID: 1750182391}
