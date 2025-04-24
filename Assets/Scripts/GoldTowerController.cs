@@ -3,7 +3,8 @@ using System.Collections;
 
 public class GoldTowerController : TowerController
 {
-    public int goldPerCycle = 5;
+    //public int goldPerCycle = 5;
+
     public float generateInterval = 5f;
     public Sprite[] goldFrames;
     private SpriteRenderer goldRenderer;
@@ -16,8 +17,20 @@ public class GoldTowerController : TowerController
         goldRenderer = GetComponent<SpriteRenderer>();
         gameManager = FindObjectOfType<GameManager>();
         lastGenerateTime = Time.time;
-
+        
         StartCoroutine(GoldAnimationLoop());
+    }
+
+    public int GetgoldPerCycle()
+    {
+        switch (rankValue)
+        {
+            case 1: return 5;
+            case 2: return 10;
+            case 3: return 15;
+            case 4: return 20;
+            default: return 5;
+        }
     }
 
     void Update()
@@ -31,6 +44,7 @@ public class GoldTowerController : TowerController
         {
             if (gameManager != null)
             {
+                int goldPerCycle = GetgoldPerCycle();
                 gameManager.AddCoin(goldPerCycle);
             }
             else

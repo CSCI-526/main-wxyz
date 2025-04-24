@@ -303,7 +303,7 @@ public class GameManager : MonoBehaviour
     {
         playerGold -= spawnCost;
         Debug.Log("Tower spawned! Spent " + spawnCost + " gold. Remaining gold: " + playerGold);
-        spawnCost += 10;
+        spawnCost += 15;
         Debug.Log("Next spawn will cost: " + spawnCost);
     }
     public void ModifyCost(int cost)
