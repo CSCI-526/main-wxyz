@@ -306,6 +306,11 @@ public class GameManager : MonoBehaviour
         spawnCost += 10;
         Debug.Log("Next spawn will cost: " + spawnCost);
     }
+    public void ModifyCost(int cost)
+    {
+        spawnCost = cost;
+        Debug.Log("Tower cost modified to: " + spawnCost);
+    }
 
     public void ReduceHealth(int damage)
     {

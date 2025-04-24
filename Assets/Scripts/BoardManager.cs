@@ -300,6 +300,11 @@ public class BoardManager : MonoBehaviour
         {
             Debug.Log("Towers moved and merged within the inner grid.");
         }
+        if (gameManager != null)
+        {
+            int towerCount = GetAllTowersOnBoard().Count;
+            gameManager.uiManager.SetTowerCost(towerCount * 10);
+        }
     }
 
 
