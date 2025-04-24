@@ -2211,7 +2211,7 @@ MonoBehaviour:
     count: 4
   - enemyPrefab: {fileID: 4336658664315684068, guid: 87f2fc39a06d5994684dafdab143d7b0, type: 3}
     enemyHealth: 150
-    enemySpeed: 1.5
+    enemySpeed: 1.3
     enemyCoin: 5
     timeBetweenEnemies: 1
     timeAfterWave: 5
