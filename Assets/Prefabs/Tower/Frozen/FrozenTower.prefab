@@ -118,4 +118,4 @@ MonoBehaviour:
   - {fileID: 2487218932450820861, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
   - {fileID: 8772919823634052326, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
   - {fileID: -6643491068388988048, guid: d10ac2a80ec064d148628e91c0f3f8a3, type: 3}
-  frozenTileSprite: {fileID: 21300000, guid: 59f885644717e444a99efdd5b17946bf, type: 3}
+  frozenTileSprite: {fileID: -856085545168688419, guid: 59f885644717e444a99efdd5b17946bf, type: 3}

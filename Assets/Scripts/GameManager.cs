@@ -27,11 +27,11 @@ public class GameManager : MonoBehaviour
     private float damageFromSlowTower = 0f;
     private float damageFromEnergyTower = 0f;
     private List<TowersOnTile> towersOnTileList = new List<TowersOnTile>();
-    private int CanonTowerNum = 0;
-    private int BurningTowerNum = 0;
-    private int SlowTowerNum = 0;
-    private int EnergyTowerNum = 0;
-    private int GoldTowerNum = 0;
+    // private int CanonTowerNum = 0;
+    // private int BurningTowerNum = 0;
+    // private int SlowTowerNum = 0;
+    // private int EnergyTowerNum = 0;
+    // private int GoldTowerNum = 0;
     private float score = 0f;
     private float mergeCount = 0f;
     private float changeColorCount = 0f;
@@ -175,22 +175,22 @@ public class GameManager : MonoBehaviour
         if (!hasLost)
         {
             Debug.Log("Player lose !!!");
-        hasLost = true;
+            hasLost = true;
 
-        //存储最终存活时间  
-        if (timerManager != null)
-        {
-            timerManager.SaveFinalTime();
-        }
-        else
-        {
-            Debug.LogError("TimerManager is NULL! Time not saved.");
-        }
+            //存储最终存活时间  
+            if (timerManager != null)
+            {
+                timerManager.SaveFinalTime();
+            }
+            else
+            {
+                Debug.LogError("TimerManager is NULL! Time not saved.");
+            }
 
-        PlayerPrefs.SetFloat("FinalScore", score);
-        PlayerPrefs.Save();
+            PlayerPrefs.SetFloat("FinalScore", score);
+            PlayerPrefs.Save();
 
-        SceneManager.LoadScene(2); //跳转到GameOver场景
+            SceneManager.LoadScene(2); //跳转到GameOver场景
         }
     }
 
@@ -303,7 +303,7 @@ public class GameManager : MonoBehaviour
     {
         playerGold -= spawnCost;
         Debug.Log("Tower spawned! Spent " + spawnCost + " gold. Remaining gold: " + playerGold);
-        spawnCost += 10;
+        spawnCost += 15;
         Debug.Log("Next spawn will cost: " + spawnCost);
     }
     public void ModifyCost(int cost)
@@ -344,27 +344,21 @@ public class GameManager : MonoBehaviour
                         {
                             case "Gold":
                                 towersOnTileTemp.goldTowerNum ++;
-                                // GoldTowerNum++;
                                 break;
                             case "Canon":
                                 towersOnTileTemp.canonTowerNum ++;
-                                // CanonTowerNum++;
                                 break;
                             case "BurningTower":
                                 towersOnTileTemp.burningTowerNum ++;
-                                // BurningTowerNum++;
                                 break;
                             case "Energy":
                                 towersOnTileTemp.energyTowerNum ++;
-                                // EnergyTowerNum++;
                                 break;
                             case "FrozenTower":
                                 towersOnTileTemp.frozenTowerNum ++;
-                                // SlowTowerNum++;
                                 break;
                             default:
                                 towersOnTileTemp.canonTowerNum ++;
-                                // CanonTowerNum++;
                                 break;
                         }
                     }

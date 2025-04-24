@@ -108,7 +108,8 @@ MonoBehaviour:
   waypoints: []
   index: 0
   distance: 0
-  healthBar: {fileID: 938910820100571421}
+  healthBar: {fileID: 4246976836345462880}
+  healthBarCurrentHealth: {fileID: 938910820100571421}
   normalSprites:
   - {fileID: -6097709069816764162, guid: 84d2a529a4bc99943a2d8e6b7d6fadec, type: 3}
   - {fileID: 4362016517974605366, guid: 84d2a529a4bc99943a2d8e6b7d6fadec, type: 3}
@@ -204,7 +205,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.3, y: 0.24}
+    oldSize: {x: 0.28, y: 0.22}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -384,7 +385,7 @@ GameObject:
   - component: {fileID: 825919974089191475}
   - component: {fileID: 1469273439240214148}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

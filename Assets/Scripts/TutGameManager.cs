@@ -23,11 +23,11 @@ public class TutGameManager : MonoBehaviour
     private float damageFromBurningTower = 0f;
     private float damageFromSlowTower = 0f;
     private float damageFromEnergyTower = 0f;
-    private int TankTowerNum = 0;
-    private int BurningTowerNum = 0;
-    private int SlowTowerNum = 0;
-    private int EnergyTowerNum = 0;
-    private int GoldTowerNum = 0;
+    // private int TankTowerNum = 0;
+    // private int BurningTowerNum = 0;
+    // private int SlowTowerNum = 0;
+    // private int EnergyTowerNum = 0;
+    // private int GoldTowerNum = 0;
     private float score = 0f;
     private float mergeCount = 0f;
     private bool SpawnFlag = true;

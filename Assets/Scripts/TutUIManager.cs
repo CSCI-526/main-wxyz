@@ -40,7 +40,7 @@ public class TutUIManager : MonoBehaviour
     //更新金币UI
     public void UpdateGoldUI()
     {
-        goldText.text = "Gold: " + gameManager.playerGold;
+        goldText.text = "x " + gameManager.playerGold;
         UpdateBuyButtonState(); //让按钮状态随金币更新
     }
     //更新塔价格UI
@@ -231,7 +231,7 @@ public class TutUIManager : MonoBehaviour
     }
     public void UpdateHealthUI()
     {
-        playerHealthText.text = "Lives Remaining: " + gameManager.playerHealth;
+        playerHealthText.text = " x " + gameManager.playerHealth;
     }
     public void RestartGame()
     {

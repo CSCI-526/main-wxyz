@@ -118,4 +118,4 @@ MonoBehaviour:
   - {fileID: -4041298643086001914, guid: fdc7fb238c705004b9136a1b39a4ed6e, type: 3}
   - {fileID: 2385761270193732233, guid: fdc7fb238c705004b9136a1b39a4ed6e, type: 3}
   - {fileID: -4672568969694325844, guid: fdc7fb238c705004b9136a1b39a4ed6e, type: 3}
-  burningTileSprite: {fileID: 21300000, guid: 1a4031e4ec99446068a5912ff37ee0ae, type: 3}
+  burningTileSprite: {fileID: 6673312695985084743, guid: 1a4031e4ec99446068a5912ff37ee0ae, type: 3}

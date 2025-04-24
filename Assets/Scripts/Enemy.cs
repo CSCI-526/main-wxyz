@@ -32,8 +32,9 @@ public class Enemy : MonoBehaviour
     private GameManager gameManager;
     private TutGameManager tutGameManager;
 
-    public Image healthBar;
-
+    public Canvas healthBar; 
+    public Image healthBarCurrentHealth;
+    
     public Sprite[] normalSprites;
     public Sprite[] frozenSprites;
     public Sprite[] burnSprites;
@@ -45,6 +46,7 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        healthBar.enabled = false;
     }
 
     void Start()
@@ -52,7 +54,7 @@ public class Enemy : MonoBehaviour
         originalColor = spriteRenderer.color;
         currentHealth = originalHealth;
         currentSpeed = originalSpeed;
-        originalWidthHealthBar = healthBar.GetComponent<RectTransform>().sizeDelta.x;
+        originalWidthHealthBar = healthBarCurrentHealth.GetComponent<RectTransform>().sizeDelta.x;
         originalClipRatio = 1f / normalSprites.Length;
         clipRatio = originalClipRatio;
 
@@ -103,12 +105,15 @@ public class Enemy : MonoBehaviour
     /*** Enemy wayfinding ***/
     protected void EnemyBehavior()
     {
+        // enemy abnormal state animation switch
+        UpdateAnimation();
+
         // enemy health bar
-        RectTransform rt = healthBar.GetComponent<RectTransform>();
+        RectTransform rt = healthBarCurrentHealth.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(originalWidthHealthBar * (currentHealth / originalHealth), rt.sizeDelta.y);
         
         // enemy abnormal state animation switch
-        UpdateAnimation();
+        // UpdateAnimation();
 
         // enemy way finding
         if (wayfindingIndex < waypoints.Length)
@@ -134,6 +139,7 @@ public class Enemy : MonoBehaviour
     /*** Enemy health management ***/
     public void EnemyTakeDamage(float damage, string type = "gun")
     {
+        healthBar.enabled = true;
         // Apply tower damage based on type.
         if (gameManager != null)
         {
