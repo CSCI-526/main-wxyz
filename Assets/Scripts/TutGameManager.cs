@@ -31,7 +31,6 @@ public class TutGameManager : MonoBehaviour
     private float score = 0f;
     private float mergeCount = 0f;
     private bool SpawnFlag = true;
-    private bool firstSpwan = false;
 
     private bool finalWaveTriggered = false;
     private bool finalWaveCleared = false;
@@ -178,76 +177,59 @@ public class TutGameManager : MonoBehaviour
     //生成特定塔
     public bool SpawnSpecificTower(string towerName)
     {
-        // 1) gold check
-        if (playerGold < spawnCost) return false;
+        if (playerGold < spawnCost)
+        {
+            return false;
+        }
 
-        // 2) collect every empty inner tile
         List<Vector2Int> availableTiles = new List<Vector2Int>();
         for (int r = 1; r < boardManager.rows - 1; r++)
         {
             for (int c = 1; c < boardManager.columns - 1; c++)
             {
                 if (boardManager.tiles[r, c].towerOnTile == null)
+                {
                     availableTiles.Add(new Vector2Int(c, r));
+                }
             }
         }
+
         if (availableTiles.Count == 0)
         {
             Debug.Log("No available tiles to spawn a tower.");
             return false;
         }
 
-        // 3) resolve prefab by name
-        GameObject targetPrefab = towerPrefabs?.Find(p => p.name == towerName);
-        if (targetPrefab == null)
+        if (towerPrefabs == null || towerPrefabs.Count == 0)
         {
-            Debug.LogError($"Tower prefab '{towerName}' not found.");
+            Debug.LogError("No tower prefabs assigned in GameManager.");
             return false;
         }
 
-
-        Vector2Int chosenTile;
-
-        bool fixSpawnPos = timerManager != null && timerManager.fixSpwanPos;
-
-        if (fixSpawnPos)
+        GameObject targetPrefab = towerPrefabs.Find(prefab => prefab.name == towerName);
+        if (targetPrefab == null)
         {
-
-            Vector2Int candidate = boardManager.FindEmptyNeighbourOfLevel1();
-
-            if (boardManager.IsInnerTile(candidate.y, candidate.x) &&
-                boardManager.tiles[candidate.y, candidate.x].towerOnTile == null)
-            {
-                chosenTile = candidate;
-            }
-            else                 
-            {
-                chosenTile = availableTiles[Random.Range(0, availableTiles.Count)];
-            }
-        }
-        else
-        {
-            chosenTile = availableTiles[Random.Range(0, availableTiles.Count)];
+            Debug.LogError("Tower prefab with name '" + towerName + "' not found.");
+            return false;
         }
 
+        Vector2Int chosenTile = availableTiles[Random.Range(0, availableTiles.Count)];
         int gridCol = chosenTile.x;
         int gridRow = chosenTile.y;
 
         float spacing = boardManager.tileSpacing;
-        float offsetX = (boardManager.columns - 1) / 2f;
-        float offsetY = (boardManager.rows   - 1) / 2f;
-        Vector3 spawnPos = new Vector3((gridCol - offsetX) * spacing,
-                                    (offsetY - gridRow) * spacing,
-                                    0f);
+        float offsetX = (boardManager.columns - 1) / 2.0f;
+        float offsetY = (boardManager.rows - 1) / 2.0f;
+        Vector3 spawnPos = new Vector3((gridCol - offsetX) * spacing, (offsetY - gridRow) * spacing, 0);
 
         GameObject towerObj = Instantiate(targetPrefab, spawnPos, Quaternion.identity);
-        TowerController tc = towerObj.GetComponent<TowerController>();
-        tc.gridPosition = chosenTile;
-        boardManager.tiles[gridRow, gridCol].towerOnTile = tc;
+        TowerController towerController = towerObj.GetComponent<TowerController>();
+        towerController.gridPosition = new Vector2Int(gridCol, gridRow);
+
+        boardManager.tiles[gridRow, gridCol].towerOnTile = towerController;
 
         return true;
     }
-
 
 
 

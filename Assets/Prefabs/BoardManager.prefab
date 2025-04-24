@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rows: 7
   columns: 7
-  tileSpacing: 0.9
+  tileSpacing: 0.6
   tilePrefab: {fileID: 7345841078781865526, guid: 83c234f27f5f2441b8638bf06b5995e7, type: 3}
   gameManager: {fileID: 0}
   monsterSpawnTile: {fileID: 0}
@@ -54,5 +54,3 @@ MonoBehaviour:
   monsterTurnTile2: {fileID: 0}
   monsterTurnTile3: {fileID: 0}
   monsterDestTile: {fileID: 0}
-  monsterRoadSprite: {fileID: 0}
-  innerTileSprite: {fileID: 0}

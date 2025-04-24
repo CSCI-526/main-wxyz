@@ -32,13 +32,6 @@ public class UIManager : MonoBehaviour
         goldText.text = "x " + gameManager.playerGold;
         UpdateBuyButtonState(); //让按钮状态随金币更新
     }
-
-    public void SetTowerCost(int newCost)
-    {
-        gameManager.ModifyCost(newCost);   // change the actual cost value
-        UpdateTowerCostUI();               // refresh text
-        UpdateBuyButtonState();            // refresh button interactivity
-    }
     //更新塔价格UI
     public void UpdateTowerCostUI()
     {
