@@ -19,7 +19,7 @@ public class TutTimerManager : MonoBehaviour
     private bool mergeTutorialTriggered = false;
 
     private bool rewardGold = false;
-
+    public bool fixSpwanPos = true;
     private bool cannonTowerUIPopped = false;
     private bool towerLevel3TutorialTriggered = false;
     private bool frozenTowerTutorialTriggered = false;
@@ -197,7 +197,7 @@ public class TutTimerManager : MonoBehaviour
             frozenTowerTutorialTriggered = true;
 
             helpText.text = "You have a Level 3 Tower!\nLet's buy and explore more towers!";
-
+            fixSpwanPos = false;
             TutGameManager.Instance.setSpawnFlag(true);
 
             if (uiManager != null)
