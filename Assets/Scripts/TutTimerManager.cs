@@ -107,7 +107,7 @@ public class TutTimerManager : MonoBehaviour
         elapsedTime += Time.deltaTime;
         UpdateTimerUI();
 
-        if (!helpTextUpdated && elapsedTime >= 5f)
+        if (!helpTextUpdated && elapsedTime >= 10f)
         {
             helpText.text = "Buy your first tower!";
             helpTextUpdated = true;
