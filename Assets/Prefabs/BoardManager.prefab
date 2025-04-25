@@ -54,3 +54,7 @@ MonoBehaviour:
   monsterTurnTile2: {fileID: 0}
   monsterTurnTile3: {fileID: 0}
   monsterDestTile: {fileID: 0}
+  monsterRoadSprite: {fileID: 0}
+  innerTileSprite: {fileID: 0}
+  spawnTileSprite: {fileID: 0}
+  destTileSprite: {fileID: 0}

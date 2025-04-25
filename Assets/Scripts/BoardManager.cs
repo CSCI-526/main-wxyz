@@ -305,6 +305,11 @@ public class BoardManager : MonoBehaviour
         {
             Debug.Log("Towers moved and merged within the inner grid.");
         }
+        if (gameManager != null)
+        {
+            int towerCount = GetAllTowersOnBoard().Count;
+            gameManager.uiManager.SetTowerCost(towerCount * 15);
+        }
     }
 
 
@@ -407,4 +412,52 @@ public class BoardManager : MonoBehaviour
 
         return towers;
     }
+
+
+    public Vector2Int FindEmptyNeighbourOfLevel1()
+    {
+        // 1) look for an empty inner-tile neighbour of any level-1 tower
+        foreach (TowerController tower in GetAllTowersOnBoard())
+        {
+            if (tower.rankValue != 1) continue;
+
+            Vector2Int pos = tower.gridPosition;
+
+            Vector2Int[] dirs =
+            {
+                new Vector2Int( 0,  1), // up
+                new Vector2Int( 0, -1), // down
+                new Vector2Int( 1,  0), // right
+                new Vector2Int(-1,  0)  // left
+            };
+
+            foreach (Vector2Int d in dirs)
+            {
+                Vector2Int n = pos + d;
+                if (IsInside(n.y, n.x)                     &&   // on the board
+                    IsInnerTile(n.y, n.x)                  &&   // not on monster road
+                    tiles[n.y, n.x].towerOnTile == null)        // empty
+                {
+                    return n;                               // valid neighbour
+                }
+            }
+        }
+
+        // 2) no neighbour found – pick ANY empty inner tile
+        for (int row = 1; row < rows - 1; row++)           // inner rows only
+        {
+            for (int col = 1; col < columns - 1; col++)    // inner cols only
+            {
+                if (tiles[row, col].towerOnTile == null)
+                {
+                    return new Vector2Int(col, row);
+                }
+            }
+        }
+
+        // 3) board completely full
+        return new Vector2Int(9, 9);
+    }
+
+
 }

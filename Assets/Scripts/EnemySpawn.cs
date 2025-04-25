@@ -143,7 +143,7 @@ public class EnemySpawn : MonoBehaviour
             {
                 bigEnemyCount ++;
             }
-            if (timeBetweenEnemies > 0.5f)
+            if (timeBetweenEnemies > 1f)
             {
                 timeBetweenEnemies -= 0.5f;
             }
@@ -161,10 +161,10 @@ public class EnemySpawn : MonoBehaviour
                 timeBetweenEnemies -= 0.1f;
             }
 
-            if (timeBetweenEnemies > 0.3f && currentMaxHealth > 500)
-            {
-                timeBetweenEnemies -= 0.1f;
-            }
+            // if (timeBetweenEnemies > 0.3f && currentMaxHealth > 500)
+            // {
+            //     timeBetweenEnemies -= 0.1f;
+            // }
             
             if (timeAfterWave > 3f)
             {
