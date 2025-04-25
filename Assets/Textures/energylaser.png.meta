@@ -1,33 +1,27 @@
 fileFormatVersion: 2
-guid: d339d85e4d936e14b861be5c73a39c15
+guid: 010c8bf7409742643b81af37bff98535
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5564248608999137188
-    second: energy_0
+      213: -2946771559036874854
+    second: energylaser_0
   - first:
-      213: 3119334169586225959
-    second: energy_1
+      213: 4527515452430831630
+    second: energylaser_1
   - first:
-      213: 4692399049022686247
-    second: energy_2
+      213: -698927347741019887
+    second: energylaser_2
   - first:
-      213: 5693366915664821068
-    second: energy_3
+      213: -2721578210003756352
+    second: energylaser_3
   - first:
-      213: 7102075283677565631
-    second: energy_4
-  - first:
-      213: -6655945943761072377
-    second: energy_5
-  - first:
-      213: 8148473475668785900
-    second: energy_6
+      213: 7485832697125224607
+    second: energylaser_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -69,13 +63,13 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 60
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 0
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -93,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -157,89 +151,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: energy_2
+      name: energylaser_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 61
+        y: 399
+        width: 801
+        height: 239
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c5025aaee51d7c2b0800000000000000
-      internalID: -5564248608999137188
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: energy_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 723dce976e91a4b20800000000000000
-      internalID: 3119334169586225959
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: energy_3
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 724c06dd210ce1140800000000000000
-      internalID: 4692399049022686247
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: energy_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c4bb9288b07e20f40800000000000000
-      internalID: 5693366915664821068
+      spriteID: 7d801f44abf553b4d90c3070365229ae
+      internalID: 1224954339
       vertices: []
       indices: 
       edges: []
@@ -248,7 +176,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fc2438e417bae3845a49acd43c41004c
+    spriteID: 91375084ae3c77a4481f5b98faa69a39
     internalID: 0
     vertices: []
     indices: 
@@ -258,10 +186,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      energy_0: 3119334169586225959
-      energy_1: 5693366915664821068
-      energy_2: -5564248608999137188
-      energy_3: 4692399049022686247
+      energylaser_0: 1224954339
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

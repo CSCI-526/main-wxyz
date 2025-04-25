@@ -117,5 +117,6 @@ MonoBehaviour:
   goldFrames:
   - {fileID: 2760001707912849208, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
   - {fileID: -1265674866713392652, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
-  - {fileID: -3636992265279778046, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
-  - {fileID: 4467107393527609915, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
+  - {fileID: -576337992, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
+  - {fileID: -160587586, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
+  - {fileID: -1920310269, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}

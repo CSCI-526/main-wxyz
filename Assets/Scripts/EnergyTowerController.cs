@@ -185,7 +185,7 @@ public class EnergyTowerController : TowerController
     {
         while (true)
         {
-            if (energyFrames == null || energyFrames.Length < 5 || towerRenderer == null)
+            if (energyFrames == null || energyFrames.Length < 4 || towerRenderer == null)
                 yield break;
 
             towerRenderer.sprite = energyFrames[0];
@@ -195,11 +195,10 @@ public class EnergyTowerController : TowerController
             towerRenderer.sprite = energyFrames[2];
             yield return new WaitForSeconds(0.3f);
             towerRenderer.sprite = energyFrames[3];
-            yield return new WaitForSeconds(0.3f);
-            towerRenderer.sprite = energyFrames[4];
             yield return new WaitForSeconds(4f);
+            
 
-            towerRenderer.sprite=energyFrames[0];
+            towerRenderer.sprite = energyFrames[0];
         }
     }
 

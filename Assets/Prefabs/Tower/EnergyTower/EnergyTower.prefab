@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rankValue: 1
   towerName: Energy
-  towerSprite: {fileID: -5564248608999137188, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
+  towerSprite: {fileID: 3119334169586225959, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
   attackRange: 8
   attackDamage: 0
   towerBasePrefab: {fileID: 0}
@@ -145,11 +145,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   energyFrames:
+  - {fileID: 3119334169586225959, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
+  - {fileID: 5693366915664821068, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
   - {fileID: -5564248608999137188, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
   - {fileID: 4692399049022686247, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
-  - {fileID: 5693366915664821068, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
-  - {fileID: 3119334169586225959, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
-  - {fileID: 7102075283677565631, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
 --- !u!120 &6891708688489141560
 LineRenderer:
   serializedVersion: 2
@@ -174,7 +173,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 59d5fff7b02039b48b5525aa0523e230, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

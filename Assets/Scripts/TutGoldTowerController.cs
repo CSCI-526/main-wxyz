@@ -48,7 +48,7 @@ public class TutGoldTowerController : TowerController
     {
         while (true)
         {
-            if (goldFrames == null || goldFrames.Length < 4 || goldRenderer == null)
+            if (goldFrames == null || goldFrames.Length < 5 || goldRenderer == null)
                 yield break;
 
             goldRenderer.sprite = goldFrames[0];
@@ -58,6 +58,8 @@ public class TutGoldTowerController : TowerController
             goldRenderer.sprite = goldFrames[2];
             yield return new WaitForSeconds(0.6f);
             goldRenderer.sprite = goldFrames[3];
+            yield return new WaitForSeconds(0.6f);
+            goldRenderer.sprite = goldFrames[4];
             yield return new WaitForSeconds(3f);
 
             goldRenderer.sprite = goldFrames[0];
