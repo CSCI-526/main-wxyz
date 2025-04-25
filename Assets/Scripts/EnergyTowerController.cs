@@ -196,7 +196,7 @@ public class EnergyTowerController : TowerController
             yield return new WaitForSeconds(0.3f);
             towerRenderer.sprite = energyFrames[3];
             yield return new WaitForSeconds(4f);
-            
+
 
             towerRenderer.sprite = energyFrames[0];
         }
