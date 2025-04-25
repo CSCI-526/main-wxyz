@@ -128,7 +128,7 @@ public class TutTimerManager : MonoBehaviour
         }
 
 
-        if (!pulseTriggered && elapsedTime >= 5f)
+        if (!pulseTriggered && elapsedTime >= 10f)
         {
             pulseTriggered = true;
 
