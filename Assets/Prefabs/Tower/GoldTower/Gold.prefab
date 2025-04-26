@@ -112,11 +112,10 @@ MonoBehaviour:
   - {fileID: 2729133250331387908, guid: 9e77472785924463dbc0dd96e7fcc0f1, type: 3}
   - {fileID: 6734909066804063127, guid: 1e20dd86615b14cd2ba6b808f1daed89, type: 3}
   gridPosition: {x: 0, y: 0}
-  goldPerCycle: 10
   generateInterval: 1
   goldFrames:
-  - {fileID: 2760001707912849208, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
-  - {fileID: -1265674866713392652, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
-  - {fileID: -576337992, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
-  - {fileID: -160587586, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
-  - {fileID: -1920310269, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
+  - {fileID: -6301429047446442448, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}
+  - {fileID: -6116963357262179218, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}
+  - {fileID: -5275974221471470513, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}
+  - {fileID: 8413302526757980907, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}
+  - {fileID: -5533810949261644772, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}
