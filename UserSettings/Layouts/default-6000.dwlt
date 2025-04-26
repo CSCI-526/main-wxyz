@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 677
+    y: 612
     width: 1954
     height: 717
   m_SerializedDataModeController:
@@ -345,21 +345,21 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: acba0000
     m_LastClickedID: 47788
-    m_ExpandedIDs: 00000000a8ba0000aaba0000acba0000aeba0000b0ba0000b2ba0000b4ba000058bb000090bb000054e4000060e40000ffffff7f
+    m_ExpandedIDs: 0000000070b30000b4b3000054bc000056bc000058bc00005abc00005cbc0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: com.unity.mobile.notifications
-      m_OriginalName: com.unity.mobile.notifications
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 47954
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
       m_ClientGUIView: {fileID: 5}
@@ -374,7 +374,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a8ba0000aaba0000acba0000aeba0000b0ba0000b2ba0000b4ba0000
+    m_ExpandedIDs: 0000000070b30000b4b3000054bc000056bc000058bc00005abc00005cbc0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -453,8 +453,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1955
-    y: 89
+    x: 1956
+    y: 24
     width: 604
     height: 1305
   m_SerializedDataModeController:
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 89
+    y: 24
     width: 483
     height: 562
   m_SerializedDataModeController:
@@ -525,18 +525,18 @@ MonoBehaviour:
       m_ExpandedIDs: da83ffffeafaffffc0b40000eab40000feb400008cb60000d8d00000e2d00000a4d10000f6d1000034d20000d0d20000c2d30000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: BuyButtonText
-        m_OriginalName: BuyButtonText
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 54112
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
         m_ClientGUIView: {fileID: 4}
@@ -1246,8 +1246,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 484
-    y: 89
+    x: 485
+    y: 24
     width: 1469
     height: 562
   m_SerializedDataModeController:
