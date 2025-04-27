@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
@@ -13,11 +13,13 @@ public class TutUIManager : MonoBehaviour
     public TextMeshProUGUI timerText; //计时器UI
     public GameObject pausePanel; //暂停窗口  
     public GameObject victoryPanel; // 胜利结算提示面板
-    public bool isPaused =false; 
+    public bool isPaused = false;
     private bool isTimerRunning = true;//计时器是否运行
     public TextMeshProUGUI playerHealthText; //血量UI
     public Button buyButton; // 连接 Buy 按钮
     public TutTimerManager timerManager; // 连接 TimerManager
+    public bool pausedByUser = false;
+
 
 
     void Start()
@@ -25,7 +27,7 @@ public class TutUIManager : MonoBehaviour
         UpdateGoldUI();
         UpdateTowerCostUI(); //初始化塔价格显示
         pausePanel.SetActive(false);                 //默认隐藏暂停窗口
-        if (victoryPanel != null) 
+        if (victoryPanel != null)
             victoryPanel.SetActive(false); // 隐藏胜利窗口
         UpdateHealthUI(); //初始化血量UI
     }
@@ -188,15 +190,23 @@ public class TutUIManager : MonoBehaviour
     //暂停游戏
     public void TogglePauseGame()
     {
-        isPaused = !isPaused;
-        pausePanel.SetActive(isPaused);
-        Time.timeScale = isPaused ? 0 : 1;
-
         if (isPaused)
-            timerManager.PauseTimer();  // **暂停计时器**
+        {
+            // 如果已经是暂停状态，只弹窗，不修改pausedByUser
+            pausePanel.SetActive(true);
+        }
         else
-            timerManager.ResumeTimer(); // **继续计时**
+        {
+            // 第一次点击暂停
+            isPaused = true;
+            pausePanel.SetActive(true);
+            Time.timeScale = 0;
+            timerManager.PauseTimer();
+            pausedByUser = true; //记录是玩家自己暂停的
+        }
     }
+
+
 
     public void TogglePauseGameNoPanel()
     {
@@ -212,11 +222,26 @@ public class TutUIManager : MonoBehaviour
     //继续游戏
     public void ContinueGame()
     {
-        TogglePauseGame();
+        pausePanel.SetActive(false);
+
+        if (pausedByUser)
+        {
+            // 如果是玩家按暂停键导致的暂停继续游戏
+            isPaused = false;
+            Time.timeScale = 1;
+            timerManager.ResumeTimer();
+            pausedByUser = false; // 恢复后重置
+        }
+        else
+        {
+            // 如果本来就暂停，不动Time，不恢复，只关掉面板
+        }
     }
 
 
-  //退出游戏
+
+
+    //退出游戏
     public void QuitGame()
     {
         Debug.Log("退出游戏...");
@@ -225,7 +250,7 @@ public class TutUIManager : MonoBehaviour
     public void ReturnToMenu()
     {
         Debug.Log("返回主菜单...");
-        Time.timeScale =1; //恢复游戏速度，防止主菜单被暂停
+        Time.timeScale = 1; //恢复游戏速度，防止主菜单被暂停
         SceneManager.LoadScene(0);
         //加载索引为0的MainMenu
     }
@@ -241,7 +266,7 @@ public class TutUIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // 重新加载当前关卡
     }
 
-    
+
     public void UpdateBuyButtonState()
     {
         //金币足够且棋盘未满
@@ -256,5 +281,5 @@ public class TutUIManager : MonoBehaviour
             buyButton.image.color = new Color(0.5f, 0.5f, 0.5f, 1f); //灰色
         }
     }
-    
+
 }

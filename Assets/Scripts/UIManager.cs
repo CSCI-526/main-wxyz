@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour
     public Image pauseButtonImage; // 连接按钮上的Image组件
     public Sprite pauseSprite;
     public Sprite playSprite;
+    private bool wasPausedBeforeMenu;
+
 
 
 
@@ -93,26 +95,41 @@ public class UIManager : MonoBehaviour
 
     public void PauseGameOnly()
     {
-        if (!isPaused)
-        {
-            isPaused = true;
-            pausePanel.SetActive(true);
-            Time.timeScale = 0;
-            timerManager.PauseTimer();
-        }
+        wasPausedBeforeMenu = isPaused; // 记录打开菜单前的状态
+        isPaused = true;
+        pausePanel.SetActive(true);
+        Time.timeScale = 0;
+        timerManager.PauseTimer();
+        UpdateBuyButtonState();
     }
+
+
 
     //继续游戏
     public void ContinueGame()
     {
-        if (isPaused)
+        pausePanel.SetActive(false);
+
+        if (wasPausedBeforeMenu)
         {
-            isPaused = false;                   // 更新暂停状态
-            Time.timeScale = 1;                  // 恢复正常时间
-            timerManager.ResumeTimer();          // 恢复计时器
-            pausePanel.SetActive(false);         // 隐藏暂停面板
+            // 如果菜单前本来就暂停的，继续暂停状态
+            isPaused = true;
+            Time.timeScale = 0;
+            timerManager.PauseTimer();
+            pauseButtonImage.sprite = playSprite;
         }
+        else
+        {
+            // 如果菜单前是运行的，继续运行状态
+            isPaused = false;
+            Time.timeScale = 1;
+            timerManager.ResumeTimer();
+            pauseButtonImage.sprite = pauseSprite;
+        }
+
+        UpdateBuyButtonState();
     }
+
 
 
     //退出游戏

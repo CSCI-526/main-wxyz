@@ -2744,7 +2744,7 @@ MonoBehaviour:
   m_fontSizeMax: 200
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 8192
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3054,6 +3054,7 @@ MonoBehaviour:
   playerHealthText: {fileID: 1051430306}
   buyButton: {fileID: 1910519306}
   timerManager: {fileID: 2007967492}
+  pausedByUser: 0
 --- !u!1 &761582362
 GameObject:
   m_ObjectHideFlags: 0
@@ -4855,7 +4856,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6.5844727, y: -13.6953125}
+  m_AnchoredPosition: {x: -6.5844727, y: -13.695251}
   m_SizeDelta: {x: 14602.33, y: 3364.185}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1245319983
@@ -5330,7 +5331,7 @@ MonoBehaviour:
   m_fontSizeMax: 200
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 8192
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
