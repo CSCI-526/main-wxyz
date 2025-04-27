@@ -44,7 +44,7 @@ public class EnergyTowerController : TowerController
             Vector3 centerOffset = sr.bounds.center - transform.position;
 
            //加一点偏移
-            centerOffset += new Vector3(-0.25f, 0f, 0f); // 
+            centerOffset += new Vector3(0f, 0f, 0f); // 
             firePointObj.transform.localPosition = centerOffset;
         }
         else

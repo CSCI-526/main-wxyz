@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
     {
         GameObject hitPointObj = new GameObject("HitPoint");
         hitPointObj.transform.SetParent(this.transform);
-        hitPointObj.transform.localPosition = new Vector3(-0.2f, 0f, 0f); // 这里可以根据敌人身高微调
+        hitPointObj.transform.localPosition = new Vector3(0f, 0f, 0f); // 这里可以根据敌人身高微调
         hitPoint = hitPointObj.transform;
     }
 
