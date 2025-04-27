@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     public int index;
     public float distance = 0f;
     public bool IsAlive { get; protected set; } = true;
+    public Transform hitPoint;
+
 
     protected float currentSpeed = 1f;
     protected float originalSpeed = 1f;
@@ -43,10 +45,22 @@ public class Enemy : MonoBehaviour
     private float originalClipRatio = 0.1f;
     private float clipRatio = 0.1f;
 
+    private void CreateHitPoint()
+    {
+        GameObject hitPointObj = new GameObject("HitPoint");
+        hitPointObj.transform.SetParent(this.transform);
+        hitPointObj.transform.localPosition = new Vector3(-0.2f, 0f, 0f); // 这里可以根据敌人身高微调
+        hitPoint = hitPointObj.transform;
+    }
+
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         healthBar.enabled = false;
+
+        CreateHitPoint();
+
     }
 
     void Start()

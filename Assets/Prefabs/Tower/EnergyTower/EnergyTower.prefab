@@ -116,15 +116,15 @@ MonoBehaviour:
   energyBeam: {fileID: 6891708688489141560}
   beamColorGradient:
     serializedVersion: 2
-    key0: {r: 0.053122826, g: 0.070719555, b: 0.99371064, a: 1}
-    key1: {r: 0.99215686, g: 0.07033139, b: 0.05490193, a: 1}
+    key0: {r: 0.09861453, g: 0.05490193, b: 0.99215686, a: 1}
+    key1: {r: 0.99215686, g: 0.10075929, b: 0.05490193, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 867
+    ctime0: 0
     ctime1: 65535
     ctime2: 0
     ctime3: 0
@@ -149,6 +149,7 @@ MonoBehaviour:
   - {fileID: 5693366915664821068, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
   - {fileID: -5564248608999137188, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
   - {fileID: 4692399049022686247, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
+  firePoint: {fileID: 0}
 --- !u!120 &6891708688489141560
 LineRenderer:
   serializedVersion: 2
@@ -199,19 +200,28 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.9763558
+    widthMultiplier: 3.0850723
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.27871513
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.86348224
+        value: 0.43888855
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -219,15 +229,15 @@ LineRenderer:
       serializedVersion: 2
       key0: {r: 0.053122826, g: 0.070719555, b: 0.99371064, a: 1}
       key1: {r: 0.99215686, g: 0.07033139, b: 0.05490193, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key2: {r: 0.053122826, g: 0.070719555, b: 0.99371064, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 1831
+      ctime0: 0
       ctime1: 65535
-      ctime2: 0
+      ctime2: 65535
       ctime3: 0
       ctime4: 0
       ctime5: 0
@@ -250,7 +260,7 @@ LineRenderer:
     alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}
-    shadowBias: 0.5
+    shadowBias: 0
     generateLightingData: 0
   m_MaskInteraction: 0
   m_UseWorldSpace: 1

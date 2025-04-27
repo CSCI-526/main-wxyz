@@ -17,6 +17,8 @@ public class EnergyTowerController : TowerController
     private float checkInterval = 0.2f;
     private float lastCheckTime;
 
+    public Transform firePoint;
+    
     public override void Start()
     {
         base.Start();
@@ -26,7 +28,36 @@ public class EnergyTowerController : TowerController
 
         towerRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(PlayEnergyAnimationLoop());
+
+        //自动创建Firepoint
+        CreateFirePoint();
     }
+
+    private void CreateFirePoint()
+    {
+        GameObject firePointObj = new GameObject("FirePoint");
+        firePointObj.transform.SetParent(this.transform);
+
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            Vector3 centerOffset = sr.bounds.center - transform.position;
+
+           //加一点偏移
+            centerOffset += new Vector3(-0.25f, 0f, 0f); // 
+            firePointObj.transform.localPosition = centerOffset;
+        }
+        else
+        {
+            firePointObj.transform.localPosition = Vector3.zero;
+        }
+
+        firePoint = firePointObj.transform;
+    }
+
+
+
+
 
     private void InitializeTowerStats()
     {
@@ -88,18 +119,24 @@ public class EnergyTowerController : TowerController
         }
     }
 
-    private void UpdateBeamVisual()
+    /* private void UpdateBeamVisual()
     {
         if (!energyBeam) return;
 
         if (currentTarget != null && currentTarget.IsAlive)
         {
             energyBeam.enabled = true;
-            energyBeam.SetPosition(0, transform.position);
-            energyBeam.SetPosition(1, currentTarget.transform.position);
 
-            float t = (currentDamage - GetMinDamage(rankValue)) /
-                      (GetMaxDamage(rankValue) - GetMinDamage(rankValue));
+            // 塔中心偏移，可以调
+            Vector3 towerCenter = transform.position + new Vector3(0f, 0.1f, 0f);
+
+            // 敌人中心偏移，可以调
+            Vector3 enemyCenter = currentTarget.transform.position + new Vector3(0f, 0.5f, 0f);
+
+            energyBeam.SetPosition(0, towerCenter);
+            energyBeam.SetPosition(1, enemyCenter);
+
+            float t = (currentDamage - GetMinDamage(rankValue)) / (GetMaxDamage(rankValue) - GetMinDamage(rankValue));
             energyBeam.startColor = beamColorGradient.Evaluate(t);
             energyBeam.endColor = beamColorGradient.Evaluate(t);
         }
@@ -107,7 +144,23 @@ public class EnergyTowerController : TowerController
         {
             energyBeam.enabled = false;
         }
+    } */
+
+    private void UpdateBeamVisual()
+    {
+        if (!energyBeam || firePoint == null || currentTarget == null || currentTarget.hitPoint == null)
+            return;
+
+        energyBeam.enabled = true;
+        energyBeam.SetPosition(0, firePoint.position);
+        energyBeam.SetPosition(1, currentTarget.hitPoint.position);
+
+        float t = (currentDamage - GetMinDamage(rankValue)) / (GetMaxDamage(rankValue) - GetMinDamage(rankValue));
+        energyBeam.startColor = beamColorGradient.Evaluate(t);
+        energyBeam.endColor = beamColorGradient.Evaluate(t);
     }
+
+
 
     private void ApplyContinuousDamage()
     {
