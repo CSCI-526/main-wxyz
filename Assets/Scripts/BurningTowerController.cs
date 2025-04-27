@@ -23,11 +23,11 @@ public class BurningTowerController : TowerController
     {
         switch (rankValue)
         {
-            case 1: return 20;
-            case 2: return 25;
-            case 3: return 35;
-            case 4: return 50;
-            default: return 20;
+            case 1: return 25;
+            case 2: return 35;
+            case 3: return 50;
+            case 4: return 70;
+            default: return 25;
         }
     }
 

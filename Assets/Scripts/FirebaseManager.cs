@@ -30,8 +30,8 @@ public class FirebaseManager : MonoBehaviour
         // StartCoroutine(PostRequest(databaseURL + "BetaPlayTestData1.json", json));
         // StartCoroutine(PostRequest(databaseURL + "BetaPlayTestData2.json", json));
         // StartCoroutine(PostRequest(databaseURL + "BetaPlayPublishData.json", json));
-         StartCoroutine(PostRequest(databaseURL + "GoldPlayTestData.json", json));
-        // StartCoroutine(PostRequest(databaseURL + "GoldPlayTestData1.json", json));
+        // StartCoroutine(PostRequest(databaseURL + "GoldPlayTestData.json", json));
+         StartCoroutine(PostRequest(databaseURL + "GoldPlayTestData1.json", json));
         // StartCoroutine(PostRequest(databaseURL + "GoldPlayTestData2.json", json));
         // StartCoroutine(PostRequest(databaseURL + "GoldPlayPublishData.json", json));
     }

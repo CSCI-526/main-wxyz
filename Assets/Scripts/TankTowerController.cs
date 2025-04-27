@@ -102,7 +102,7 @@ public class TankTowerController : TowerController
             GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Projectile projectile = projectileObj.GetComponent<Projectile>();
             projectile.target = target;
-            projectile.damage = 40f;
+            projectile.damage = 35f;
             projectile.InitializeProjectile();
 
             yield return new WaitForSeconds(fireInterval); // 等待一定时间再发射下一颗子弹
