@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
         if (playerHealth <= 0)
         {
             Time.timeScale = 0f;
-            SendDataFirebase();
+            // SendDataFirebase();
             ShowFailScreen();
             Time.timeScale = 0f;
         }
@@ -200,6 +200,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator DelayedLoadGameOver()
     {
         yield return new WaitForSecondsRealtime(0.3f);
+        SendDataFirebase();
         SceneManager.LoadScene(2);
     }
 
