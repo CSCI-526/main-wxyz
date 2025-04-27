@@ -1,10 +1,31 @@
 fileFormatVersion: 2
-guid: 0f305c18a04474b01b4d0a3d1d2899f9
+guid: 333384c40a7bd4f4a91b94fb60036d01
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5063264526325634978
-    second: Golden_0
+      213: -8423534574847315843
+    second: ControlButton_0
+  - first:
+      213: 8578891478482692600
+    second: ControlButton_1
+  - first:
+      213: 5616892566323323149
+    second: ControlButton_2
+  - first:
+      213: 7327546634838607352
+    second: ControlButton_3
+  - first:
+      213: 6845438175257051807
+    second: ControlButton_4
+  - first:
+      213: 4915284307289181629
+    second: ControlButton_5
+  - first:
+      213: 3046274759010244469
+    second: ControlButton_6
+  - first:
+      213: -907853881918105533
+    second: ControlButton_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +58,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,12 +69,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -74,7 +95,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -139,23 +160,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Golden_0
+      name: ControlButton_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 350
-        height: 350
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2a7d977a244544640800000000000000
-      internalID: 5063264526325634978
+      spriteID: d7031091fe7991b80800000000000000
+      internalID: -8423534574847315843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlButton_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f92695c8585e0770800000000000000
+      internalID: 8578891478482692600
       vertices: []
       indices: 
       edges: []
@@ -164,7 +207,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 14a5fbe2da03f409cb282867777f43ae
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +217,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Golden_0: 5063264526325634978
+      ControlButton_0: -8423534574847315843
+      ControlButton_1: 8578891478482692600
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
