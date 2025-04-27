@@ -346,7 +346,7 @@ public class TutTimerManager : MonoBehaviour
             }
 
             finalWaveTriggered = true;
-            helpText.text = "Now let's learn how to use the change color feature!";
+            helpText.text = "Now let's learn how to use the change tower feature!";
         }
 
 
