@@ -72,20 +72,36 @@ public class UIManager : MonoBehaviour
     public void TogglePauseGame()
     {
         isPaused = !isPaused;
-        pausePanel.SetActive(isPaused);
         Time.timeScale = isPaused ? 0 : 1;
 
         if (isPaused)
-            timerManager.PauseTimer();  // **暂停计时器**
+            timerManager.PauseTimer();  // 暂停计时器
         else
-            timerManager.ResumeTimer(); // **继续计时**
+            timerManager.ResumeTimer(); // 继续计时
+    }
+    public void PauseGameOnly()
+    {
+        if (!isPaused)
+        {
+            isPaused = true;
+            pausePanel.SetActive(true);
+            Time.timeScale = 0;
+            timerManager.PauseTimer();
+        }
     }
 
     //继续游戏
     public void ContinueGame()
     {
-        TogglePauseGame();
+        if (isPaused)
+        {
+            isPaused = false;                   // 更新暂停状态
+            Time.timeScale = 1;                  // 恢复正常时间
+            timerManager.ResumeTimer();          // 恢复计时器
+            pausePanel.SetActive(false);         // 隐藏暂停面板
+        }
     }
+
 
   //退出游戏
     public void QuitGame()
