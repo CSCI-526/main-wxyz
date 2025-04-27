@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 49547057150472206}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3299162, y: 1.9738896, z: 0.08303308}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.85, y: 0.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -115,8 +115,8 @@ MonoBehaviour:
   goldPerCycle: 10
   generateInterval: 1
   goldFrames:
-  - {fileID: 2760001707912849208, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
-  - {fileID: -1265674866713392652, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
-  - {fileID: -576337992, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
-  - {fileID: -160587586, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
-  - {fileID: -1920310269, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
+  - {fileID: -6301429047446442448, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}
+  - {fileID: -6116963357262179218, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}
+  - {fileID: -5275974221471470513, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}
+  - {fileID: 8413302526757980907, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}
+  - {fileID: -5533810949261644772, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}

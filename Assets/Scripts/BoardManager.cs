@@ -14,7 +14,7 @@ public class BoardManager : MonoBehaviour
     public TileController monsterTurnTile2;
     public TileController monsterTurnTile3;
     public TileController monsterDestTile;
-    [SerializeField] private Sprite monsterRoadSprite;   
+    [SerializeField] private Sprite monsterRoadSprite;
     [SerializeField] private Sprite innerTileSprite;
     [SerializeField] private Sprite spawnTileSprite;
     [SerializeField] private Sprite destTileSprite;
@@ -38,8 +38,8 @@ public class BoardManager : MonoBehaviour
                                         (offsetY - i) * tileSpacing,
                                         0f);
                 GameObject tileObj = Instantiate(tilePrefab, pos, Quaternion.identity, transform);
-                TileController tc  = tileObj.GetComponent<TileController>();
-                tc.gridPosition    = new Vector2Int(j, i);
+                TileController tc = tileObj.GetComponent<TileController>();
+                tc.gridPosition = new Vector2Int(j, i);
 
                 SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
                 if (sr != null)
@@ -60,7 +60,7 @@ public class BoardManager : MonoBehaviour
                     if (sr) sr.sprite = destTileSprite;
                     monsterDestTile = tc;
                 }
-                else if (i == 0 && j == columns - 1)          
+                else if (i == 0 && j == columns - 1)
                 {
                     if (sr) sr.color = Color.white;
                     monsterTurnTile1 = tc;
@@ -70,7 +70,7 @@ public class BoardManager : MonoBehaviour
                     if (sr) sr.color = Color.white;
                     monsterTurnTile2 = tc;
                 }
-                else if (i == rows - 1 && j == 0)             
+                else if (i == rows - 1 && j == 0)
                 {
                     if (sr) sr.color = Color.white;
                     monsterTurnTile3 = tc;
@@ -87,7 +87,12 @@ public class BoardManager : MonoBehaviour
 
     public void MoveTowers(Vector2Int direction)
     {
-       
+        if ((GameManager.Instance != null && GameManager.Instance.uiManager != null && GameManager.Instance.uiManager.isPaused) ||
+        (TutGameManager.Instance != null && TutGameManager.Instance.uiManager != null && TutGameManager.Instance.uiManager.isPaused))
+        {
+            return; // 当前存在的管理器暂停，禁止滑动
+        }
+
         bool[,] hasMerged = new bool[rows, columns];
 
         bool anyMoved = false;
@@ -96,7 +101,7 @@ public class BoardManager : MonoBehaviour
         {
             for (int i = 1; i < rows - 1; i++)
             {
-                if (direction.x < 0) 
+                if (direction.x < 0)
                 {
                     // Move left
                     for (int j = 1; j < columns - 1; j++)
@@ -115,7 +120,7 @@ public class BoardManager : MonoBehaviour
                             if (currentPos > 1 && tiles[i, currentPos - 1].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[i, currentPos - 1].towerOnTile;
-                            
+
                                 if (!hasMerged[i, currentPos - 1] &&
                                     destTower.rankValue == tower.rankValue &&
                                     destTower.rankValue < 4 &&
@@ -135,7 +140,7 @@ public class BoardManager : MonoBehaviour
                                     continue;
                                 }
                             }
-                          
+
                             if (currentPos != j)
                             {
                                 tiles[i, j].towerOnTile = null;
@@ -147,7 +152,7 @@ public class BoardManager : MonoBehaviour
                         }
                     }
                 }
-                else if (direction.x > 0) 
+                else if (direction.x > 0)
                 {
                     // Move right
                     for (int j = columns - 2; j >= 1; j--)
@@ -162,7 +167,7 @@ public class BoardManager : MonoBehaviour
                                 currentPos++;
                             }
 
-                           
+
                             if (currentPos < columns - 2 && tiles[i, currentPos + 1].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[i, currentPos + 1].towerOnTile;
@@ -183,7 +188,7 @@ public class BoardManager : MonoBehaviour
                                     continue;
                                 }
                             }
-                           
+
                             if (currentPos != j)
                             {
                                 tiles[i, j].towerOnTile = null;
@@ -199,7 +204,7 @@ public class BoardManager : MonoBehaviour
         }
         else if (direction.y != 0)
         {
-            if (direction.y < 0) 
+            if (direction.y < 0)
             {
                 // Move down
                 for (int j = 1; j < columns - 1; j++)
@@ -237,7 +242,7 @@ public class BoardManager : MonoBehaviour
                                     continue;
                                 }
                             }
-                            
+
                             if (currentPos != i)
                             {
                                 tiles[i, j].towerOnTile = null;
@@ -250,7 +255,7 @@ public class BoardManager : MonoBehaviour
                     }
                 }
             }
-            else if (direction.y > 0) 
+            else if (direction.y > 0)
             {
                 // Move up
                 for (int j = 1; j < columns - 1; j++)
@@ -371,14 +376,14 @@ public class BoardManager : MonoBehaviour
     {
         float offsetX = (columns - 1) / 2.0f;
         float offsetY = (rows - 1) / 2.0f;
-        
+
         Vector3 localPos = worldPosition - transform.position;
         int j = Mathf.RoundToInt((localPos.x / tileSpacing) + offsetX);
         int i = Mathf.RoundToInt(offsetY - (localPos.y / tileSpacing));
 
         if (IsInside(i, j))
-        {   
-            
+        {
+
             return tiles[i, j];
         }
 
@@ -434,8 +439,8 @@ public class BoardManager : MonoBehaviour
             foreach (Vector2Int d in dirs)
             {
                 Vector2Int n = pos + d;
-                if (IsInside(n.y, n.x)                     &&   // on the board
-                    IsInnerTile(n.y, n.x)                  &&   // not on monster road
+                if (IsInside(n.y, n.x) &&   // on the board
+                    IsInnerTile(n.y, n.x) &&   // not on monster road
                     tiles[n.y, n.x].towerOnTile == null)        // empty
                 {
                     return n;                               // valid neighbour

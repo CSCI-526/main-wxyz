@@ -346,7 +346,7 @@ public class TutTimerManager : MonoBehaviour
             }
 
             finalWaveTriggered = true;
-            helpText.text = "Now let's learn how to use the change color feature!";
+            helpText.text = "Now let's learn how to use the change tower feature!";
         }
 
 
@@ -393,14 +393,17 @@ public class TutTimerManager : MonoBehaviour
     void UpdateTimerUI()
     {
         if (timerText == null)
+        {
             return;
+        }
 
-        int hours = Mathf.FloorToInt(elapsedTime / 3600);
         int minutes = Mathf.FloorToInt((elapsedTime % 3600) / 60);
         int seconds = Mathf.FloorToInt(elapsedTime % 60);
+        int milliseconds = Mathf.FloorToInt((elapsedTime * 1000) % 1000);
 
-        timerText.text = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
+        timerText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
     }
+
 
     public void PauseTimer()
     {

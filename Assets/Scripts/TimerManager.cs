@@ -33,12 +33,13 @@ public class TimerManager : MonoBehaviour
             return;
         }
 
-        int hours = Mathf.FloorToInt(elapsedTime / 3600);
         int minutes = Mathf.FloorToInt((elapsedTime % 3600) / 60);
         int seconds = Mathf.FloorToInt(elapsedTime % 60);
-        
-        timerText.text = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
+        int milliseconds = Mathf.FloorToInt((elapsedTime * 1000) % 1000);
+
+        timerText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
     }
+
 
     // 暂停计时器
     public void PauseTimer()

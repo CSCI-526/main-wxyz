@@ -30,17 +30,22 @@ public class SwipeManager : MonoBehaviour
     {
         Vector2Int direction = Vector2Int.zero;
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) direction = new Vector2Int(-1, 0);
-        else if (Input.GetKeyDown(KeyCode.RightArrow)) direction = new Vector2Int(1, 0);
-        else if (Input.GetKeyDown(KeyCode.UpArrow)) direction = new Vector2Int(0, 1);
-        else if (Input.GetKeyDown(KeyCode.DownArrow)) direction = new Vector2Int(0, -1);
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            direction = new Vector2Int(-1, 0);
+        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            direction = new Vector2Int(1, 0);
+        else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+            direction = new Vector2Int(0, 1);
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+            direction = new Vector2Int(0, -1);
 
         if (direction != Vector2Int.zero)
         {
             boardManager.MoveTowers(direction);
             Debug.Log($"Moved: {direction}");
         }
-    }
+    } 
+
 
     private void DetectTouchInput()
     {

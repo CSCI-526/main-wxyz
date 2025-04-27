@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
@@ -12,11 +12,17 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI goldWarningText; //金币不足的提示文本
     public TextMeshProUGUI timerText; //计时器UI
     public GameObject pausePanel; //暂停窗口  
-    public bool isPaused =false; 
+    public bool isPaused = false;
     private bool isTimerRunning = true;//计时器是否运行
     public TextMeshProUGUI playerHealthText; //血量UI
     public Button buyButton; // 连接 Buy 按钮
     public TimerManager timerManager; // 连接 TimerManager
+    public Image pauseButtonImage; // 连接按钮上的Image组件
+    public Sprite pauseSprite;
+    public Sprite playSprite;
+    private bool wasPausedBeforeMenu;
+
+
 
 
     void Start()
@@ -72,22 +78,61 @@ public class UIManager : MonoBehaviour
     public void TogglePauseGame()
     {
         isPaused = !isPaused;
-        pausePanel.SetActive(isPaused);
         Time.timeScale = isPaused ? 0 : 1;
 
         if (isPaused)
-            timerManager.PauseTimer();  // **暂停计时器**
+        {
+            timerManager.PauseTimer();
+            pauseButtonImage.sprite = playSprite;
+        }
         else
-            timerManager.ResumeTimer(); // **继续计时**
+        {
+            timerManager.ResumeTimer();
+            pauseButtonImage.sprite = pauseSprite;
+        }
+        UpdateBuyButtonState();
     }
+
+    public void PauseGameOnly()
+    {
+        wasPausedBeforeMenu = isPaused; // 记录打开菜单前的状态
+        isPaused = true;
+        pausePanel.SetActive(true);
+        Time.timeScale = 0;
+        timerManager.PauseTimer();
+        UpdateBuyButtonState();
+    }
+
+
 
     //继续游戏
     public void ContinueGame()
     {
-        TogglePauseGame();
+        pausePanel.SetActive(false);
+
+        if (wasPausedBeforeMenu)
+        {
+            // 如果菜单前本来就暂停的，继续暂停状态
+            isPaused = true;
+            Time.timeScale = 0;
+            timerManager.PauseTimer();
+            pauseButtonImage.sprite = playSprite;
+        }
+        else
+        {
+            // 如果菜单前是运行的，继续运行状态
+            isPaused = false;
+            Time.timeScale = 1;
+            timerManager.ResumeTimer();
+            pauseButtonImage.sprite = pauseSprite;
+        }
+
+        UpdateBuyButtonState();
     }
 
-  //退出游戏
+
+
+    //退出游戏
     public void QuitGame()
     {
         Debug.Log("退出游戏...");
@@ -96,7 +141,7 @@ public class UIManager : MonoBehaviour
     public void ReturnToMenu()
     {
         Debug.Log("返回主菜单...");
-        Time.timeScale =1; //恢复游戏速度，防止主菜单被暂停
+        Time.timeScale = 1; //恢复游戏速度，防止主菜单被暂停
         SceneManager.LoadScene(0);
         //加载索引为0的MainMenu
     }
@@ -113,17 +158,21 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateBuyButtonState()
     {
-        //金币足够且棋盘未满
-        if (gameManager.playerGold >= gameManager.spawnCost)
+        if (isPaused)
         {
-            buyButton.interactable = true; //按钮可点击
-            buyButton.image.color = new Color(1f, 0.84f, 0f, 1f); //金色
+            buyButton.interactable = false; // 暂停时禁用购买
+            buyButton.image.color = new Color(0.5f, 0.5f, 0.5f, 1f); // 灰色
         }
-        else //金币不足 或者 棋盘满了
+        else if (gameManager.playerGold >= gameManager.spawnCost)
         {
-            buyButton.interactable = false; //按钮禁用
-            buyButton.image.color = new Color(0.5f, 0.5f, 0.5f, 1f); //灰色
+            buyButton.interactable = true;
+            buyButton.image.color = new Color(1f, 0.84f, 0f, 1f); // 金色
+        }
+        else
+        {
+            buyButton.interactable = false;
+            buyButton.image.color = new Color(0.5f, 0.5f, 0.5f, 1f); // 灰色
         }
     }
-    
+
 }

@@ -15,9 +15,9 @@ public class GameManager : MonoBehaviour
     public TimerManager timerManager; //连接 TimerManager
     public FirebaseManager FirebaseManager;
 
-    public int playerGold = 10; 
+    public int playerGold = 10;
     public int spawnCost = 10;
-    public int playerHealth = 100; 
+    public int playerHealth = 100;
 
     private bool hasLost = false;
 
@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     private float mergeCount = 0f;
     private float changeColorCount = 0f;
     /*** analytic ***/
+    public AudioSource audioSource; // 连接AudioSource
+    public AudioClip healthDecreaseClip; // 连接减少血量的音效
+
 
     private void Awake()
     {
@@ -67,7 +70,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (playerHealth <= 0) 
+        if (playerHealth <= 0)
         {
             Time.timeScale = 0f;
             SendDataFirebase();
@@ -78,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     public void SendDataFirebase()
     {
-        
+
         float playerTime = timerManager.GetElapsedTime();
         // TileController[,] tiles = boardManager.tiles;
         // for (int x = 0; x < tiles.GetLength(0); x++)
@@ -154,7 +157,7 @@ public class GameManager : MonoBehaviour
         string jsonString = JsonConvert.SerializeObject(data, Formatting.Indented);
         Debug.Log("Data sent to Firebase: " + jsonString);
         FirebaseManager.SaveData(jsonString);
-        
+
         // string json = $"\{\"playerTime\":{playerTime},\"score\":{score},\"damageFromCanonTower\":{damageFromCanonTower},\"damageFromBurningTower\":{damageFromBurningTower},\"damageFromSlowTower\":{damageFromSlowTower},\"mergeCount\":{mergeCount}\}";
         // string json = string.Format(
         //     "{{\"playerTime\": \"{0}\", \"score\": {1}, \"damageFromCanonTower\":{2}, \"damageFromBurningTower\":{3}, \"damageFromSlowTower\":{4}, \"damageFromEnergyTower\":{5}, \"mergeCount\":{6}, \"changeColorCount\":{7}}}", 
@@ -190,9 +193,16 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetFloat("FinalScore", score);
             PlayerPrefs.Save();
 
-            SceneManager.LoadScene(2); //跳转到GameOver场景
+            StartCoroutine(DelayedLoadGameOver());
         }
     }
+
+    private IEnumerator DelayedLoadGameOver()
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
+        SceneManager.LoadScene(2);
+    }
+
 
     public bool SpawnRandomTower()
     {
@@ -239,12 +249,12 @@ public class GameManager : MonoBehaviour
 
         boardManager.tiles[randomRow, randomCol].towerOnTile = towerController;
         Vector3 worldPos = towerObj.transform.position;
-       
+
         return true;
     }
 
 
-    public bool UpgradeRandomTower(TowerController towerToUpgrade,GameObject TargetTower)
+    public bool UpgradeRandomTower(TowerController towerToUpgrade, GameObject TargetTower)
     {
         int currentRank = towerToUpgrade.rankValue;
 
@@ -317,6 +327,11 @@ public class GameManager : MonoBehaviour
         if (playerHealth > 0)
         {
             playerHealth -= damage;
+
+            if (audioSource != null && healthDecreaseClip != null)
+            {
+                audioSource.PlayOneShot(healthDecreaseClip);
+            }
         }
         Debug.Log("Player health after damage: " + playerHealth);
         uiManager.UpdateHealthUI();
@@ -326,7 +341,7 @@ public class GameManager : MonoBehaviour
     /*** analytic ***/
     IEnumerator RecordTowersOnTile()
     {
-        while(true)
+        while (true)
         {
             yield return new WaitForSeconds(60f);
             Debug.Log("Recording all towers on tile...");
@@ -343,22 +358,22 @@ public class GameManager : MonoBehaviour
                         switch (tile.towerOnTile.towerName)
                         {
                             case "Gold":
-                                towersOnTileTemp.goldTowerNum ++;
+                                towersOnTileTemp.goldTowerNum++;
                                 break;
                             case "Canon":
-                                towersOnTileTemp.canonTowerNum ++;
+                                towersOnTileTemp.canonTowerNum++;
                                 break;
                             case "BurningTower":
-                                towersOnTileTemp.burningTowerNum ++;
+                                towersOnTileTemp.burningTowerNum++;
                                 break;
                             case "Energy":
-                                towersOnTileTemp.energyTowerNum ++;
+                                towersOnTileTemp.energyTowerNum++;
                                 break;
                             case "FrozenTower":
-                                towersOnTileTemp.frozenTowerNum ++;
+                                towersOnTileTemp.frozenTowerNum++;
                                 break;
                             default:
-                                towersOnTileTemp.canonTowerNum ++;
+                                towersOnTileTemp.canonTowerNum++;
                                 break;
                         }
                     }

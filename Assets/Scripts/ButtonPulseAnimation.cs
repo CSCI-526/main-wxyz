@@ -53,7 +53,8 @@ public class ButtonPulseAnimation : MonoBehaviour
         }
         if (helpText != null && helpText.text == "Let's buy another tower!")
         {
-            helpText.text = "USE ↑, ↓, →, ← keys to merge tower!";
+            // helpText.text = "USE ↑, ↓, →, ← keys to merge tower!";
+            helpText.text = "Use <sprite name=\"WASDKeys\"> / <sprite name=\"ArrowKeys\"> to merge towers!";
         }
         if (helpText != null && helpText.text == "You have a Level 3 Tower!\nLet's buy and explore more towers!")
         {
