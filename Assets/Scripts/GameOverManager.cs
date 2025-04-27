@@ -21,13 +21,16 @@ public class GameOverManager : MonoBehaviour
         int hours = Mathf.FloorToInt(finalTime / 3600);
         int minutes = Mathf.FloorToInt((finalTime % 3600) / 60);
         int seconds = Mathf.FloorToInt(finalTime % 60);
-        survivalTimeText.text = $"You survived {hours:00}: {minutes:00}: {seconds:00}";
+        int milliseconds = Mathf.FloorToInt((finalTime * 1000) % 1000); // 🔥 补上这一句！
+
+        survivalTimeText.text = $"You survived {minutes:00}:{seconds:00}:{milliseconds:000}";
 
         // 获取玩家排名
         float finalScore = PlayerPrefs.GetFloat("FinalScore", 0f);
         
         GetRanking(playerName, finalScore, finalTime);
     }
+
 
     private void GetRanking(string name, float finalScore, float finalTime)
     {

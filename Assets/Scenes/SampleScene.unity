@@ -2642,8 +2642,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 92, y: -182}
-  m_SizeDelta: {x: 105.96, y: 67.5185}
+  m_AnchoredPosition: {x: 85.049, y: -184.55}
+  m_SizeDelta: {x: 72.738, y: 44.333}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &357730162
 MonoBehaviour:
@@ -5142,6 +5142,9 @@ MonoBehaviour:
   playerHealthText: {fileID: 674458458}
   buyButton: {fileID: 883774012}
   timerManager: {fileID: 397856851}
+  pauseButtonImage: {fileID: 357730163}
+  pauseSprite: {fileID: -8878088185706026076, guid: d3506d9aa96f04cc5af840e130adef49, type: 3}
+  playSprite: {fileID: -7160230455801412328, guid: 6f32f69c7f68d4946aae1dcd09c9960e, type: 3}
 --- !u!1 &842529941
 GameObject:
   m_ObjectHideFlags: 0

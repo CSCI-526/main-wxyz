@@ -17,6 +17,10 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI playerHealthText; //血量UI
     public Button buyButton; // 连接 Buy 按钮
     public TimerManager timerManager; // 连接 TimerManager
+    public Image pauseButtonImage; // 连接按钮上的Image组件
+    public Sprite pauseSprite;     // ⏸️暂停图
+    public Sprite playSprite;      // ▶️播放图
+
 
 
     void Start()
@@ -75,10 +79,17 @@ public class UIManager : MonoBehaviour
         Time.timeScale = isPaused ? 0 : 1;
 
         if (isPaused)
-            timerManager.PauseTimer();  // 暂停计时器
+        {
+            timerManager.PauseTimer();  
+            pauseButtonImage.sprite = playSprite;  
+        }
         else
-            timerManager.ResumeTimer(); // 继续计时
+        {
+            timerManager.ResumeTimer(); 
+            pauseButtonImage.sprite = pauseSprite; 
+        }
     }
+
     public void PauseGameOnly()
     {
         if (!isPaused)
