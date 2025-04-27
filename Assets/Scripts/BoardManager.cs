@@ -87,6 +87,8 @@ public class BoardManager : MonoBehaviour
 
     public void MoveTowers(Vector2Int direction)
     {
+        if (gameManager.uiManager.isPaused)
+        return; // 如果游戏暂停，禁止滑动塔
        
         bool[,] hasMerged = new bool[rows, columns];
 
