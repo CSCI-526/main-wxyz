@@ -199,7 +199,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator DelayedLoadGameOver()
     {
-        yield return new WaitForSecondsRealtime(0.3f);
+        yield return new WaitForSecondsRealtime(0.4f);
         SendDataFirebase();
         SceneManager.LoadScene(2);
     }

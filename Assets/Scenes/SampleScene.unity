@@ -12063,7 +12063,7 @@ MonoBehaviour:
   spawnCost: 10
   playerHealth: 10
   audioSource: {fileID: 1312062005}
-  healthDecreaseClip: {fileID: 8300000, guid: ac2b882a61aa34ecab10d77a6d32be2d, type: 3}
+  healthDecreaseClip: {fileID: 8300000, guid: 12641d38928b84680aedb544fa13a74f, type: 3}
 --- !u!4 &1312062004
 Transform:
   m_ObjectHideFlags: 0
