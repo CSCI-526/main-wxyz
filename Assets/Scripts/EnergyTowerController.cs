@@ -215,9 +215,9 @@ public class EnergyTowerController : TowerController
         switch (level)
         {
             case 1: return 120f;
-            case 2: return 150f;
-            case 3: return 280f;
-            case 4: return 360f;
+            case 2: return 180f;
+            case 3: return 240f;
+            case 4: return 300f;
             default: return 120f;
         }
     }
