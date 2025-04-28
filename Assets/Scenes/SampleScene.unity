@@ -3912,7 +3912,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 395, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 78, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &616446705
 MonoBehaviour:
@@ -3934,7 +3934,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4692399049022686247, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
+  m_Sprite: {fileID: 7102075283677565631, guid: 9aab44c0637328344ab6a7e7131f6084, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4706,7 +4706,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4692399049022686247, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
+  m_Sprite: {fileID: 7102075283677565631, guid: 9aab44c0637328344ab6a7e7131f6084, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -4992,7 +4992,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4692399049022686247, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
+  m_Sprite: {fileID: 7102075283677565631, guid: 9aab44c0637328344ab6a7e7131f6084, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -10797,7 +10797,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 50, y: -50}
-  m_SizeDelta: {x: 48, y: 50}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1057216963
 MonoBehaviour:
@@ -12051,11 +12051,11 @@ MonoBehaviour:
   boardManager: {fileID: 1613210817}
   enemyManager: {fileID: 1829153773}
   towerPrefabs:
-  - {fileID: 49547057150472206, guid: b12031daac76e429cad6dd67f47bf234, type: 3}
+  - {fileID: 7710871422812722048, guid: 96259937bd932ff46a1af3c187588de3, type: 3}
   - {fileID: 49547057150472206, guid: 29add77e8100de444a787819656d3d75, type: 3}
   - {fileID: 1001787181882085309, guid: fab5f7ea9cf324f6c811c7705e22f610, type: 3}
-  - {fileID: 7710871422812722048, guid: 96259937bd932ff46a1af3c187588de3, type: 3}
   - {fileID: 49547057150472206, guid: 7d08e4d4f79f9491997f765eda298cc1, type: 3}
+  - {fileID: 49547057150472206, guid: b12031daac76e429cad6dd67f47bf234, type: 3}
   uiManager: {fileID: 835782558}
   timerManager: {fileID: 397856851}
   FirebaseManager: {fileID: 1428979181}
@@ -14292,7 +14292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -50}
+  m_AnchoredPosition: {x: 39, y: -50}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1836823183

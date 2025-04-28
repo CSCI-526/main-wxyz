@@ -142,12 +142,12 @@ TextureImporter:
       name: laser_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 121
-        width: 228
-        height: 16
+        x: 37
+        y: 487
+        width: 952
+        height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5230a38fd930c49079fc9c4941543985
     internalID: 0
     vertices: []
     indices: 
