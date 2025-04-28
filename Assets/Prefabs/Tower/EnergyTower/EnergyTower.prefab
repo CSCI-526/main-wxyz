@@ -145,10 +145,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   energyFrames:
-  - {fileID: 3119334169586225959, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
-  - {fileID: 5693366915664821068, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
-  - {fileID: -5564248608999137188, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
-  - {fileID: 4692399049022686247, guid: d339d85e4d936e14b861be5c73a39c15, type: 3}
+  - {fileID: -2510476293373519475, guid: 67bb2ff778b295544b7c1bb89901a7a0, type: 3}
+  - {fileID: -4309738878335270719, guid: 67bb2ff778b295544b7c1bb89901a7a0, type: 3}
+  - {fileID: 627625725489826318, guid: 67bb2ff778b295544b7c1bb89901a7a0, type: 3}
+  - {fileID: 6338068570567419226, guid: 67bb2ff778b295544b7c1bb89901a7a0, type: 3}
   firePoint: {fileID: 0}
 --- !u!120 &6891708688489141560
 LineRenderer:
@@ -200,7 +200,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 2
+    widthMultiplier: 3.959652
     widthCurve:
       serializedVersion: 2
       m_Curve:
