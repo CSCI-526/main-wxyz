@@ -13,7 +13,6 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ALPHABLEND_ON
-  - _COLORCOLOR_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -40,7 +39,7 @@ Material:
         m_Scale: {x: 0.95, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9c12d60f368084f86983739e8ea74df7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1f8a35d818ab94fa1b3f673cc3d423dc, type: 3}
         m_Scale: {x: 0.95, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -58,7 +57,7 @@ Material:
     - _CameraFadingEnabled: 0
     - _CameraFarFadeDistance: 2
     - _CameraNearFadeDistance: 1
-    - _ColorMode: 4
+    - _ColorMode: 0
     - _Cull: 2
     - _Cutoff: 0.5
     - _DistortionBlend: 0.5
@@ -80,7 +79,7 @@ Material:
     m_Colors:
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
+    - _ColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
