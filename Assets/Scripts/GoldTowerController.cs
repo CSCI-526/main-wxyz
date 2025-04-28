@@ -17,7 +17,7 @@ public class GoldTowerController : TowerController
         goldRenderer = GetComponent<SpriteRenderer>();
         gameManager = FindObjectOfType<GameManager>();
         lastGenerateTime = Time.time;
-        
+
         StartCoroutine(GoldAnimationLoop());
     }
 
@@ -63,15 +63,14 @@ public class GoldTowerController : TowerController
             if (goldFrames == null || goldFrames.Length < 5 || goldRenderer == null)
                 yield break;
 
-            yield return new WaitForSeconds(3f);
             goldRenderer.sprite = goldFrames[0];
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.6f);
             goldRenderer.sprite = goldFrames[1];
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.6f);
             goldRenderer.sprite = goldFrames[2];
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.6f);
             goldRenderer.sprite = goldFrames[3];
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.6f);
             goldRenderer.sprite = goldFrames[4];
             yield return new WaitForSeconds(3f);
 

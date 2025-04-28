@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rankValue: 1
   towerName: TutGoldernTower
-  towerSprite: {fileID: 2760001707912849208, guid: 43f5872d500547f48bffae18bd74d64b, type: 3}
+  towerSprite: {fileID: -6301429047446442448, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}
   attackRange: 0
   attackDamage: 0
   towerBasePrefab: {fileID: 0}
