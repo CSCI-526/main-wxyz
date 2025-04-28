@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 010c8bf7409742643b81af37bff98535
+guid: 1f8a35d818ab94fa1b3f673cc3d423dc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2946771559036874854
-    second: energylaser_0
-  - first:
-      213: 4527515452430831630
-    second: energylaser_1
-  - first:
-      213: -698927347741019887
-    second: energylaser_2
-  - first:
-      213: -2721578210003756352
-    second: energylaser_3
-  - first:
-      213: 7485832697125224607
-    second: energylaser_4
+      213: -3966654026724937289
+    second: laser_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 2
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,12 +48,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -87,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 4
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -151,23 +139,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: energylaser_0
+      name: laser_0
       rect:
         serializedVersion: 2
-        x: 61
-        y: 399
-        width: 801
-        height: 239
+        x: 12
+        y: 121
+        width: 228
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 7d801f44abf553b4d90c3070365229ae
-      internalID: 1224954339
+      spriteID: 7b1ff2ecd2d93f8c0800000000000000
+      internalID: -3966654026724937289
       vertices: []
       indices: 
       edges: []
@@ -176,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 91375084ae3c77a4481f5b98faa69a39
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -186,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      energylaser_0: 1224954339
+      laser_0: -3966654026724937289
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
