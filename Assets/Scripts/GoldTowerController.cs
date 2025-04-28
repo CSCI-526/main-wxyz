@@ -1,36 +1,51 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class GoldTowerController : TowerController
 {
-    public int goldPerCycle = 5; // 每次生产的金币数量
-    public float generateInterval = 5f; // 生产金币的间隔时间
+    //public int goldPerCycle = 5;
 
+    public float generateInterval = 5f;
+    public Sprite[] goldFrames;
+    private SpriteRenderer goldRenderer;
     private float lastGenerateTime;
     private GameManager gameManager;
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>(); // 获取游戏管理器
-        lastGenerateTime = Time.time; // 记录初始时间
+        base.Start();
+        goldRenderer = GetComponent<SpriteRenderer>();
+        gameManager = FindObjectOfType<GameManager>();
+        lastGenerateTime = Time.time;
+
+        StartCoroutine(GoldAnimationLoop());
+    }
+
+    public int GetgoldPerCycle()
+    {
+        switch (rankValue)
+        {
+            case 1: return 5;
+            case 2: return 10;
+            case 3: return 15;
+            case 4: return 20;
+            default: return 5;
+        }
     }
 
     void Update()
     {
-        Debug.Log("GoldTower Update Running...");
         GenerateGold();
     }
-
 
     void GenerateGold()
     {
         if (Time.time - lastGenerateTime >= generateInterval)
         {
-            Debug.Log("GoldTower Generating Gold...");
-
             if (gameManager != null)
             {
+                int goldPerCycle = GetgoldPerCycle();
                 gameManager.AddCoin(goldPerCycle);
-                Debug.Log("Gold Tower added " + goldPerCycle + " coins.");
             }
             else
             {
@@ -41,4 +56,35 @@ public class GoldTowerController : TowerController
         }
     }
 
+    IEnumerator GoldAnimationLoop()
+    {
+        while (true)
+        {
+            if (goldFrames == null || goldFrames.Length < 5 || goldRenderer == null)
+                yield break;
+
+            goldRenderer.sprite = goldFrames[0];
+            yield return new WaitForSeconds(0.6f);
+            goldRenderer.sprite = goldFrames[1];
+            yield return new WaitForSeconds(0.6f);
+            goldRenderer.sprite = goldFrames[2];
+            yield return new WaitForSeconds(0.6f);
+            goldRenderer.sprite = goldFrames[3];
+            yield return new WaitForSeconds(0.6f);
+            goldRenderer.sprite = goldFrames[4];
+            yield return new WaitForSeconds(3f);
+
+            goldRenderer.sprite = goldFrames[0];
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (gameManager != null)
+        {
+            int bonusGold = 60 * (int)Mathf.Pow(2, rankValue - 1);
+            gameManager.AddCoin(bonusGold);
+        }
+    }
 }
+

@@ -11,22 +11,19 @@ public class TowerController : MonoBehaviour
     
     public GameObject towerBasePrefab;
     public GameObject[] basePrefabs;
-    
-    private SpriteRenderer spriteRenderer;
+   
+    protected SpriteRenderer spriteRenderer;
     private TowerBaseController baseController;
     public Vector2Int gridPosition;
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        Debug.Log("Awake");
     }
 
-<<<<<<< Updated upstream
-    void Start()
-=======
-    protected virtual void Start()
->>>>>>> Stashed changes
-    {
+    public virtual void Start()
+    {   
         UpdateAppearance();
 
         if (transform.Find("TowerBaseHolder") == null)
@@ -34,7 +31,7 @@ public class TowerController : MonoBehaviour
             CreateTowerBase();
         }
         else
-        {
+        {   
             Transform baseHolder = transform.Find("TowerBaseHolder");
             if (baseHolder != null)
             {
@@ -43,7 +40,7 @@ public class TowerController : MonoBehaviour
         }
     }
 
-    void CreateTowerBase()
+    protected virtual void CreateTowerBase()
     {
         GameObject baseObj = null;
         if (basePrefabs != null && basePrefabs.Length > 0)
@@ -64,7 +61,7 @@ public class TowerController : MonoBehaviour
         }
     }
 
-    public void UpdateAppearance()
+    public virtual void UpdateAppearance()
     {
         if (spriteRenderer != null)
         {
@@ -83,19 +80,22 @@ public class TowerController : MonoBehaviour
         }
     }
 
-    public void UpgradeTower()
+    public virtual void UpgradeTower()
     {
         if (rankValue < 4)
         {
             rankValue++;
-            attackRange *= 1.2f;
-            attackDamage *= 1.2f;
+            //attackRange *= 1.2f;
+            //attackDamage *= 1.2f;
             ReplaceTowerBase();
+            // check if GameManager exists
+            if (GameManager.Instance != null) GameManager.Instance.AddMergeCount();
+            else TutGameManager.Instance.AddMergeCount();
         }
         UpdateAppearance();
     }
 
-    private void ReplaceTowerBase()
+    public virtual void ReplaceTowerBase()
     {
         Transform baseHolder = transform.Find("TowerBaseHolder");
         if (baseHolder != null)
@@ -104,6 +104,7 @@ public class TowerController : MonoBehaviour
         }
         CreateTowerBase();
     }
+
 
     void OnDrawGizmos()
     {

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class BoardManager : MonoBehaviour
 {
     public int rows = 7;
@@ -7,12 +7,17 @@ public class BoardManager : MonoBehaviour
     public float tileSpacing = 1.1f;
     public GameObject tilePrefab;
     public TileController[,] tiles;
+    public GameManager gameManager;
 
     public TileController monsterSpawnTile;
     public TileController monsterTurnTile1;
     public TileController monsterTurnTile2;
     public TileController monsterTurnTile3;
     public TileController monsterDestTile;
+    [SerializeField] private Sprite monsterRoadSprite;
+    [SerializeField] private Sprite innerTileSprite;
+    [SerializeField] private Sprite spawnTileSprite;
+    [SerializeField] private Sprite destTileSprite;
 
     void Start()
     {
@@ -21,6 +26,7 @@ public class BoardManager : MonoBehaviour
     public void CreateGrid()
     {
         tiles = new TileController[rows, columns];
+
         float offsetX = (columns - 1) / 2.0f;
         float offsetY = (rows - 1) / 2.0f;
 
@@ -28,95 +34,110 @@ public class BoardManager : MonoBehaviour
         {
             for (int j = 0; j < columns; j++)
             {
-                Vector3 pos = new Vector3((j - offsetX) * tileSpacing, (offsetY - i) * tileSpacing, 0);
+                Vector3 pos = new Vector3((j - offsetX) * tileSpacing,
+                                        (offsetY - i) * tileSpacing,
+                                        0f);
                 GameObject tileObj = Instantiate(tilePrefab, pos, Quaternion.identity, transform);
                 TileController tc = tileObj.GetComponent<TileController>();
                 tc.gridPosition = new Vector2Int(j, i);
 
-                if (i == 0 && j == 0)
+                SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
+                if (sr != null)
                 {
-                    SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
-                    if (sr != null) { sr.color = Color.red; }
+                    bool isOuter = (i == 0 || i == rows - 1 || j == 0 || j == columns - 1);
+                    sr.sprite = isOuter ? monsterRoadSprite : innerTileSprite;
+                }
+
+                if (i == 0 && j == 0)                         // spawn
+                {
+                    // if (sr) sr.color = Color.red;
+                    if (sr) sr.sprite = spawnTileSprite;
                     monsterSpawnTile = tc;
                 }
-                else if (i == 1 && j == 0)
+                else if (i == 1 && j == 0)                    // destination
                 {
-                    SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
-                    if (sr != null) { sr.color = Color.green; }
+                    // if (sr) sr.color = Color.green;
+                    if (sr) sr.sprite = destTileSprite;
                     monsterDestTile = tc;
                 }
                 else if (i == 0 && j == columns - 1)
                 {
-                    SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
-                    if (sr != null) { sr.color = Color.white; }
+                    if (sr) sr.color = Color.white;
                     monsterTurnTile1 = tc;
-                }                
-                else if (i == rows - 1 && j == columns - 1)
+                }
+                else if (i == rows - 1 && j == columns - 1)   // turn 2
                 {
-                    SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
-                    if (sr != null) { sr.color = Color.white; }
+                    if (sr) sr.color = Color.white;
                     monsterTurnTile2 = tc;
                 }
                 else if (i == rows - 1 && j == 0)
                 {
-                    SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
-                    if (sr != null) { sr.color = Color.white; }
+                    if (sr) sr.color = Color.white;
                     monsterTurnTile3 = tc;
                 }
-                else if (i == 0 || i == rows - 1 || j == 0 || j == columns - 1)
+                else if (sr && (i == 0 || i == rows - 1 || j == 0 || j == columns - 1))
                 {
-                    SpriteRenderer sr = tileObj.GetComponent<SpriteRenderer>();
-                    if (sr != null) { sr.color = Color.white; }
+                    sr.color = Color.white;
                 }
+
                 tiles[i, j] = tc;
             }
         }
     }
 
-    public bool IsInside(int row, int col)
-    {
-        return row >= 0 && row < rows && col >= 0 && col < columns;
-    }
-
-    public bool IsInnerTile(int row, int col)
-    {
-        return row > 0 && row < rows - 1 && col > 0 && col < columns - 1;
-    }
-
     public void MoveTowers(Vector2Int direction)
     {
+        if ((GameManager.Instance != null && GameManager.Instance.uiManager != null && GameManager.Instance.uiManager.isPaused) ||
+        (TutGameManager.Instance != null && TutGameManager.Instance.uiManager != null && TutGameManager.Instance.uiManager.isPaused))
+        {
+            return; // 当前存在的管理器暂停，禁止滑动
+        }
+
+        bool[,] hasMerged = new bool[rows, columns];
+
         bool anyMoved = false;
 
-        // Horizontal movement
         if (direction.x != 0)
         {
             for (int i = 1; i < rows - 1; i++)
             {
-                // Moving left
                 if (direction.x < 0)
                 {
+                    // Move left
                     for (int j = 1; j < columns - 1; j++)
                     {
                         TowerController tower = tiles[i, j].towerOnTile;
                         if (tower != null)
                         {
                             int currentPos = j;
+                            // slide as far left as possible
                             while (currentPos > 1 && tiles[i, currentPos - 1].towerOnTile == null)
                             {
                                 currentPos--;
                             }
+
+                            // check if we can merge
                             if (currentPos > 1 && tiles[i, currentPos - 1].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[i, currentPos - 1].towerOnTile;
-                                if (destTower.rankValue == tower.rankValue &&
+
+                                if (!hasMerged[i, currentPos - 1] &&
+                                    destTower.rankValue == tower.rankValue &&
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
-                                    destTower.UpgradeTower();
-                                    Destroy(tower.gameObject);
+                                    // Merge
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
-                                    continue; 
+
+                                    // Upgrade the destination tower
+                                    destTower.UpgradeTower();
+
+                                    hasMerged[i, currentPos - 1] = true;
+
+                                    // Destroy the old tower
+                                    Destroy(tower.gameObject);
+                                    continue;
                                 }
                             }
 
@@ -131,33 +152,43 @@ public class BoardManager : MonoBehaviour
                         }
                     }
                 }
-                // Moving right
                 else if (direction.x > 0)
                 {
+                    // Move right
                     for (int j = columns - 2; j >= 1; j--)
                     {
                         TowerController tower = tiles[i, j].towerOnTile;
                         if (tower != null)
                         {
                             int currentPos = j;
+                            // slide as far right as possible
                             while (currentPos < columns - 2 && tiles[i, currentPos + 1].towerOnTile == null)
                             {
                                 currentPos++;
                             }
+
+
                             if (currentPos < columns - 2 && tiles[i, currentPos + 1].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[i, currentPos + 1].towerOnTile;
-                                if (destTower.rankValue == tower.rankValue &&
+
+                                if (!hasMerged[i, currentPos + 1] &&
+                                    destTower.rankValue == tower.rankValue &&
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
-                                    destTower.UpgradeTower();
-                                    Destroy(tower.gameObject);
+                                    // Merge
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
+
+                                    destTower.UpgradeTower();
+                                    hasMerged[i, currentPos + 1] = true;
+
+                                    Destroy(tower.gameObject);
                                     continue;
                                 }
                             }
+
                             if (currentPos != j)
                             {
                                 tiles[i, j].towerOnTile = null;
@@ -171,11 +202,11 @@ public class BoardManager : MonoBehaviour
                 }
             }
         }
-        // Vertical movement
         else if (direction.y != 0)
         {
             if (direction.y < 0)
             {
+                // Move down
                 for (int j = 1; j < columns - 1; j++)
                 {
                     for (int i = rows - 2; i >= 1; i--)
@@ -184,24 +215,34 @@ public class BoardManager : MonoBehaviour
                         if (tower != null)
                         {
                             int currentPos = i;
+                            // slide as far down as possible
                             while (currentPos < rows - 2 && tiles[currentPos + 1, j].towerOnTile == null)
                             {
                                 currentPos++;
                             }
+
+                            // check if we can merge
                             if (currentPos < rows - 2 && tiles[currentPos + 1, j].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[currentPos + 1, j].towerOnTile;
-                                if (destTower.rankValue == tower.rankValue &&
+                                // Check hasMerged
+                                if (!hasMerged[currentPos + 1, j] &&
+                                    destTower.rankValue == tower.rankValue &&
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
-                                    destTower.UpgradeTower();
-                                    Destroy(tower.gameObject);
+                                    // Merge
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
+
+                                    destTower.UpgradeTower();
+                                    hasMerged[currentPos + 1, j] = true;
+
+                                    Destroy(tower.gameObject);
                                     continue;
                                 }
                             }
+
                             if (currentPos != i)
                             {
                                 tiles[i, j].towerOnTile = null;
@@ -216,6 +257,7 @@ public class BoardManager : MonoBehaviour
             }
             else if (direction.y > 0)
             {
+                // Move up
                 for (int j = 1; j < columns - 1; j++)
                 {
                     for (int i = 1; i < rows - 1; i++)
@@ -228,17 +270,25 @@ public class BoardManager : MonoBehaviour
                             {
                                 currentPos--;
                             }
+
+                            // check if we can merge
                             if (currentPos > 1 && tiles[currentPos - 1, j].towerOnTile != null)
                             {
                                 TowerController destTower = tiles[currentPos - 1, j].towerOnTile;
-                                if (destTower.rankValue == tower.rankValue &&
+                                // Check hasMerged
+                                if (!hasMerged[currentPos - 1, j] &&
+                                    destTower.rankValue == tower.rankValue &&
                                     destTower.rankValue < 4 &&
                                     destTower.towerName == tower.towerName)
                                 {
-                                    destTower.UpgradeTower();
-                                    Destroy(tower.gameObject);
+                                    // Merge
                                     tiles[i, j].towerOnTile = null;
                                     anyMoved = true;
+
+                                    destTower.UpgradeTower();
+                                    hasMerged[currentPos - 1, j] = true;
+
+                                    Destroy(tower.gameObject);
                                     continue;
                                 }
                             }
@@ -260,28 +310,159 @@ public class BoardManager : MonoBehaviour
         {
             Debug.Log("Towers moved and merged within the inner grid.");
         }
+        if (gameManager != null)
+        {
+            int towerCount = GetAllTowersOnBoard().Count;
+            gameManager.uiManager.SetTowerCost(towerCount * 15);
+        }
     }
 
-    void OnDrawGizmos()
+
+    public void LightAllTileHovers()
     {
-        Gizmos.color = Color.green;
-        float gridWidth = columns * tileSpacing;
-        float gridHeight = rows * tileSpacing;
-        Vector3 center = transform.position;
-        Vector3 origin = center - new Vector3(gridWidth / 2, gridHeight / 2, 0);
-
-        for (int i = 0; i <= rows; i++)
+        for (int i = 0; i < rows; i++)
         {
-            Vector3 start = origin + new Vector3(0, i * tileSpacing, 0);
-            Vector3 end = start + new Vector3(gridWidth, 0, 0);
-            Gizmos.DrawLine(start, end);
-        }
-
-        for (int j = 0; j <= columns; j++)
-        {
-            Vector3 start = origin + new Vector3(j * tileSpacing, 0, 0);
-            Vector3 end = start + new Vector3(0, gridHeight, 0);
-            Gizmos.DrawLine(start, end);
+            for (int j = 0; j < columns; j++)
+            {
+                if (tiles[i, j] != null)
+                {
+                    tiles[i, j].LightOnHover();
+                }
+            }
         }
     }
+
+    public void DisableAllTileHovers()
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (tiles[i, j] != null)
+                {
+                    tiles[i, j].DisableHover();
+                }
+            }
+        }
+    }
+
+
+    public void UpdateTileHoverStatesAllButOne(TileController excludedTile)
+    {
+        LightAllTileHovers();
+
+        if (excludedTile != null)
+        {
+            if (IsInnerTile(excludedTile.gridPosition.y, excludedTile.gridPosition.x))
+            {
+                if (excludedTile.towerOnTile != null)
+                {
+                    excludedTile.DisableHover();
+                }
+            }
+        }
+    }
+
+    public void UpdateTileHoverStates(TileController currentTile)
+    {
+        DisableAllTileHovers();
+        if (currentTile != null)
+        {
+            currentTile.LightOnHover();
+        }
+    }
+
+    public TileController GetTileUnderPosition(Vector3 worldPosition)
+    {
+        float offsetX = (columns - 1) / 2.0f;
+        float offsetY = (rows - 1) / 2.0f;
+
+        Vector3 localPos = worldPosition - transform.position;
+        int j = Mathf.RoundToInt((localPos.x / tileSpacing) + offsetX);
+        int i = Mathf.RoundToInt(offsetY - (localPos.y / tileSpacing));
+
+        if (IsInside(i, j))
+        {
+
+            return tiles[i, j];
+        }
+
+        return null;
+    }
+
+    public bool IsInside(int row, int col)
+    {
+        return row >= 0 && row < rows && col >= 0 && col < columns;
+    }
+
+    public bool IsInnerTile(int row, int col)
+    {
+        return row > 0 && row < rows - 1 && col > 0 && col < columns - 1;
+    }
+    public List<TowerController> GetAllTowersOnBoard()
+    {
+        List<TowerController> towers = new List<TowerController>();
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                TowerController tower = tiles[i, j].towerOnTile;
+                if (tower != null)
+                {
+                    towers.Add(tower);
+                }
+            }
+        }
+
+        return towers;
+    }
+
+
+    public Vector2Int FindEmptyNeighbourOfLevel1()
+    {
+        // 1) look for an empty inner-tile neighbour of any level-1 tower
+        foreach (TowerController tower in GetAllTowersOnBoard())
+        {
+            if (tower.rankValue != 1) continue;
+
+            Vector2Int pos = tower.gridPosition;
+
+            Vector2Int[] dirs =
+            {
+                new Vector2Int( 0,  1), // up
+                new Vector2Int( 0, -1), // down
+                new Vector2Int( 1,  0), // right
+                new Vector2Int(-1,  0)  // left
+            };
+
+            foreach (Vector2Int d in dirs)
+            {
+                Vector2Int n = pos + d;
+                if (IsInside(n.y, n.x) &&   // on the board
+                    IsInnerTile(n.y, n.x) &&   // not on monster road
+                    tiles[n.y, n.x].towerOnTile == null)        // empty
+                {
+                    return n;                               // valid neighbour
+                }
+            }
+        }
+
+        // 2) no neighbour found – pick ANY empty inner tile
+        for (int row = 1; row < rows - 1; row++)           // inner rows only
+        {
+            for (int col = 1; col < columns - 1; col++)    // inner cols only
+            {
+                if (tiles[row, col].towerOnTile == null)
+                {
+                    return new Vector2Int(col, row);
+                }
+            }
+        }
+
+        // 3) board completely full
+        return new Vector2Int(9, 9);
+    }
+
+
 }

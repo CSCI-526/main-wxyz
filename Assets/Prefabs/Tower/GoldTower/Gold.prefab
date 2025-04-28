@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5565194724834910087}
   - component: {fileID: 6282325720260741598}
-  - component: {fileID: -4166535775320501167}
   - component: {fileID: 7603021642767239256}
   m_Layer: 0
   m_Name: Gold
@@ -28,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 49547057150472206}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3299162, y: 1.9738896, z: 0.08303308}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.85, y: 0.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -76,9 +75,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1734777079
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8428700344402047893, guid: 1b4ec03f351eb47c7bae886fd3bdf3fb, type: 3}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -89,30 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-4166535775320501167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49547057150472206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8890f9d5749224509afa98578dd6c45a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rankValue: 1
-  towerName: Gold
-  towerSprite: {fileID: -8428700344402047893, guid: 1b4ec03f351eb47c7bae886fd3bdf3fb, type: 3}
-  attackRange: 0
-  attackDamage: 0
-  towerBasePrefab: {fileID: 0}
-  basePrefabs:
-  - {fileID: 5382328371828604995, guid: a3ff432b1b7aa43c0bc9095c5f5d0c18, type: 3}
-  - {fileID: 1169137949355460633, guid: 665debfea4c9941c1bbb8bc05f3297b2, type: 3}
-  - {fileID: 2729133250331387908, guid: 9e77472785924463dbc0dd96e7fcc0f1, type: 3}
-  - {fileID: 6734909066804063127, guid: 1e20dd86615b14cd2ba6b808f1daed89, type: 3}
-  gridPosition: {x: 0, y: 0}
 --- !u!114 &7603021642767239256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,12 +101,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rankValue: 1
-  towerName: 
-  towerSprite: {fileID: 0}
+  towerName: Gold
+  towerSprite: {fileID: -6301429047446442448, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}
   attackRange: 0
   attackDamage: 0
   towerBasePrefab: {fileID: 0}
-  basePrefabs: []
+  basePrefabs:
+  - {fileID: 5382328371828604995, guid: a3ff432b1b7aa43c0bc9095c5f5d0c18, type: 3}
+  - {fileID: 1169137949355460633, guid: 665debfea4c9941c1bbb8bc05f3297b2, type: 3}
+  - {fileID: 2729133250331387908, guid: 9e77472785924463dbc0dd96e7fcc0f1, type: 3}
+  - {fileID: 6734909066804063127, guid: 1e20dd86615b14cd2ba6b808f1daed89, type: 3}
   gridPosition: {x: 0, y: 0}
-  goldPerCycle: 10
   generateInterval: 1
+  goldFrames:
+  - {fileID: -6301429047446442448, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}
+  - {fileID: -6116963357262179218, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}
+  - {fileID: -5275974221471470513, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}
+  - {fileID: 8413302526757980907, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}
+  - {fileID: -5533810949261644772, guid: ecd76b2df6bc1499d919f071c4d248d7, type: 3}

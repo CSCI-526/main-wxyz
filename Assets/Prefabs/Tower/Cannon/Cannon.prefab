@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001787181882085309}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3299162, y: 1.9738896, z: 0.08303308}
-  m_LocalScale: {x: 0.85, y: 0.85, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &2618495671070671392
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -75,10 +75,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1734777079
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5444745853883899374, guid: 2701b5b22b837493fbf457a635e98a28, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,8 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rankValue: 1
-  towerSprite: {fileID: -5444745853883899374, guid: 2701b5b22b837493fbf457a635e98a28, type: 3}
-  attackRange: 4
+  towerName: Cannon
+  towerSprite: {fileID: 0}
+  attackRange: 10
   attackDamage: 50
   towerBasePrefab: {fileID: 0}
   basePrefabs:
@@ -112,4 +113,10 @@ MonoBehaviour:
   - {fileID: 6734909066804063127, guid: 1e20dd86615b14cd2ba6b808f1daed89, type: 3}
   gridPosition: {x: 0, y: 0}
   projectilePrefab: {fileID: 3538796072834460885, guid: d3d1509b193ff49b3822d4d64810a551, type: 3}
-  fireRate: 1
+  fireRate: 1.1
+  turretPrefab: {fileID: 4803166709393479998, guid: f2e2253a51a3a4b86adb226f743f0c71, type: 3}
+  turretSprites:
+  - {fileID: 2323917800338813707, guid: 3d4decf0dddac41f5a672d8a3244f640, type: 3}
+  - {fileID: 6219008580301899996, guid: 3d4decf0dddac41f5a672d8a3244f640, type: 3}
+  - {fileID: -5076354272350900210, guid: 3d4decf0dddac41f5a672d8a3244f640, type: 3}
+  - {fileID: -1346401361294608487, guid: 3d4decf0dddac41f5a672d8a3244f640, type: 3}
