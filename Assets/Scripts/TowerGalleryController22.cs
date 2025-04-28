@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 public class TowerGalleryController : MonoBehaviour
 {
-   public GameObject galleryPanel;
-   public GameObject[] towerPanels; // 对应五个塔的介绍 UI
+    public GameObject galleryPanel;
+    public GameObject[] towerPanels; // 对应五个塔的介绍 UI
 
-   public VideoPlayer sharedVideoPlayer;
+    public VideoPlayer sharedVideoPlayer;
 
-   private readonly Dictionary<int, string> videoPaths = new Dictionary<int, string>()
+    private readonly Dictionary<int, string> videoPaths = new Dictionary<int, string>()
     {
         { 0, "Videos/Cannon.mp4" },
         { 1, "Videos/EnegyTower.mp4" },
@@ -18,37 +18,37 @@ public class TowerGalleryController : MonoBehaviour
         { 4, "Videos/Frozen.mp4" }
     };
 
-   public void OpenGallery()
-   {
-      galleryPanel.SetActive(true);
-      Time.timeScale = 0f;
-   }
-   public void CloseGallery()
-   {
-      galleryPanel.SetActive(false);
-      Time.timeScale = 1f;
-   }
+    public void OpenGallery()
+    {
+        galleryPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void CloseGallery()
+    {
+        galleryPanel.SetActive(false);
+        // Time.timeScale = 1f;
+    }
 
-   public void OpenTowerPanel(int index)
-   {
-      galleryPanel.SetActive(false);
-      towerPanels[index].SetActive(true);
+    public void OpenTowerPanel(int index)
+    {
+        galleryPanel.SetActive(false);
+        towerPanels[index].SetActive(true);
 
-      PlaySharedVideo(index);
-   }
+        PlaySharedVideo(index);
+    }
 
 
-   public void ContinueGame(GameObject towerPanel)
-   {
-      towerPanel.SetActive(false);
+    public void ContinueGame(GameObject towerPanel)
+    {
+        towerPanel.SetActive(false);
 
-      sharedVideoPlayer.Stop();
-      ClearVideoRenderTexture();
+        sharedVideoPlayer.Stop();
+        ClearVideoRenderTexture();
 
-      Time.timeScale = 1f;
-   }
+        // Time.timeScale = 1f;
+    }
 
-   private void PlaySharedVideo(int index)
+    private void PlaySharedVideo(int index)
     {
         if (!videoPaths.ContainsKey(index)) return;
 
@@ -70,7 +70,7 @@ public class TowerGalleryController : MonoBehaviour
     }
 
 
-   private void ClearVideoRenderTexture()
+    private void ClearVideoRenderTexture()
     {
         if (sharedVideoPlayer != null && sharedVideoPlayer.targetTexture != null)
         {
